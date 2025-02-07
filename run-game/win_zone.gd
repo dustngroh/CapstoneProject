@@ -13,4 +13,6 @@ func _process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	emit_signal('win')
+	if body.is_in_group('player'):
+		emit_signal('win')
+	
