@@ -5,12 +5,6 @@ extends CharacterBody2D
 #const JUMP_VELOCITY = -400.0
 @export var push_force = 200.0
 
-@export var speed = 1000
-@export var jump_speed = -1000
-@export var gravity = 2000
-@export_range(0.0, 1.0) var friction = 0.1
-@export_range(0.0 , 1.0) var acceleration = 0.08
-
 @export var speed = 800
 @export var jump_speed = -1000
 @export var gravity = 2000
@@ -28,7 +22,6 @@ func _physics_process(delta: float) -> void:
 	var dir = Input.get_axis("walk_left", "walk_right")
 	if dir != 0:
 	
-		velocity.x = lerp(velocity.x, dir * speed, acceleration)
 		#velocity.x = lerp(velocity.x, dir * speed, acceleration)
 		var is_flipping_direction = last_direction != 0 and dir != last_direction
 		var within_grace_time = (Time.get_ticks_msec() - last_direction_time) / 1000.0 <= dash_dance_grace_time
