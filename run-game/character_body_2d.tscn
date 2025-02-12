@@ -7,7 +7,10 @@
 script = ExtResource("1_ll5kr")
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_y4rd1")
 
@@ -17,9 +20,12 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_y4rd1")
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
