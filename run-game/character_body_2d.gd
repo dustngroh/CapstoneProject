@@ -4,7 +4,7 @@ extends CharacterBody2D
 #const SPEED = 300.0
 #const JUMP_VELOCITY = -400.0
 @export var push_force = 200.0
-@export var speed = 1000
+@export var speed = 800
 @export var jump_speed = -1000
 @export var gravity = 2000
 @export_range(0.0, 1.0) var friction = 0.1
