@@ -8,7 +8,10 @@ script = ExtResource("1_ll5kr")
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -21,9 +24,12 @@ drag_vertical_enabled = true
 
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_y4rd1")
 
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 =======
