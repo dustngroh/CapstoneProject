@@ -46,8 +46,5 @@ This project is a competitive side-scrolling speedrun game inspired by classic r
 - **Dustin Groh** - Game Programmer / Software Developer
 - **Georgia Wiggins** - Game Designer / Artist
 
-## **License**
-This project is licensed under the MIT License.
-
 ---
 
