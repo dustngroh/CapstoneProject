@@ -1,15 +1,15 @@
 [gd_scene load_steps=3 format=3 uid="uid://bokip4qxhqxtg"]
 
-[ext_resource type="Script" path="res://node.gd" id="1_aiw1l"]
-[ext_resource type="Script" path="res://fade_layer.gd" id="2_3iajw"]
+[ext_resource type="Script" path="res://scenes/main/node.gd" id="1_k5xq4"]
+[ext_resource type="Script" path="res://scenes/common/fade_layer.gd" id="2_28yit"]
 
 [node name="Node" type="Node"]
-script = ExtResource("1_aiw1l")
+script = ExtResource("1_k5xq4")
 
 [node name="LevelContainer" type="Node" parent="."]
 
 [node name="FadeLayer" type="CanvasLayer" parent="."]
-script = ExtResource("2_3iajw")
+script = ExtResource("2_28yit")
 
 [node name="ColorRect" type="ColorRect" parent="FadeLayer"]
 offset_right = 1150.0

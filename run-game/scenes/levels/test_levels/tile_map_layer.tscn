@@ -1,17 +1,17 @@
 [gd_scene load_steps=10 format=4 uid="uid://dc5myi4yc45i8"]
 
-[ext_resource type="Texture2D" uid="uid://c1080on1m3e5n" path="res://icon.svg" id="1_ttnll"]
-[ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://character_body_2d.tscn" id="2_cb4ws"]
-[ext_resource type="PackedScene" uid="uid://b83jnvp62cq81" path="res://dummy_ball.tscn" id="3_aamhy"]
-[ext_resource type="Script" path="res://label.gd" id="4_18eck"]
-[ext_resource type="PackedScene" uid="uid://c7dcnp2hndaih" path="res://win_zone.tscn" id="5_u3ydc"]
-[ext_resource type="Texture2D" uid="uid://c8j24cl2brs3l" path="res://2d_lights_and_shadows_neutral_point_light.webp" id="6_gg4gq"]
+[ext_resource type="Texture2D" uid="uid://c1080on1m3e5n" path="res://assets/icon.svg" id="1_dpelm"]
+[ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://entities/characters/player/character_body_2d.tscn" id="2_r2vip"]
+[ext_resource type="PackedScene" uid="uid://b83jnvp62cq81" path="res://entities/obstacles/dummy_ball.tscn" id="3_qdgnk"]
+[ext_resource type="Script" path="res://scenes/levels/test_levels/label.gd" id="4_xayh8"]
+[ext_resource type="PackedScene" uid="uid://c7dcnp2hndaih" path="res://scenes/common/win_zone.tscn" id="5_lxsac"]
+[ext_resource type="Texture2D" uid="uid://c8j24cl2brs3l" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="6_4g2ta"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_y5rpe"]
 bounce = 1.0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v1x0l"]
-texture = ExtResource("1_ttnll")
+texture = ExtResource("1_dpelm")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -91,10 +91,10 @@ sources/0 = SubResource("TileSetAtlasSource_v1x0l")
 tile_map_data = PackedByteArray("AAAJAB0AAAADAAAAAAAKAB0AAAADAAAAAAALAB0AAAADAAAAAAAMAB0AAAADAAAAAAANAB0AAAADAAAAAAAOAB0AAAADAAAAAAAPAB0AAAADAAAAAAAQAB0AAAADAAAAAAARAB0AAAADAAAAAAASAB0AAAADAAAAAAATAB0AAAADAAAAAAAUAB0AAAADAAAAAAAVAB0AAAADAAAAAAAWAB0AAAADAAAAAAAXAB0AAAADAAAAAAAYAB0AAAADAAAAAAAZAB0AAAADAAAAAAAaAB0AAAADAAAAAAAbAB0AAAADAAAAAAAbAB4AAAADAAAAAAAcAB4AAAADAAAAAAAdAB4AAAADAAAAAAAeAB4AAAADAAAAAAAfAB4AAAADAAAAAAAgAB4AAAADAAAAAAAhAB4AAAADAAAAAAAiAB4AAAADAAAAAAAjAB4AAAADAAAAAAAkAB4AAAADAAAAAAAlAB4AAAADAAAAAAAmAB4AAAADAAAAAAAnAB4AAAADAAAAAAAoAB4AAAADAAAAAAApAB4AAAADAAAAAAAqAB4AAAADAAAAAAArAB4AAAADAAAAAAAsAB4AAAADAAAAAAAtAB4AAAADAAAAAAAuAB4AAAADAAAAAAAvAB4AAAADAAAAAAAwAB4AAAADAAAAAAAxAB4AAAADAAAAAAAIAB0AAAAAAAAAAAAyAB0AAAAAAAAAAAAzABwAAAAAAAAAAAA0ABsAAAAAAAAAAAA1ABoAAAAAAAAAAAA2ABkAAAAAAAAAAAA3ABgAAAAAAAAAAAA4ABcAAAAAAAAAAAA5ABYAAAAAAAAAAAA6ABUAAAAAAAAAAAA7ABQAAAAAAAAAAAA8ABMAAAAAAAAAAAAcAB0AAAAHAAAAAAAHAB0AAAAEAAAAAAAGAB0AAAAEAAAAAAAFAB0AAAAEAAAAAAAEAB0AAAAEAAAAAAADAB0AAAAEAAAAAAACAB0AAAAEAAAAAAABAB0AAAAEAAAAAAA9ABMAAAADAAAAAAA+ABMAAAADAAAAAAA/ABMAAAADAAAAAABAABMAAAADAAAAAABBABMAAAADAAAAAABCABMAAAADAAAAAABDABMAAAADAAAAAABEABMAAAADAAAAAABFABMAAAADAAAAAABGABMAAAADAAAAAABHABMAAAADAAAAAABIABMAAAADAAAAAABJABMAAAADAAAAAABKABMAAAADAAAAAABLABMAAAADAAAAAABMABMAAAADAAAAAABNABMAAAADAAAAAABOABMAAAADAAAAAABPABMAAAADAAAAAABQABMAAAADAAAAAABRABMAAAADAAAAAABSABMAAAADAAAAAABTABMAAAADAAAAAABUABMAAAADAAAAAABVABMAAAADAAAAAABWABMAAAADAAAAAABXABMAAAADAAAAAABYABMAAAADAAAAAABZABMAAAADAAAAAABaABMAAAADAAAAAABbABMAAAADAAAAAABcABMAAAADAAAAAABdABMAAAADAAAAAABeABMAAAADAAAAAABfABMAAAADAAAAAABgABMAAAADAAAAAABhABMAAAADAAAAAABiABMAAAADAAAAAABjABMAAAADAAAAAABkABMAAAADAAAAAABlABMAAAADAAAAAABmABMAAAADAAAAAABnABMAAAADAAAAAABoABMAAAADAAAAAABpABMAAAADAAAAAABqABMAAAADAAAAAABrABMAAAADAAAAAABsABMAAAADAAAAAABtABMAAAADAAAAAABuABMAAAADAAAAAABvABMAAAADAAAAAABwABMAAAADAAAAAABxABMAAAADAAAAAAByABMAAAADAAAAAABzABMAAAADAAAAAAB0ABMAAAADAAAAAAB1ABMAAAADAAAAAABuABIAAAADAAAAAABvABIAAAADAAAAAABwABIAAAADAAAAAABxABIAAAADAAAAAAByABIAAAADAAAAAABzABIAAAADAAAAAAB0ABIAAAADAAAAAAB1ABIAAAADAAAAAABuABEAAAADAAAAAABvABEAAAADAAAAAABwABEAAAADAAAAAABxABEAAAADAAAAAAByABEAAAADAAAAAABzABEAAAADAAAAAAB0ABEAAAADAAAAAAB1ABEAAAADAAAAAAA=")
 tile_set = SubResource("TileSet_ejwer")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("2_cb4ws")]
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_r2vip")]
 position = Vector2(398, 225)
 
-[node name="RigidBody2D" parent="." instance=ExtResource("3_aamhy")]
+[node name="RigidBody2D" parent="." instance=ExtResource("3_qdgnk")]
 position = Vector2(654, 115)
 
 [node name="Label" type="Label" parent="."]
@@ -102,14 +102,14 @@ offset_left = 1564.0
 offset_top = 164.0
 offset_right = 1707.0
 offset_bottom = 198.0
-script = ExtResource("4_18eck")
+script = ExtResource("4_xayh8")
 
-[node name="WinZone" parent="." instance=ExtResource("5_u3ydc")]
+[node name="WinZone" parent="." instance=ExtResource("5_lxsac")]
 position = Vector2(1773, 118)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(478, 422)
 shadow_enabled = true
-texture = ExtResource("6_gg4gq")
+texture = ExtResource("6_4g2ta")
 
 [connection signal="win" from="WinZone" to="Label" method="_on_win_zone_win"]

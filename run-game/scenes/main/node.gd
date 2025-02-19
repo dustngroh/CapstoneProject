@@ -3,7 +3,7 @@ extends Node
 var current_level = null
 
 func _ready():
-	load_level('res://tile_map_layer.tscn')
+	load_level('res://scenes/levels/test_levels/tile_map_layer.tscn')
 
 func load_level(level_path: String):
 	await $FadeLayer.fade_in(1.0)  # Fade to black
@@ -25,4 +25,4 @@ func load_level(level_path: String):
 
 func _on_level_completed():
 	print("Player reached the win zone!")
-	load_level("res://test_level.tscn")  # Change this dynamically later
+	load_level("res://scenes/levels/test_levels/test_level.tscn")  # Change this dynamically later
