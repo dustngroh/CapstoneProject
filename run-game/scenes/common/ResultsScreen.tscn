@@ -1,0 +1,49 @@
+[gd_scene load_steps=2 format=3 uid="uid://dhikxsmxr43ju"]
+
+[ext_resource type="Script" path="res://scenes/common/results_screen.gd" id="1_1sxm1"]
+
+[node name="ResultsScreen" type="CanvasLayer"]
+script = ExtResource("1_1sxm1")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.0
+offset_top = 50.0
+offset_right = 62.0
+offset_bottom = 73.0
+grow_horizontal = 2
+text = "Level Complete!"
+
+[node name="NextLevelButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -15.5
+offset_right = 45.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Next Level"
+
+[node name="MainMenuButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = 34.5
+offset_right = 48.0
+offset_bottom = 65.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Main Menu
+"
+
+[connection signal="pressed" from="NextLevelButton" to="." method="_on_next_level_button_pressed"]
+[connection signal="pressed" from="MainMenuButton" to="." method="_on_main_menu_button_pressed"]
