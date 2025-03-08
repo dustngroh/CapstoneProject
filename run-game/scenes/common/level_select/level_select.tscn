@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbb0tb4tuu5oc"]
+[gd_scene load_steps=9 format=3 uid="uid://cbb0tb4tuu5oc"]
 
 [ext_resource type="Texture2D" uid="uid://cgxc1wnbj8dl7" path="res://assets/level_select/level map.jpg" id="1_5aoqq"]
 [ext_resource type="Script" path="res://scenes/common/level_select/level_select_background.gd" id="2_4i2tq"]
 [ext_resource type="Texture2D" uid="uid://1gql81t58cmb" path="res://assets/level_select/buttons/level1.png" id="2_ai60b"]
+[ext_resource type="Texture2D" uid="uid://bkk210fwmjy5o" path="res://assets/level_select/buttons/level1_hover.png" id="4_l0hsq"]
 [ext_resource type="Texture2D" uid="uid://3v7mcs4q3r0" path="res://assets/level_select/buttons/level2.png" id="4_lbfmc"]
 [ext_resource type="Texture2D" uid="uid://d1f7rnc5pjacl" path="res://assets/level_select/buttons/level3.png" id="5_jh2q4"]
+[ext_resource type="Texture2D" uid="uid://dk032qsjsxj5t" path="res://assets/level_select/buttons/level2_hover.png" id="6_1unou"]
 [ext_resource type="Texture2D" uid="uid://ckovbay8nj5dg" path="res://assets/level_select/buttons/level4.png" id="6_tyy1x"]
 
 [node name="LevelSelect" type="Control"]
@@ -34,12 +36,14 @@ offset_top = 109.0
 offset_right = 537.0
 offset_bottom = 221.0
 texture_normal = ExtResource("2_ai60b")
+texture_hover = ExtResource("4_l0hsq")
 
 [node name="Level2Button" type="TextureButton" parent="LevelSelectBackground"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture_normal = ExtResource("4_lbfmc")
+texture_hover = ExtResource("6_1unou")
 
 [node name="Level3Button" type="TextureButton" parent="LevelSelectBackground"]
 layout_mode = 0
