@@ -28,8 +28,10 @@ func _on_main_menu_button_pressed() -> void:
 
 
 func _on_level_1_button_pressed() -> void:
+	MusicManager.play_music("res://assets/audio/music/Guifrog - Frog Punch.mp3")
 	get_tree().change_scene_to_file("res://scenes/levels/main_levels/level_1.tscn")
 
 
 func _on_level_2_button_pressed() -> void:
+	MusicManager.play_music("res://assets/audio/music/Guifrog - Frog Punch.mp3")
 	get_tree().change_scene_to_file("res://scenes/levels/main_levels/level_2.tscn")
