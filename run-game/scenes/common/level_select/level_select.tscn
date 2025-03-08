@@ -1,0 +1,70 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbb0tb4tuu5oc"]
+
+[ext_resource type="Texture2D" uid="uid://cgxc1wnbj8dl7" path="res://assets/level_select/level map.jpg" id="1_5aoqq"]
+[ext_resource type="Script" path="res://scenes/common/level_select/level_select_background.gd" id="2_4i2tq"]
+[ext_resource type="Texture2D" uid="uid://1gql81t58cmb" path="res://assets/level_select/buttons/level1.png" id="2_ai60b"]
+[ext_resource type="Texture2D" uid="uid://3v7mcs4q3r0" path="res://assets/level_select/buttons/level2.png" id="4_lbfmc"]
+[ext_resource type="Texture2D" uid="uid://d1f7rnc5pjacl" path="res://assets/level_select/buttons/level3.png" id="5_jh2q4"]
+[ext_resource type="Texture2D" uid="uid://ckovbay8nj5dg" path="res://assets/level_select/buttons/level4.png" id="6_tyy1x"]
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LevelSelectBackground" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_5aoqq")
+expand_mode = 3
+stretch_mode = 6
+script = ExtResource("2_4i2tq")
+
+[node name="Level1Button" type="TextureButton" parent="LevelSelectBackground"]
+layout_mode = 1
+offset_left = 425.0
+offset_top = 109.0
+offset_right = 537.0
+offset_bottom = 221.0
+texture_normal = ExtResource("2_ai60b")
+
+[node name="Level2Button" type="TextureButton" parent="LevelSelectBackground"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("4_lbfmc")
+
+[node name="Level3Button" type="TextureButton" parent="LevelSelectBackground"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("5_jh2q4")
+
+[node name="Level4Button" type="TextureButton" parent="LevelSelectBackground"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("6_tyy1x")
+
+[node name="MainMenuButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -48.0
+offset_top = 15.0
+offset_right = 48.0
+offset_bottom = 46.0
+grow_horizontal = 2
+text = "Main Menu"
+
+[connection signal="pressed" from="LevelSelectBackground/Level1Button" to="LevelSelectBackground" method="_on_level_1_button_pressed"]
+[connection signal="pressed" from="LevelSelectBackground/Level2Button" to="LevelSelectBackground" method="_on_level_2_button_pressed"]
+[connection signal="pressed" from="MainMenuButton" to="LevelSelectBackground" method="_on_main_menu_button_pressed"]
