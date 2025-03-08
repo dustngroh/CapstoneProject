@@ -1,17 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://bh68ke5pd617u"]
 
 [ext_resource type="Script" path="res://entities/characters/player/character_body_2d.gd" id="1_ll5kr"]
-[ext_resource type="Texture2D" uid="uid://c1080on1m3e5n" path="res://assets/icon.svg" id="2_y4rd1"]
+[ext_resource type="Texture2D" uid="uid://drjo7l3oubjxa" path="res://assets/character/mushroom_character_side.png" id="2_yeftb"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_ll5kr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_y4rd1")
+scale = Vector2(0.15, 0.15)
+texture = ExtResource("2_yeftb")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(59.1, -64, -59, -64, -63.8, -59, -64, 61, -60.3, 64, 59.6, 64, 63.9, 59, 64, -61.1)
+polygon = PackedVector2Array(34, -55, -19, -52, -54, -9, -47, 31, -10, 58, 29, 60, 37, 37, 60, -33)

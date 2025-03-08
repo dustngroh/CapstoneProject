@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dlxl0dsaj7hws"]
+[gd_scene load_steps=3 format=3 uid="uid://dlxl0dsaj7hws"]
 
 [ext_resource type="Script" path="res://scenes/main/main_menu.gd" id="1_otjms"]
+[ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://entities/characters/player/character_body_2d.tscn" id="2_01mn5"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -50,6 +51,9 @@ text = "Continue"
 [node name="LevelSelectButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Level Select"
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_01mn5")]
+position = Vector2(202, 327)
 
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]

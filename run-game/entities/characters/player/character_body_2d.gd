@@ -37,7 +37,9 @@ func _physics_process(delta: float) -> void:
 		last_direction_time = Time.get_ticks_msec()
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction)
-
+	
+	$Sprite2D.flip_h = velocity.x < 0
+	
 	move_and_slide()
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_speed
