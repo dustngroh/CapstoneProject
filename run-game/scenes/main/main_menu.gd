@@ -3,8 +3,13 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$CharacterBody2D/Camera2D.enabled = false
-	$CharacterBody2D.gravity = 0
+	
+	$Character1Holder/Character1/Camera2D.enabled = false
+	$Character1Holder/Character1.gravity = 0
+	
+	$Character2Holder/Character2/Camera2D.enabled = false
+	$Character2Holder/Character2.gravity = 0
+	$Character2Holder/Character2.scale.x = -1
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

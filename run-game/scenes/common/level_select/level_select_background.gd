@@ -9,6 +9,8 @@ var button_positions = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$CharacterBody2D/Camera2D.enabled = false
+	
 	for i in range(get_child_count()):
 		var button = get_child(i)
 		if button is TextureButton:
@@ -45,3 +47,8 @@ func _on_level_3_button_pressed() -> void:
 func _on_level_4_button_pressed() -> void:
 	MusicManager.play_music("res://assets/audio/music/Lite Saturation - Calm.mp3")
 	get_tree().change_scene_to_file("res://scenes/levels/main_levels/level_4.tscn")
+
+
+func _on_bottom_world_border_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):  # Ensure it's the player
+		body.position = $SpawnPoint.position  # Respawn at the spawn point
