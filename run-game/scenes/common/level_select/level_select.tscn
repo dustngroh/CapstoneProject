@@ -71,4 +71,6 @@ text = "Main Menu"
 
 [connection signal="pressed" from="LevelSelectBackground/Level1Button" to="LevelSelectBackground" method="_on_level_1_button_pressed"]
 [connection signal="pressed" from="LevelSelectBackground/Level2Button" to="LevelSelectBackground" method="_on_level_2_button_pressed"]
+[connection signal="pressed" from="LevelSelectBackground/Level3Button" to="LevelSelectBackground" method="_on_level_3_button_pressed"]
+[connection signal="pressed" from="LevelSelectBackground/Level4Button" to="LevelSelectBackground" method="_on_level_4_button_pressed"]
 [connection signal="pressed" from="MainMenuButton" to="LevelSelectBackground" method="_on_main_menu_button_pressed"]

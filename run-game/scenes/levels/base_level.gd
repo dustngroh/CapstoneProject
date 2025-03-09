@@ -61,4 +61,9 @@ func show_leaderboard():
 	#var scores = GameManager.level_scores.get(name, [])
 	
 	#var score_text = "\n".join(scores.map(func(s): return "%s - %.2f sec" % [s["player"], s["time"]]))
-	$UI/Leaderboard/Label.text = "Top Scores:\n"
+	$UI/Leaderboard/Label.text = "Final time: %.2f seconds" % elapsed_time # Display their time
+
+
+func _on_bottom_world_border_body_entered(body: Node2D) -> void:
+	if body.is_in_group("player"):  # Ensure it's the player
+		body.position = spawn_point.position  # Respawn at the spawn point
