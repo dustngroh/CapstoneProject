@@ -20,6 +20,13 @@ var last_direction_time = 0.0
 func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
 	var dir = Input.get_axis("walk_left", "walk_right")
+	
+	
+	if Input.is_action_pressed("hold_down"):
+		$AnimatedSprite2D.play("down")
+	else:
+		$AnimatedSprite2D.play("default")
+	
 	if dir != 0:
 	
 		#velocity.x = lerp(velocity.x, dir * speed, acceleration)
@@ -38,7 +45,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction)
 	
-	$Sprite2D.flip_h = velocity.x < 0
+	#$Sprite2D.flip_h = velocity.x < 0
+	$AnimatedSprite2D.flip_h = velocity.x < 0
 	
 	move_and_slide()
 	if Input.is_action_just_pressed("jump") and is_on_floor():

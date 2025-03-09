@@ -33,7 +33,7 @@ func _process(delta):
 		update_timer_display()
 
 func update_timer_display():
-	time_label.text = "Time: %.2f" % elapsed_time  # Shows time in seconds with 2 decimals
+	time_label.text = "Time: %.2f" % elapsed_time  # Show time in seconds with 2 decimals
 
 func spawn_player():
 	if player_scene:
@@ -54,13 +54,12 @@ func show_leaderboard():
 	leaderboard.visible = true
 	
 	# Fetch leaderboard and display results
-	#GameManager.current_level = name  # Store level name
-	#GameManager.fetch_leaderboard(name)  # Fetch scores for this level
+	# TODO: Implement leaderboard fetching from backend
+	#GameManager.fetch_leaderboard(leve_name)  # Fetch scores for this level
 	
 	await get_tree().create_timer(1.0).timeout  # Wait for API response
-	#var scores = GameManager.level_scores.get(name, [])
 	
-	#var score_text = "\n".join(scores.map(func(s): return "%s - %.2f sec" % [s["player"], s["time"]]))
+	
 	$UI/Leaderboard/Label.text = "Final time: %.2f seconds" % elapsed_time # Display their time
 
 
