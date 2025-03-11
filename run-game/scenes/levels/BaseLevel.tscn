@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://ds5twxhi7yq7j"]
+[gd_scene load_steps=7 format=3 uid="uid://ds5twxhi7yq7j"]
 
 [ext_resource type="Script" path="res://scenes/levels/base_level.gd" id="1_3y0r6"]
 [ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://scenes/entities/characters/player/character_body_2d.tscn" id="2_qdxsp"]
 [ext_resource type="PackedScene" uid="uid://c7dcnp2hndaih" path="res://scenes/common/win_zone.tscn" id="2_yau4l"]
 [ext_resource type="PackedScene" uid="uid://dhikxsmxr43ju" path="res://scenes/common/ResultsScreen.tscn" id="3_abmcm"]
+[ext_resource type="Script" path="res://scenes/levels/touch_controls.gd" id="4_ogj5t"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_16w4h"]
 
@@ -26,6 +27,58 @@ color = Color(0.172549, 0.768627, 0.858824, 1)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
+[node name="TouchControls" type="Control" parent="UI" groups=["TouchControls"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_ogj5t")
+metadata/_edit_use_anchors_ = true
+
+[node name="RightButton" type="Button" parent="UI/TouchControls"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.925347
+anchor_top = 0.816358
+anchor_right = 0.925347
+anchor_bottom = 0.816358
+offset_left = -95.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Move Right"
+metadata/_edit_use_anchors_ = true
+
+[node name="LeftButton" type="Button" parent="UI/TouchControls"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8125
+anchor_top = 0.816358
+anchor_right = 0.8125
+anchor_bottom = 0.816358
+offset_left = -95.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Move Left"
+metadata/_edit_use_anchors_ = true
+
+[node name="JumpButton" type="Button" parent="UI/TouchControls"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0928819
+anchor_top = 0.761574
+anchor_right = 0.0928819
+anchor_bottom = 0.761574
+offset_top = -15.5
+offset_right = 95.0
+offset_bottom = 15.5
+grow_vertical = 2
+text = "     Jump     "
+metadata/_edit_use_anchors_ = true
+
 [node name="TimeLabel" type="Label" parent="UI"]
 offset_right = 40.0
 offset_bottom = 23.0
@@ -40,4 +93,9 @@ metadata/_edit_group_ = true
 shape = SubResource("WorldBoundaryShape2D_16w4h")
 
 [connection signal="win" from="WinZone" to="." method="_on_win_zone_win"]
+[connection signal="button_down" from="UI/TouchControls/RightButton" to="UI/TouchControls" method="_on_right_button_button_down"]
+[connection signal="button_up" from="UI/TouchControls/RightButton" to="UI/TouchControls" method="_on_right_button_button_up"]
+[connection signal="button_down" from="UI/TouchControls/LeftButton" to="UI/TouchControls" method="_on_left_button_button_down"]
+[connection signal="button_up" from="UI/TouchControls/LeftButton" to="UI/TouchControls" method="_on_left_button_button_up"]
+[connection signal="pressed" from="UI/TouchControls/JumpButton" to="UI/TouchControls" method="_on_jump_button_pressed"]
 [connection signal="body_entered" from="BottomWorldBorder" to="." method="_on_bottom_world_border_body_entered"]

@@ -26,6 +26,9 @@ func _ready():
 
 	# Hide leaderboard initially
 	leaderboard.visible = false
+	
+	# Check for touch controls
+	$UI/TouchControls.visible = Settings.touch_controls_enabled
 
 func _process(delta):
 	if timer_running:

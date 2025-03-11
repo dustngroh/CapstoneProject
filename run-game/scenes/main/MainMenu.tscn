@@ -66,6 +66,10 @@ text = "Level Select"
 layout_mode = 2
 text = "Mute Music"
 
+[node name="TouchControlsButton" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+text = "On-Screen Touch Controls"
+
 [node name="Character1Holder" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 4
@@ -99,3 +103,4 @@ position = Vector2(-150, 0)
 [connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
 [connection signal="toggled" from="VBoxContainer/MuteButton" to="." method="_on_mute_button_toggled"]
+[connection signal="toggled" from="VBoxContainer/TouchControlsButton" to="." method="_on_touch_controls_button_toggled"]

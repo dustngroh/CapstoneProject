@@ -18,6 +18,7 @@ config/icon="res://assets/icon.svg"
 [autoload]
 
 MusicManager="*res://scripts/music_manager.gd"
+Settings="*res://scripts/settings.gd"
 
 [input]
 
