@@ -48,6 +48,7 @@ offset_left = -95.0
 offset_top = -31.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 1
 text = "Move Right"
 metadata/_edit_use_anchors_ = true
 
@@ -62,6 +63,7 @@ offset_left = -95.0
 offset_top = -31.0
 grow_horizontal = 0
 grow_vertical = 0
+mouse_filter = 1
 text = "Move Left"
 metadata/_edit_use_anchors_ = true
 
@@ -76,6 +78,7 @@ offset_top = -15.5
 offset_right = 95.0
 offset_bottom = 15.5
 grow_vertical = 2
+mouse_filter = 1
 text = "     Jump     "
 metadata/_edit_use_anchors_ = true
 
