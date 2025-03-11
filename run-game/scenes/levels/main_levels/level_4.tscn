@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ds5twxhi7yq7j" path="res://scenes/levels/BaseLevel.tscn" id="1_islso"]
 [ext_resource type="Texture2D" uid="uid://cgxc1wnbj8dl7" path="res://assets/level_select/level map.jpg" id="2_4i1cn"]
 [ext_resource type="TileSet" uid="uid://cpgcav0o3xltg" path="res://scenes/levels/test_levels/test_tile_set.tres" id="2_me2ul"]
-[ext_resource type="PackedScene" uid="uid://b83jnvp62cq81" path="res://entities/obstacles/dummy_ball.tscn" id="3_egd4i"]
+[ext_resource type="PackedScene" uid="uid://b83jnvp62cq81" path="res://scenes/entities/obstacles/dummy_ball.tscn" id="3_egd4i"]
 
 [node name="Level4" instance=ExtResource("1_islso")]
 

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlxl0dsaj7hws"]
 
 [ext_resource type="Script" path="res://scenes/main/main_menu.gd" id="1_otjms"]
-[ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://entities/characters/player/character_body_2d.tscn" id="2_01mn5"]
+[ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://scenes/entities/characters/player/character_body_2d.tscn" id="2_01mn5"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -52,6 +52,10 @@ text = "Continue"
 layout_mode = 2
 text = "Level Select"
 
+[node name="MuteButton" type="CheckButton" parent="VBoxContainer"]
+layout_mode = 2
+text = "Mute Music"
+
 [node name="Character1Holder" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 4
@@ -84,3 +88,4 @@ position = Vector2(-150, 0)
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
+[connection signal="toggled" from="VBoxContainer/MuteButton" to="." method="_on_mute_button_toggled"]

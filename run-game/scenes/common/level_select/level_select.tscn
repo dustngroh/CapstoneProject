@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://d1f7rnc5pjacl" path="res://assets/level_select/buttons/level3.png" id="5_jh2q4"]
 [ext_resource type="Texture2D" uid="uid://dk032qsjsxj5t" path="res://assets/level_select/buttons/level2_hover.png" id="6_1unou"]
 [ext_resource type="Texture2D" uid="uid://ckovbay8nj5dg" path="res://assets/level_select/buttons/level4.png" id="6_tyy1x"]
-[ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://entities/characters/player/character_body_2d.tscn" id="9_gebnq"]
+[ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://scenes/entities/characters/player/character_body_2d.tscn" id="9_gebnq"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_b1pmp"]
 a = Vector2(-2000, 0)

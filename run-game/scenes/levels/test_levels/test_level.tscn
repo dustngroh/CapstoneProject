@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=4 uid="uid://4hfnftw7cqmp"]
 
 [ext_resource type="Texture2D" uid="uid://c1080on1m3e5n" path="res://assets/icon.svg" id="1_acb5b"]
-[ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://entities/characters/player/character_body_2d.tscn" id="2_xt04c"]
+[ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://scenes/entities/characters/player/character_body_2d.tscn" id="2_xt04c"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_77d05"]
 texture = ExtResource("1_acb5b")

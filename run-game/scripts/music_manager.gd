@@ -2,6 +2,8 @@ extends Node
 
 var music_player: AudioStreamPlayer
 
+var is_muted : bool = false
+
 func _ready():
 	if music_player == null:
 		music_player = AudioStreamPlayer.new()  # Create a new music player if it doesn't exist
@@ -21,8 +23,20 @@ func play_music(song_path: String):
 	if new_song:
 		music_player.stream = new_song 
 		music_player.stream.loop = true
-		music_player.play()
+		update_music()  # Ensure the music starts or stops based on the mute state
 
 # Function to stop the music
 func stop_music():
 	music_player.stop()
+
+# Function to toggle mute state
+func toggle_mute():
+	is_muted = !is_muted
+	update_music()
+	
+# Function to update music based on mute state
+func update_music():
+	if is_muted:
+		music_player.stop()  # Stop music if muted
+	else:
+		music_player.play()  # Play music if not muted

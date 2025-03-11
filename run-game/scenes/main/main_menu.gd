@@ -10,6 +10,8 @@ func _ready() -> void:
 	$Character2Holder/Character2/Camera2D.enabled = false
 	$Character2Holder/Character2.gravity = 0
 	$Character2Holder/Character2.scale.x = -1
+	
+	$VBoxContainer/MuteButton.set_pressed_no_signal(MusicManager.is_muted)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,3 +29,7 @@ func _on_continue_button_pressed() -> void:
 
 func _on_level_select_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/common/level_select/level_select.tscn")
+
+
+func _on_mute_button_toggled(toggled_on: bool) -> void:
+	MusicManager.toggle_mute()

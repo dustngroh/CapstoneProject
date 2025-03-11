@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bh68ke5pd617u"]
 
-[ext_resource type="Script" path="res://entities/characters/player/character_body_2d.gd" id="1_ll5kr"]
+[ext_resource type="Script" path="res://scenes/entities/characters/player/character_body_2d.gd" id="1_ll5kr"]
 [ext_resource type="Texture2D" uid="uid://drjo7l3oubjxa" path="res://assets/character/mushroom_character_side.png" id="2_yeftb"]
 [ext_resource type="Texture2D" uid="uid://g5nrjet5pv20" path="res://assets/character/mushroom_character_down_terribleversion.png" id="3_fik6o"]
 
