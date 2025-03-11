@@ -31,5 +31,5 @@ offset_bottom = 762.0
 text = "Level 3
 Good luck this one's hard"
 
-[node name="Leaderboard" parent="UI" index="1"]
+[node name="Leaderboard" parent="UI" index="2"]
 next_level = "res://scenes/levels/main_levels/level_4.tscn"

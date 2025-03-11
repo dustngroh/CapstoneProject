@@ -48,7 +48,7 @@ offset_right = 714.0
 offset_bottom = 480.0
 text = "And this is level 2"
 
-[node name="Leaderboard" parent="UI" index="1"]
+[node name="Leaderboard" parent="UI" index="2"]
 next_level = "res://scenes/levels/main_levels/level_3.tscn"
 
 [node name="MovingPlatform" parent="." index="11" instance=ExtResource("4_olfat")]

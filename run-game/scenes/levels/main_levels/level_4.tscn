@@ -52,5 +52,5 @@ text = "Level 4
 Congratulations
 Real levels will be more diffcult and strictly for players 13+  sorry"
 
-[node name="Leaderboard" parent="UI" index="1"]
+[node name="Leaderboard" parent="UI" index="2"]
 next_level = "res://scenes/levels/main_levels/level_1.tscn"
