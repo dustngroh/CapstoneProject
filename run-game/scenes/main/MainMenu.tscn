@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlxl0dsaj7hws"]
+[gd_scene load_steps=6 format=3 uid="uid://dlxl0dsaj7hws"]
 
 [ext_resource type="Script" path="res://scenes/main/main_menu.gd" id="1_otjms"]
 [ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://scenes/entities/characters/player/character_body_2d.tscn" id="2_01mn5"]
 [ext_resource type="Texture2D" uid="uid://cgxc1wnbj8dl7" path="res://assets/level_select/level map.jpg" id="2_tdlx8"]
+[ext_resource type="AudioStream" uid="uid://c6dba470rppon" path="res://assets/audio/sounds/hitHurt.wav" id="3_hsukn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4oek7"]
 outline_size = 10
@@ -64,6 +65,9 @@ text = "New Game"
 [node name="ContinueButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Continue"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="VBoxContainer/ContinueButton"]
+stream = ExtResource("3_hsukn")
 
 [node name="LevelSelectButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2

@@ -27,7 +27,7 @@ func _on_new_game_button_pressed() -> void:
 
 
 func _on_continue_button_pressed() -> void:
-	pass # Replace with function body.
+	$VBoxContainer/ContinueButton/AudioStreamPlayer.play()
 
 
 func _on_level_select_button_pressed() -> void:

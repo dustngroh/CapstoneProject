@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://ds5twxhi7yq7j"]
+[gd_scene load_steps=11 format=3 uid="uid://ds5twxhi7yq7j"]
 
 [ext_resource type="Script" path="res://scenes/levels/base_level.gd" id="1_3y0r6"]
 [ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://scenes/entities/characters/player/character_body_2d.tscn" id="2_qdxsp"]
 [ext_resource type="PackedScene" uid="uid://c7dcnp2hndaih" path="res://scenes/common/win_zone.tscn" id="2_yau4l"]
 [ext_resource type="PackedScene" uid="uid://dhikxsmxr43ju" path="res://scenes/common/ResultsScreen.tscn" id="3_abmcm"]
 [ext_resource type="Script" path="res://scenes/levels/touch_controls.gd" id="4_ogj5t"]
+[ext_resource type="AudioStream" uid="uid://chlohcx8g3x82" path="res://assets/audio/sounds/countdown.wav" id="6_3dscg"]
+[ext_resource type="AudioStream" uid="uid://dgsuqakvss1gw" path="res://assets/audio/sounds/start.wav" id="7_6fkqq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ynypi"]
 font_size = 24
@@ -124,6 +126,12 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 label_settings = SubResource("LabelSettings_1qgim")
+
+[node name="CountdownAudio" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource("6_3dscg")
+
+[node name="StartAudio" type="AudioStreamPlayer" parent="UI"]
+stream = ExtResource("7_6fkqq")
 
 [node name="BottomWorldBorder" type="Area2D" parent="."]
 position = Vector2(0, 2000)

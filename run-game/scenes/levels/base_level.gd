@@ -12,6 +12,8 @@ var timer_running: bool = false # Paused until countdown ends
 @onready var leaderboard: CanvasLayer = $UI/Leaderboard
 @onready var countdown_label: Label = $UI/CountdownLabel
 @onready var spawn_point: Marker2D = $SpawnPoint
+@onready var countdown_player: AudioStreamPlayer = $UI/CountdownAudio
+@onready var start_player: AudioStreamPlayer = $UI/StartAudio
 
 
 func _ready():
@@ -56,9 +58,11 @@ func _on_winzone_enter():
 func start_countdown():
 	for i in range(3, 0, -1):  # Countdown from 3 to 1
 		countdown_label.text = str(i)
+		countdown_player.play()
 		await get_tree().create_timer(1.0).timeout  # Wait 1 second per number
 	
 	countdown_label.text = "Go!"
+	start_player.play()
 	await get_tree().create_timer(0.5).timeout  # Show "Go!" briefly
 	countdown_label.hide()  # Hide the label
 
