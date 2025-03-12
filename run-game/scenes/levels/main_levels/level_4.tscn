@@ -7,6 +7,7 @@
 
 [node name="Level4" instance=ExtResource("1_islso")]
 current_level_number = 4
+countdown_seconds = 0
 
 [node name="Background" type="TextureRect" parent="." index="1"]
 offset_left = -157.0

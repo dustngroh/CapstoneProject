@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://coopu6svniep4"]
+
+[ext_resource type="Script" path="res://scenes/common/touch_controls.gd" id="1_3ptop"]
+
+[node name="TouchControls" type="Control" groups=["TouchControls"]]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_3ptop")
+metadata/_edit_use_anchors_ = true
+
+[node name="RightButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.925347
+anchor_top = 0.816358
+anchor_right = 0.925347
+anchor_bottom = 0.816358
+offset_left = -95.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 1
+text = "Move Right"
+metadata/_edit_use_anchors_ = true
+
+[node name="LeftButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8125
+anchor_top = 0.816358
+anchor_right = 0.8125
+anchor_bottom = 0.816358
+offset_left = -95.0
+offset_top = -31.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 1
+text = "Move Left"
+metadata/_edit_use_anchors_ = true
+
+[node name="JumpButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0928819
+anchor_top = 0.761574
+anchor_right = 0.0928819
+anchor_bottom = 0.761574
+offset_top = -15.5
+offset_right = 95.0
+offset_bottom = 15.5
+grow_vertical = 2
+mouse_filter = 1
+text = "     Jump     "
+metadata/_edit_use_anchors_ = true
+
+[connection signal="button_down" from="RightButton" to="." method="_on_right_button_button_down"]
+[connection signal="button_up" from="RightButton" to="." method="_on_right_button_button_up"]
+[connection signal="button_down" from="LeftButton" to="." method="_on_left_button_button_down"]
+[connection signal="button_up" from="LeftButton" to="." method="_on_left_button_button_up"]
+[connection signal="pressed" from="JumpButton" to="." method="_on_jump_button_pressed"]
