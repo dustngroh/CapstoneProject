@@ -21,7 +21,9 @@ func _process(delta: float) -> void:
 
 func _on_new_game_button_pressed() -> void:
 	MusicManager.play_music("res://assets/audio/music/Guifrog - Frog Punch.mp3")
-	get_tree().change_scene_to_file("res://scenes/levels/main_levels/level_1.tscn")
+	var game = get_tree().root.get_node("Game")  # Get the persistent Game scene
+	if game:
+		game.load_level("res://scenes/levels/main_levels/level_1.tscn")
 
 
 func _on_continue_button_pressed() -> void:
@@ -29,7 +31,9 @@ func _on_continue_button_pressed() -> void:
 
 
 func _on_level_select_button_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/common/level_select/level_select.tscn")
+	var game = get_tree().root.get_node("Game")  # Get the persistent Game scene
+	if game:
+		game.load_level("res://scenes/common/level_select/level_select.tscn")
 
 
 func _on_mute_button_toggled(toggled_on: bool) -> void:
