@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b83jnvp62cq81" path="res://scenes/entities/obstacles/dummy_ball.tscn" id="3_egd4i"]
 
 [node name="Level4" instance=ExtResource("1_islso")]
+current_level_number = 4
 
 [node name="Background" type="TextureRect" parent="." index="1"]
 offset_left = -157.0
@@ -51,6 +52,3 @@ offset_bottom = 867.0
 text = "Level 4
 Congratulations
 Real levels will be more diffcult and strictly for players 13+  sorry"
-
-[node name="Leaderboard" parent="UI" index="2"]
-next_level = "res://scenes/levels/main_levels/level_1.tscn"

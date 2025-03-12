@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dtmh8cbliqh6j" path="res://scenes/entities/structures/MovingPlatform.tscn" id="4_olfat"]
 
 [node name="Level2" instance=ExtResource("1_qqkmf")]
+current_level_number = 2
 
 [node name="Background" type="TextureRect" parent="." index="1"]
 offset_left = 1349.0
@@ -47,9 +48,6 @@ offset_top = 457.0
 offset_right = 714.0
 offset_bottom = 480.0
 text = "And this is level 2"
-
-[node name="Leaderboard" parent="UI" index="2"]
-next_level = "res://scenes/levels/main_levels/level_3.tscn"
 
 [node name="MovingPlatform" parent="." index="11" instance=ExtResource("4_olfat")]
 position = Vector2(2008, 121)

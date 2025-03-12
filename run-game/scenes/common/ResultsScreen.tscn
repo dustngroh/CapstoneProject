@@ -1,6 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhikxsmxr43ju"]
-
-[ext_resource type="Script" path="res://scenes/common/results_screen.gd" id="1_1sxm1"]
+[gd_scene load_steps=2 format=3 uid="uid://dhikxsmxr43ju"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jmvir"]
 font_size = 32
@@ -8,7 +6,6 @@ outline_size = 16
 outline_color = Color(0, 0, 0, 1)
 
 [node name="ResultsScreen" type="CanvasLayer"]
-script = ExtResource("1_1sxm1")
 
 [node name="Label" type="Label" parent="."]
 anchors_preset = 5

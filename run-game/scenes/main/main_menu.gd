@@ -13,6 +13,7 @@ func _ready() -> void:
 	
 	$VBoxContainer/MuteButton.set_pressed_no_signal(MusicManager.is_muted)
 	$VBoxContainer/TouchControlsButton.set_pressed_no_signal(Settings.touch_controls_enabled)
+	$VBoxContainer/AdminControlsButton.set_pressed_no_signal(Settings.admin_controls_enabled)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -42,3 +43,7 @@ func _on_mute_button_toggled(toggled_on: bool) -> void:
 
 func _on_touch_controls_button_toggled(toggled_on: bool) -> void:
 	Settings.toggle_touch_controls()
+
+
+func _on_admin_controls_button_toggled(toggled_on: bool) -> void:
+	Settings.toggle_admin_controls()

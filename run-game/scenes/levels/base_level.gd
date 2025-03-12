@@ -1,11 +1,19 @@
 extends Node2D
 
 @export var player_scene: PackedScene
+@export var admin_controls_scene: PackedScene
+@export var current_level_number = 1
+var base_level_path = "res://scenes/levels/main_levels/level_"
+var total_levels = 4
+
+var admin_controls_instance: Control = null
+
 
 var player: CharacterBody2D
 var elapsed_time: float = 0.0  # Time starts at 0
 var timer_running: bool = false # Paused until countdown ends
 
+@onready var game: Node = get_tree().root.get_node("Game")
 @onready var level_timer: Timer = $Timer
 @onready var time_label: Label = $UI/TimeLabel
 @onready var win_zone: Area2D = $WinZone
@@ -22,19 +30,35 @@ func _ready():
 	# Set up Timer
 	level_timer.wait_time = 1.0
 	level_timer.one_shot = false
-	#level_timer.start()
 
 	countdown_label.show()
 	start_countdown()
 
-	# Connect WinZone trigger
-	win_zone.win.connect(_on_winzone_enter)
-
 	# Hide leaderboard initially
 	leaderboard.visible = false
 	
+	# Connect leaderboard buttons
+	leaderboard.get_node("NextLevelButton").pressed.connect(_on_next_button_pressed)
+	leaderboard.get_node("MainMenuButton").pressed.connect(_on_main_button_pressed)
+	
+	
 	# Check for touch controls
 	$UI/TouchControls.visible = Settings.touch_controls_enabled
+	
+	# Check for admin controls
+	if Settings.admin_controls_enabled:
+		if admin_controls_instance == null:
+			admin_controls_instance = admin_controls_scene.instantiate() # Only instantiated if enabled
+			$UI.add_child(admin_controls_instance)  # Add the admin controls to the UI
+			
+			# Connect buttons
+			var next_level_button = admin_controls_instance.get_node("VBoxContainer/NextLevelButton")
+			var previous_level_button = admin_controls_instance.get_node("VBoxContainer/PreviousLevelButton")
+			var main_menu_button = admin_controls_instance.get_node("VBoxContainer/MainMenuButton")
+			next_level_button.pressed.connect(_on_next_button_pressed)
+			previous_level_button.pressed.connect(_on_previous_button_pressed)
+			main_menu_button.pressed.connect(_on_main_button_pressed)
+
 
 func _process(delta):
 	if timer_running:
@@ -51,7 +75,7 @@ func spawn_player():
 		player.global_position = spawn_point.global_position  # Move to SpawnPoint
 		player.set_physics_process(false)  # Disable movement until countdown ends
 
-func _on_winzone_enter():
+func _on_win_zone_win():
 	stop_timer()
 	show_leaderboard()
 
@@ -92,3 +116,23 @@ func show_leaderboard():
 func _on_bottom_world_border_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):  # Ensure it's the player
 		body.position = spawn_point.position  # Respawn at the spawn point
+
+func _on_next_button_pressed():
+	current_level_number = (current_level_number % total_levels) + 1  # Cycle from 1 to 4
+	var next_level_path = base_level_path + str(current_level_number) + ".tscn"
+	
+	if game:
+		game.load_level(next_level_path)
+
+func _on_previous_button_pressed():
+	current_level_number = (current_level_number - 2 + total_levels) % total_levels + 1  # Cycle backwards
+	var previous_level_path = base_level_path + str(current_level_number) + ".tscn"
+	
+	if game:
+		game.load_level(previous_level_path)
+
+func _on_main_button_pressed():
+	MusicManager.play_music("res://assets/audio/music/Lite Saturation - Calm.mp3")
+	
+	if game:
+		game.load_level("res://scenes/main/MainMenu.tscn")

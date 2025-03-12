@@ -5,6 +5,7 @@
 [ext_resource type="TileSet" uid="uid://cpgcav0o3xltg" path="res://scenes/levels/test_levels/test_tile_set.tres" id="2_ulylh"]
 
 [node name="Level3" instance=ExtResource("1_fgr6e")]
+current_level_number = 3
 
 [node name="Background" type="TextureRect" parent="." index="1"]
 offset_left = -932.0
@@ -30,6 +31,3 @@ offset_right = -1054.0
 offset_bottom = 762.0
 text = "Level 3
 Good luck this one's hard"
-
-[node name="Leaderboard" parent="UI" index="2"]
-next_level = "res://scenes/levels/main_levels/level_4.tscn"

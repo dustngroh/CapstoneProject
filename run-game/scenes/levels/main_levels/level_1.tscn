@@ -29,6 +29,3 @@ offset_top = 421.0
 offset_right = 621.0
 offset_bottom = 444.0
 text = "This is level 1"
-
-[node name="Leaderboard" parent="UI" index="2"]
-next_level = "res://scenes/levels/main_levels/level_2.tscn"
