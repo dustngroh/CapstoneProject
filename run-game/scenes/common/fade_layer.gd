@@ -4,7 +4,6 @@ extends CanvasLayer
 @onready var color_rect = $ColorRect
 
 func fade_in(duration = 1.0):
-	print("fading")
 	var tween = get_tree().create_tween()
 	tween.tween_property(color_rect, "modulate:a", 1.0, duration)
 	await tween.finished

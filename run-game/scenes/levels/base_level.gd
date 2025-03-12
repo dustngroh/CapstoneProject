@@ -4,12 +4,13 @@ extends Node2D
 
 var player: CharacterBody2D
 var elapsed_time: float = 0.0  # Time starts at 0
-var timer_running: bool = true
+var timer_running: bool = false # Paused until countdown ends
 
 @onready var level_timer: Timer = $Timer
 @onready var time_label: Label = $UI/TimeLabel
 @onready var win_zone: Area2D = $WinZone
 @onready var leaderboard: CanvasLayer = $UI/Leaderboard
+@onready var countdown_label: Label = $UI/CountdownLabel
 @onready var spawn_point: Marker2D = $SpawnPoint
 
 
@@ -19,7 +20,10 @@ func _ready():
 	# Set up Timer
 	level_timer.wait_time = 1.0
 	level_timer.one_shot = false
-	level_timer.start()
+	#level_timer.start()
+
+	countdown_label.show()
+	start_countdown()
 
 	# Connect WinZone trigger
 	win_zone.win.connect(_on_winzone_enter)
@@ -43,10 +47,25 @@ func spawn_player():
 		player = player_scene.instantiate()  # Create an instance of Player
 		add_child(player)  # Add to the scene
 		player.global_position = spawn_point.global_position  # Move to SpawnPoint
+		player.set_physics_process(false)  # Disable movement until countdown ends
 
 func _on_winzone_enter():
 	stop_timer()
 	show_leaderboard()
+
+func start_countdown():
+	for i in range(3, 0, -1):  # Countdown from 3 to 1
+		countdown_label.text = str(i)
+		await get_tree().create_timer(1.0).timeout  # Wait 1 second per number
+	
+	countdown_label.text = "Go!"
+	await get_tree().create_timer(0.5).timeout  # Show "Go!" briefly
+	countdown_label.hide()  # Hide the label
+
+	# Start the timer
+	timer_running = true
+	level_timer.start()
+	player.set_physics_process(true)  # Enable player movement
 
 func stop_timer():
 	timer_running = false

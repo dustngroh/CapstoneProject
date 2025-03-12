@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dhikxsmxr43ju"]
+[gd_scene load_steps=3 format=3 uid="uid://dhikxsmxr43ju"]
 
 [ext_resource type="Script" path="res://scenes/common/results_screen.gd" id="1_1sxm1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jmvir"]
+font_size = 32
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
 
 [node name="ResultsScreen" type="CanvasLayer"]
 script = ExtResource("1_1sxm1")
@@ -15,6 +20,7 @@ offset_right = 62.0
 offset_bottom = 73.0
 grow_horizontal = 2
 text = "Level Complete!"
+label_settings = SubResource("LabelSettings_jmvir")
 
 [node name="NextLevelButton" type="Button" parent="."]
 anchors_preset = 8
