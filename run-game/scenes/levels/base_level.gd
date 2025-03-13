@@ -30,8 +30,10 @@ var timer_running: bool = false # Paused until countdown ends
 
 
 func _ready():
-	# Check for touch controls, must be added before spawn_player()
-	if Settings.touch_controls_enabled:
+	# Check for touch controls
+	#if Settings.touch_controls_enabled:
+	# Check if mobile user
+	if (OS.has_feature("web_android") or OS.has_feature("web_ios")):
 		
 		# Remove any existing controls first
 		var existing_touch_controls = get_tree().get_nodes_in_group("TouchControls") 

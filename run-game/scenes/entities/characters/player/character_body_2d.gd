@@ -19,22 +19,6 @@ var speed_boost_timer = 0.0
 var last_direction = 0
 var last_direction_time = 0.0
 
-# Movement state variables (controlled by touch input)
-var move_left = false
-var move_right = false
-var jump = false
-
-func _ready():
-	
-	# Connect to TouchControls signals
-	var touch_controls = get_tree().get_first_node_in_group("TouchControls")
-	
-	if touch_controls:
-		touch_controls.move_left_pressed.connect(_on_move_left_pressed)
-		touch_controls.move_left_released.connect(_on_move_left_released)
-		touch_controls.move_right_pressed.connect(_on_move_right_pressed)
-		touch_controls.move_right_released.connect(_on_move_right_released)
-		touch_controls.jump_pressed.connect(_on_jump_pressed)
 
 func _physics_process(delta: float) -> void:
 	
@@ -46,11 +30,6 @@ func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
 	var dir = Input.get_axis("walk_left", "walk_right")
 	
-	# Set movement direction based on touch input
-	if move_left:
-		dir = -1.0
-	elif move_right:
-		dir = 1.0
 	
 	if Input.is_action_pressed("hold_down"):
 		$AnimatedSprite2D.play("down")
@@ -79,9 +58,8 @@ func _physics_process(delta: float) -> void:
 	$AnimatedSprite2D.flip_h = velocity.x < 0
 	
 	move_and_slide()
-	if (Input.is_action_just_pressed("jump") || jump) and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_speed
-		jump = false # Reset jump flag
 
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
@@ -94,19 +72,3 @@ func increase_speed(boost_amount, duration):
 
 func reset_speed():
 	speed = normal_speed
-
-# --- Functions for Touch Input Handling ---
-func _on_move_left_pressed():
-	move_left = true
-
-func _on_move_left_released():
-	move_left = false
-
-func _on_move_right_pressed():
-	move_right = true
-
-func _on_move_right_released():
-	move_right = false
-
-func _on_jump_pressed():
-	jump = true
