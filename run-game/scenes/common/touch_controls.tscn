@@ -1,6 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://coopu6svniep4"]
+[gd_scene load_steps=6 format=3 uid="uid://coopu6svniep4"]
 
 [ext_resource type="Script" path="res://scenes/common/touch_controls.gd" id="1_3ptop"]
+[ext_resource type="Texture2D" uid="uid://d1f7rnc5pjacl" path="res://assets/level_select/buttons/level3.png" id="2_61g0y"]
+[ext_resource type="Texture2D" uid="uid://1gql81t58cmb" path="res://assets/level_select/buttons/level1.png" id="2_tylip"]
+[ext_resource type="Texture2D" uid="uid://3v7mcs4q3r0" path="res://assets/level_select/buttons/level2.png" id="3_yjc3y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jn7qn"]
+radius = 51.51
 
 [node name="TouchControls" type="Control" groups=["TouchControls"]]
 layout_mode = 3
@@ -11,9 +17,9 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_3ptop")
-metadata/_edit_use_anchors_ = true
 
 [node name="RightButton" type="Button" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.925347
@@ -29,6 +35,7 @@ text = "Move Right"
 metadata/_edit_use_anchors_ = true
 
 [node name="LeftButton" type="Button" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.8125
@@ -44,6 +51,7 @@ text = "Move Left"
 metadata/_edit_use_anchors_ = true
 
 [node name="JumpButton" type="Button" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0928819
@@ -57,6 +65,43 @@ grow_vertical = 2
 mouse_filter = 1
 text = "     Jump     "
 metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="RightTouchButton" type="TouchScreenButton" parent="HBoxContainer"]
+position = Vector2(-100, -130)
+texture_normal = ExtResource("2_tylip")
+action = "walk_right"
+
+[node name="LeftTouchButton" type="TouchScreenButton" parent="HBoxContainer"]
+position = Vector2(-250, -130)
+texture_normal = ExtResource("3_yjc3y")
+shape = SubResource("CircleShape2D_jn7qn")
+action = "walk_left"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="JumpTouchButton" type="TouchScreenButton" parent="Control"]
+position = Vector2(100, -130)
+texture_normal = ExtResource("2_61g0y")
+action = "jump"
 
 [connection signal="button_down" from="RightButton" to="." method="_on_right_button_button_down"]
 [connection signal="button_up" from="RightButton" to="." method="_on_right_button_button_up"]
