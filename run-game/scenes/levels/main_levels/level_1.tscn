@@ -1,16 +1,10 @@
-[gd_scene load_steps=7 format=4 uid="uid://jco3g4ho4nea"]
+[gd_scene load_steps=4 format=4 uid="uid://jco3g4ho4nea"]
 
 [ext_resource type="PackedScene" uid="uid://ds5twxhi7yq7j" path="res://scenes/levels/BaseLevel.tscn" id="1_x5cf2"]
 [ext_resource type="TileSet" uid="uid://bdaudv74wslo5" path="res://assets/level/test_tiles.tres" id="2_h5ykl"]
 [ext_resource type="PackedScene" uid="uid://crlmo14rtbpw2" path="res://scenes/entities/items/speed_boost_item.tscn" id="3_x7g4m"]
-[ext_resource type="Texture2D" uid="uid://dlq2vmodo4bso" path="res://assets/level/set4_background.png" id="4_yyo3p"]
-[ext_resource type="Texture2D" uid="uid://cv4mt05x7uqw6" path="res://assets/level/set4_tiles.png" id="5_t5ois"]
-[ext_resource type="Texture2D" uid="uid://dfu64wyf45p8p" path="res://assets/level/set4_hills.png" id="6_wompb"]
 
 [node name="Level1" instance=ExtResource("1_x5cf2")]
-
-[node name="ColorRect" parent="." index="0"]
-visible = false
 
 [node name="SpawnPoint" parent="." index="2"]
 position = Vector2(254.657, 782.622)
@@ -30,31 +24,3 @@ position = Vector2(2626.12, 855.483)
 
 [node name="SpeedBoostItem3" parent="." index="9" instance=ExtResource("3_x7g4m")]
 position = Vector2(5859.08, 419.551)
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="." index="10"]
-
-[node name="Background" type="ParallaxLayer" parent="ParallaxBackground" index="0"]
-motion_scale = Vector2(0, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background" index="0"]
-position = Vector2(957, 721)
-scale = Vector2(3, 3)
-texture = ExtResource("4_yyo3p")
-
-[node name="Tiles" type="ParallaxLayer" parent="ParallaxBackground" index="1"]
-motion_scale = Vector2(0.2, 0.2)
-motion_mirroring = Vector2(1920, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Tiles" index="0"]
-scale = Vector2(3, 3)
-texture = ExtResource("5_t5ois")
-centered = false
-
-[node name="Hills" type="ParallaxLayer" parent="ParallaxBackground" index="2"]
-motion_scale = Vector2(0.5, 0.5)
-motion_mirroring = Vector2(1920, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Hills" index="0"]
-scale = Vector2(3, 3)
-texture = ExtResource("6_wompb")
-centered = false

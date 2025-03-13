@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7dcnp2hndaih"]
+[gd_scene load_steps=7 format=3 uid="uid://c7dcnp2hndaih"]
 
 [ext_resource type="Script" path="res://scenes/common/win_zone.gd" id="1_0al2t"]
 [ext_resource type="Texture2D" uid="uid://c8j24cl2brs3l" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="2_agaxc"]
@@ -6,6 +6,14 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hto0b"]
 size = Vector2(225, 161)
+
+[sub_resource type="Curve" id="Curve_r7wbr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_aekdy"]
+offsets = PackedFloat32Array(0.5, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [node name="WinZone" type="Area2D"]
 script = ExtResource("1_0al2t")
@@ -22,5 +30,21 @@ texture = ExtResource("2_agaxc")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_gkwv2")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+self_modulate = Color(0.692897, 0.478959, 0.971737, 1)
+position = Vector2(100.719, 69.9866)
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 531.03
+orbit_velocity_min = 1.0
+orbit_velocity_max = 1.0
+scale_amount_min = 4.15
+scale_amount_max = 18.04
+scale_amount_curve = SubResource("Curve_r7wbr")
+color_ramp = SubResource("Gradient_aekdy")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
