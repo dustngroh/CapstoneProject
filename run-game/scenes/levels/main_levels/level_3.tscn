@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=4 uid="uid://il6lmkbwu62k"]
+[gd_scene load_steps=5 format=4 uid="uid://il6lmkbwu62k"]
 
 [ext_resource type="PackedScene" uid="uid://ds5twxhi7yq7j" path="res://scenes/levels/BaseLevel.tscn" id="1_fgr6e"]
 [ext_resource type="Texture2D" uid="uid://cgxc1wnbj8dl7" path="res://assets/level_select/level map.jpg" id="2_ruhc8"]
 [ext_resource type="TileSet" uid="uid://cpgcav0o3xltg" path="res://scenes/levels/test_levels/test_tile_set.tres" id="2_ulylh"]
+[ext_resource type="PackedScene" uid="uid://crlmo14rtbpw2" path="res://scenes/entities/items/speed_boost_item.tscn" id="4_wvpn8"]
 
 [node name="Level3" instance=ExtResource("1_fgr6e")]
 current_level_number = 3
@@ -31,3 +32,6 @@ offset_right = -1054.0
 offset_bottom = 762.0
 text = "Level 3
 Good luck this one's hard"
+
+[node name="SpeedBoostItem" parent="." index="9" instance=ExtResource("4_wvpn8")]
+position = Vector2(-586.083, 1033.14)

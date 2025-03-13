@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://3gcs41bfuxie"]
+[gd_scene load_steps=6 format=4 uid="uid://3gcs41bfuxie"]
 
 [ext_resource type="PackedScene" uid="uid://ds5twxhi7yq7j" path="res://scenes/levels/BaseLevel.tscn" id="1_qqkmf"]
 [ext_resource type="TileSet" uid="uid://cpgcav0o3xltg" path="res://scenes/levels/test_levels/test_tile_set.tres" id="2_5o18n"]
 [ext_resource type="Texture2D" uid="uid://cgxc1wnbj8dl7" path="res://assets/level_select/level map.jpg" id="2_oj1le"]
 [ext_resource type="PackedScene" uid="uid://dtmh8cbliqh6j" path="res://scenes/entities/structures/MovingPlatform.tscn" id="4_olfat"]
+[ext_resource type="PackedScene" uid="uid://crlmo14rtbpw2" path="res://scenes/entities/items/speed_boost_item.tscn" id="5_wm04e"]
 
 [node name="Level2" instance=ExtResource("1_qqkmf")]
 current_level_number = 2
@@ -74,3 +75,12 @@ offset_right = 4607.0
 offset_bottom = 588.0
 text = "Failure
 Wait for lift here"
+
+[node name="SpeedBoostItem" parent="." index="16" instance=ExtResource("5_wm04e")]
+position = Vector2(2636, 648)
+
+[node name="SpeedBoostItem2" parent="." index="17" instance=ExtResource("5_wm04e")]
+position = Vector2(3124, 642)
+
+[node name="SpeedBoostItem3" parent="." index="18" instance=ExtResource("5_wm04e")]
+position = Vector2(3639, 648)

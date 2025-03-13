@@ -5,7 +5,8 @@ extends CharacterBody2D
 #const JUMP_VELOCITY = -400.0
 @export var push_force = 200.0
 
-@export var speed = 800
+@export var normal_speed = 800
+var speed = normal_speed
 @export var jump_speed = -1000
 @export var gravity = 2000
 @export_range(0.0, 1.0) var friction = 0.1
@@ -13,6 +14,7 @@ extends CharacterBody2D
 
 @export var dash_dance_grace_time = 0.05  # Time window for lenient direction switch
 @export var speed_threshold = 0.9  # Percentage of full speed required to trigger instant flip
+var speed_boost_timer = 0.0
 
 var last_direction = 0
 var last_direction_time = 0.0
@@ -35,6 +37,12 @@ func _ready():
 		touch_controls.jump_pressed.connect(_on_jump_pressed)
 
 func _physics_process(delta: float) -> void:
+	
+	if speed_boost_timer > 0:
+		speed_boost_timer -= delta
+		if speed_boost_timer <= 0:
+			reset_speed()
+	
 	velocity.y += gravity * delta
 	var dir = Input.get_axis("walk_left", "walk_right")
 	
@@ -80,6 +88,12 @@ func _physics_process(delta: float) -> void:
 		if c.get_collider() is RigidBody2D:
 			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
 
+func increase_speed(boost_amount, duration):
+	speed *= boost_amount
+	speed_boost_timer = duration
+
+func reset_speed():
+	speed = normal_speed
 
 # --- Functions for Touch Input Handling ---
 func _on_move_left_pressed():
