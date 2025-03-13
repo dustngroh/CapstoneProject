@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://dlxl0dsaj7hws"]
+[gd_scene load_steps=8 format=3 uid="uid://dlxl0dsaj7hws"]
 
 [ext_resource type="Script" path="res://scenes/main/main_menu.gd" id="1_otjms"]
 [ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://scenes/entities/characters/player/character_body_2d.tscn" id="2_01mn5"]
+[ext_resource type="Texture2D" uid="uid://bq2ecow3063s2" path="res://assets/level/backgrounds/set2_tiles.png" id="2_eluch"]
+[ext_resource type="Texture2D" uid="uid://d0pxna4yi6svm" path="res://assets/level/backgrounds/set1_tiles.png" id="2_q4xyl"]
 [ext_resource type="Texture2D" uid="uid://cgxc1wnbj8dl7" path="res://assets/level_select/level map.jpg" id="2_tdlx8"]
 [ext_resource type="AudioStream" uid="uid://c6dba470rppon" path="res://assets/audio/sounds/hitHurt.wav" id="3_hsukn"]
 
@@ -27,9 +29,34 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.172549, 0.768627, 0.858824, 1)
+color = Color(0.648227, 0.702757, 0.872723, 1)
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 1
+offset_left = 1107.0
+offset_top = 261.0
+offset_right = 1747.0
+offset_bottom = 741.0
+rotation = -3.82128
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("2_eluch")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -1250.0
+offset_top = 780.0
+offset_right = -610.0
+offset_bottom = 1260.0
+grow_horizontal = 0
+rotation = -0.861724
+scale = Vector2(2.2, 2.2)
+texture = ExtResource("2_q4xyl")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 layout_mode = 0
 offset_left = -406.0
 offset_top = -1435.0
