@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bna48stbflevk"]
+[gd_scene load_steps=8 format=3 uid="uid://bna48stbflevk"]
 
 [ext_resource type="PackedScene" uid="uid://dhikxsmxr43ju" path="res://scenes/common/ResultsScreen.tscn" id="1_bcprt"]
+[ext_resource type="Script" path="res://scenes/common/fade_layer.gd" id="1_ulhlq"]
 [ext_resource type="AudioStream" uid="uid://chlohcx8g3x82" path="res://assets/audio/sounds/countdown.wav" id="2_1ejeb"]
 [ext_resource type="AudioStream" uid="uid://dgsuqakvss1gw" path="res://assets/audio/sounds/start.wav" id="3_l31bs"]
 
@@ -71,3 +72,16 @@ offset_bottom = 94.0
 grow_horizontal = 2
 label_settings = SubResource("LabelSettings_wibt8")
 metadata/_edit_use_anchors_ = true
+
+[node name="FadeLayer" type="CanvasLayer" parent="."]
+script = ExtResource("1_ulhlq")
+
+[node name="ColorRect" type="ColorRect" parent="FadeLayer"]
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)

@@ -33,27 +33,29 @@ color = Color(0.648227, 0.702757, 0.872723, 1)
 
 [node name="TextureRect3" type="TextureRect" parent="."]
 layout_mode = 1
-offset_left = 1107.0
-offset_top = 261.0
-offset_right = 1747.0
-offset_bottom = 741.0
-rotation = -3.82128
+offset_left = 1396.0
+offset_top = -367.0
+offset_right = 2662.0
+offset_bottom = 113.0
+rotation = -4.0307
 scale = Vector2(2.2, 2.2)
 texture = ExtResource("2_eluch")
+stretch_mode = 1
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -1250.0
-offset_top = 780.0
-offset_right = -610.0
-offset_bottom = 1260.0
+offset_left = -1696.0
+offset_top = 1471.0
+offset_right = -477.0
+offset_bottom = 1951.0
 grow_horizontal = 0
 rotation = -0.861724
 scale = Vector2(2.2, 2.2)
 texture = ExtResource("2_q4xyl")
+stretch_mode = 1
 
 [node name="TextureRect" type="TextureRect" parent="."]
 visible = false

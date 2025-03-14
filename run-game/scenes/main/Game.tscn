@@ -1,21 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bokip4qxhqxtg"]
+[gd_scene load_steps=2 format=3 uid="uid://bokip4qxhqxtg"]
 
 [ext_resource type="Script" path="res://scenes/main/game.gd" id="1_k5xq4"]
-[ext_resource type="Script" path="res://scenes/common/fade_layer.gd" id="2_28yit"]
 
 [node name="Game" type="Node" groups=["Game"]]
 script = ExtResource("1_k5xq4")
-
-[node name="FadeLayer" type="CanvasLayer" parent="."]
-script = ExtResource("2_28yit")
-
-[node name="ColorRect" type="ColorRect" parent="FadeLayer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 1)
 
 [node name="LevelContainer" type="Node" parent="."]
