@@ -1,8 +1,6 @@
 extends CharacterBody2D
 
 
-#const SPEED = 300.0
-#const JUMP_VELOCITY = -400.0
 @export var push_force = 200.0
 
 @export var normal_speed = 800
@@ -54,7 +52,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction)
 	
-	#$Sprite2D.flip_h = velocity.x < 0
 	$AnimatedSprite2D.flip_h = velocity.x < 0
 	
 	move_and_slide()

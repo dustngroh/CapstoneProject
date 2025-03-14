@@ -3,6 +3,7 @@ extends Node
 var current_level = null
 
 func _ready():
+	UIManager.get_node("Leaderboard").visible = false
 	load_level('res://scenes/main/MainMenu.tscn') # Load Main Menu on start
 
 func load_level(level_path: String):

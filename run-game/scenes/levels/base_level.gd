@@ -18,15 +18,23 @@ var elapsed_time: float = 0.0  # Time starts at 0
 var timer_running: bool = false # Paused until countdown ends
 
 @onready var game: Node = get_tree().root.get_node("Game")
+#@onready var ui_manager: Node = get_tree().root.get_node("Game/UIManager")
 @onready var level_timer: Timer = $Timer
-@onready var time_label: Label = $UI/TimeLabel
+#@onready var time_label: Label = $UI/TimeLabel
+@onready var time_label: Label = UIManager.get_node("TimeLabel")
 @onready var win_zone: Area2D = $WinZone
-@onready var leaderboard: CanvasLayer = $UI/Leaderboard
-@onready var countdown_label: Label = $UI/CountdownLabel
-@onready var level_label: Label = $UI/LevelLabel
+#@onready var leaderboard: CanvasLayer = $UI/Leaderboard
+@onready var leaderboard: CanvasLayer = UIManager.get_node("Leaderboard")
+#@onready var countdown_label: Label = $UI/CountdownLabel
+@onready var countdown_label: Label = UIManager.get_node("CountdownLabel")
+#@onready var level_label: Label = $UI/LevelLabel
+@onready var level_label: Label = UIManager.get_node("LevelLabel")
 @onready var spawn_point: Marker2D = $SpawnPoint
-@onready var countdown_player: AudioStreamPlayer = $UI/CountdownAudio
-@onready var start_player: AudioStreamPlayer = $UI/StartAudio
+#@onready var countdown_player: AudioStreamPlayer = $UI/CountdownAudio
+#@onready var start_player: AudioStreamPlayer = $UI/StartAudio
+@onready var countdown_player: AudioStreamPlayer = UIManager.get_node("CountdownAudio")
+@onready var start_player: AudioStreamPlayer = UIManager.get_node("StartAudio")
+
 
 
 func _ready():
@@ -43,19 +51,26 @@ func _ready():
 		# Add new controls
 		if touch_controls_instance == null:
 			touch_controls_instance = touch_controls_scene.instantiate() # Only instantiated if enabled
-			$UI.add_child(touch_controls_instance)  # Add the touch controls to the UI
+			UIManager.add_child(touch_controls_instance)  # Add the touch controls to the UI
 	
 	spawn_player()
+	
+	# Ensure UI is visible
+	UIManager.visible = true
 	
 	# Set up Timer
 	level_timer.wait_time = 1.0
 	level_timer.one_shot = false
+	
+	# Make sure timer displays 0 at start
+	update_timer_display()
 
+	# Show the level label and countdown timer
 	level_label.text = "Level " + str(current_level_number)
 	level_label.show()
 	countdown_label.show()
 	start_countdown()
-
+	
 	# Hide leaderboard initially
 	leaderboard.visible = false
 	
@@ -67,7 +82,7 @@ func _ready():
 	if Settings.admin_controls_enabled:
 		if admin_controls_instance == null:
 			admin_controls_instance = admin_controls_scene.instantiate() # Only instantiated if enabled
-			$UI.add_child(admin_controls_instance)  # Add the admin controls to the UI
+			UIManager.add_child(admin_controls_instance)  # Add the admin controls to the UI
 			
 			# Connect buttons
 			var next_level_button = admin_controls_instance.get_node("VBoxContainer/NextLevelButton")
@@ -129,7 +144,7 @@ func show_leaderboard():
 	await get_tree().create_timer(1.0).timeout  # Wait for API response
 	
 	
-	$UI/Leaderboard/Label.text = "Final time: %.2f seconds" % elapsed_time # Display their time
+	leaderboard.get_node("Label").text = "Final time: %.2f seconds" % elapsed_time # Display their time
 
 
 func _on_bottom_world_border_body_entered(body: Node2D) -> void:
@@ -152,6 +167,5 @@ func _on_previous_button_pressed():
 
 func _on_main_button_pressed():
 	MusicManager.play_music("res://assets/audio/music/Lite Saturation - Calm.mp3")
-	
 	if game:
 		game.load_level("res://scenes/main/MainMenu.tscn")

@@ -14,6 +14,9 @@ func _ready() -> void:
 	$VBoxContainer/MuteButton.set_pressed_no_signal(MusicManager.is_muted)
 	$VBoxContainer/TouchControlsButton.set_pressed_no_signal(Settings.touch_controls_enabled)
 	$VBoxContainer/AdminControlsButton.set_pressed_no_signal(Settings.admin_controls_enabled)
+	
+	UIManager.visible = false # Hide the UI on main menu
+	UIManager.get_node("Leaderboard").visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
