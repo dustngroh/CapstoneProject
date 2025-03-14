@@ -135,6 +135,7 @@ func stop_timer():
 	print("Final time: %.2f seconds" % elapsed_time)
 
 func show_leaderboard():
+	leaderboard.get_node("Label").text = "Submitting Score..."
 	leaderboard.visible = true
 	
 	# Fetch leaderboard and display results
