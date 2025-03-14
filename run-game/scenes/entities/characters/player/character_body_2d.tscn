@@ -43,5 +43,6 @@ scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_1huyh")
 
 [node name="CoyoteTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
