@@ -73,4 +73,4 @@ Congratulations
 Real levels will be more diffcult and strictly for players 13+  sorry"
 
 [node name="WinZone" parent="." index="13"]
-position = Vector2(2637, 773)
+position = Vector2(2643, 801)

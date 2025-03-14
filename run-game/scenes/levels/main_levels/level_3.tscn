@@ -35,7 +35,7 @@ text = "Level 3
 Good luck this one's hard"
 
 [node name="WinZone" parent="." index="6"]
-position = Vector2(836, 947)
+position = Vector2(849, 976)
 
 [node name="SpeedBoostItem" parent="." index="7" instance=ExtResource("4_wvpn8")]
 position = Vector2(-586.083, 1033.14)
