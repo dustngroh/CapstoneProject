@@ -17,6 +17,14 @@ var speed_boost_timer = 0.0
 var last_direction = 0
 var last_direction_time = 0.0
 
+@export var coyote_frames = 12  # How many in-air frames to allow jumping
+var coyote = false  # Track whether we're in coyote time or not
+var last_floor = false  # Last frame's on-floor state
+var jumping = false
+
+
+func _ready() -> void:
+	$CoyoteTimer.wait_time = coyote_frames / 60.0
 
 func _physics_process(delta: float) -> void:
 	
@@ -35,8 +43,6 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.play("default")
 	
 	if dir != 0:
-	
-		#velocity.x = lerp(velocity.x, dir * speed, acceleration)
 		var is_flipping_direction = last_direction != 0 and dir != last_direction
 		var within_grace_time = (Time.get_ticks_msec() - last_direction_time) / 1000.0 <= dash_dance_grace_time
 		var at_high_speed = abs(velocity.x) >= speed * speed_threshold
@@ -52,16 +58,37 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction)
 	
-	$AnimatedSprite2D.flip_h = velocity.x < 0
+	# Check for jump
+	if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote):
+		velocity.y = jump_speed
+		jumping = true
 	
 	move_and_slide()
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = jump_speed
 
+	# Check for collisions
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
 		if c.get_collider() is RigidBody2D:
 			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
+			
+	# Update jumping
+	if is_on_floor() and jumping:
+		jumping = false
+	
+	# Check for coyote time
+	if !is_on_floor() and last_floor and !jumping:
+		coyote = true
+		#modulate = 0xff00ff # Uncomment to apply a color filter when coyote is active
+		$CoyoteTimer.start()
+	
+	# Update sprite direction
+	if velocity.x > 0:
+		$AnimatedSprite2D.flip_h = false
+	if velocity.x < 0:
+		$AnimatedSprite2D.flip_h = true
+	
+	# Set last_floor
+	last_floor = is_on_floor()
 
 func increase_speed(boost_amount, duration):
 	speed *= boost_amount
@@ -69,3 +96,8 @@ func increase_speed(boost_amount, duration):
 
 func reset_speed():
 	speed = normal_speed
+
+
+func _on_coyote_timer_timeout() -> void:
+	coyote = false
+	#modulate = Color(1, 1, 1) # Uncomment to use coyote color filter (removes filter)

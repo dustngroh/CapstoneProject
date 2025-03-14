@@ -41,3 +41,7 @@ polygon = PackedVector2Array(34, -55, -19, -52, -54, -9, -47, 31, -10, 58, 29, 6
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_1huyh")
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]

@@ -33,7 +33,7 @@ offset_bottom = 528.0
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_5ngih")
 
-[node name="SpawnPoint" parent="." index="5"]
+[node name="SpawnPoint" parent="." index="4"]
 position = Vector2(191.404, 472.517)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." index="7"]
@@ -47,25 +47,28 @@ offset_right = 714.0
 offset_bottom = 480.0
 text = "And this is level 2"
 
-[node name="MovingPlatform" parent="." index="11" instance=ExtResource("4_gisli")]
+[node name="WinZone" parent="." index="9"]
+position = Vector2(4114, -503)
+
+[node name="MovingPlatform" parent="." index="10" instance=ExtResource("4_gisli")]
 position = Vector2(2008, 121)
 offset = Vector2(200, 0)
 duration = 3.0
 
-[node name="MovingPlatform2" parent="." index="12" instance=ExtResource("4_gisli")]
+[node name="MovingPlatform2" parent="." index="11" instance=ExtResource("4_gisli")]
 position = Vector2(2534.21, -189.338)
 offset = Vector2(0, 320)
 
-[node name="MovingPlatform3" parent="." index="13" instance=ExtResource("4_gisli")]
+[node name="MovingPlatform3" parent="." index="12" instance=ExtResource("4_gisli")]
 position = Vector2(2907, -36)
 offset = Vector2(500, -320)
 
-[node name="MovingPlatform4" parent="." index="14" instance=ExtResource("4_gisli")]
+[node name="MovingPlatform4" parent="." index="13" instance=ExtResource("4_gisli")]
 position = Vector2(4931, 709)
 offset = Vector2(0, -1020)
 duration = 10.0
 
-[node name="Label2" type="Label" parent="." index="15"]
+[node name="Label2" type="Label" parent="." index="14"]
 offset_left = 4553.0
 offset_top = 565.0
 offset_right = 4607.0
@@ -73,14 +76,11 @@ offset_bottom = 588.0
 text = "Failure
 Wait for lift here"
 
-[node name="SpeedBoostItem" parent="." index="16" instance=ExtResource("5_rfrtb")]
+[node name="SpeedBoostItem" parent="." index="15" instance=ExtResource("5_rfrtb")]
 position = Vector2(2636, 648)
 
-[node name="SpeedBoostItem2" parent="." index="17" instance=ExtResource("5_rfrtb")]
+[node name="SpeedBoostItem2" parent="." index="16" instance=ExtResource("5_rfrtb")]
 position = Vector2(3124, 642)
 
-[node name="SpeedBoostItem3" parent="." index="18" instance=ExtResource("5_rfrtb")]
+[node name="SpeedBoostItem3" parent="." index="17" instance=ExtResource("5_rfrtb")]
 position = Vector2(3639, 648)
-
-[node name="WinZone" parent="." index="19"]
-position = Vector2(4114, -503)
