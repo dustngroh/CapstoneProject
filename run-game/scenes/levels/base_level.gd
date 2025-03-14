@@ -25,6 +25,7 @@ var timer_running: bool = false # Paused until countdown ends
 @onready var win_zone: Area2D = $WinZone
 #@onready var leaderboard: CanvasLayer = $UI/Leaderboard
 @onready var leaderboard: CanvasLayer = UIManager.get_node("Leaderboard")
+@onready var leaderboard_label: Label = leaderboard.get_node("Label")
 #@onready var countdown_label: Label = $UI/CountdownLabel
 @onready var countdown_label: Label = UIManager.get_node("CountdownLabel")
 #@onready var level_label: Label = $UI/LevelLabel
@@ -132,10 +133,10 @@ func start_countdown():
 func stop_timer():
 	timer_running = false
 	level_timer.stop()
+	leaderboard_label.text = "Final time: %.2f seconds" % elapsed_time
 	print("Final time: %.2f seconds" % elapsed_time)
 
 func show_leaderboard():
-	leaderboard.get_node("Label").text = "Submitting Score..."
 	leaderboard.visible = true
 	
 	# Fetch leaderboard and display results
@@ -143,9 +144,6 @@ func show_leaderboard():
 	#GameManager.fetch_leaderboard(leve_name)  # Fetch scores for this level
 	
 	await get_tree().create_timer(1.0).timeout  # Wait for API response
-	
-	
-	leaderboard.get_node("Label").text = "Final time: %.2f seconds" % elapsed_time # Display their time
 
 
 func _on_bottom_world_border_body_entered(body: Node2D) -> void:
