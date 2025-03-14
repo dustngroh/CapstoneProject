@@ -37,10 +37,17 @@ func _physics_process(delta: float) -> void:
 	var dir = Input.get_axis("walk_left", "walk_right")
 	
 	
-	if Input.is_action_pressed("hold_down"):
-		$AnimatedSprite2D.play("down")
+	# Determine animation state
+	if !is_on_floor():  
+		$AnimatedSprite2D.play("jump")  # Play jump animation when airborne
+	elif Input.is_action_pressed("hold_down"):
+		$AnimatedSprite2D.play("down")  # Play crouch animation
+	elif dir != 0:
+		$AnimatedSprite2D.play("walk")
+		$AnimatedSprite2D.speed_scale = abs(velocity.x) / normal_speed  # Adjust speed of animation
 	else:
 		$AnimatedSprite2D.play("default")
+		$AnimatedSprite2D.speed_scale = 1.0  # Reset for idle
 	
 	if dir != 0:
 		var is_flipping_direction = last_direction != 0 and dir != last_direction

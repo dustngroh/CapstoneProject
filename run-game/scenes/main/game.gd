@@ -4,7 +4,7 @@ var current_level = null
 @onready var fade_layer: CanvasLayer = UIManager.get_node("FadeLayer")
 
 func _ready():
-	UIManager.get_node("Leaderboard").visible = false
+	#UIManager.get_node("Leaderboard").visible = false
 	load_level('res://scenes/main/MainMenu.tscn') # Load Main Menu on start
 
 func load_level(level_path: String):

@@ -21,6 +21,10 @@ MusicManager="*res://scripts/music_manager.gd"
 Settings="*res://scripts/settings.gd"
 UIManager="*res://scenes/common/ui/ui_manager.tscn"
 
+[display]
+
+mouse_cursor/custom_image="res://assets/tile_0203.png"
+
 [input]
 
 walk_left={
