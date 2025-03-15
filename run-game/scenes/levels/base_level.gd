@@ -18,29 +18,22 @@ var elapsed_time: float = 0.0  # Time starts at 0
 var timer_running: bool = false # Paused until countdown ends
 
 @onready var game: Node = get_tree().root.get_node("Game")
-#@onready var ui_manager: Node = get_tree().root.get_node("Game/UIManager")
+@onready var level_ui: Control = UIManager.get_node("LevelUI")
 @onready var level_timer: Timer = $Timer
-#@onready var time_label: Label = $UI/TimeLabel
-@onready var time_label: Label = UIManager.get_node("TimeLabel")
+@onready var time_label: Label = UIManager.get_node("LevelUI/TimeLabel")
 @onready var win_zone: Area2D = $WinZone
-#@onready var leaderboard: CanvasLayer = $UI/Leaderboard
-@onready var leaderboard: CanvasLayer = UIManager.get_node("Leaderboard")
+@onready var leaderboard: CanvasLayer = UIManager.get_node("LevelUI/Leaderboard")
 @onready var leaderboard_label: Label = leaderboard.get_node("Label")
-#@onready var countdown_label: Label = $UI/CountdownLabel
-@onready var countdown_label: Label = UIManager.get_node("CountdownLabel")
-#@onready var level_label: Label = $UI/LevelLabel
-@onready var level_label: Label = UIManager.get_node("LevelLabel")
+@onready var countdown_label: Label = UIManager.get_node("LevelUI/CountdownLabel")
+@onready var level_label: Label = UIManager.get_node("LevelUI/LevelLabel")
 @onready var spawn_point: Marker2D = $SpawnPoint
-#@onready var countdown_player: AudioStreamPlayer = $UI/CountdownAudio
-#@onready var start_player: AudioStreamPlayer = $UI/StartAudio
-@onready var countdown_player: AudioStreamPlayer = UIManager.get_node("CountdownAudio")
-@onready var start_player: AudioStreamPlayer = UIManager.get_node("StartAudio")
+@onready var countdown_player: AudioStreamPlayer = UIManager.get_node("LevelUI/CountdownAudio")
+@onready var start_player: AudioStreamPlayer = UIManager.get_node("LevelUI/StartAudio")
 
 
 
 func _ready():
-	# Check for touch controls
-	#if Settings.touch_controls_enabled:
+	
 	# Check if mobile user
 	if (OS.has_feature("web_android") or OS.has_feature("web_ios")):
 		
@@ -52,12 +45,13 @@ func _ready():
 		# Add new controls
 		if touch_controls_instance == null:
 			touch_controls_instance = touch_controls_scene.instantiate() # Only instantiated if enabled
-			UIManager.add_child(touch_controls_instance)  # Add the touch controls to the UI
+			level_ui.add_child(touch_controls_instance)  # Add the touch controls to the UI
 	
 	spawn_player()
 	
 	# Ensure UI is visible
-	UIManager.visible = true
+	#UIManager.visible = true
+	UIManager.show_level_ui()
 	
 	# Set up Timer
 	level_timer.wait_time = 1.0
@@ -83,7 +77,8 @@ func _ready():
 	if Settings.admin_controls_enabled:
 		if admin_controls_instance == null:
 			admin_controls_instance = admin_controls_scene.instantiate() # Only instantiated if enabled
-			UIManager.add_child(admin_controls_instance)  # Add the admin controls to the UI
+			# Add the admin controls to the UI
+			level_ui.add_child(admin_controls_instance)
 			
 			# Connect buttons
 			var next_level_button = admin_controls_instance.get_node("VBoxContainer/NextLevelButton")

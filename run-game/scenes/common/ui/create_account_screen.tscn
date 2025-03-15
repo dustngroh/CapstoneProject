@@ -1,0 +1,78 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpjrnytmtt1i0"]
+
+[ext_resource type="Script" path="res://scenes/common/ui/create_account_screen.gd" id="1_dxsaf"]
+
+[node name="CreateAccountScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dxsaf")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.435294, 0.278431, 0.909804)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -71.0
+offset_top = -20.0
+offset_right = 71.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CreateAccountLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Create an Account:"
+
+[node name="UsernameField" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter Username"
+
+[node name="PasswordField" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter Password"
+secret = true
+
+[node name="ConfirmPasswordField" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Confirm Password"
+secret = true
+
+[node name="CreateAccountButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Create Account"
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Back to Login"
+
+[node name="ErrorLabel" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
+layout_mode = 2
+
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.965278
+anchor_top = 0.0462963
+anchor_right = 0.965278
+anchor_bottom = 0.0462963
+offset_left = -50.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "Close"
+metadata/_edit_use_anchors_ = true

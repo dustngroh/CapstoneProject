@@ -1,0 +1,79 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbng4w4e63muk"]
+
+[ext_resource type="Script" path="res://scenes/common/ui/login_screen.gd" id="1_q57kn"]
+
+[node name="LoginScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q57kn")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.513726, 0.513726, 0.913725)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = -46.5
+offset_right = 33.5
+offset_bottom = 46.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoginLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Login:"
+
+[node name="UsernameField" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter Username"
+
+[node name="PasswordField" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter Password"
+secret = true
+
+[node name="LoginButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Login"
+
+[node name="CreateAccountButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Create New Account"
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Back to Main Menu"
+
+[node name="ErrorLabel" type="Label" parent="VBoxContainer"]
+custom_minimum_size = Vector2(10, 50)
+layout_mode = 2
+autowrap_mode = 2
+
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.965278
+anchor_top = 0.0462963
+anchor_right = 0.965278
+anchor_bottom = 0.0462963
+offset_left = -50.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "Close"
+metadata/_edit_use_anchors_ = true

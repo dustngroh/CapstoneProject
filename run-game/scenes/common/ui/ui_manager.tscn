@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bna48stbflevk"]
+[gd_scene load_steps=9 format=3 uid="uid://bna48stbflevk"]
 
 [ext_resource type="PackedScene" uid="uid://dhikxsmxr43ju" path="res://scenes/common/ResultsScreen.tscn" id="1_bcprt"]
 [ext_resource type="Script" path="res://scenes/common/fade_layer.gd" id="1_ulhlq"]
+[ext_resource type="Script" path="res://scenes/common/ui/ui_manager.gd" id="1_xalce"]
 [ext_resource type="AudioStream" uid="uid://chlohcx8g3x82" path="res://assets/audio/sounds/countdown.wav" id="2_1ejeb"]
 [ext_resource type="AudioStream" uid="uid://dgsuqakvss1gw" path="res://assets/audio/sounds/start.wav" id="3_l31bs"]
 
@@ -25,53 +26,67 @@ outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 
 [node name="UIManager" type="CanvasLayer"]
+script = ExtResource("1_xalce")
 
-[node name="TimeLabel" type="Label" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+[node name="LevelUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TimeLabel" type="Label" parent="LevelUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.984568
+anchor_right = 0.5
+anchor_bottom = 0.984568
 offset_left = -20.0
-offset_top = -23.0
+offset_top = -34.0
 offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
 label_settings = SubResource("LabelSettings_n4h7j")
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="Leaderboard" parent="." instance=ExtResource("1_bcprt")]
+[node name="Leaderboard" parent="LevelUI" instance=ExtResource("1_bcprt")]
 
-[node name="CountdownLabel" type="Label" parent="."]
+[node name="CountdownLabel" type="Label" parent="LevelUI"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
-offset_top = -11.5
+offset_top = -62.0
 offset_right = 20.0
-offset_bottom = 11.5
+offset_bottom = 62.0
 grow_horizontal = 2
 grow_vertical = 2
 label_settings = SubResource("LabelSettings_vblm5")
 
-[node name="CountdownAudio" type="AudioStreamPlayer" parent="."]
+[node name="CountdownAudio" type="AudioStreamPlayer" parent="LevelUI"]
 stream = ExtResource("2_1ejeb")
 
-[node name="StartAudio" type="AudioStreamPlayer" parent="."]
+[node name="StartAudio" type="AudioStreamPlayer" parent="LevelUI"]
 stream = ExtResource("3_l31bs")
 
-[node name="LevelLabel" type="Label" parent="."]
+[node name="LevelLabel" type="Label" parent="LevelUI"]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -20.0
-offset_top = 71.0
+offset_top = 50.0
 offset_right = 20.0
-offset_bottom = 94.0
+offset_bottom = 95.0
 grow_horizontal = 2
 label_settings = SubResource("LabelSettings_wibt8")
-metadata/_edit_use_anchors_ = true
+horizontal_alignment = 1
 
 [node name="FadeLayer" type="CanvasLayer" parent="."]
 script = ExtResource("1_ulhlq")

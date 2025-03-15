@@ -15,8 +15,7 @@ func _ready() -> void:
 	$VBoxContainer/TouchControlsButton.set_pressed_no_signal(Settings.touch_controls_enabled)
 	$VBoxContainer/AdminControlsButton.set_pressed_no_signal(Settings.admin_controls_enabled)
 	
-	UIManager.visible = false # Hide the UI on main menu
-	UIManager.get_node("Leaderboard").visible = false
+	UIManager.hide_level_ui()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -50,3 +49,11 @@ func _on_touch_controls_button_toggled(toggled_on: bool) -> void:
 
 func _on_admin_controls_button_toggled(toggled_on: bool) -> void:
 	Settings.toggle_admin_controls()
+
+
+func _on_login_screen_button_pressed() -> void:
+	UIManager.show_login()
+
+
+func _on_create_account_screen_button_pressed() -> void:
+	UIManager.show_create_account()

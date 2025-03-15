@@ -22,6 +22,8 @@ var coyote = false  # Track whether we're in coyote time or not
 var last_floor = false  # Last frame's on-floor state
 var jumping = false
 
+@export var zoom_in_factor = 1.5
+@export var zoom_in_duration = 3.0
 
 func _ready() -> void:
 	$CoyoteTimer.wait_time = coyote_frames / 60.0
@@ -108,3 +110,7 @@ func reset_speed():
 func _on_coyote_timer_timeout() -> void:
 	coyote = false
 	#modulate = Color(1, 1, 1) # Uncomment to use coyote color filter (removes filter)
+
+func zoom_in():
+	var tween = create_tween()
+	tween.tween_property($Camera2D, "zoom", Vector2(zoom_in_factor, zoom_in_factor), zoom_in_duration)

@@ -147,9 +147,34 @@ grow_vertical = 2
 [node name="Character2" parent="Character2Holder" instance=ExtResource("2_01mn5")]
 position = Vector2(-150, 0)
 
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0442708
+anchor_top = 0.0524691
+anchor_right = 0.0442708
+anchor_bottom = 0.0524691
+offset_right = 127.0
+offset_bottom = 66.0
+metadata/_edit_use_anchors_ = true
+
+[node name="LoginScreenButton" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+text = "Login"
+
+[node name="CreateAccountScreenButton" type="Button" parent="VBoxContainer2"]
+layout_mode = 2
+text = "Create Account"
+
+[node name="Label" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+text = "(Not working yet)"
+
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
 [connection signal="toggled" from="VBoxContainer/MuteButton" to="." method="_on_mute_button_toggled"]
 [connection signal="toggled" from="VBoxContainer/TouchControlsButton" to="." method="_on_touch_controls_button_toggled"]
 [connection signal="toggled" from="VBoxContainer/AdminControlsButton" to="." method="_on_admin_controls_button_toggled"]
+[connection signal="pressed" from="VBoxContainer2/LoginScreenButton" to="." method="_on_login_screen_button_pressed"]
+[connection signal="pressed" from="VBoxContainer2/CreateAccountScreenButton" to="." method="_on_create_account_screen_button_pressed"]
