@@ -58,7 +58,7 @@ text = "Create Account"
 
 [node name="BackButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Back to Login"
+text = "Go to Login"
 
 [node name="ErrorLabel" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
