@@ -111,6 +111,6 @@ func _on_coyote_timer_timeout() -> void:
 	coyote = false
 	#modulate = Color(1, 1, 1) # Uncomment to use coyote color filter (removes filter)
 
-func zoom_in():
-	var tween = create_tween()
-	tween.tween_property($Camera2D, "zoom", Vector2(zoom_in_factor, zoom_in_factor), zoom_in_duration)
+#func zoom_in():
+	#var tween = create_tween()
+	#tween.tween_property($Camera2D, "zoom", Vector2(zoom_in_factor, zoom_in_factor), zoom_in_duration)
