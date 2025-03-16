@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://bnulquohsnviu"]
+
+[ext_resource type="Script" path="res://scenes/levels/base_endless_level.gd" id="1_jln86"]
+[ext_resource type="Texture2D" uid="uid://dlq2vmodo4bso" path="res://assets/level/backgrounds/set4_background.png" id="2_ckp8h"]
+[ext_resource type="Texture2D" uid="uid://cv4mt05x7uqw6" path="res://assets/level/backgrounds/set4_tiles.png" id="3_p01bx"]
+[ext_resource type="Texture2D" uid="uid://dfu64wyf45p8p" path="res://assets/level/backgrounds/set4_hills.png" id="4_jqafx"]
+[ext_resource type="Script" path="res://scenes/levels/obstacle_spawner.gd" id="5_mada6"]
+[ext_resource type="PackedScene" uid="uid://b83jnvp62cq81" path="res://scenes/entities/obstacles/dummy_ball.tscn" id="6_t8xo8"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cmuph"]
+
+[node name="BaseEndlessLevel" type="Node2D"]
+script = ExtResource("1_jln86")
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+
+[node name="BottomWorldBorder" type="Area2D" parent="."]
+position = Vector2(0, 2000)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWorldBorder"]
+shape = SubResource("WorldBoundaryShape2D_cmuph")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background"]
+position = Vector2(957, 721)
+scale = Vector2(3, 3)
+texture = ExtResource("2_ckp8h")
+
+[node name="Tiles" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Tiles"]
+scale = Vector2(3, 3)
+texture = ExtResource("3_p01bx")
+centered = false
+
+[node name="Hills" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Hills"]
+scale = Vector2(3, 3)
+texture = ExtResource("4_jqafx")
+centered = false
+
+[node name="ObstacleSpawner" type="Node2D" parent="."]
+script = ExtResource("5_mada6")
+obstacle_scenes = Array[PackedScene]([ExtResource("6_t8xo8")])
+
+[node name="StartPoint" type="Marker2D" parent="."]
+position = Vector2(1, 578)
+
+[node name="EndPoint" type="Marker2D" parent="."]
+position = Vector2(1916, 579)
+
+[connection signal="body_entered" from="BottomWorldBorder" to="." method="_on_bottom_world_border_body_entered"]

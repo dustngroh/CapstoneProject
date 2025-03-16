@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=4 uid="uid://bv58ra3deoo42"]
+
+[ext_resource type="PackedScene" uid="uid://bnulquohsnviu" path="res://scenes/levels/base_endless_level.tscn" id="1_kyycb"]
+[ext_resource type="TileSet" uid="uid://bdaudv74wslo5" path="res://assets/level/test_tiles.tres" id="2_67ag3"]
+[ext_resource type="PackedScene" uid="uid://crlmo14rtbpw2" path="res://scenes/entities/items/speed_boost_item.tscn" id="3_56h8c"]
+
+[node name="EndlessLevel1" instance=ExtResource("1_kyycb")]
+
+[node name="TileMapLayer" parent="." index="2"]
+tile_map_data = PackedByteArray("AAAAAAkAAAAHAAoAAAABAAkAAAACAAkAAAACAAkAAAACAAkAAAADAAkAAAACAAkAAAAEAAkAAAACAAkAAAAFAAkAAAACAAkAAAAGAAkAAAACAAkAAAAHAAkAAAACAAkAAAAIAAkAAAACAAkAAAAJAAkAAAAEAAoAAAAdAAgAAAAEAAoAAAAcAAcAAAACAAoAAAAbAAcAAAACAAkAAAAaAAcAAAACAAkAAAAZAAcAAAACAAkAAAAYAAcAAAACAAkAAAAXAAcAAAADAAoAAAAXAAgAAAAAAAkAAQAWAAgAAAACAAkAAAAVAAgAAAABAAoAAAAVAAkAAAAAAAkAAQAUAAkAAAACAAkAAAATAAkAAAADAAoAAAATAAoAAAAAAAkAAQASAAoAAAACAAkAAAARAAoAAAACAAkAAAAQAAoAAAABAAoAAAAQAAsAAAAAAAkAAQAPAAsAAAACAAkAAAAOAAsAAAACAAkAAAANAAsAAAACAAkAAAAMAAsAAAACAAkAAAALAAsAAAACAAkAAAAKAAsAAAACAAkAAAAJAAoAAAACAAsAAAAKAAoAAAACAAoAAAAJAAsAAAAAAAkAAQAcAAgAAAAAAAkAAgACAAgAAAAJAAcAAAAGAAgAAAAKAAcAAAAMAAoAAAALAAcAAAAZAAYAAAAJAAgAAAAbAAYAAAAJAAgAAAAaAAYAAAAJAAgAAAAYAAYAAAAJAAgAAAASAAkAAAATAAoAAAA=")
+tile_set = ExtResource("2_67ag3")
+
+[node name="SpeedBoostItem" parent="." index="7" instance=ExtResource("3_56h8c")]
+position = Vector2(1656.52, 385.242)

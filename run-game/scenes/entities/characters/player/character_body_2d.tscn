@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bh68ke5pd617u"]
+[gd_scene load_steps=8 format=3 uid="uid://bh68ke5pd617u"]
 
 [ext_resource type="Script" path="res://scenes/entities/characters/player/character_body_2d.gd" id="1_ll5kr"]
 [ext_resource type="Texture2D" uid="uid://drjo7l3oubjxa" path="res://assets/character/mushroom_character_side.png" id="2_yeftb"]
@@ -44,7 +44,12 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ylba3"]
+radius = 43.0
+height = 120.0
+
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
+floor_max_angle = 0.802851
 script = ExtResource("1_ll5kr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -56,9 +61,6 @@ texture = ExtResource("2_yeftb")
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(34, -55, -19, -52, -54, -9, -47, 31, -10, 58, 29, 60, 37, 37, 60, -33)
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.15, 0.15)
 sprite_frames = SubResource("SpriteFrames_1huyh")
@@ -66,5 +68,8 @@ animation = &"walk"
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ylba3")
 
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]

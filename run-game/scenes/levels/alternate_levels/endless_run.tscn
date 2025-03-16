@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://c5o47xslwftki"]
+
+[ext_resource type="Script" path="res://scenes/levels/test_levels/level_spawner.gd" id="1_78dij"]
+[ext_resource type="PackedScene" uid="uid://bv58ra3deoo42" path="res://scenes/levels/endless_level_chunks/endless_level_1.tscn" id="2_15uis"]
+[ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://scenes/entities/characters/player/character_body_2d.tscn" id="3_bwob8"]
+[ext_resource type="PackedScene" uid="uid://1w4w2wxwif3k" path="res://scenes/levels/endless_level_chunks/endless_level_2.tscn" id="3_nj0fe"]
+[ext_resource type="PackedScene" uid="uid://cxp4o16ogctgi" path="res://scenes/levels/endless_level_chunks/endless_level_3.tscn" id="4_lhppd"]
+[ext_resource type="PackedScene" uid="uid://bnhtx0g2iwbf8" path="res://scenes/levels/endless_level_chunks/endless_level_4.tscn" id="5_nl7dp"]
+
+[node name="EndlessRun" type="Node2D"]
+
+[node name="LevelSpawner" type="Node2D" parent="."]
+script = ExtResource("1_78dij")
+level_chunks = Array[PackedScene]([ExtResource("2_15uis"), ExtResource("3_nj0fe"), ExtResource("4_lhppd"), ExtResource("5_nl7dp")])
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("3_bwob8")]
+
+[node name="EndlessRunUI" type="CanvasLayer" parent="."]
+
+[node name="MainMenuButton" type="Button" parent="EndlessRunUI"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 59.0
+offset_top = -15.5
+offset_right = 155.0
+offset_bottom = 15.5
+grow_vertical = 2
+text = "Main Menu"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="EndlessRunUI/MainMenuButton" to="LevelSpawner" method="_on_main_menu_button_pressed"]
