@@ -15,19 +15,19 @@ func _process(delta: float) -> void:
 
 func show_login():
 	hide_create_account()
-	if login_screen == null:
-		login_screen = load("res://scenes/common/ui/login_screen.tscn").instantiate()
-		add_child(login_screen)
-		login_screen.login_success.connect(_on_login_success)
-		login_screen.go_to_create_account.connect(show_create_account)
+	#if login_screen == null:
+		#login_screen = load("res://scenes/common/ui/login_screen.tscn").instantiate()
+		#add_child(login_screen)
+		#login_screen.login_success.connect(_on_login_success)
+		#login_screen.go_to_create_account.connect(show_create_account)
 
 func show_create_account():
 	hide_login()
-	if create_account_screen == null:
-		create_account_screen = load("res://scenes/common/ui/create_account_screen.tscn").instantiate()
-		add_child(create_account_screen)
-		create_account_screen.account_created.connect(_on_account_created)
-		create_account_screen.go_back_to_login.connect(show_login)
+	#if create_account_screen == null:
+		#create_account_screen = load("res://scenes/common/ui/create_account_screen.tscn").instantiate()
+		#add_child(create_account_screen)
+		#create_account_screen.account_created.connect(_on_account_created)
+		#create_account_screen.go_back_to_login.connect(show_login)
 
 func _on_login_success(username):
 	print("Logged in as:", username)
