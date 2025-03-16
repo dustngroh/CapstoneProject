@@ -35,17 +35,17 @@ var timer_running: bool = false # Paused until countdown ends
 func _ready():
 	
 	# Check if mobile user
-	if (OS.has_feature("web_android") or OS.has_feature("web_ios")):
-		
-		# Remove any existing controls first
-		var existing_touch_controls = get_tree().get_nodes_in_group("TouchControls") 
-		for control in existing_touch_controls:
-			control.free()
-		
-		# Add new controls
-		if touch_controls_instance == null:
-			touch_controls_instance = touch_controls_scene.instantiate() # Only instantiated if enabled
-			level_ui.add_child(touch_controls_instance)  # Add the touch controls to the UI
+	#if (OS.has_feature("web_android") or OS.has_feature("web_ios")):
+		#
+		## Remove any existing controls first
+		#var existing_touch_controls = get_tree().get_nodes_in_group("TouchControls") 
+		#for control in existing_touch_controls:
+			#control.free()
+		#
+		## Add new controls
+		#if touch_controls_instance == null:
+			#touch_controls_instance = touch_controls_scene.instantiate() # Only instantiated if enabled
+			#level_ui.add_child(touch_controls_instance)  # Add the touch controls to the UI
 	
 	spawn_player()
 	

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bna48stbflevk"]
+[gd_scene load_steps=10 format=3 uid="uid://bna48stbflevk"]
 
 [ext_resource type="PackedScene" uid="uid://dhikxsmxr43ju" path="res://scenes/common/ResultsScreen.tscn" id="1_bcprt"]
 [ext_resource type="Script" path="res://scenes/common/fade_layer.gd" id="1_ulhlq"]
 [ext_resource type="Script" path="res://scenes/common/ui/ui_manager.gd" id="1_xalce"]
 [ext_resource type="AudioStream" uid="uid://chlohcx8g3x82" path="res://assets/audio/sounds/countdown.wav" id="2_1ejeb"]
 [ext_resource type="AudioStream" uid="uid://dgsuqakvss1gw" path="res://assets/audio/sounds/start.wav" id="3_l31bs"]
+[ext_resource type="PackedScene" uid="uid://coopu6svniep4" path="res://scenes/common/touch_controls.tscn" id="5_xl1o8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_n4h7j"]
 font_size = 24
@@ -87,6 +88,8 @@ offset_bottom = 95.0
 grow_horizontal = 2
 label_settings = SubResource("LabelSettings_wibt8")
 horizontal_alignment = 1
+
+[node name="TouchControls" parent="." instance=ExtResource("5_xl1o8")]
 
 [node name="FadeLayer" type="CanvasLayer" parent="."]
 script = ExtResource("1_ulhlq")
