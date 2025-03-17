@@ -34,8 +34,8 @@ shape = SubResource("WorldBoundaryShape2D_16w4h")
 motion_scale = Vector2(0, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background"]
-position = Vector2(957, 721)
-scale = Vector2(3, 3)
+position = Vector2(2295, 1594.5)
+scale = Vector2(7.18125, 6.63958)
 texture = ExtResource("9_ecrt5")
 
 [node name="Tiles" type="ParallaxLayer" parent="ParallaxBackground"]
