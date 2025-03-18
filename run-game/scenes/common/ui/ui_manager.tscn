@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bna48stbflevk"]
+[gd_scene load_steps=11 format=3 uid="uid://bna48stbflevk"]
 
 [ext_resource type="PackedScene" uid="uid://dhikxsmxr43ju" path="res://scenes/common/ResultsScreen.tscn" id="1_bcprt"]
 [ext_resource type="Script" path="res://scenes/common/fade_layer.gd" id="1_ulhlq"]
@@ -6,6 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://chlohcx8g3x82" path="res://assets/audio/sounds/countdown.wav" id="2_1ejeb"]
 [ext_resource type="AudioStream" uid="uid://dgsuqakvss1gw" path="res://assets/audio/sounds/start.wav" id="3_l31bs"]
 [ext_resource type="PackedScene" uid="uid://coopu6svniep4" path="res://scenes/common/touch_controls.tscn" id="5_xl1o8"]
+[ext_resource type="PackedScene" uid="uid://b0dunmgl0seuh" path="res://scenes/common/ui/pause_menu.tscn" id="7_aicnb"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_n4h7j"]
 font_size = 24
@@ -103,3 +104,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 1)
+
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="PauseLayer" instance=ExtResource("7_aicnb")]
+process_mode = 3

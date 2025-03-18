@@ -34,23 +34,9 @@ var timer_running: bool = false # Paused until countdown ends
 
 func _ready():
 	
-	# Check if mobile user
-	#if (OS.has_feature("web_android") or OS.has_feature("web_ios")):
-		#
-		## Remove any existing controls first
-		#var existing_touch_controls = get_tree().get_nodes_in_group("TouchControls") 
-		#for control in existing_touch_controls:
-			#control.free()
-		#
-		## Add new controls
-		#if touch_controls_instance == null:
-			#touch_controls_instance = touch_controls_scene.instantiate() # Only instantiated if enabled
-			#level_ui.add_child(touch_controls_instance)  # Add the touch controls to the UI
-	
 	spawn_player()
 	
-	# Ensure UI is visible
-	#UIManager.visible = true
+	# Ensure level UI is visible
 	UIManager.show_level_ui()
 	
 	# Set up Timer
@@ -112,11 +98,15 @@ func start_countdown():
 	for i in range(countdown_seconds, 0, -1):  # Countdown from countdown_seconds to 1
 		countdown_label.text = str(i)
 		countdown_player.play()
-		await get_tree().create_timer(1.0).timeout  # Wait 1 second per number
+		#await get_tree().create_timer(1.0).timeout  # Wait 1 second per number
+		level_timer.start(1.0)
+		await level_timer.timeout
 	
 	countdown_label.text = "Go!"
 	start_player.play()
-	await get_tree().create_timer(0.5).timeout  # Show "Go!" briefly
+	#await get_tree().create_timer(0.5).timeout  # Show "Go!" briefly
+	level_timer.start(0.5)
+	await level_timer.timeout
 	countdown_label.hide()
 	level_label.hide() 
 	

@@ -4,11 +4,10 @@ var current_level = null
 @onready var fade_layer: CanvasLayer = UIManager.get_node("FadeLayer")
 
 func _ready():
-	#UIManager.get_node("Leaderboard").visible = false
 	load_level('res://scenes/main/MainMenu.tscn') # Load Main Menu on start
 
 func load_level(level_path: String):
-	#await $FadeLayer.fade_in(1.0)  # Fade to black
+	# Fade to black
 	await fade_layer.fade_in(1.0)
 
 	if current_level:
@@ -23,5 +22,4 @@ func load_level(level_path: String):
 	if level_path == "res://scenes/levels/main_levels/level_4.tscn": # Check if final level
 		MusicManager.play_music("res://assets/audio/music/Lite Saturation - Calm.mp3") # Play special song
 		
-	#await $FadeLayer.fade_out(1.0)  # Fade back in
 	await fade_layer.fade_out(1.0)
