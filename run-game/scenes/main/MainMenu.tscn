@@ -1,17 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://dlxl0dsaj7hws"]
+[gd_scene load_steps=9 format=3 uid="uid://dlxl0dsaj7hws"]
 
 [ext_resource type="Script" path="res://scenes/main/main_menu.gd" id="1_otjms"]
-[ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://scenes/entities/characters/player/character_body_2d.tscn" id="2_01mn5"]
 [ext_resource type="Texture2D" uid="uid://bq2ecow3063s2" path="res://assets/level/backgrounds/set2_tiles.png" id="2_eluch"]
 [ext_resource type="Texture2D" uid="uid://d0pxna4yi6svm" path="res://assets/level/backgrounds/set1_tiles.png" id="2_q4xyl"]
 [ext_resource type="Texture2D" uid="uid://cgxc1wnbj8dl7" path="res://assets/level_select/level map.jpg" id="2_tdlx8"]
 [ext_resource type="AudioStream" uid="uid://c6dba470rppon" path="res://assets/audio/sounds/hitHurt.wav" id="3_hsukn"]
+[ext_resource type="PackedScene" uid="uid://co22yqlcbx25r" path="res://scenes/common/ui/volume_slider.tscn" id="6_wao8s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4oek7"]
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_m24kh"]
+font_color = Color(0, 0, 0, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -122,34 +125,13 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Admin Controls"
 
-[node name="Character1Holder" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -20.0
-offset_right = 40.0
-offset_bottom = 20.0
-grow_vertical = 2
+[node name="VolumeLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Volume:"
+label_settings = SubResource("LabelSettings_m24kh")
 
-[node name="Character1" parent="Character1Holder" instance=ExtResource("2_01mn5")]
-position = Vector2(150, 0)
-
-[node name="Character2Holder" type="Control" parent="."]
-layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -20.0
-offset_bottom = 20.0
-grow_horizontal = 0
-grow_vertical = 2
-
-[node name="Character2" parent="Character2Holder" instance=ExtResource("2_01mn5")]
-position = Vector2(-150, 0)
+[node name="VolumeSlider" parent="VBoxContainer" instance=ExtResource("6_wao8s")]
+layout_mode = 2
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 1

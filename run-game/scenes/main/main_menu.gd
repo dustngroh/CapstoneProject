@@ -4,13 +4,6 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
-	$Character1Holder/Character1/Camera2D.enabled = false
-	$Character1Holder/Character1.gravity = 0
-	
-	$Character2Holder/Character2/Camera2D.enabled = false
-	$Character2Holder/Character2.gravity = 0
-	$Character2Holder/Character2.scale.x = -1
-	
 	$VBoxContainer/MuteButton.set_pressed_no_signal(MusicManager.is_muted)
 	$VBoxContainer/TouchControlsButton.set_pressed_no_signal(Settings.touch_controls_enabled)
 	$VBoxContainer/AdminControlsButton.set_pressed_no_signal(Settings.admin_controls_enabled)

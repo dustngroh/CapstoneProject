@@ -6,8 +6,9 @@ var is_muted : bool = false
 
 func _ready():
 	if music_player == null:
-		music_player = AudioStreamPlayer.new()  # Create a new music player if it doesn't exist
-		add_child(music_player)  # Add it to the scene tree
+		music_player = AudioStreamPlayer.new()
+		music_player.bus = "music"
+		add_child(music_player)
 		music_player.stream = load("res://assets/audio/music/Lite Saturation - Calm.mp3") # play default music
 		music_player.stream.loop = true 
 		music_player.play() 
@@ -37,6 +38,6 @@ func toggle_mute():
 # Function to update music based on mute state
 func update_music():
 	if is_muted:
-		music_player.stop()  # Stop music if muted
+		music_player.stop()
 	else:
-		music_player.play()  # Play music if not muted
+		music_player.play()

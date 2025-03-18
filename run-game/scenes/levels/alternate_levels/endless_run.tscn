@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c5o47xslwftki"]
+[gd_scene load_steps=8 format=3 uid="uid://c5o47xslwftki"]
 
 [ext_resource type="Script" path="res://scenes/levels/test_levels/level_spawner.gd" id="1_78dij"]
 [ext_resource type="PackedScene" uid="uid://bv58ra3deoo42" path="res://scenes/levels/endless_level_chunks/endless_level_1.tscn" id="2_15uis"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://1w4w2wxwif3k" path="res://scenes/levels/endless_level_chunks/endless_level_2.tscn" id="3_nj0fe"]
 [ext_resource type="PackedScene" uid="uid://cxp4o16ogctgi" path="res://scenes/levels/endless_level_chunks/endless_level_3.tscn" id="4_lhppd"]
 [ext_resource type="PackedScene" uid="uid://bnhtx0g2iwbf8" path="res://scenes/levels/endless_level_chunks/endless_level_4.tscn" id="5_nl7dp"]
+[ext_resource type="PackedScene" uid="uid://co22yqlcbx25r" path="res://scenes/common/ui/volume_slider.tscn" id="7_6y4i2"]
 
 [node name="EndlessRun" type="Node2D"]
 
@@ -17,16 +18,28 @@ level_chunks = Array[PackedScene]([ExtResource("2_15uis"), ExtResource("3_nj0fe"
 
 [node name="EndlessRunUI" type="CanvasLayer" parent="."]
 
-[node name="MainMenuButton" type="Button" parent="EndlessRunUI"]
+[node name="VBoxContainer" type="VBoxContainer" parent="EndlessRunUI"]
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_left = 59.0
-offset_top = -15.5
-offset_right = 155.0
-offset_bottom = 15.5
+offset_left = 43.0
+offset_top = -39.0
+offset_right = 143.0
+offset_bottom = 39.0
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MainMenuButton" type="Button" parent="EndlessRunUI/VBoxContainer"]
+layout_mode = 2
 text = "Main Menu"
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="EndlessRunUI/MainMenuButton" to="LevelSpawner" method="_on_main_menu_button_pressed"]
+[node name="Label" type="Label" parent="EndlessRunUI/VBoxContainer"]
+layout_mode = 2
+text = "Volume:"
+
+[node name="VolumeSlider" parent="EndlessRunUI/VBoxContainer" instance=ExtResource("7_6y4i2")]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+
+[connection signal="pressed" from="EndlessRunUI/VBoxContainer/MainMenuButton" to="LevelSpawner" method="_on_main_menu_button_pressed"]
