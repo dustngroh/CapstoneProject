@@ -25,12 +25,26 @@ var jumping = false
 
 @export var zoom_in_factor = 1.5
 @export var zoom_in_duration = 3.0
+var active_tween: Tween = null
+
+var position_history: Array = []  # Stores recorded positions
+var recording: bool = false  # Flag to enable/disable recording
+
+@export var record_interval: float = 0.1  # Time interval in seconds
+var record_timer: float = 0.0  # Timer for position recording
 
 func _ready() -> void:
 	$CoyoteTimer.wait_time = coyote_frames / 60.0
 
 func _physics_process(delta: float) -> void:
 	
+	# Position Recording
+	record_timer += delta
+	if recording and record_timer >= record_interval:
+		record_timer = 0.0
+		position_history.append(global_position)
+	
+	# Speed boost handling
 	if speed_boost_timer > 0:
 		speed_boost_timer -= delta
 		if speed_boost_timer <= 0:
@@ -115,5 +129,15 @@ func _on_coyote_timer_timeout() -> void:
 	#modulate = Color(1, 1, 1) # Uncomment to use coyote color filter (removes filter)
 
 func zoom_in():
-	var tween = create_tween()
-	tween.tween_property($Camera2D, "zoom", Vector2(zoom_in_factor, zoom_in_factor), zoom_in_duration)
+	if active_tween:
+		active_tween.kill()
+	
+	active_tween = create_tween()
+	active_tween.tween_property($Camera2D, "zoom", Vector2(zoom_in_factor, zoom_in_factor), zoom_in_duration)
+
+func zoom_out():
+	if active_tween:
+		active_tween.kill()
+	
+	active_tween = create_tween()
+	active_tween.tween_property($Camera2D, "zoom", Vector2(1, 1), 0.5)

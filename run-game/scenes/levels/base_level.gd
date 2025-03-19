@@ -56,8 +56,9 @@ func _ready():
 	leaderboard.visible = false
 	
 	# Connect leaderboard buttons
-	leaderboard.get_node("NextLevelButton").pressed.connect(_on_next_button_pressed)
-	leaderboard.get_node("MainMenuButton").pressed.connect(_on_main_button_pressed)
+	leaderboard.get_node("VBoxContainer/NextLevelButton").pressed.connect(_on_next_button_pressed)
+	leaderboard.get_node("VBoxContainer/MainMenuButton").pressed.connect(_on_main_button_pressed)
+	leaderboard.get_node("VBoxContainer/ReplayButton").pressed.connect(play_replay)
 	
 	# Check for admin controls
 	if Settings.admin_controls_enabled:
@@ -92,6 +93,7 @@ func spawn_player():
 
 func _on_win_zone_win():
 	stop_timer()
+	player.recording = false
 	show_leaderboard()
 
 func start_countdown():
@@ -114,6 +116,7 @@ func start_countdown():
 	timer_running = true
 	level_timer.start()
 	player.set_physics_process(true)  # Enable player movement
+	player.recording = true   # Start recording player positions
 
 func stop_timer():
 	timer_running = false
@@ -153,3 +156,21 @@ func _on_main_button_pressed():
 	MusicManager.play_music("res://assets/audio/music/Lite Saturation - Calm.mp3")
 	if game:
 		game.load_level("res://scenes/main/MainMenu.tscn")
+
+func play_replay():
+	if not player or player.position_history.is_empty():
+		return
+
+	player.zoom_out()   # Zoom out camera
+	player.set_physics_process(false)  # Disable player movement during replay
+	player.modulate = Color(1, 1, 1, 0.5)  # Make the replay character semi-transparent
+	leaderboard.visible = false   # Hide leaderboard during replay
+
+	for pos in player.position_history:
+		player.global_position = pos
+		await get_tree().create_timer(player.record_interval).timeout  # Wait between frames
+
+	player.zoom_in()   # Zoom camera back in
+	player.set_physics_process(true)  # Enable movement again after replay
+	player.modulate = Color(1, 1, 1, 1)  # Undo transparency
+	leaderboard.visible = true   # Show leaderboard again
