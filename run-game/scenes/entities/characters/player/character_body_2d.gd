@@ -141,3 +141,9 @@ func zoom_out():
 	
 	active_tween = create_tween()
 	active_tween.tween_property($Camera2D, "zoom", Vector2(1, 1), 0.5)
+
+# Function to record one final location and stop recording
+func end_recording():
+	if recording:
+		position_history.append(global_position)
+		recording = false

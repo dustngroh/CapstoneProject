@@ -43,4 +43,4 @@ text = "Main Menu
 
 [node name="ReplayButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Replay"
+text = "Watch Replay"

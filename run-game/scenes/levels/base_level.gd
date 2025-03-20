@@ -93,7 +93,7 @@ func spawn_player():
 
 func _on_win_zone_win():
 	stop_timer()
-	player.recording = false
+	player.end_recording()
 	show_leaderboard()
 
 func start_countdown():
