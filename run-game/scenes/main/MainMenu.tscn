@@ -141,12 +141,13 @@ layout_mode = 2
 [node name="VBoxContainer2" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0442708
-anchor_top = 0.0524691
-anchor_right = 0.0442708
-anchor_bottom = 0.0524691
-offset_right = 127.0
-offset_bottom = 66.0
+anchor_left = 0.940972
+anchor_top = 0.0771605
+anchor_right = 0.940972
+anchor_bottom = 0.0771605
+offset_left = -134.0
+offset_bottom = 93.0
+grow_horizontal = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="LoginScreenButton" type="Button" parent="VBoxContainer2"]

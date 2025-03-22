@@ -90,6 +90,20 @@ grow_horizontal = 2
 label_settings = SubResource("LabelSettings_wibt8")
 horizontal_alignment = 1
 
+[node name="ScoreboardLabel" type="Label" parent="LevelUI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.231481
+anchor_right = 0.5
+anchor_bottom = 0.231481
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
 [node name="TouchControls" parent="." instance=ExtResource("5_xl1o8")]
 
 [node name="FadeLayer" type="CanvasLayer" parent="."]

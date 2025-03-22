@@ -7,6 +7,8 @@ var base_level_path = "res://scenes/levels/multiplayer_levels/multiplayer_level_
 @onready var find_lobby_button = $VBoxContainer/FindLobbyButton
 @onready var start_button = $VBoxContainer/StartButton
 @onready var lobby_info_label = $LobbyInfoLabel
+@onready var level_number_label = $VBoxContainer/LevelNumberLabel
+@onready var level_number_box = $VBoxContainer/LevelNumberBox
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -50,13 +52,16 @@ func start_game(level_number: int) -> void:
 
 func _on_lobby_created():
 	lobby_info_label.text = "Lobby Created. Wait for players to join."
+	level_number_label.visible = true
+	level_number_box.visible = true
 	start_button.visible = true
 
 func _on_lobby_joined():
 	lobby_info_label.text = "Lobby joined. Wait for host to start."
 
 func _on_start_button_pressed() -> void:
-	WebSocketManager.start_game(1)
+	var level_number = level_number_box.value
+	WebSocketManager.start_game(level_number)
 
 func _on_player_joined(total_players: int):
 	lobby_info_label.text = "Player joined. Total players: " + str(total_players)
@@ -67,12 +72,3 @@ func _on_successful_connection():
 
 func _on_failed_connection():
 	lobby_info_label.text = "Could not connect to server."
-
-
-func _on_name_field_focus_entered() -> void:
-	if OS.has_feature('JavaScript'):
-		name_field.text = JavaScriptBridge.eval("""
-			window.prompt('Username')
-			""")
-	
-	release_focus()

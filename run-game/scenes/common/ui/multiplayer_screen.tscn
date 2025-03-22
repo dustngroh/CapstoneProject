@@ -35,7 +35,7 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="NameLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Enter Name:"
 
@@ -52,6 +52,18 @@ text = "Connect"
 visible = false
 layout_mode = 2
 text = "Find Lobby"
+
+[node name="LevelNumberLabel" type="Label" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Start on Level:"
+
+[node name="LevelNumberBox" type="SpinBox" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+min_value = 1.0
+max_value = 4.0
+value = 1.0
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 visible = false
@@ -75,7 +87,6 @@ grow_horizontal = 2
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[connection signal="focus_entered" from="VBoxContainer/NameField" to="." method="_on_name_field_focus_entered"]
 [connection signal="pressed" from="VBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/FindLobbyButton" to="." method="_on_find_lobby_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

@@ -28,6 +28,7 @@ var players: Dictionary = {}
 @onready var spawn_point: Marker2D = $SpawnPoint
 @onready var countdown_player: AudioStreamPlayer = UIManager.get_node("LevelUI/CountdownAudio")
 @onready var start_player: AudioStreamPlayer = UIManager.get_node("LevelUI/StartAudio")
+@onready var scoreboard_label: Label = UIManager.get_node("LevelUI/ScoreboardLabel")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -38,8 +39,8 @@ func _ready() -> void:
 	WebSocketManager.start_level.connect(start_level)
 	WebSocketManager.player_position_updated.connect(update_position)
 	
-	#UIManager.visible = true
 	UIManager.show_level_ui()
+	scoreboard_label.visible = false
 	
 	# Set up Timer
 	level_timer.wait_time = 1.0
@@ -127,8 +128,19 @@ func show_leaderboard():
 
 func _on_level_complete(scoreboard: Array):
 	print("Level Complete! Final Results:", scoreboard)
-	#display_scoreboard(scoreboard)
+	display_scoreboard(scoreboard)
 	show_leaderboard()
+
+func display_scoreboard(scoreboard: Array):
+	var scoreboard_text = "Final Scoreboard:\n"
+	for result in scoreboard:
+		scoreboard_text += "%d. %s - %.2f seconds\n" % [result["rank"], result["name"], result["time"]]
+
+	# Update the label text
+	scoreboard_label.text = scoreboard_text
+	
+	scoreboard_label.visible = true
+
 
 func _on_next_button_pressed():
 	WebSocketManager.start_game((current_level_number % total_levels) + 1)
