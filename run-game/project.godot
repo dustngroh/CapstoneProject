@@ -20,6 +20,7 @@ config/icon="res://assets/icon.svg"
 MusicManager="*res://scripts/music_manager.gd"
 Settings="*res://scripts/settings.gd"
 UIManager="*res://scenes/common/ui/ui_manager.tscn"
+WebSocketManager="*res://scripts/web_socket_manager.gd"
 
 [display]
 

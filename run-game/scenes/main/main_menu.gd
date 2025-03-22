@@ -56,3 +56,9 @@ func _on_endless_run_button_pressed() -> void:
 	var game = get_tree().root.get_node("Game")
 	if game:
 		game.load_level("res://scenes/levels/alternate_levels/endless_run.tscn")
+
+
+func _on_multiplayer_button_pressed() -> void:
+	var game = get_tree().root.get_node("Game")
+	if game:
+		game.load_level("res://scenes/common/ui/multiplayer_screen.tscn")

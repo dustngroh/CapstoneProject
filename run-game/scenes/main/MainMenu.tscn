@@ -109,6 +109,11 @@ text = "Level Select"
 layout_mode = 2
 text = "Endless Run"
 
+[node name="MultiplayerButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Multiplayer
+"
+
 [node name="MuteButton" type="CheckButton" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -160,6 +165,7 @@ text = "(Not working yet)"
 [connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/EndlessRunButton" to="." method="_on_endless_run_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
 [connection signal="toggled" from="VBoxContainer/MuteButton" to="." method="_on_mute_button_toggled"]
 [connection signal="toggled" from="VBoxContainer/TouchControlsButton" to="." method="_on_touch_controls_button_toggled"]
 [connection signal="toggled" from="VBoxContainer/AdminControlsButton" to="." method="_on_admin_controls_button_toggled"]

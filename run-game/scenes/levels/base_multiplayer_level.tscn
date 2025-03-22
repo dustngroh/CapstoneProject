@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=3 uid="uid://ccddoyb4bq37"]
+
+[ext_resource type="Script" path="res://scenes/levels/base_multiplayer_level.gd" id="1_4xn8j"]
+[ext_resource type="PackedScene" uid="uid://c7dcnp2hndaih" path="res://scenes/common/win_zone.tscn" id="1_r40wd"]
+[ext_resource type="Texture2D" uid="uid://dlq2vmodo4bso" path="res://assets/level/backgrounds/set4_background.png" id="2_5di78"]
+[ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://scenes/entities/characters/player/character_body_2d.tscn" id="2_gefpp"]
+[ext_resource type="PackedScene" uid="uid://blrqhq2flg1v8" path="res://scenes/entities/characters/player/multiplayer_character.tscn" id="3_g1uqe"]
+[ext_resource type="Texture2D" uid="uid://cv4mt05x7uqw6" path="res://assets/level/backgrounds/set4_tiles.png" id="3_tafc6"]
+[ext_resource type="Texture2D" uid="uid://dfu64wyf45p8p" path="res://assets/level/backgrounds/set4_hills.png" id="4_mjqts"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_il133"]
+
+[node name="BaseMultiplayerLevel" type="Node2D"]
+script = ExtResource("1_4xn8j")
+player_scene = ExtResource("2_gefpp")
+multiplayer_player_scene = ExtResource("3_g1uqe")
+total_levels = 2
+
+[node name="WinZone" parent="." instance=ExtResource("1_r40wd")]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+
+[node name="BottomWorldBorder" type="Area2D" parent="."]
+position = Vector2(0, 2000)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWorldBorder"]
+shape = SubResource("WorldBoundaryShape2D_il133")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background"]
+position = Vector2(957, 721)
+scale = Vector2(3, 3)
+texture = ExtResource("2_5di78")
+
+[node name="Tiles" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Tiles"]
+scale = Vector2(3, 3)
+texture = ExtResource("3_tafc6")
+centered = false
+
+[node name="Hills" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1920, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Hills"]
+scale = Vector2(3, 3)
+texture = ExtResource("4_mjqts")
+centered = false
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+
+[connection signal="win" from="WinZone" to="." method="_on_win_zone_win"]
+[connection signal="body_entered" from="BottomWorldBorder" to="." method="_on_bottom_world_border_body_entered"]

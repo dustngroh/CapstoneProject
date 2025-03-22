@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=4 uid="uid://dpcsr2jcw08s7"]
+
+[ext_resource type="PackedScene" uid="uid://ccddoyb4bq37" path="res://scenes/levels/base_multiplayer_level.tscn" id="1_ouxa5"]
+[ext_resource type="TileSet" uid="uid://bdaudv74wslo5" path="res://assets/level/test_tiles.tres" id="2_0g68l"]
+
+[node name="MultiplayerLevel1" instance=ExtResource("1_ouxa5")]
+
+[node name="WinZone" parent="." index="0"]
+position = Vector2(931, 428)
+
+[node name="SpawnPoint" parent="." index="2"]
+position = Vector2(115.58, 441.015)
+
+[node name="TileMapLayer" parent="." index="5"]
+tile_map_data = PackedByteArray("AAAAAAkAAAAEAAYAAAABAAkAAAAEAAYAAAACAAkAAAAEAAYAAAADAAkAAAAEAAYAAAAEAAkAAAAEAAYAAAAFAAkAAAAEAAYAAAAGAAkAAAAEAAYAAAAHAAkAAAAEAAYAAAAIAAkAAAAEAAYAAAAJAAkAAAAEAAYAAAAKAAkAAAAEAAYAAAALAAkAAAAEAAYAAAAMAAkAAAAEAAYAAAANAAkAAAAEAAYAAAAOAAkAAAAEAAYAAAAPAAkAAAAEAAYAAAAQAAkAAAAEAAYAAAARAAkAAAAEAAYAAAA=")
+tile_set = ExtResource("2_0g68l")
