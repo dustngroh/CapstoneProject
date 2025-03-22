@@ -67,3 +67,12 @@ func _on_successful_connection():
 
 func _on_failed_connection():
 	lobby_info_label.text = "Could not connect to server."
+
+
+func _on_name_field_focus_entered() -> void:
+	if OS.has_feature('JavaScript'):
+		name_field.text = JavaScriptBridge.eval("""
+			window.prompt('Username')
+			""")
+	
+	release_focus()

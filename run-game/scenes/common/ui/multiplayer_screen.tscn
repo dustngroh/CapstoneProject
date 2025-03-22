@@ -75,6 +75,7 @@ grow_horizontal = 2
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[connection signal="focus_entered" from="VBoxContainer/NameField" to="." method="_on_name_field_focus_entered"]
 [connection signal="pressed" from="VBoxContainer/ConnectButton" to="." method="_on_connect_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/FindLobbyButton" to="." method="_on_find_lobby_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
