@@ -10,7 +10,7 @@ signal player_joined(total_players: int)
 signal connection_successful
 signal connection_failed
 
-@export var websocket_url = "ws://23.251.151.66:8080" 
+@export var websocket_url = "wss://run-game.xyz:8080" 
 
 var socket : WebSocketPeer
 var lobby_id : String = ""
