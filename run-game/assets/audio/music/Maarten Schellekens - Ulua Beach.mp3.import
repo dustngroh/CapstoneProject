@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://52t1y6popr5a"
+path="res://.godot/imported/Maarten Schellekens - Ulua Beach.mp3-fcb28a83f7e6b8a450f487ee89e2450c.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/Maarten Schellekens - Ulua Beach.mp3"
+dest_files=["res://.godot/imported/Maarten Schellekens - Ulua Beach.mp3-fcb28a83f7e6b8a450f487ee89e2450c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

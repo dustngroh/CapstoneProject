@@ -26,6 +26,7 @@ func _on_quit_button_pressed():
 
 func _on_main_menu_button_pressed() -> void:
 	toggle_pause()
+	WebSocketManager.disconnect_from_server()
 	MusicManager.play_music("res://assets/audio/music/Lite Saturation - Calm.mp3")
 	var game = get_tree().root.get_node("Game")
 	if game:

@@ -45,6 +45,7 @@ func _on_find_lobby_button_pressed() -> void:
 	
 
 func start_game(level_number: int) -> void:
+	MusicManager.play_music("res://assets/audio/music/Crowander - Racing Ladybird.mp3")
 	var current_level_path = base_level_path + str(level_number) + ".tscn"
 	var game = get_tree().root.get_node_or_null("Game")
 	if game:

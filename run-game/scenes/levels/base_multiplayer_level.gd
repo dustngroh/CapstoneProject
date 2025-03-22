@@ -147,6 +147,7 @@ func _on_next_button_pressed():
 	
 func _on_main_button_pressed():
 	WebSocketManager.disconnect_from_server()
+	MusicManager.play_music("res://assets/audio/music/Lite Saturation - Calm.mp3")
 	if game:
 		game.load_level("res://scenes/main/MainMenu.tscn")
 	

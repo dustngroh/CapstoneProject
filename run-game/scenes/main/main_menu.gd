@@ -53,6 +53,7 @@ func _on_create_account_screen_button_pressed() -> void:
 
 
 func _on_endless_run_button_pressed() -> void:
+	MusicManager.play_music("res://assets/audio/music/Maarten Schellekens - Ulua Beach.mp3")
 	var game = get_tree().root.get_node("Game")
 	if game:
 		game.load_level("res://scenes/levels/alternate_levels/endless_run.tscn")
