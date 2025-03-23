@@ -59,6 +59,7 @@ func _ready() -> void:
 
 	
 	WebSocketManager.mark_ready()
+	send_player_position()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -7,9 +7,11 @@ signal player_position_updated(player_id, play_name, x, y)
 signal lobby_created
 signal lobby_joined
 signal player_joined(total_players: int)
-signal player_list(player_names)
+signal player_list_update(player_count, player_names, action, player_name)
+signal connected_users(user_count)
 signal connection_successful
 signal connection_failed
+signal new_host
 
 @export var websocket_url = "wss://run-game.xyz:8080" 
 
@@ -95,9 +97,14 @@ func handle_server_message(message: String):
 			player_joined.emit(data["playerCount"])
 			print("A player joined. Total players: ", data["playerCount"])
 
-		"player_list":
-			player_list.emit(data.players)
-			print(data.players)
+		"player_list_update":
+			player_list_update.emit(data.playerCount, data.players, data.action, data.player)
+
+		"connected_users":
+			connected_users.emit(data.count)
+
+		"new_host":
+			new_host.emit()
 
 		"start_game":
 			print("Game has started!")
