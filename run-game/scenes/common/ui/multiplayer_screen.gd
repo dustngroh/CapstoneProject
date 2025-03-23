@@ -88,6 +88,8 @@ func _on_connected_users_received(user_count):
 	connected_users_label.text = "Users Online: " + str(user_count)
 
 func _on_new_host():
+	level_number_label.visible = true
+	level_number_box.visible = true
 	start_button.visible = true
 
 func _on_successful_connection():
