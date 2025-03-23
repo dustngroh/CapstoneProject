@@ -1,8 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://blrqhq2flg1v8"]
+[gd_scene load_steps=3 format=3 uid="uid://blrqhq2flg1v8"]
 
+[ext_resource type="Script" path="res://scenes/entities/characters/player/multiplayer_character.gd" id="1_1mm1u"]
 [ext_resource type="Texture2D" uid="uid://c1080on1m3e5n" path="res://assets/icon.svg" id="1_rvay3"]
 
 [node name="MultiplayerCharacter" type="Node2D"]
+script = ExtResource("1_1mm1u")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_rvay3")
+
+[node name="PlayerNameLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -23.5
+offset_top = -96.0
+offset_right = 23.5
+offset_bottom = -73.0
+grow_horizontal = 2
+text = "Name"
+horizontal_alignment = 1

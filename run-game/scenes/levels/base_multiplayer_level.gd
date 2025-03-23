@@ -163,16 +163,18 @@ func send_player_position():
 		var data = {
 			"type": "player_position",
 			"id": player.get_instance_id(),  # Unique identifier for the player
+			"name": WebSocketManager.player_name,
 			"x": position.x,
 			"y": position.y
 		}
 		WebSocketManager.send_message(data)
 
-func update_position(player_id, player_x, player_y):
+func update_position(player_id, player_name, player_x, player_y):
 	# Check if the player exists in the dictionary
 	if not players.has(player_id):
 		# If not, spawn a new player and add to the dictionary
 		var new_player = multiplayer_player_scene.instantiate()
+		new_player.update_name(player_name)
 		add_child(new_player)  # Add to the scene
 		new_player.global_position = Vector2(player_x, player_y)  # Set position
 		players[player_id] = new_player  # Store the new player in the dictionary

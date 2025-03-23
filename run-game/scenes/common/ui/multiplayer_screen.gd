@@ -9,6 +9,7 @@ var base_level_path = "res://scenes/levels/multiplayer_levels/multiplayer_level_
 @onready var lobby_info_label = $LobbyInfoLabel
 @onready var level_number_label = $VBoxContainer/LevelNumberLabel
 @onready var level_number_box = $VBoxContainer/LevelNumberBox
+@onready var player_list_label = $PlayerListLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,6 +19,7 @@ func _ready() -> void:
 	WebSocketManager.player_joined.connect(_on_player_joined)
 	WebSocketManager.connection_successful.connect(_on_successful_connection)
 	WebSocketManager.connection_failed.connect(_on_failed_connection)
+	WebSocketManager.player_list.connect(_on_player_list_received)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -66,6 +68,10 @@ func _on_start_button_pressed() -> void:
 
 func _on_player_joined(total_players: int):
 	lobby_info_label.text = "Player joined. Total players: " + str(total_players)
+
+func _on_player_list_received(players):
+	var player_names = "\n".join(players)
+	player_list_label.text = "Players:\n" + player_names
 
 func _on_successful_connection():
 	lobby_info_label.text = "Successfully Connected."

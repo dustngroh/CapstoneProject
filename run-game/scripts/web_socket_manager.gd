@@ -3,10 +3,11 @@ extends Node
 signal start_level(level_number: int)
 signal all_players_ready
 signal level_complete(scoreboard: Array)
-signal player_position_updated(player_id, x, y)
+signal player_position_updated(player_id, player_name, x, y)
 signal lobby_created
 signal lobby_joined
 signal player_joined(total_players: int)
+signal player_list(player_names)
 signal connection_successful
 signal connection_failed
 
@@ -94,6 +95,10 @@ func handle_server_message(message: String):
 			player_joined.emit(data["playerCount"])
 			print("A player joined. Total players: ", data["playerCount"])
 
+		"player_list":
+			player_list.emit(data.players)
+			print(data.players)
+
 		"start_game":
 			print("Game has started!")
 			start_level.emit(data["level_number"])
@@ -103,7 +108,7 @@ func handle_server_message(message: String):
 			all_players_ready.emit()
 
 		"player_position":
-			player_position_updated.emit(data["id"], data["x"], data["y"])
+			player_position_updated.emit(data["id"], data["name"], data["x"], data["y"])
 
 		"player_finished":
 			print("Player finished. Finished: ", data["finishedCount"], " / ", data["totalPlayers"])
