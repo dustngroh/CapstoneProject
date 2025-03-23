@@ -11,5 +11,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func update_name(name: String):
-	player_name_label.text = name
+func update_name(play_name: String):
+	if player_name_label:
+		player_name_label.text = play_name

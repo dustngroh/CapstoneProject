@@ -3,7 +3,7 @@ extends Node
 signal start_level(level_number: int)
 signal all_players_ready
 signal level_complete(scoreboard: Array)
-signal player_position_updated(player_id, player_name, x, y)
+signal player_position_updated(player_id, play_name, x, y)
 signal lobby_created
 signal lobby_joined
 signal player_joined(total_players: int)

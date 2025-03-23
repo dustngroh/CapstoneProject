@@ -174,9 +174,9 @@ func update_position(player_id, player_name, player_x, player_y):
 	if not players.has(player_id):
 		# If not, spawn a new player and add to the dictionary
 		var new_player = multiplayer_player_scene.instantiate()
-		new_player.update_name(player_name)
 		add_child(new_player)  # Add to the scene
 		new_player.global_position = Vector2(player_x, player_y)  # Set position
+		new_player.update_name(player_name)  # Set name
 		players[player_id] = new_player  # Store the new player in the dictionary
 	else:
 		# If the player exists, update their position
