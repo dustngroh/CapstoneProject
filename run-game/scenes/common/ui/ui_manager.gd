@@ -54,3 +54,4 @@ func show_level_ui():
 func hide_level_ui():
 	$LevelUI.visible = false
 	$LevelUI/Leaderboard.visible = false
+	$LevelUI/ScoreboardLabel.visible = false
