@@ -63,6 +63,7 @@ text = "Go to Login"
 [node name="ErrorLabel" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
+autowrap_mode = 3
 
 [node name="CloseButton" type="Button" parent="."]
 layout_mode = 1

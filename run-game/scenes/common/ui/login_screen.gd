@@ -25,13 +25,8 @@ func _on_login_pressed():
 		error_label.text = "Username and password cannot be empty."
 		return
 	
-	# TODO: Replace with real authentication logic
-	if username == "testuser" and password == "password123":
-		error_label.text = ""
-		login_success.emit(username)
-		UIManager.hide_login()
-	else:
-		error_label.text = "Invalid username or password."
+	error_label.text = "Attempting login..."
+	HTTPRequestManager.login(username, password)
 
 func _on_create_account_pressed():
 	go_to_create_account.emit()
@@ -41,3 +36,6 @@ func _on_back_pressed():
 
 func _on_close_pressed():
 	UIManager.hide_login()
+
+func set_error_label(text):
+	error_label.text = text

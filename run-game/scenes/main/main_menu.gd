@@ -9,6 +9,10 @@ func _ready() -> void:
 	$VBoxContainer/AdminControlsButton.set_pressed_no_signal(Settings.admin_controls_enabled)
 	
 	UIManager.hide_level_ui()
+	HTTPRequestManager.login_success.connect(_on_successful_login)
+	HTTPRequestManager.register_success.connect(_on_account_creation)
+	HTTPRequestManager.login_failed.connect(_on_failed_login)
+	HTTPRequestManager.register_failed.connect(_on_failed_register)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -63,3 +67,16 @@ func _on_multiplayer_button_pressed() -> void:
 	var game = get_tree().root.get_node("Game")
 	if game:
 		game.load_level("res://scenes/common/ui/multiplayer_screen.tscn")
+
+func _on_successful_login(user) -> void:
+	UIManager.hide_login()
+	$VBoxContainer/MainMenuLabel.text = user + " logged in."
+
+func _on_account_creation(user) -> void:
+	UIManager._on_account_created(user)
+
+func _on_failed_login(error) -> void:
+	UIManager._on_failed_login(error)
+	
+func _on_failed_register(error) -> void:
+	UIManager._on_failed_register(error)

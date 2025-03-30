@@ -29,17 +29,14 @@ func _on_create_account_pressed():
 		error_label.text = "Passwords do not match."
 		return
 
-	# TODO: Replace with real backend logic
-	if username == "testuser":
-		error_label.text = "Username already exists."
-		return
-
-	error_label.text = ""
-	account_created.emit(username)
-	UIManager.hide_create_account()
+	error_label.text = "Attempting to create account..."
+	HTTPRequestManager.register(username, password)
 
 func _on_back_pressed():
 	go_back_to_login.emit()
 	
 func _on_close_pressed():
 	UIManager.hide_create_account()
+
+func set_error_label(text):
+	error_label.text = text

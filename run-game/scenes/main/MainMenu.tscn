@@ -158,10 +158,6 @@ text = "Login"
 layout_mode = 2
 text = "Create Account"
 
-[node name="Label" type="Label" parent="VBoxContainer2"]
-layout_mode = 2
-text = "(Not working yet)"
-
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
