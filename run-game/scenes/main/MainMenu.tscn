@@ -158,6 +158,11 @@ text = "Login"
 layout_mode = 2
 text = "Create Account"
 
+[node name="LogoutButton" type="Button" parent="VBoxContainer2"]
+visible = false
+layout_mode = 2
+text = "Logout"
+
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
@@ -168,3 +173,4 @@ text = "Create Account"
 [connection signal="toggled" from="VBoxContainer/AdminControlsButton" to="." method="_on_admin_controls_button_toggled"]
 [connection signal="pressed" from="VBoxContainer2/LoginScreenButton" to="." method="_on_login_screen_button_pressed"]
 [connection signal="pressed" from="VBoxContainer2/CreateAccountScreenButton" to="." method="_on_create_account_screen_button_pressed"]
+[connection signal="pressed" from="VBoxContainer2/LogoutButton" to="." method="_on_logout_button_pressed"]

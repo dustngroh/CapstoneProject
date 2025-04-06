@@ -13,6 +13,8 @@ func _ready() -> void:
 	HTTPRequestManager.register_success.connect(_on_account_creation)
 	HTTPRequestManager.login_failed.connect(_on_failed_login)
 	HTTPRequestManager.register_failed.connect(_on_failed_register)
+	
+	$VBoxContainer2/LogoutButton.visible = HTTPRequestManager.is_logged_in()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -71,6 +73,7 @@ func _on_multiplayer_button_pressed() -> void:
 func _on_successful_login(user) -> void:
 	UIManager.hide_login()
 	$VBoxContainer/MainMenuLabel.text = user + " logged in."
+	$VBoxContainer2/LogoutButton.visible = true
 
 func _on_account_creation(user) -> void:
 	UIManager._on_account_created(user)
@@ -80,3 +83,8 @@ func _on_failed_login(error) -> void:
 	
 func _on_failed_register(error) -> void:
 	UIManager._on_failed_register(error)
+
+func _on_logout_button_pressed() -> void:
+	HTTPRequestManager.clear_token()
+	$VBoxContainer/MainMenuLabel.text = "Logged out."
+	$VBoxContainer2/LogoutButton.visible = false
