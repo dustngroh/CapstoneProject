@@ -1,14 +1,32 @@
-[gd_scene load_steps=4 format=4 uid="uid://bv58ra3deoo42"]
+[gd_scene load_steps=7 format=4 uid="uid://bv58ra3deoo42"]
 
 [ext_resource type="PackedScene" uid="uid://bnulquohsnviu" path="res://scenes/levels/base_endless_level.tscn" id="1_kyycb"]
 [ext_resource type="TileSet" uid="uid://bdaudv74wslo5" path="res://assets/level/test_tiles.tres" id="2_67ag3"]
+[ext_resource type="Texture2D" uid="uid://baec7dvlxhnw4" path="res://assets/level/backgrounds/level bkgd demo.jpg" id="3_0o2qw"]
 [ext_resource type="PackedScene" uid="uid://crlmo14rtbpw2" path="res://scenes/entities/items/speed_boost_item.tscn" id="3_56h8c"]
+[ext_resource type="Texture2D" uid="uid://dqhgenncpbdcp" path="res://assets/level/backgrounds/level bkgd trees demo.png" id="4_xlu1l"]
+[ext_resource type="Texture2D" uid="uid://bxwu6wet3ok5y" path="res://assets/level/backgrounds/level bkgd grass demo.png" id="5_1x21s"]
 
 [node name="EndlessLevel1" instance=ExtResource("1_kyycb")]
 
 [node name="TileMapLayer" parent="." index="2"]
 tile_map_data = PackedByteArray("AAAAAAkAAAAHAAoAAAABAAkAAAACAAkAAAACAAkAAAACAAkAAAADAAkAAAACAAkAAAAEAAkAAAACAAkAAAAFAAkAAAACAAkAAAAGAAkAAAACAAkAAAAHAAkAAAACAAkAAAAIAAkAAAACAAkAAAAJAAkAAAAEAAoAAAAdAAgAAAAEAAoAAAAcAAcAAAACAAoAAAAbAAcAAAACAAkAAAAaAAcAAAACAAkAAAAZAAcAAAACAAkAAAAYAAcAAAACAAkAAAAXAAcAAAADAAoAAAAXAAgAAAAAAAkAAQAWAAgAAAACAAkAAAAVAAgAAAABAAoAAAAVAAkAAAAAAAkAAQAUAAkAAAACAAkAAAATAAkAAAADAAoAAAATAAoAAAAAAAkAAQASAAoAAAACAAkAAAARAAoAAAACAAkAAAAQAAoAAAABAAoAAAAQAAsAAAAAAAkAAQAPAAsAAAACAAkAAAAOAAsAAAACAAkAAAANAAsAAAACAAkAAAAMAAsAAAACAAkAAAALAAsAAAACAAkAAAAKAAsAAAACAAkAAAAJAAoAAAACAAsAAAAKAAoAAAACAAoAAAAJAAsAAAAAAAkAAQAcAAgAAAAAAAkAAgACAAgAAAAJAAcAAAAGAAgAAAAKAAcAAAAMAAoAAAALAAcAAAAZAAYAAAAJAAgAAAAbAAYAAAAJAAgAAAAaAAYAAAAJAAgAAAAYAAYAAAAJAAgAAAASAAkAAAATAAoAAAA=")
 tile_set = ExtResource("2_67ag3")
+
+[node name="Sprite2D" parent="ParallaxBackground/Background" index="0"]
+position = Vector2(3971, 1748)
+scale = Vector2(4.14256, 3.26952)
+texture = ExtResource("3_0o2qw")
+
+[node name="Sprite2D" parent="ParallaxBackground/Tiles" index="0"]
+position = Vector2(0, 130)
+scale = Vector2(0.992908, 0.992908)
+texture = ExtResource("4_xlu1l")
+
+[node name="Sprite2D" parent="ParallaxBackground/Hills" index="0"]
+position = Vector2(-3, 649)
+scale = Vector2(1.29134, 1.29134)
+texture = ExtResource("5_1x21s")
 
 [node name="SpeedBoostItem" parent="." index="7" instance=ExtResource("3_56h8c")]
 position = Vector2(1656.52, 385.242)
