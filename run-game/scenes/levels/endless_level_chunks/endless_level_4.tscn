@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://bnhtx0g2iwbf8"]
+[gd_scene load_steps=7 format=4 uid="uid://bnhtx0g2iwbf8"]
 
 [ext_resource type="PackedScene" uid="uid://bnulquohsnviu" path="res://scenes/levels/base_endless_level.tscn" id="1_s8ylp"]
 [ext_resource type="TileSet" uid="uid://bdaudv74wslo5" path="res://assets/level/test_tiles.tres" id="2_ul0sj"]
-[ext_resource type="Texture2D" uid="uid://bq2ecow3063s2" path="res://assets/level/backgrounds/set2_tiles.png" id="4_m7ch0"]
-[ext_resource type="Texture2D" uid="uid://beweet1sf6le3" path="res://assets/level/backgrounds/set3_hills.png" id="5_l7pff"]
+[ext_resource type="Texture2D" uid="uid://bhfw16nouf6oc" path="res://assets/level/backgrounds/level bkgd sunrise.jpg" id="3_3v1wd"]
+[ext_resource type="Texture2D" uid="uid://dq5yfy2f3y0lv" path="res://assets/level/backgrounds/level bkgd trees sunrise & sunset.png" id="4_3v1wd"]
+[ext_resource type="Texture2D" uid="uid://dqaefk6laeg8p" path="res://assets/level/backgrounds/level bkgd grass sunrise & sunset.png" id="5_g1txf"]
 [ext_resource type="PackedScene" uid="uid://crlmo14rtbpw2" path="res://scenes/entities/items/speed_boost_item.tscn" id="6_cxxd0"]
 
 [node name="EndlessLevel4" instance=ExtResource("1_s8ylp")]
@@ -12,11 +13,20 @@
 tile_map_data = PackedByteArray("AAAAAAkAAAABAAMAAAABAAkAAAACAAMAAAACAAkAAAACAAMAAAADAAkAAAACAAMAAAAEAAkAAAACAAMAAAAFAAkAAAACAAMAAAAGAAkAAAACAAMAAAAHAAkAAAACAAMAAAAIAAkAAAACAAMAAAAJAAkAAAACAAMAAAAKAAkAAAACAAMAAAALAAkAAAACAAMAAAAMAAkAAAACAAMAAAANAAkAAAACAAMAAAAOAAkAAAACAAMAAAAPAAkAAAACAAMAAAAQAAkAAAACAAMAAAARAAkAAAACAAMAAAASAAkAAAACAAMAAAATAAkAAAACAAMAAAAUAAkAAAACAAMAAAAVAAkAAAACAAMAAAAWAAkAAAACAAMAAAAXAAkAAAACAAMAAAAYAAkAAAACAAMAAAAZAAkAAAACAAMAAAAaAAkAAAACAAMAAAAbAAkAAAACAAMAAAAcAAkAAAACAAMAAAAdAAkAAAADAAMAAAABAAgAAAAJAAMAAAAEAAgAAAAKAAMAAAAKAAgAAAALAAMAAAAPAAgAAAAJAAMAAAAMAAgAAAAKAAIAAAAUAAgAAAAKAAIAAAAbAAgAAAAJAAIAAAAYAAgAAAALAAIAAAAGAAgAAAALAAIAAAACAAgAAAAKAAIAAAATAAgAAAAKAAMAAAAaAAgAAAAKAAMAAAAdAAgAAAATAAIAAAAdAAcAAAATAAIAAAAdAAYAAAATAAIAAAAdAAUAAAATAAEAAAAFAAgAAAAQAAoAAAALAAgAAAAQAAoAAAASAAgAAAAQAAoAAAAZAAgAAAAQAAoAAAA=")
 tile_set = ExtResource("2_ul0sj")
 
+[node name="Sprite2D" parent="ParallaxBackground/Background" index="0"]
+position = Vector2(912.339, 392.073)
+scale = Vector2(0.960938, 0.758421)
+texture = ExtResource("3_3v1wd")
+
 [node name="Sprite2D" parent="ParallaxBackground/Tiles" index="0"]
-texture = ExtResource("4_m7ch0")
+position = Vector2(0, 137)
+scale = Vector2(0.931442, 0.931442)
+texture = ExtResource("4_3v1wd")
 
 [node name="Sprite2D" parent="ParallaxBackground/Hills" index="0"]
-texture = ExtResource("5_l7pff")
+position = Vector2(6, 645)
+scale = Vector2(1.4252, 1.4252)
+texture = ExtResource("5_g1txf")
 
 [node name="SpeedBoostItem" parent="." index="7" instance=ExtResource("6_cxxd0")]
 position = Vector2(539.675, 543.629)
