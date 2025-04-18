@@ -35,7 +35,7 @@ We aimed to create a fun and accessible game that anyone can play directly in th
 ## **System Architecture**
 - **Frontend (Godot Web Export):** Handles all game logic, input, UI, and rendering. Deployed to GitHub Pages.
 - **Authentication & Leaderboard Backend:** Node.js server hosted on Render, connected to a PostgreSQL database (via Neon).
-- **Multiplayer Server:** Node.js WebSocket server hosted on a Google Cloud VM, using a custom domain (`run-game.xyz`).
+- **Multiplayer Server:** Node.js WebSocket server hosted on a Google Cloud VM.
 
 ## **Technology Stack**
 
