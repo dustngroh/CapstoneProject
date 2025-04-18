@@ -2,10 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://ds5twxhi7yq7j" path="res://scenes/levels/BaseLevel.tscn" id="1_x5cf2"]
 [ext_resource type="TileSet" uid="uid://bdaudv74wslo5" path="res://assets/level/test_tiles.tres" id="2_h5ykl"]
-[ext_resource type="Texture2D" uid="uid://baec7dvlxhnw4" path="res://assets/level/backgrounds/level bkgd demo.jpg" id="2_uva2q"]
-[ext_resource type="Texture2D" uid="uid://dqhgenncpbdcp" path="res://assets/level/backgrounds/level bkgd trees demo.png" id="3_x5tvq"]
+[ext_resource type="Texture2D" uid="uid://cscxcfu4lf266" path="res://assets/level/backgrounds/level bkgd demo.jpg" id="2_uva2q"]
+[ext_resource type="Texture2D" uid="uid://cg73lifu0b6gc" path="res://assets/level/backgrounds/level bkgd trees demo.png" id="3_x5tvq"]
 [ext_resource type="PackedScene" uid="uid://crlmo14rtbpw2" path="res://scenes/entities/items/speed_boost_item.tscn" id="3_x7g4m"]
-[ext_resource type="Texture2D" uid="uid://bxwu6wet3ok5y" path="res://assets/level/backgrounds/level bkgd grass demo.png" id="4_nc4o4"]
+[ext_resource type="Texture2D" uid="uid://cx18ump3aw16" path="res://assets/level/backgrounds/level bkgd grass demo.png" id="4_nc4o4"]
 
 [node name="Level1" instance=ExtResource("1_x5cf2")]
 

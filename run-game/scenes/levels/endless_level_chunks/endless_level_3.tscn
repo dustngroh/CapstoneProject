@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bnulquohsnviu" path="res://scenes/levels/base_endless_level.tscn" id="1_dhpr6"]
 [ext_resource type="TileSet" uid="uid://bdaudv74wslo5" path="res://assets/level/test_tiles.tres" id="2_l0th3"]
-[ext_resource type="Texture2D" uid="uid://54tymi3ukpcb" path="res://assets/level/backgrounds/level bkgd night.jpg" id="3_gjvkw"]
-[ext_resource type="Texture2D" uid="uid://gm7ta6hxnl2x" path="res://assets/level/backgrounds/level bkgd trees night.png" id="4_heo8j"]
-[ext_resource type="Texture2D" uid="uid://wa2ehq1cj5w2" path="res://assets/level/backgrounds/level bkgd grass night.png" id="5_34wn0"]
+[ext_resource type="Texture2D" uid="uid://bvgj1c46nqxqx" path="res://assets/level/backgrounds/level bkgd night.jpg" id="3_gjvkw"]
+[ext_resource type="Texture2D" uid="uid://ob535jmd8i2a" path="res://assets/level/backgrounds/level bkgd trees night.png" id="4_heo8j"]
+[ext_resource type="Texture2D" uid="uid://hximtx50slo3" path="res://assets/level/backgrounds/level bkgd grass night.png" id="5_34wn0"]
 
 [node name="EndlessLevel3" instance=ExtResource("1_dhpr6")]
 

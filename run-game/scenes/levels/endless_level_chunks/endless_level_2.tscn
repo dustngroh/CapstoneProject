@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bnulquohsnviu" path="res://scenes/levels/base_endless_level.tscn" id="1_tkbof"]
 [ext_resource type="TileSet" uid="uid://bdaudv74wslo5" path="res://assets/level/test_tiles.tres" id="2_smr3u"]
-[ext_resource type="Texture2D" uid="uid://cc6j2xpkem4c6" path="res://assets/level/backgrounds/level bkgd sunset.jpg" id="3_oqe3h"]
-[ext_resource type="Texture2D" uid="uid://dq5yfy2f3y0lv" path="res://assets/level/backgrounds/level bkgd trees sunrise & sunset.png" id="4_1g07b"]
-[ext_resource type="Texture2D" uid="uid://dqaefk6laeg8p" path="res://assets/level/backgrounds/level bkgd grass sunrise & sunset.png" id="5_ppquo"]
+[ext_resource type="Texture2D" uid="uid://43uwuj1ws4ib" path="res://assets/level/backgrounds/level bkgd sunset.jpg" id="3_oqe3h"]
+[ext_resource type="Texture2D" uid="uid://daipoetudypcc" path="res://assets/level/backgrounds/level bkgd trees sunrise & sunset.png" id="4_1g07b"]
+[ext_resource type="Texture2D" uid="uid://ys0ywtp26qnr" path="res://assets/level/backgrounds/level bkgd grass sunrise & sunset.png" id="5_ppquo"]
 [ext_resource type="PackedScene" uid="uid://crlmo14rtbpw2" path="res://scenes/entities/items/speed_boost_item.tscn" id="6_7mg8g"]
 
 [node name="EndlessLevel2" instance=ExtResource("1_tkbof")]
