@@ -1,50 +1,59 @@
 # **Side-Scrolling Speedrun Game**
 
 ## **Overview**
-This project is a competitive side-scrolling speedrun game inspired by classic runner games. Players navigate obstacles to complete levels as quickly as possible while competing for top spots on a global leaderboard. The game features smooth movement mechanics, challenging obstacles, and cloud-integrated leaderboards to track player performance.
+This project is a competitive side-scrolling speedrun game inspired by classic runner games. Players navigate obstacles to complete levels as quickly as possible while competing for top spots on a global leaderboard. The game features smooth movement mechanics, challenging obstacles, and online multiplayer functionality.
+
+We aimed to create a fun and accessible game that anyone can play directly in their browser.
+
+▶️ **Play the game:** [https://dustngroh.github.io/CapstoneProject/](https://dustngroh.github.io/CapstoneProject/)  
+🌐 **Multiplayer server domain:** [http://run-game.xyz](http://run-game.xyz)
 
 ## **Features**
 - **Player Movement & Controls**
   - Move left and right using A/D or Left/Right arrow keys.
   - Jump using Spacebar.
-  - Acceleration and deceleration mechanics for smoother movement.
+  - Acceleration and deceleration mechanics for smooth platforming.
 
 - **Level Progression & Competition**
   - Players race to complete levels in the shortest time possible.
-  - A global leaderboard displays the fastest completion times.
-  - Encourages replayability to improve ranking.
+  - Global leaderboard displays fastest times.
+  - Encourages replayability and optimization.
 
 - **Game Physics & Obstacles**
-  - Precise movement and timing required to overcome obstacles.
-  - Levels designed to challenge players’ reflexes and skills.
+  - Precise movement and timing challenges.
+  - Obstacles designed to test reflexes and timing.
 
-- **Backend & Cloud Integration**
-  - Account creation and login functionality.
-  - Secure authentication system.
-  - Persistent leaderboard tracking player performance.
+- **User Accounts & Leaderboards**
+  - Account creation and login system.
+  - JWT-based authentication with persistent login via local storage.
+  - Leaderboard tied to individual level completion times.
+
+- **Multiplayer Mode**
+  - Real-time multiplayer supports 20+ concurrent players.
+  - Built using WebSocket protocol for full-duplex communication.
+  - Server hosted on a Google Cloud Compute Engine VM.
 
 ## **System Architecture**
-- **Client-Side Game:** Handles player input, UI, physics, and rendering.
-- **Backend System:** Manages user authentication, leaderboard data, and game statistics.
-- **Cloud Hosting:** Ensures scalability and real-time leaderboard updates.
+- **Frontend (Godot Web Export):** Handles all game logic, input, UI, and rendering. Deployed to GitHub Pages.
+- **Authentication & Leaderboard Backend:** Node.js server hosted on Render, connected to a PostgreSQL database (via Neon).
+- **Multiplayer Server:** Node.js WebSocket server hosted on a Google Cloud VM, using a custom domain (`run-game.xyz`).
 
 ## **Technology Stack**
-### **Programming Languages & Frameworks**
-- **Frontend (if deployed to web):** TypeScript (React with Next.js)
-- **Backend:** Java (Spring Boot)
-- **Database:** PostgreSQL
-- **Game Engine:** Godot
 
-### **Development & Deployment Tools**
-- **Version Control:** GitHub
-- **Containerization:** Docker
-- **Cloud Hosting:** AWS
+### **Languages & Tools**
+- **Game Engine:** Godot
+- **Frontend Deployment:** GitHub Pages
+- **Backend (Auth & Leaderboards):** Node.js + Express
+- **Multiplayer Server:** Node.js + WebSocket
+- **Database:** PostgreSQL (hosted via Neon)
+- **Authentication:** JWT (saved to browser local storage)
+- **Cloud Hosting:** Google Cloud Compute Engine (multiplayer), Render (backend)
+
+### **Other Tools**
+- **Version Control:** Git + GitHub
 
 ## **Contributors**
-- **Thi Bui** - Game Designer / Artist
-- **Heidi Ganim** - Game Programmer / Software Developer
-- **Dustin Groh** - Game Programmer / Software Developer
-- **Georgia Wiggins** - Game Designer / Artist
-
----
-
+- **Thi Bui** – Game Designer / Artist  
+- **Heidi Ganim** – Game Programmer / Software Developer  
+- **Dustin Groh** – Game Programmer / Software Developer  
+- **Georgia Wiggins** – Game Designer / Artist
