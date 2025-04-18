@@ -13,7 +13,7 @@ signal connection_successful
 signal connection_failed
 signal new_host
 
-@export var websocket_url = "wss://run-game.xyz:8080" 
+@export var websocket_url = "wss://ws.run-game.xyz:8080" 
 
 var socket : WebSocketPeer
 var lobby_id : String = ""
