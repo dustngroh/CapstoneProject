@@ -5,8 +5,7 @@ This project is a competitive side-scrolling speedrun game inspired by classic r
 
 We aimed to create a fun and accessible game that anyone can play directly in their browser.
 
-▶️ **Play the game:** [https://dustngroh.github.io/CapstoneProject/](https://dustngroh.github.io/CapstoneProject/)  
-🌐 **Multiplayer server domain:** [http://run-game.xyz](http://run-game.xyz)
+▶️ **Play the game:** [https://run-game.xyz](https://run-game.xyz)  
 
 ## **Features**
 - **Player Movement & Controls**
