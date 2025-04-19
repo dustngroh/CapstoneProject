@@ -33,11 +33,22 @@ var timer_running: bool = false # Paused until countdown ends
 
 
 func _ready():
+	var screen_height = get_viewport().get_visible_rect().size.y
+	var grass_sprite = $ParallaxBackground/Grass/Sprite2D
+	var trees_sprite = $ParallaxBackground/Trees/Sprite2D
+	var grass_height = grass_sprite.texture.get_height() * grass_sprite.scale.y
+	var trees_height = trees_sprite.texture.get_height() * trees_sprite.scale.y
+	grass_sprite.position.y = screen_height - grass_height
+	trees_sprite.position.y = screen_height - trees_height
+	$ParallaxBackground/Grass.motion_mirroring = Vector2(grass_sprite.texture.get_width() * grass_sprite.scale.x, 0)
+	$ParallaxBackground/Trees.motion_mirroring = Vector2(trees_sprite.texture.get_width() * trees_sprite.scale.x + 50, 0)
+	
 	
 	spawn_player()
 	
 	# Ensure level UI is visible
 	UIManager.show_level_ui()
+	#UIManager.get_node("FadeLayer").fade_out(1.0) #TESTING PURPOSES: REMOVE THIS LATER
 	
 	# Set up Timer
 	level_timer.wait_time = 1.0

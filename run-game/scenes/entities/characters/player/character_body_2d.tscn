@@ -599,7 +599,7 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_1huyh")
 animation = &"walking"
 autoplay = "jumping"
-frame_progress = 0.099158
+frame_progress = 0.67686
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 one_shot = true
