@@ -56,14 +56,14 @@ func _physics_process(delta: float) -> void:
 	
 	# Determine animation state
 	if !is_on_floor():  
-		$AnimatedSprite2D.play("jump")  # Play jump animation when airborne
-	elif Input.is_action_pressed("hold_down"):
-		$AnimatedSprite2D.play("down")  # Play crouch animation
+		$AnimatedSprite2D.play("jumping")  # Play jump animation when airborne
+	#elif Input.is_action_pressed("hold_down"):
+		#$AnimatedSprite2D.play("down")  # Play crouch animation
 	elif dir != 0:
-		$AnimatedSprite2D.play("walk")
+		$AnimatedSprite2D.play("walking")
 		$AnimatedSprite2D.speed_scale = abs(velocity.x) / normal_speed  # Adjust speed of animation
 	else:
-		$AnimatedSprite2D.play("default")
+		$AnimatedSprite2D.play("walking")
 		$AnimatedSprite2D.speed_scale = 1.0  # Reset for idle
 	
 	if dir != 0:
