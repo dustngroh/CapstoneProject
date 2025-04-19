@@ -69,8 +69,7 @@ func _physics_process(delta: float) -> void:
 		$AnimatedSprite2D.play("walking")
 		$AnimatedSprite2D.speed_scale = abs(velocity.x) / normal_speed  # Adjust speed of animation
 	else:
-		$AnimatedSprite2D.play("walking")
-		$AnimatedSprite2D.speed_scale = 1.0  # Reset for idle
+		$AnimatedSprite2D.speed_scale = lerp($AnimatedSprite2D.speed_scale, 0.0, 0.1) # Stop animation when idle
 	
 	if dir != 0:
 		var is_flipping_direction = last_direction != 0 and dir != last_direction
