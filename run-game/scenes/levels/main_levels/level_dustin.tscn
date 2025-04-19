@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=4 uid="uid://bd1gvporen5pu"]
+
+[ext_resource type="PackedScene" uid="uid://ds5twxhi7yq7j" path="res://scenes/levels/BaseLevel.tscn" id="1_mebee"]
+
+[node name="LevelDustin" instance=ExtResource("1_mebee")]
+
+[node name="WinZone" parent="." index="4"]
+position = Vector2(2654, 262)
+
+[node name="BaseTileMap" parent="." index="5"]
+tile_map_data = PackedByteArray("AAD+/wkAAQACAAMAAAD//wkAAAADAAMAAAAAAAkAAAADAAMAAAABAAkAAAADAAMAAAACAAkAAAADAAMAAAADAAkAAAADAAMAAAAEAAkAAAADAAMAAAAFAAkAAAADAAMAAAAGAAkAAQADAAMAAAAHAAkAAQADAAMAAAAIAAkAAQADAAMAAAAJAAkAAAADAAMAAAAKAAkAAQADAAMAAAALAAkAAQADAAMAAAAMAAkAAQADAAMAAAANAAkAAAADAAMAAAAOAAkAAQAEAAMAAAA=")

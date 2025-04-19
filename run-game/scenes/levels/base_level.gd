@@ -48,7 +48,7 @@ func _ready():
 	
 	# Ensure level UI is visible
 	UIManager.show_level_ui()
-	#UIManager.get_node("FadeLayer").fade_out(1.0) #TESTING PURPOSES: REMOVE THIS LATER
+	UIManager.get_node("FadeLayer").fade_out(1.0) #TESTING PURPOSES: REMOVE THIS LATER
 	
 	# Set up Timer
 	level_timer.wait_time = 1.0

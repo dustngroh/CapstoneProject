@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://qr1fkqcvas4u"]
+
+[ext_resource type="PackedScene" uid="uid://ds5twxhi7yq7j" path="res://scenes/levels/BaseLevel.tscn" id="1_i1w0j"]
+
+[node name="LevelGeorgia" instance=ExtResource("1_i1w0j")]
+
+[node name="WinZone" parent="." index="4"]
+position = Vector2(1582, 227)
