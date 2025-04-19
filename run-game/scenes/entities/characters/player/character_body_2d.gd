@@ -32,6 +32,8 @@ var recording: bool = false  # Flag to enable/disable recording
 
 @export var record_interval: float = 0.1  # Time interval in seconds
 var record_timer: float = 0.0  # Timer for position recording
+@export var max_replay_duration: float = 300.0  # Max 5 minutes
+var replay_time_elapsed: float = 0.0
 
 func _ready() -> void:
 	$CoyoteTimer.wait_time = coyote_frames / 60.0
@@ -39,10 +41,14 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	
 	# Position Recording
-	record_timer += delta
-	if recording and record_timer >= record_interval:
-		record_timer = 0.0
-		position_history.append(global_position)
+	if recording:
+		replay_time_elapsed += delta
+		record_timer += delta
+		if replay_time_elapsed >= max_replay_duration:
+			end_recording()
+		elif record_timer >= record_interval:
+			record_timer = 0.0
+			position_history.append(global_position)
 	
 	# Speed boost handling
 	if speed_boost_timer > 0:
