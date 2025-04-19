@@ -24,6 +24,9 @@ func _ready() -> void:
 	WebSocketManager.player_list_update.connect(_on_player_list_updated)
 	WebSocketManager.connected_users.connect(_on_connected_users_received)
 	WebSocketManager.new_host.connect(_on_new_host)
+	
+	if HTTPRequestManager.logged_in:
+		name_field.text = HTTPRequestManager.username
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
