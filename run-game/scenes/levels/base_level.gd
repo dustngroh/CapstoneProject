@@ -24,6 +24,7 @@ var timer_running: bool = false # Paused until countdown ends
 @onready var win_zone: Area2D = $WinZone
 @onready var leaderboard: CanvasLayer = UIManager.get_node("LevelUI/Leaderboard")
 @onready var leaderboard_label: Label = leaderboard.get_node("Label")
+@onready var leaderboard_box = leaderboard.get_node("LeaderboardBox")
 @onready var countdown_label: Label = UIManager.get_node("LevelUI/CountdownLabel")
 @onready var level_label: Label = UIManager.get_node("LevelUI/LevelLabel")
 @onready var spawn_point: Marker2D = $SpawnPoint
@@ -110,6 +111,7 @@ func _on_win_zone_win():
 	if HTTPRequestManager.is_logged_in():
 		if not HTTPRequestManager.is_connected("score_submission_result", _on_score_submitted):
 			HTTPRequestManager.score_submission_result.connect(_on_score_submitted)
+		leaderboard_box.text = "Submitting Time..."
 		HTTPRequestManager.submit_time(current_level_number, elapsed_time)
 	else:
 		print("Not logged in — time not submitted.")
@@ -151,7 +153,6 @@ func stop_timer():
 func show_leaderboard():
 	leaderboard.visible = true
 	
-	var leaderboard_box = leaderboard.get_node("LeaderboardBox")
 	leaderboard_box.text = "Fetching Leaderboard..."
 	
 	# Fetch leaderboard and display results
@@ -163,7 +164,6 @@ func _on_leaderboard_received(level: int, scores: Array):
 	if level != current_level_number:
 		return  # Ensure it's for the current level
 
-	var leaderboard_box = leaderboard.get_node("LeaderboardBox")
 	leaderboard_box.text = "Top Times:\n"
 
 	for i in range(scores.size()):
