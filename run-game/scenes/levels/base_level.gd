@@ -70,6 +70,7 @@ func _ready():
 	leaderboard.get_node("VBoxContainer/NextLevelButton").pressed.connect(_on_next_button_pressed)
 	leaderboard.get_node("VBoxContainer/MainMenuButton").pressed.connect(_on_main_button_pressed)
 	leaderboard.get_node("VBoxContainer/ReplayButton").pressed.connect(play_replay)
+	HTTPRequestManager.leaderboard_received.connect(_on_leaderboard_received)
 	
 	# Check for admin controls
 	if Settings.admin_controls_enabled:
@@ -105,7 +106,19 @@ func spawn_player():
 func _on_win_zone_win():
 	stop_timer()
 	player.end_recording()
+	# Submit time to backend
+	if HTTPRequestManager.is_logged_in():
+		if not HTTPRequestManager.is_connected("score_submission_result", _on_score_submitted):
+			HTTPRequestManager.score_submission_result.connect(_on_score_submitted)
+		HTTPRequestManager.submit_time(current_level_number, elapsed_time)
+	else:
+		print("Not logged in — time not submitted.")
+		show_leaderboard()  # Fetch leaderboard immediately
+
+func _on_score_submitted(message: String):
+	print("Score submission complete: ", message)
 	show_leaderboard()
+	HTTPRequestManager.score_submission_result.disconnect(_on_score_submitted)
 
 func start_countdown():
 	for i in range(countdown_seconds, 0, -1):  # Countdown from countdown_seconds to 1
@@ -138,11 +151,25 @@ func stop_timer():
 func show_leaderboard():
 	leaderboard.visible = true
 	
-	# Fetch leaderboard and display results
-	# TODO: Implement leaderboard fetching from backend
-	#GameManager.fetch_leaderboard(leve_name)  # Fetch scores for this level
+	var leaderboard_box = leaderboard.get_node("LeaderboardBox")
+	leaderboard_box.text = "Fetching Leaderboard..."
 	
-	await get_tree().create_timer(1.0).timeout  # Wait for API response
+	# Fetch leaderboard and display results
+	HTTPRequestManager.fetch_leaderboard(current_level_number)
+	
+	#await get_tree().create_timer(1.0).timeout  # Wait for API response
+
+func _on_leaderboard_received(level: int, scores: Array):
+	if level != current_level_number:
+		return  # Ensure it's for the current level
+
+	var leaderboard_box = leaderboard.get_node("LeaderboardBox")
+	leaderboard_box.text = "Top Times:\n"
+
+	for i in range(scores.size()):
+		var score = scores[i]
+		var time_in_seconds = float(score["completion_time"]) / 100.0
+		leaderboard_box.text += "%d. %s - %.2f seconds\n" % [i + 1, score["username"], time_in_seconds]
 
 
 func _on_bottom_world_border_body_entered(body: Node2D) -> void:

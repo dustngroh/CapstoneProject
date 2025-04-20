@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://crlmo14rtbpw2"]
+[gd_scene load_steps=5 format=3 uid="uid://crlmo14rtbpw2"]
 
 [ext_resource type="Script" path="res://scripts/speed_boost_item.gd" id="1_b86f1"]
 [ext_resource type="Texture2D" uid="uid://my5jlguf3h4g" path="res://assets/level/base.png" id="2_xr42c"]
-[ext_resource type="TileSet" uid="uid://bdaudv74wslo5" path="res://assets/level/test_tiles.tres" id="3_xxh4k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xgrkl"]
 atlas = ExtResource("2_xr42c")
@@ -20,12 +19,6 @@ texture = SubResource("AtlasTexture_xgrkl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ffoda")
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-visible = false
-position = Vector2(-32, -32)
-tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 2, 0, 0, 0)
-tile_set = ExtResource("3_xxh4k")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

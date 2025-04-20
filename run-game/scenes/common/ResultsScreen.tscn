@@ -20,17 +20,21 @@ text = "Level Complete!"
 label_settings = SubResource("LabelSettings_jmvir")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 6
+anchor_left = 1.0
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -33.0
-offset_right = 48.0
-offset_bottom = 33.0
-grow_horizontal = 2
+offset_left = -140.0
+offset_top = -64.0
+offset_right = -27.0
+offset_bottom = 64.0
+grow_horizontal = 0
 grow_vertical = 2
+
+[node name="LeaderboardBox" type="Label" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
 
 [node name="NextLevelButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -44,3 +48,16 @@ text = "Main Menu
 [node name="ReplayButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Watch Replay"
+
+[node name="LeaderboardBox" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2

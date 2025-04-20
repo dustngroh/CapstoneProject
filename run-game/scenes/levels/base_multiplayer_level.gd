@@ -28,7 +28,8 @@ var players: Dictionary = {}
 @onready var spawn_point: Marker2D = $SpawnPoint
 @onready var countdown_player: AudioStreamPlayer = UIManager.get_node("LevelUI/CountdownAudio")
 @onready var start_player: AudioStreamPlayer = UIManager.get_node("LevelUI/StartAudio")
-@onready var scoreboard_label: Label = UIManager.get_node("LevelUI/ScoreboardLabel")
+#@onready var scoreboard_label: Label = UIManager.get_node("LevelUI/ScoreboardLabel")
+@onready var scoreboard_label: Label = leaderboard.get_node("LeaderboardBox")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

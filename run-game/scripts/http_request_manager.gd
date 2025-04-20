@@ -10,6 +10,9 @@ signal login_success(user)
 signal register_success(user)
 signal login_failed(error)
 signal register_failed(error)
+signal score_submission_result(message: String)
+signal leaderboard_received(level: int, scores: Array)
+
 
 func _ready():
 	http_request = HTTPRequest.new()
@@ -65,6 +68,34 @@ func clear_token():
 func is_logged_in():
 	return logged_in
 
+# Score submission
+func submit_time(level_number: int, completion_time: float) -> void:
+	if !logged_in:
+		print("Not logged in — cannot submit score.")
+		return
+
+	# Convert to centiseconds (integer, 2 decimal precision)
+	var centiseconds = int(round(completion_time * 100.0))
+
+	var url = base_url + "/scores"
+	var headers = [
+		"Content-Type: application/json",
+		"Authorization: " + jwt_token
+	]
+	var body = {
+		"level_number": level_number,
+		"completion_time": centiseconds
+	}
+
+	var json_body = JSON.stringify(body)
+	http_request.request(url, headers, HTTPClient.METHOD_POST, json_body)
+
+# Score retrieval
+func fetch_leaderboard(level_number: int):
+	var url = base_url + "/scores/" + str(level_number)
+	http_request.request(url, [], HTTPClient.METHOD_GET)
+
+
 func _on_request_completed(result, response_code, headers, body):
 	var response = JSON.parse_string(body.get_string_from_utf8())
 	var response_type = response.get("type", "")
@@ -100,6 +131,24 @@ func _on_request_completed(result, response_code, headers, body):
 						print("JWT is invalid or expired. Clearing it.")
 						JavaScriptBridge.eval("localStorage.removeItem('jwt');")
 						#login_failed.emit("Session expired or invalid.")
+
+				"submit-score":
+					if response_code == 200 or response_code == 201:
+						print("Score submission: %s" % response["message"])
+						emit_signal("score_submission_result", response["message"])
+					else:
+						print("Score submission failed: %s" % response.get("message", "Unknown error"))
+						emit_signal("score_submission_result", "Submission failed.")
+
+				"get-leaderboard":
+					if response_code == 200:
+						print("Top scores for level %d:" % response["level"])
+						emit_signal("leaderboard_received", response["level"], response["scores"])
+						for score in response["scores"]:
+							var time = float(score["completion_time"]) / 100.0
+							print("- %s: %.2f seconds at %s" % [score["username"], time, score["timestamp"]])
+					else:
+						print("Failed to retrieve leaderboard: %s" % response.get("message", "Unknown error"))
 
 				"error":
 					if response.has("message"):
