@@ -6,6 +6,7 @@ This project is a competitive side-scrolling speedrun game inspired by classic r
 We aimed to create a fun and accessible game that anyone can play directly in their browser.
 
 ▶️ **Play the game:** [https://run-game.xyz](https://run-game.xyz)  
+🔧 **Backend (Auth & Leaderboards) GitHub Repo:** [https://github.com/dustngroh/run-game-back-end](https://github.com/dustngroh/run-game-back-end)
 
 ## **Features**
 - **Player Movement & Controls**
