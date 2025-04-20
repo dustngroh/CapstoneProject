@@ -47,3 +47,4 @@ position = Vector2(3281, 910)
 
 [node name="Spring2" parent="." index="11" instance=ExtResource("7_u76kl")]
 position = Vector2(4582, 667)
+bounce_force = -2000.0
