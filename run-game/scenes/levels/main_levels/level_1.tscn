@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://jco3g4ho4nea"]
+[gd_scene load_steps=8 format=4 uid="uid://jco3g4ho4nea"]
 
 [ext_resource type="PackedScene" uid="uid://ds5twxhi7yq7j" path="res://scenes/levels/BaseLevel.tscn" id="1_x5cf2"]
 [ext_resource type="TileSet" uid="uid://bdaudv74wslo5" path="res://assets/level/test_tiles.tres" id="2_h5ykl"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cg73lifu0b6gc" path="res://assets/level/backgrounds/level bkgd trees demo.png" id="3_x5tvq"]
 [ext_resource type="PackedScene" uid="uid://crlmo14rtbpw2" path="res://scenes/entities/items/speed_boost_item.tscn" id="3_x7g4m"]
 [ext_resource type="Texture2D" uid="uid://cx18ump3aw16" path="res://assets/level/backgrounds/level bkgd grass demo.png" id="4_nc4o4"]
+[ext_resource type="PackedScene" uid="uid://vih42f7l4t7b" path="res://scenes/entities/structures/spring.tscn" id="7_u76kl"]
 
 [node name="Level1" instance=ExtResource("1_x5cf2")]
 
@@ -40,3 +41,9 @@ position = Vector2(5859.08, 419.551)
 
 [node name="BaseTileMap" parent="." index="9"]
 tile_map_data = PackedByteArray("AAAHAAsAAQACAAMAAAAIAAsAAQADAAMAAAAJAAsAAQAEAAMAAAALAAsAAQACAAMAAAAMAAsAAQADAAMAAAANAAsAAQAEAAMAAAAPAAsAAQACAAMAAAAQAAsAAQADAAMAAAARAAsAAQAEAAMAAAD6/wcAAQACAAMAAAD7/wcAAQADAAMAAAD8/wcAAQAEAAMAAAA=")
+
+[node name="Spring" parent="." index="10" instance=ExtResource("7_u76kl")]
+position = Vector2(3281, 910)
+
+[node name="Spring2" parent="." index="11" instance=ExtResource("7_u76kl")]
+position = Vector2(4582, 667)
