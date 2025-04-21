@@ -25,6 +25,7 @@ var timer_running: bool = false # Paused until countdown ends
 @onready var leaderboard: CanvasLayer = UIManager.get_node("LevelUI/Leaderboard")
 @onready var leaderboard_label: Label = leaderboard.get_node("Label")
 @onready var leaderboard_box = leaderboard.get_node("LeaderboardBox")
+@onready var login_button = leaderboard.get_node("VBoxContainer/LoginButton")
 @onready var countdown_label: Label = UIManager.get_node("LevelUI/CountdownLabel")
 @onready var level_label: Label = UIManager.get_node("LevelUI/LevelLabel")
 @onready var spawn_point: Marker2D = $SpawnPoint
@@ -71,6 +72,8 @@ func _ready():
 	leaderboard.get_node("VBoxContainer/NextLevelButton").pressed.connect(_on_next_button_pressed)
 	leaderboard.get_node("VBoxContainer/MainMenuButton").pressed.connect(_on_main_button_pressed)
 	leaderboard.get_node("VBoxContainer/ReplayButton").pressed.connect(play_replay)
+	login_button.pressed.connect(_on_login_button_pressed)
+	login_button.visible = !HTTPRequestManager.is_logged_in()
 	HTTPRequestManager.leaderboard_received.connect(_on_leaderboard_received)
 	
 	# Check for admin controls
@@ -115,6 +118,10 @@ func _on_win_zone_win():
 		HTTPRequestManager.submit_time(current_level_number, elapsed_time)
 	else:
 		leaderboard_label.text += "\nLogin to submit your time!"
+		HTTPRequestManager.login_success.connect(_on_login_success)
+		HTTPRequestManager.register_success.connect(_on_account_creation)
+		HTTPRequestManager.login_failed.connect(_on_failed_login)
+		HTTPRequestManager.register_failed.connect(_on_failed_register)
 		print("Not logged in — time not submitted.")
 		show_leaderboard()  # Fetch leaderboard immediately
 
@@ -196,6 +203,9 @@ func _on_main_button_pressed():
 	if game:
 		game.load_level("res://scenes/main/MainMenu.tscn")
 
+func _on_login_button_pressed():
+	UIManager.show_login()
+
 func play_replay():
 	if not player or player.position_history.is_empty():
 		return
@@ -213,3 +223,21 @@ func play_replay():
 	player.set_physics_process(true)  # Enable movement again after replay
 	player.modulate = Color(1, 1, 1, 1)  # Undo transparency
 	leaderboard.visible = true   # Show leaderboard again
+
+
+# Method called if user logs in after comlpeting the level
+func _on_login_success(user) -> void:
+	UIManager.hide_login()
+	login_button.visible = false
+	# Call win method again to submit score
+	_on_win_zone_win()
+	print("Logged in!")
+
+func _on_account_creation(user) -> void:
+	UIManager._on_account_created(user)
+
+func _on_failed_login(error) -> void:
+	UIManager._on_failed_login(error)
+	
+func _on_failed_register(error) -> void:
+	UIManager._on_failed_register(error)
