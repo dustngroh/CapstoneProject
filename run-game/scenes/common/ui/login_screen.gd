@@ -25,7 +25,7 @@ func _on_login_pressed():
 		error_label.text = "Username and password cannot be empty."
 		return
 	
-	error_label.text = "Attempting login..."
+	error_label.text = "Attempting login...\nThis may take a minute."
 	HTTPRequestManager.login(username, password)
 
 func _on_create_account_pressed():

@@ -111,9 +111,10 @@ func _on_win_zone_win():
 	if HTTPRequestManager.is_logged_in():
 		if not HTTPRequestManager.is_connected("score_submission_result", _on_score_submitted):
 			HTTPRequestManager.score_submission_result.connect(_on_score_submitted)
-		leaderboard_box.text = "Submitting Time..."
+		leaderboard_box.text = "Submitting Time...\nThis may take a minute."
 		HTTPRequestManager.submit_time(current_level_number, elapsed_time)
 	else:
+		leaderboard_label.text += "\nLogin to submit your time!"
 		print("Not logged in — time not submitted.")
 		show_leaderboard()  # Fetch leaderboard immediately
 
@@ -153,7 +154,7 @@ func stop_timer():
 func show_leaderboard():
 	leaderboard.visible = true
 	
-	leaderboard_box.text = "Fetching Leaderboard..."
+	leaderboard_box.text = "Fetching Leaderboard...\nThis may take a minute."
 	
 	# Fetch leaderboard and display results
 	HTTPRequestManager.fetch_leaderboard(current_level_number)

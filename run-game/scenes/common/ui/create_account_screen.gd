@@ -29,7 +29,7 @@ func _on_create_account_pressed():
 		error_label.text = "Passwords do not match."
 		return
 
-	error_label.text = "Attempting to create account..."
+	error_label.text = "Attempting to create account...\nThis may take a minute."
 	HTTPRequestManager.register(username, password)
 
 func _on_back_pressed():
