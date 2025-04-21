@@ -70,6 +70,7 @@ func _ready():
 	
 	# Connect leaderboard buttons
 	leaderboard.get_node("VBoxContainer/NextLevelButton").pressed.connect(_on_next_button_pressed)
+	leaderboard.get_node("VBoxContainer/ResetButton").pressed.connect(_on_reset_button_pressed)
 	leaderboard.get_node("VBoxContainer/MainMenuButton").pressed.connect(_on_main_button_pressed)
 	leaderboard.get_node("VBoxContainer/ReplayButton").pressed.connect(play_replay)
 	login_button.pressed.connect(_on_login_button_pressed)
@@ -190,6 +191,12 @@ func _on_next_button_pressed():
 	
 	if game:
 		game.load_level(next_level_path)
+
+func _on_reset_button_pressed():
+	var curr_level_path = base_level_path + str(current_level_number) + ".tscn"
+	
+	if game:
+		game.load_level(curr_level_path)
 
 func _on_previous_button_pressed():
 	current_level_number = (current_level_number - 2 + total_levels) % total_levels + 1  # Cycle backwards
