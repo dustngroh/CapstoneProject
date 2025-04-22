@@ -41,6 +41,7 @@ func connect_to_server(name: String):
 func disconnect_from_server():
 	if socket and connected:
 		socket.close()
+		socket = null
 		connected = false
 		is_host = false
 		set_process(false)
@@ -90,6 +91,7 @@ func handle_server_message(message: String):
 
 		"lobby_joined":
 			lobby_id = data["lobbyId"]
+			is_host = false
 			lobby_joined.emit()
 			print("Joined lobby: ", lobby_id)
 
@@ -104,6 +106,7 @@ func handle_server_message(message: String):
 			connected_users.emit(data.count)
 
 		"new_host":
+			is_host = true
 			new_host.emit()
 
 		"start_game":

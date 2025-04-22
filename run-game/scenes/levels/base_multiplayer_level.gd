@@ -115,7 +115,6 @@ func start_countdown():
 		countdown_player.play()
 		level_timer.start(1.0)
 		await level_timer.timeout
-		#await get_tree().create_timer(1.0).timeout  # Wait 1 second per number
 	
 	countdown_label.text = "Go!"
 	start_player.play()
@@ -134,22 +133,12 @@ func stop_timer():
 	leaderboard_label.text = "Final time: %.2f seconds" % elapsed_time
 	print("Final time: %.2f seconds" % elapsed_time)
 
-func show_leaderboard():
-	pass
-	#leaderboard.visible = true
-	
-	# Fetch leaderboard and display results
-	# TODO: Implement leaderboard fetching from backend
-	#GameManager.fetch_leaderboard(leve_name)  # Fetch scores for this level
-	
-	#await get_tree().create_timer(1.0).timeout  # Wait for API response
 
 func _on_level_complete(scoreboard: Array):
 	game_finished = true
 	print("Level Complete! Final Results:", scoreboard)
 	level_options.visible = WebSocketManager.is_host
 	display_scoreboard(scoreboard)
-	show_leaderboard()
 
 func display_scoreboard(scoreboard: Array):
 	var scoreboard_text = "Final Scoreboard:\n"
@@ -176,7 +165,7 @@ func _on_main_button_pressed():
 	
 func start_level(level_number: int) -> void:
 	var current_level_path = base_level_path + str(level_number) + ".tscn"
-	#var game = get_tree().root.get_node_or_null("Game")
+	
 	if game:
 		game.load_level(current_level_path)
 
