@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0dunmgl0seuh"]
+[gd_scene load_steps=3 format=3 uid="uid://b0dunmgl0seuh"]
 
 [ext_resource type="Script" path="res://scenes/common/ui/pause_menu.gd" id="1_yhjww"]
+[ext_resource type="PackedScene" uid="uid://co22yqlcbx25r" path="res://scenes/common/ui/volume_slider.tscn" id="2_n6o3m"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -50,6 +51,27 @@ text = "Main Menu"
 [node name="Quit Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Quit"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -69.0
+offset_right = 32.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VolumeLabel" type="Label" parent="VBoxContainer2"]
+layout_mode = 2
+text = "Volume:"
+
+[node name="VolumeSlider" parent="VBoxContainer2" instance=ExtResource("2_n6o3m")]
+layout_mode = 2
 
 [connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]

@@ -44,7 +44,7 @@ text = "Next Level"
 
 [node name="ResetButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Reset Level"
+text = "Retry Level"
 
 [node name="MainMenuButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
