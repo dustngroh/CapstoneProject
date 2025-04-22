@@ -5,7 +5,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1jmxy"]
 atlas = ExtResource("3_2p6hq")
-region = Rect2(0, 600, 400, 200)
+region = Rect2(0, 601, 400, 199)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_42m4b"]
 radius = 24.0
