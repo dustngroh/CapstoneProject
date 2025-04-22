@@ -15,6 +15,7 @@ var position_update_timer: float = 0.0  # Timer to control how often we send pos
 var position_update_interval: float = 0.05
 
 var players: Dictionary = {}
+var game_finished = false
 
 @onready var game: Node = get_tree().root.get_node("Game")
 @onready var level_ui: Control = UIManager.get_node("LevelUI")
@@ -22,6 +23,7 @@ var players: Dictionary = {}
 @onready var time_label: Label = UIManager.get_node("LevelUI/TimeLabel")
 @onready var win_zone: Area2D = $WinZone
 @onready var leaderboard: CanvasLayer = UIManager.get_node("LevelUI/Leaderboard")
+@onready var level_options: VBoxContainer = leaderboard.get_node("VBoxContainer")
 @onready var leaderboard_label: Label = leaderboard.get_node("Label")
 @onready var countdown_label: Label = UIManager.get_node("LevelUI/CountdownLabel")
 @onready var level_label: Label = UIManager.get_node("LevelUI/LevelLabel")
@@ -39,9 +41,11 @@ func _ready() -> void:
 	WebSocketManager.level_complete.connect(_on_level_complete)
 	WebSocketManager.start_level.connect(start_level)
 	WebSocketManager.player_position_updated.connect(update_position)
+	WebSocketManager.new_host.connect(_on_new_host)
 	
 	UIManager.show_level_ui()
 	scoreboard_label.visible = false
+	level_options.visible = false
 	
 	# Set up Timer
 	level_timer.wait_time = 1.0
@@ -57,6 +61,7 @@ func _ready() -> void:
 	leaderboard.visible = false
 	leaderboard.get_node("VBoxContainer/NextLevelButton").pressed.connect(_on_next_button_pressed)
 	leaderboard.get_node("VBoxContainer/MainMenuButton").pressed.connect(_on_main_button_pressed)
+	leaderboard.get_node("VBoxContainer/ResetButton").pressed.connect(_on_reset_button_pressed)
 
 	
 	WebSocketManager.mark_ready()
@@ -91,6 +96,9 @@ func update_timer_display():
 
 func _on_win_zone_win():
 	stop_timer()
+	leaderboard.visible = true
+	scoreboard_label.text = "Waiting on all players to finish..."
+	scoreboard_label.visible = true
 	WebSocketManager.send_player_finish(elapsed_time)
 
 func start_countdown():
@@ -120,16 +128,19 @@ func stop_timer():
 	print("Final time: %.2f seconds" % elapsed_time)
 
 func show_leaderboard():
-	leaderboard.visible = true
+	pass
+	#leaderboard.visible = true
 	
 	# Fetch leaderboard and display results
 	# TODO: Implement leaderboard fetching from backend
 	#GameManager.fetch_leaderboard(leve_name)  # Fetch scores for this level
 	
-	await get_tree().create_timer(1.0).timeout  # Wait for API response
+	#await get_tree().create_timer(1.0).timeout  # Wait for API response
 
 func _on_level_complete(scoreboard: Array):
+	game_finished = true
 	print("Level Complete! Final Results:", scoreboard)
+	level_options.visible = WebSocketManager.is_host
 	display_scoreboard(scoreboard)
 	show_leaderboard()
 
@@ -146,6 +157,9 @@ func display_scoreboard(scoreboard: Array):
 
 func _on_next_button_pressed():
 	WebSocketManager.start_game((current_level_number % total_levels) + 1)
+	
+func _on_reset_button_pressed():
+	WebSocketManager.start_game(current_level_number)
 	
 func _on_main_button_pressed():
 	WebSocketManager.disconnect_from_server()
@@ -184,3 +198,7 @@ func update_position(player_id, player_name, player_x, player_y):
 		# If the player exists, update their position
 		var existing_player = players[player_id]
 		existing_player.global_position = Vector2(player_x, player_y)
+
+func _on_new_host():
+	if game_finished:
+		level_options.visible = true

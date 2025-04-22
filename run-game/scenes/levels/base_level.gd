@@ -23,6 +23,7 @@ var timer_running: bool = false # Paused until countdown ends
 @onready var time_label: Label = UIManager.get_node("LevelUI/TimeLabel")
 @onready var win_zone: Area2D = $WinZone
 @onready var leaderboard: CanvasLayer = UIManager.get_node("LevelUI/Leaderboard")
+@onready var level_options: VBoxContainer = leaderboard.get_node("VBoxContainer")
 @onready var leaderboard_label: Label = leaderboard.get_node("Label")
 @onready var leaderboard_box = leaderboard.get_node("LeaderboardBox")
 @onready var login_button = leaderboard.get_node("VBoxContainer/LoginButton")
@@ -161,6 +162,8 @@ func stop_timer():
 
 func show_leaderboard():
 	leaderboard.visible = true
+	level_options.visible = true
+	leaderboard_box.visible = true
 	
 	leaderboard_box.text = "Fetching Leaderboard...\nThis may take a minute."
 	
