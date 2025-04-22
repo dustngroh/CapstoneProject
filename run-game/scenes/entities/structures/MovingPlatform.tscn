@@ -1,22 +1,25 @@
-[gd_scene load_steps=4 format=4 uid="uid://dtmh8cbliqh6j"]
+[gd_scene load_steps=5 format=3 uid="uid://dtmh8cbliqh6j"]
 
 [ext_resource type="Script" path="res://scenes/entities/structures/moving_platform.gd" id="1_2gml3"]
-[ext_resource type="TileSet" uid="uid://cpgcav0o3xltg" path="res://scenes/levels/test_levels/test_tile_set.tres" id="2_fvk3t"]
+[ext_resource type="Texture2D" uid="uid://ccelc0atyacya" path="res://assets/level/base_update.png" id="3_2p6hq"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7calt"]
-radius = 15.0
-height = 190.0
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jmxy"]
+atlas = ExtResource("3_2p6hq")
+region = Rect2(0, 600, 400, 200)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_42m4b"]
+radius = 24.0
+height = 170.0
 
 [node name="MovingPlatform" type="Node2D"]
 script = ExtResource("1_2gml3")
 
 [node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
-position = Vector2(97, 16)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_7calt")
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_1jmxy")
 
-[node name="TileMapLayer" type="TileMapLayer" parent="AnimatableBody2D"]
-tile_map_data = PackedByteArray("AAAAAAAAAAAAAAAAAAABAAAAAAABAAAAAAACAAAAAAABAAAAAAADAAAAAAABAAAAAAAEAAAAAAABAAAAAAAFAAAAAAABAAAAAAAGAAAAAAABAAAAAAAHAAAAAAABAAAAAAAIAAAAAAABAAAAAAAJAAAAAAABAAAAAAAKAAAAAAABAAAAAAALAAAAAAAHAAAAAAAAAAEAAAAAAAcAAAALAAEAAAAHAAcAAAABAAEAAAADAAcAAAACAAEAAAADAAcAAAADAAEAAAADAAcAAAAEAAEAAAADAAcAAAAFAAEAAAADAAcAAAAGAAEAAAADAAcAAAAHAAEAAAADAAcAAAAIAAEAAAADAAcAAAAJAAEAAAADAAcAAAAKAAEAAAADAAcAAAA=")
-tile_set = ExtResource("2_fvk3t")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AnimatableBody2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_42m4b")
