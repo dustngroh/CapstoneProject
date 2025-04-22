@@ -10,12 +10,14 @@ var base_level_path = "res://scenes/levels/multiplayer_levels/multiplayer_level_
 
 var player: CharacterBody2D
 var elapsed_time: float = 0.0  # Time starts at 0
+@export var level_end_time: float = 60.0 # Time to force end a level
 var timer_running: bool = false # Paused until countdown ends
 var position_update_timer: float = 0.0  # Timer to control how often we send position updates
 var position_update_interval: float = 0.05
 
 var players: Dictionary = {}
 var game_finished = false
+var player_finished = false
 
 @onready var game: Node = get_tree().root.get_node("Game")
 @onready var level_ui: Control = UIManager.get_node("LevelUI")
@@ -74,6 +76,10 @@ func _process(delta: float) -> void:
 		elapsed_time += delta
 		update_timer_display()
 		
+		if elapsed_time > level_end_time:
+			if !player_finished:
+				_on_win_zone_win()
+		
 		position_update_timer += delta
 		if position_update_timer >= position_update_interval:
 			send_player_position()
@@ -95,6 +101,7 @@ func update_timer_display():
 	
 
 func _on_win_zone_win():
+	player_finished = true
 	stop_timer()
 	leaderboard.visible = true
 	scoreboard_label.text = "Waiting on all players to finish..."
