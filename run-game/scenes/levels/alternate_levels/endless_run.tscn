@@ -1,20 +1,53 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5o47xslwftki"]
+[gd_scene load_steps=12 format=3 uid="uid://c5o47xslwftki"]
 
+[ext_resource type="Script" path="res://scenes/levels/alternate_levels/endless_run.gd" id="1_5jfvm"]
 [ext_resource type="Script" path="res://scenes/levels/test_levels/level_spawner.gd" id="1_78dij"]
+[ext_resource type="Texture2D" uid="uid://daipoetudypcc" path="res://assets/level/backgrounds/level bkgd trees sunrise & sunset.png" id="2_0cilg"]
 [ext_resource type="PackedScene" uid="uid://bv58ra3deoo42" path="res://scenes/levels/endless_level_chunks/endless_level_1.tscn" id="2_15uis"]
+[ext_resource type="Texture2D" uid="uid://ctwbcf1avwob6" path="res://assets/level/backgrounds/level bkgd sunrise.jpg" id="2_wr4x1"]
 [ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://scenes/entities/characters/player/character_body_2d.tscn" id="3_bwob8"]
+[ext_resource type="Texture2D" uid="uid://ys0ywtp26qnr" path="res://assets/level/backgrounds/level bkgd grass sunrise & sunset.png" id="3_kakqc"]
 [ext_resource type="PackedScene" uid="uid://1w4w2wxwif3k" path="res://scenes/levels/endless_level_chunks/endless_level_2.tscn" id="3_nj0fe"]
 [ext_resource type="PackedScene" uid="uid://cxp4o16ogctgi" path="res://scenes/levels/endless_level_chunks/endless_level_3.tscn" id="4_lhppd"]
 [ext_resource type="PackedScene" uid="uid://bnhtx0g2iwbf8" path="res://scenes/levels/endless_level_chunks/endless_level_4.tscn" id="5_nl7dp"]
 [ext_resource type="PackedScene" uid="uid://co22yqlcbx25r" path="res://scenes/common/ui/volume_slider.tscn" id="7_6y4i2"]
 
 [node name="EndlessRun" type="Node2D"]
+script = ExtResource("1_5jfvm")
+
+[node name="Background" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+texture = ExtResource("2_wr4x1")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Background"]
+centered = false
+
+[node name="Trees" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(1929, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Trees"]
+texture = ExtResource("2_0cilg")
+centered = false
 
 [node name="LevelSpawner" type="Node2D" parent="."]
 script = ExtResource("1_78dij")
 level_chunks = Array[PackedScene]([ExtResource("2_15uis"), ExtResource("3_nj0fe"), ExtResource("4_lhppd"), ExtResource("5_nl7dp")])
 
+[node name="Grass" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.4, 0)
+repeat_size = Vector2(1933, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Grass"]
+texture = ExtResource("3_kakqc")
+centered = false
+
 [node name="CharacterBody2D" parent="." instance=ExtResource("3_bwob8")]
+
+[node name="DayCycleModulate" type="CanvasModulate" parent="."]
 
 [node name="EndlessRunUI" type="CanvasLayer" parent="."]
 

@@ -3,5 +3,4 @@
 [ext_resource type="Script" path="res://scripts/misc/dynamic_background.gd" id="1_84utm"]
 
 [node name="DynamicBackground" type="CanvasModulate"]
-color = Color(0.2, 0.2, 0.4, 1)
 script = ExtResource("1_84utm")

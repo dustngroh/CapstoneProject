@@ -24,6 +24,7 @@ shape = SubResource("WorldBoundaryShape2D_cmuph")
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+visible = false
 
 [node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0, 0)
