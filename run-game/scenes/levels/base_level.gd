@@ -36,16 +36,8 @@ var timer_running: bool = false # Paused until countdown ends
 
 
 func _ready():
-	var screen_height = get_viewport().get_visible_rect().size.y
-	var grass_sprite = $ParallaxBackground/Grass/Sprite2D
-	var trees_sprite = $ParallaxBackground/Trees/Sprite2D
-	var grass_height = grass_sprite.texture.get_height() * grass_sprite.scale.y
-	var trees_height = trees_sprite.texture.get_height() * trees_sprite.scale.y
-	grass_sprite.position.y = screen_height - grass_height
-	trees_sprite.position.y = screen_height - trees_height
-	$ParallaxBackground/Grass.motion_mirroring = Vector2(grass_sprite.texture.get_width() * grass_sprite.scale.x, 0)
-	$ParallaxBackground/Trees.motion_mirroring = Vector2(trees_sprite.texture.get_width() * trees_sprite.scale.x + 50, 0)
-	
+	resize_background()
+	get_viewport().size_changed.connect(resize_background)
 	
 	spawn_player()
 	
@@ -98,6 +90,24 @@ func _process(delta):
 	if timer_running:
 		elapsed_time += delta
 		update_timer_display()
+
+
+func resize_background():
+	var screen_size = get_viewport().get_visible_rect().size
+	var texture_size = $Parallax2D/Sprite2D.texture.get_size()
+
+	# First: scale by Y to maintain aspect ratio
+	var scale_y = screen_size.y / texture_size.y
+	var scaled_width = texture_size.x * scale_y
+
+	# Check if X does not fill screen
+	if scaled_width < screen_size.x:
+		# Scale by X instead
+		var scale_x = screen_size.x / texture_size.x
+		$Parallax2D/Sprite2D.scale = Vector2(scale_x, scale_x)
+	else:
+		$Parallax2D/Sprite2D.scale = Vector2(scale_y, scale_y)
+
 
 func update_timer_display():
 	time_label.text = "Time: %.2f" % elapsed_time  # Show time in seconds with 2 decimals

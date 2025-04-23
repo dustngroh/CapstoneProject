@@ -4,11 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://scenes/entities/characters/player/character_body_2d.tscn" id="2_qdxsp"]
 [ext_resource type="PackedScene" uid="uid://c7dcnp2hndaih" path="res://scenes/common/win_zone.tscn" id="2_yau4l"]
 [ext_resource type="PackedScene" uid="uid://coopu6svniep4" path="res://scenes/common/touch_controls.tscn" id="4_iqqkr"]
-[ext_resource type="Texture2D" uid="uid://bvgj1c46nqxqx" path="res://assets/level/backgrounds/level bkgd night.jpg" id="5_lxewm"]
 [ext_resource type="Texture2D" uid="uid://ob535jmd8i2a" path="res://assets/level/backgrounds/level bkgd trees night.png" id="6_ybrnv"]
 [ext_resource type="Texture2D" uid="uid://hximtx50slo3" path="res://assets/level/backgrounds/level bkgd grass night.png" id="7_ja628"]
 [ext_resource type="PackedScene" uid="uid://dg7278bc2g4bx" path="res://scenes/common/admin_controls.tscn" id="8_nyb32"]
 [ext_resource type="TileSet" uid="uid://kgj2kuo4olk6" path="res://assets/level/forest_tile_set.tres" id="9_k7avm"]
+[ext_resource type="Texture2D" uid="uid://c1cin2yom3816" path="res://assets/level/backgrounds/level1.png" id="10_2cqki"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_16w4h"]
 
@@ -17,6 +17,14 @@ script = ExtResource("1_3y0r6")
 player_scene = ExtResource("2_qdxsp")
 admin_controls_scene = ExtResource("8_nyb32")
 touch_controls_scene = ExtResource("4_iqqkr")
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("10_2cqki")
+centered = false
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -30,16 +38,17 @@ metadata/_edit_group_ = true
 shape = SubResource("WorldBoundaryShape2D_16w4h")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+visible = false
+follow_viewport_enabled = true
 
 [node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background"]
-position = Vector2(2295, 1594.5)
-scale = Vector2(7.18125, 6.63958)
-texture = ExtResource("5_lxewm")
+texture = ExtResource("10_2cqki")
+centered = false
 
 [node name="Trees" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
 motion_scale = Vector2(0.2, 0.2)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Trees"]
@@ -48,6 +57,7 @@ texture = ExtResource("6_ybrnv")
 centered = false
 
 [node name="Grass" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
 motion_scale = Vector2(0.5, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Grass"]
