@@ -10,20 +10,13 @@ var button_positions = [
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$CharacterBody2D/Camera2D.enabled = false
-	
-	for i in range(get_child_count()):
-		var button = get_child(i)
-		if button is TextureButton:
-			button.position = button_positions[i] * size  # Scale to background size
+	update_button_positions()
+	get_viewport().size_changed.connect(update_button_positions)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	for i in range(get_child_count()):
-		var button = get_child(i)
-		if button is TextureButton:
-			button.position = button_positions[i] * size  # Update positions on resize
-
+	pass
 
 func _on_main_menu_button_pressed() -> void:
 	var game = get_tree().root.get_node_or_null("Game")
@@ -59,3 +52,9 @@ func _on_level_4_button_pressed() -> void:
 func _on_bottom_world_border_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):  # Ensure it's the player
 		body.position = $SpawnPoint.position  # Respawn at the spawn point
+
+func update_button_positions():
+	for i in range(get_child_count()):
+		var button = get_child(i)
+		if button is TextureButton:
+			button.position = button_positions[i] * size  # Update positions on resize

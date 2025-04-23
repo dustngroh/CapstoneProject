@@ -4,5 +4,5 @@
 
 [node name="LevelHeidi" instance=ExtResource("1_2upwl")]
 
-[node name="WinZone" parent="." index="4"]
+[node name="WinZone" parent="." index="5"]
 position = Vector2(1525, 232)

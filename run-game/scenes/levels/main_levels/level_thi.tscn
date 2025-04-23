@@ -4,5 +4,5 @@
 
 [node name="LevelThi" instance=ExtResource("1_3mtfg")]
 
-[node name="WinZone" parent="." index="4"]
+[node name="WinZone" parent="." index="5"]
 position = Vector2(950, 200)

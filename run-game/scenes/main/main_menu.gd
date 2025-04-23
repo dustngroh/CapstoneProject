@@ -5,7 +5,6 @@ extends Control
 func _ready() -> void:
 	
 	$VBoxContainer/MuteButton.set_pressed_no_signal(MusicManager.is_muted)
-	$VBoxContainer/TouchControlsButton.set_pressed_no_signal(Settings.touch_controls_enabled)
 	$VBoxContainer/AdminControlsButton.set_pressed_no_signal(Settings.admin_controls_enabled)
 	
 	UIManager.hide_level_ui()
@@ -28,10 +27,6 @@ func _on_new_game_button_pressed() -> void:
 		game.load_level("res://scenes/levels/main_levels/level_1.tscn")
 
 
-func _on_continue_button_pressed() -> void:
-	$VBoxContainer/ContinueButton/AudioStreamPlayer.play()
-
-
 func _on_level_select_button_pressed() -> void:
 	var game = get_tree().root.get_node("Game")
 	if game:
@@ -40,10 +35,6 @@ func _on_level_select_button_pressed() -> void:
 
 func _on_mute_button_toggled(toggled_on: bool) -> void:
 	MusicManager.toggle_mute()
-
-
-func _on_touch_controls_button_toggled(toggled_on: bool) -> void:
-	Settings.toggle_touch_controls()
 
 
 func _on_admin_controls_button_toggled(toggled_on: bool) -> void:

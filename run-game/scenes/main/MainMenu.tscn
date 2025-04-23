@@ -1,10 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dlxl0dsaj7hws"]
+[gd_scene load_steps=7 format=3 uid="uid://dlxl0dsaj7hws"]
 
 [ext_resource type="Script" path="res://scenes/main/main_menu.gd" id="1_otjms"]
 [ext_resource type="Texture2D" uid="uid://bq2ecow3063s2" path="res://assets/level/backgrounds/set2_tiles.png" id="2_eluch"]
 [ext_resource type="Texture2D" uid="uid://d0pxna4yi6svm" path="res://assets/level/backgrounds/set1_tiles.png" id="2_q4xyl"]
-[ext_resource type="Texture2D" uid="uid://cgxc1wnbj8dl7" path="res://assets/level_select/level map.jpg" id="2_tdlx8"]
-[ext_resource type="AudioStream" uid="uid://c6dba470rppon" path="res://assets/audio/sounds/hitHurt.wav" id="3_hsukn"]
 [ext_resource type="PackedScene" uid="uid://co22yqlcbx25r" path="res://scenes/common/ui/volume_slider.tscn" id="6_wao8s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4oek7"]
@@ -60,16 +58,6 @@ scale = Vector2(2.2, 2.2)
 texture = ExtResource("2_q4xyl")
 stretch_mode = 1
 
-[node name="TextureRect" type="TextureRect" parent="."]
-visible = false
-layout_mode = 0
-offset_left = -406.0
-offset_top = -1435.0
-offset_right = 1515.0
-offset_bottom = -354.0
-rotation = 1.08036
-texture = ExtResource("2_tdlx8")
-
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -94,13 +82,6 @@ horizontal_alignment = 1
 layout_mode = 2
 text = "New Game"
 
-[node name="ContinueButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Continue"
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="VBoxContainer/ContinueButton"]
-stream = ExtResource("3_hsukn")
-
 [node name="LevelSelectButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Level Select"
@@ -118,12 +99,6 @@ text = "Multiplayer
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Mute Music"
-
-[node name="TouchControlsButton" type="CheckButton" parent="VBoxContainer"]
-visible = false
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "On-Screen Touch Controls"
 
 [node name="AdminControlsButton" type="CheckButton" parent="VBoxContainer"]
 layout_mode = 2
@@ -164,12 +139,10 @@ layout_mode = 2
 text = "Logout"
 
 [connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_continue_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/EndlessRunButton" to="." method="_on_endless_run_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
 [connection signal="toggled" from="VBoxContainer/MuteButton" to="." method="_on_mute_button_toggled"]
-[connection signal="toggled" from="VBoxContainer/TouchControlsButton" to="." method="_on_touch_controls_button_toggled"]
 [connection signal="toggled" from="VBoxContainer/AdminControlsButton" to="." method="_on_admin_controls_button_toggled"]
 [connection signal="pressed" from="VBoxContainer2/LoginScreenButton" to="." method="_on_login_screen_button_pressed"]
 [connection signal="pressed" from="VBoxContainer2/CreateAccountScreenButton" to="." method="_on_create_account_screen_button_pressed"]
