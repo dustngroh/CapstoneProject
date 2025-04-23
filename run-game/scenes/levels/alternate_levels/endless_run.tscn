@@ -23,6 +23,7 @@ texture = ExtResource("2_wr4x1")
 centered = false
 
 [node name="Sprite2D2" type="Sprite2D" parent="Background"]
+texture = ExtResource("2_wr4x1")
 centered = false
 
 [node name="Trees" type="Parallax2D" parent="."]

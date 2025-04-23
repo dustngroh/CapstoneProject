@@ -25,22 +25,14 @@ var night_texture = preload("res://assets/level/backgrounds/level bkgd night.jpg
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	position_sprite_to_bottom()
-	get_viewport().size_changed.connect(position_sprite_to_bottom)
+	resize_background()
+	get_viewport().size_changed.connect(on_size_changed)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	update_day_cycle(delta)
 
-func position_sprite_to_bottom():
-	var screen_height = get_viewport().get_visible_rect().size.y
-	var grass_sprite = $Grass/Sprite2D
-	var trees_sprite = $Trees/Sprite2D
-	var grass_sprite_height = grass_sprite.texture.get_height() * grass_sprite.scale.y
-	var trees_sprite_height = trees_sprite.texture.get_height() * trees_sprite.scale.y
-
-	grass_sprite.position.y = screen_height - grass_sprite_height
-	trees_sprite.position.y = screen_height - trees_sprite_height
 
 func update_day_cycle(delta):
 	time_elapsed += delta
@@ -85,3 +77,38 @@ func update_day_cycle(delta):
 			background_b.modulate.a = 0.0
 			fading = false
 			current_texture = fading_to_texture
+
+
+func position_sprite_to_bottom():
+	var screen_height = get_viewport().get_visible_rect().size.y
+	var grass_sprite = $Grass/Sprite2D
+	var trees_sprite = $Trees/Sprite2D
+	var grass_sprite_height = grass_sprite.texture.get_height() * grass_sprite.scale.y
+	var trees_sprite_height = trees_sprite.texture.get_height() * trees_sprite.scale.y
+
+	grass_sprite.position.y = screen_height - grass_sprite_height
+	trees_sprite.position.y = screen_height - trees_sprite_height
+
+
+func resize_background():
+	var screen_size = get_viewport().get_visible_rect().size
+	var texture_size = $Background/Sprite2D.texture.get_size()
+
+	# First: scale by Y to maintain aspect ratio
+	var scale_y = screen_size.y / texture_size.y
+	var scaled_width = texture_size.x * scale_y
+
+	# Check if X does not fill screen
+	if scaled_width < screen_size.x:
+		# Scale by X instead
+		var scale_x = screen_size.x / texture_size.x
+		$Background/Sprite2D.scale = Vector2(scale_x, scale_x)
+		$Background/Sprite2D2.scale = Vector2(scale_x, scale_x)
+	else:
+		$Background/Sprite2D.scale = Vector2(scale_y, scale_y)
+		$Background/Sprite2D2.scale = Vector2(scale_y, scale_y)
+
+
+func on_size_changed():
+	position_sprite_to_bottom()
+	resize_background()
