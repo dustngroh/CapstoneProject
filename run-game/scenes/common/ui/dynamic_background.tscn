@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://mitkt4dlb2sw"]
+
+[ext_resource type="Script" path="res://scripts/misc/dynamic_background.gd" id="1_84utm"]
+
+[node name="DynamicBackground" type="CanvasModulate"]
+color = Color(0.2, 0.2, 0.4, 1)
+script = ExtResource("1_84utm")

@@ -43,3 +43,6 @@ bounce_force = -2000.0
 
 [node name="BaseTileMap" parent="." index="12"]
 tile_map_data = PackedByteArray("AAAHAAsAAQACAAMAAAAIAAsAAQADAAMAAAAJAAsAAQAEAAMAAAALAAsAAQACAAMAAAAMAAsAAQADAAMAAAANAAsAAQAEAAMAAAAPAAsAAQACAAMAAAAQAAsAAQADAAMAAAARAAsAAQAEAAMAAAD6/wcAAQACAAMAAAD7/wcAAQADAAMAAAD8/wcAAQAEAAMAAAA=")
+
+[node name="DynamicBackground" parent="." index="13"]
+start_color = Color(1, 0.7, 0.4, 1)

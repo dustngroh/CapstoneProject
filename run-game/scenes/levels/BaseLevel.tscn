@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ds5twxhi7yq7j"]
+[gd_scene load_steps=12 format=3 uid="uid://ds5twxhi7yq7j"]
 
 [ext_resource type="Script" path="res://scenes/levels/base_level.gd" id="1_3y0r6"]
 [ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://scenes/entities/characters/player/character_body_2d.tscn" id="2_qdxsp"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dg7278bc2g4bx" path="res://scenes/common/admin_controls.tscn" id="8_nyb32"]
 [ext_resource type="TileSet" uid="uid://kgj2kuo4olk6" path="res://assets/level/forest_tile_set.tres" id="9_k7avm"]
 [ext_resource type="Texture2D" uid="uid://c1cin2yom3816" path="res://assets/level/backgrounds/level1.png" id="10_2cqki"]
+[ext_resource type="PackedScene" uid="uid://mitkt4dlb2sw" path="res://scenes/common/ui/dynamic_background.tscn" id="10_2tsbk"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_16w4h"]
 
@@ -70,6 +71,9 @@ centered = false
 [node name="BaseTileMap" type="TileMapLayer" parent="."]
 scale = Vector2(0.5, 0.5)
 tile_set = ExtResource("9_k7avm")
+
+[node name="DynamicBackground" parent="." instance=ExtResource("10_2tsbk")]
+color = Color(1, 1, 1, 1)
 
 [connection signal="body_entered" from="BottomWorldBorder" to="." method="_on_bottom_world_border_body_entered"]
 [connection signal="win" from="WinZone" to="." method="_on_win_zone_win"]

@@ -52,5 +52,5 @@ visible = false
 [node name="WinZone" parent="." index="13"]
 position = Vector2(2643, 801)
 
-[node name="CanvasModulate" type="CanvasModulate" parent="." index="15"]
-color = Color(0.2, 0.2, 0.4, 1)
+[node name="DynamicBackground" parent="." index="15"]
+end_color = Color(0.2, 0.2, 0.4, 1)
