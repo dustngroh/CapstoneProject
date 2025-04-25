@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsasg45oijsgd"]
+
+[ext_resource type="Texture2D" uid="uid://ccelc0atyacya" path="res://assets/level/base_update.png" id="1_irtmg"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0x4gf"]
+bounce = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o4f5"]
+atlas = ExtResource("1_irtmg")
+region = Rect2(601, 1001, 199, 199)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oelhm"]
+radius = 17.0
+height = 80.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7alfu"]
+radius = 24.0208
+
+[node name="BounceMushroom" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_0x4gf")
+gravity_scale = 0.2
+inertia = 200.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_3o4f5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, 59)
+shape = SubResource("CapsuleShape2D_oelhm")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-6, 42)
+shape = SubResource("CircleShape2D_7alfu")
