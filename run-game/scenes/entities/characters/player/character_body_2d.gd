@@ -1,8 +1,6 @@
 extends CharacterBody2D
 
 
-@export var push_force = 200.0
-
 @export var normal_speed = 800
 var speed = normal_speed
 @export var max_speed = 3000
@@ -10,7 +8,9 @@ var speed = normal_speed
 @export var gravity = 2000
 @export_range(0.0, 1.0) var friction = 0.1
 @export_range(0.0 , 1.0) var acceleration = 0.04
-
+@export var collision_slowdown_factor = 0.5  # How much collisions slow player
+@export var push_force = 200.0  # Strength of push-back
+@export var push_back_duration = 0.2  # Duration of the push-back in seconds
 @export var dash_dance_grace_time = 0.05  # Time window for lenient direction switch
 @export var speed_threshold = 0.9  # Percentage of full speed required to trigger instant flip
 var speed_boost_timer = 0.0
@@ -18,22 +18,30 @@ var speed_boost_timer = 0.0
 var last_direction = 0
 var last_direction_time = 0.0
 
+# Coyote time
 @export var coyote_frames = 12  # How many in-air frames to allow jumping
 var coyote = false  # Track whether we're in coyote time or not
 var last_floor = false  # Last frame's on-floor state
 var jumping = false
 
+# Camera
 @export var zoom_in_factor = 1.5
 @export var zoom_in_duration = 3.0
 var active_tween: Tween = null
 
+# Recording
 var position_history: Array = []  # Stores recorded positions
 var recording: bool = false  # Flag to enable/disable recording
-
 @export var record_interval: float = 0.1  # Time interval in seconds
 var record_timer: float = 0.0  # Timer for position recording
 @export var max_replay_duration: float = 300.0  # Max 5 minutes
 var replay_time_elapsed: float = 0.0
+
+# Collision
+var is_pushed_back = false
+var push_back_timer = 0.0
+var push_back_direction = Vector2.ZERO
+var original_velocity = Vector2.ZERO
 
 func _ready() -> void:
 	$CoyoteTimer.wait_time = coyote_frames / 60.0
@@ -59,6 +67,14 @@ func _physics_process(delta: float) -> void:
 	velocity.y += gravity * delta
 	var dir = Input.get_axis("walk_left", "walk_right")
 	
+	# Apply push-back if the timer is running
+	if is_pushed_back:
+		push_back_timer -= delta
+		if push_back_timer > 0:
+			velocity = velocity * (1 - collision_slowdown_factor) + push_back_direction * push_force
+		
+		else:
+			is_pushed_back = false  # Stop pushing when time is up
 	
 	# Determine animation state
 	if !is_on_floor():  
@@ -95,13 +111,27 @@ func _physics_process(delta: float) -> void:
 	velocity.x = clamp(velocity.x, -max_speed, max_speed) # Make sure velocity does not exceed max_speed
 	
 	move_and_slide()
-
+	
 	# Check for collisions
 	for i in get_slide_collision_count():
 		var c = get_slide_collision(i)
 		if c.get_collider() is RigidBody2D:
-			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
+			var collision_normal = c.get_normal()
+			var velocity_along_normal = velocity.dot(collision_normal)
 			
+			# Apply slowdown for collision along the normal direction
+			velocity -= collision_normal * velocity_along_normal * (1 - collision_slowdown_factor)
+			# Apply a force to the collided object
+			c.get_collider().apply_central_impulse(-collision_normal * push_force)
+			
+			# Apply push-back to player
+			if abs(collision_normal.x) > 0.5:  # Only consider collisions along the x-axis
+				if not is_pushed_back:
+					is_pushed_back = true
+					push_back_direction = collision_normal  # Set the direction to push the player back
+					push_back_timer = push_back_duration  # Reset the push-back timer
+					original_velocity = velocity  # Store the current velocity before push-back
+	
 	# Update jumping
 	if is_on_floor() and jumping:
 		jumping = false

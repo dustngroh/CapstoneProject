@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bt17csp8a4hyi"]
+
+[ext_resource type="Texture2D" uid="uid://ccelc0atyacya" path="res://assets/level/base_update.png" id="1_dii4n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o4f5"]
+atlas = ExtResource("1_dii4n")
+region = Rect2(401, 1001, 199, 199)
+
+[node name="MushroomObject" type="RigidBody2D"]
+center_of_mass_mode = 1
+center_of_mass = Vector2(0, 100)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_3o4f5")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(5, 0, 25, 100, -28, 100, -16, 0)
