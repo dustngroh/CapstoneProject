@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsdjxq7j8takm"]
+
+[ext_resource type="Texture2D" uid="uid://ccelc0atyacya" path="res://assets/level/base_update.png" id="1_rjv6g"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8eq6k"]
+friction = 0.2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o4f5"]
+atlas = ExtResource("1_rjv6g")
+region = Rect2(1001, 401, 199, 199)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ruuyw"]
+size = Vector2(176, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_toxjy"]
+size = Vector2(111, 55)
+
+[node name="BigRock" type="RigidBody2D" groups=["rocks"]]
+mass = 20.0
+physics_material_override = SubResource("PhysicsMaterial_8eq6k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_3o4f5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(11, 77)
+shape = SubResource("RectangleShape2D_ruuyw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(43.5, 27.5)
+shape = SubResource("RectangleShape2D_toxjy")

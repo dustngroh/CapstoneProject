@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://cujvvfpqkhhb6"]
+
+[ext_resource type="Texture2D" uid="uid://ccelc0atyacya" path="res://assets/level/base_update.png" id="1_q1mlw"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8eq6k"]
+friction = 0.2
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o4f5"]
+atlas = ExtResource("1_q1mlw")
+region = Rect2(1001, 201, 199, 199)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ruuyw"]
+size = Vector2(154, 46)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8n2fy"]
+radius = 57.0351
+
+[node name="Rock" type="RigidBody2D" groups=["rocks"]]
+mass = 20.0
+physics_material_override = SubResource("PhysicsMaterial_8eq6k")
+center_of_mass_mode = 1
+center_of_mass = Vector2(0, -100)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_3o4f5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4, 76)
+shape = SubResource("RectangleShape2D_ruuyw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, 64)
+shape = SubResource("CircleShape2D_8n2fy")
+one_way_collision = true

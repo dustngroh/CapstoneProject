@@ -119,18 +119,25 @@ func _physics_process(delta: float) -> void:
 			var collision_normal = c.get_normal()
 			var velocity_along_normal = velocity.dot(collision_normal)
 			
-			# Apply slowdown for collision along the normal direction
-			velocity -= collision_normal * velocity_along_normal * (1 - collision_slowdown_factor)
-			# Apply a force to the collided object
-			c.get_collider().apply_central_impulse(-collision_normal * push_force)
+			if c.get_collider().is_in_group("rocks"):
+				# rocks slow player and get pushed
+				velocity -= collision_normal * velocity_along_normal * (1 - collision_slowdown_factor)
+				c.get_collider().apply_central_impulse(-collision_normal * push_force)
 			
-			# Apply push-back to player
-			if abs(collision_normal.x) > 0.5:  # Only consider collisions along the x-axis
-				if not is_pushed_back:
-					is_pushed_back = true
-					push_back_direction = collision_normal  # Set the direction to push the player back
-					push_back_timer = push_back_duration  # Reset the push-back timer
-					original_velocity = velocity  # Store the current velocity before push-back
+			else:
+				# Other obstacles also apply push-back
+				# Apply slowdown for collision along the normal direction
+				velocity -= collision_normal * velocity_along_normal * (1 - collision_slowdown_factor)
+				# Apply a force to the collided object
+				c.get_collider().apply_central_impulse(-collision_normal * push_force)
+				
+				# Apply push-back to player
+				if abs(collision_normal.x) > 0.5:  # Only consider collisions along the x-axis
+					if not is_pushed_back:
+						is_pushed_back = true
+						push_back_direction = collision_normal  # Set the direction to push the player back
+						push_back_timer = push_back_duration  # Reset the push-back timer
+						original_velocity = velocity  # Store the current velocity before push-back
 	
 	# Update jumping
 	if is_on_floor() and jumping:
