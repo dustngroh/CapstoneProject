@@ -1,11 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://ds5twxhi7yq7j"]
+[gd_scene load_steps=10 format=3 uid="uid://ds5twxhi7yq7j"]
 
 [ext_resource type="Script" path="res://scenes/levels/base_level.gd" id="1_3y0r6"]
 [ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://scenes/entities/characters/player/character_body_2d.tscn" id="2_qdxsp"]
 [ext_resource type="PackedScene" uid="uid://c7dcnp2hndaih" path="res://scenes/common/win_zone.tscn" id="2_yau4l"]
 [ext_resource type="PackedScene" uid="uid://coopu6svniep4" path="res://scenes/common/touch_controls.tscn" id="4_iqqkr"]
-[ext_resource type="Texture2D" uid="uid://ob535jmd8i2a" path="res://assets/level/backgrounds/level bkgd trees night.png" id="6_ybrnv"]
-[ext_resource type="Texture2D" uid="uid://hximtx50slo3" path="res://assets/level/backgrounds/level bkgd grass night.png" id="7_ja628"]
 [ext_resource type="PackedScene" uid="uid://dg7278bc2g4bx" path="res://scenes/common/admin_controls.tscn" id="8_nyb32"]
 [ext_resource type="TileSet" uid="uid://kgj2kuo4olk6" path="res://assets/level/forest_tile_set.tres" id="9_k7avm"]
 [ext_resource type="Texture2D" uid="uid://c1cin2yom3816" path="res://assets/level/backgrounds/level1.png" id="10_2cqki"]
@@ -20,12 +18,26 @@ admin_controls_scene = ExtResource("8_nyb32")
 touch_controls_scene = ExtResource("4_iqqkr")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
+visible = false
 scroll_scale = Vector2(0, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
 scale = Vector2(1.3, 1.3)
 texture = ExtResource("10_2cqki")
 centered = false
+
+[node name="LevelBackground" type="ParallaxBackground" parent="."]
+scroll_ignore_camera_zoom = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="LevelBackground"]
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="LevelBackground/ParallaxLayer"]
+texture = ExtResource("10_2cqki")
+centered = false
+
+[node name="DynamicBackground" parent="LevelBackground" instance=ExtResource("10_2tsbk")]
+top_level = true
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -38,34 +50,6 @@ metadata/_edit_group_ = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWorldBorder"]
 shape = SubResource("WorldBoundaryShape2D_16w4h")
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-visible = false
-follow_viewport_enabled = true
-
-[node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background"]
-texture = ExtResource("10_2cqki")
-centered = false
-
-[node name="Trees" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
-motion_scale = Vector2(0.2, 0.2)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Trees"]
-scale = Vector2(0.994, 0.994)
-texture = ExtResource("6_ybrnv")
-centered = false
-
-[node name="Grass" type="ParallaxLayer" parent="ParallaxBackground"]
-visible = false
-motion_scale = Vector2(0.5, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Grass"]
-scale = Vector2(1.575, 1.575)
-texture = ExtResource("7_ja628")
-centered = false
-
 [node name="WinZone" parent="." instance=ExtResource("2_yau4l")]
 
 [node name="BaseTileMap" type="TileMapLayer" parent="."]
@@ -73,6 +57,7 @@ scale = Vector2(0.5, 0.5)
 tile_set = ExtResource("9_k7avm")
 
 [node name="DynamicBackground" parent="." instance=ExtResource("10_2tsbk")]
+top_level = true
 
 [connection signal="body_entered" from="BottomWorldBorder" to="." method="_on_bottom_world_border_body_entered"]
 [connection signal="win" from="WinZone" to="." method="_on_win_zone_win"]

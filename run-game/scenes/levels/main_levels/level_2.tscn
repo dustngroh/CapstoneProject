@@ -11,7 +11,13 @@ current_level_number = 2
 [node name="Sprite2D" parent="Parallax2D" index="0"]
 texture = ExtResource("2_m8ppy")
 
-[node name="SpawnPoint" parent="." index="2"]
+[node name="Sprite2D" parent="LevelBackground/ParallaxLayer" index="0"]
+texture = ExtResource("2_m8ppy")
+
+[node name="DynamicBackground" parent="LevelBackground" index="1"]
+end_color = Color(1, 0.501961, 0.301961, 1)
+
+[node name="SpawnPoint" parent="." index="3"]
 position = Vector2(367.569, 614.941)
 
 [node name="OldMap" type="TileMapLayer" parent="." index="5"]

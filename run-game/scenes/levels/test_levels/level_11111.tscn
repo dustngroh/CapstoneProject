@@ -5,7 +5,7 @@
 
 [node name="Level11111" instance=ExtResource("1_533x5")]
 
-[node name="SpawnPoint" parent="." index="2"]
+[node name="SpawnPoint" parent="." index="3"]
 position = Vector2(1131.47, -212.997)
 
 [node name="OldMap" type="TileMapLayer" parent="." index="5"]

@@ -93,8 +93,10 @@ func _process(delta):
 
 
 func resize_background():
+	#var background_sprite = $Parallax2D/Sprite2D
+	var background_sprite = $LevelBackground/ParallaxLayer/Sprite2D
 	var screen_size = get_viewport().get_visible_rect().size
-	var texture_size = $Parallax2D/Sprite2D.texture.get_size()
+	var texture_size = background_sprite.texture.get_size()
 
 	# First: scale by Y to maintain aspect ratio
 	var scale_y = screen_size.y / texture_size.y
@@ -104,9 +106,9 @@ func resize_background():
 	if scaled_width < screen_size.x:
 		# Scale by X instead
 		var scale_x = screen_size.x / texture_size.x
-		$Parallax2D/Sprite2D.scale = Vector2(scale_x, scale_x)
+		background_sprite.scale = Vector2(scale_x, scale_x)
 	else:
-		$Parallax2D/Sprite2D.scale = Vector2(scale_y, scale_y)
+		background_sprite.scale = Vector2(scale_y, scale_y)
 
 
 func update_timer_display():

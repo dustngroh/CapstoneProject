@@ -13,7 +13,7 @@ offset_right = 1157.0
 offset_bottom = 527.0
 texture = ExtResource("2_nhcsw")
 
-[node name="SpawnPoint" parent="." index="3"]
+[node name="SpawnPoint" parent="." index="4"]
 position = Vector2(138.953, 365.214)
 
 [node name="OldMap" type="TileMapLayer" parent="." index="5"]

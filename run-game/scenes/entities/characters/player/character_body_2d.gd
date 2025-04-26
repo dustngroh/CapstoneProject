@@ -27,6 +27,7 @@ var jumping = false
 # Camera
 @export var zoom_in_factor = 1.5
 @export var zoom_in_duration = 3.0
+var zooming = false
 var active_tween: Tween = null
 
 # Recording
@@ -183,6 +184,40 @@ func zoom_out():
 	
 	active_tween = create_tween()
 	active_tween.tween_property($Camera2D, "zoom", Vector2(1, 1), 0.5)
+
+# Function to zoom out the camera when bouncing on spring
+func zoom_out_effect():
+	if not zooming:
+		zooming = true
+		if active_tween:
+			active_tween.kill()
+		# Zoom out the camera smoothly
+		active_tween = create_tween()
+		active_tween.tween_property($Camera2D, "zoom", Vector2(0.7, 0.7), 0.8)
+		#$Camera2D.zoom = Vector2(0.5, 0.5)
+		#await get_tree().create_timer(1.5).timeout
+		#$Camera2D.zoom = Vector2(1, 1)
+		#var parallax = get_parent().get_node("Parallax2D") 
+		#if parallax:
+			#var viewport_size = get_viewport().size
+			#active_tween.tween_property(parallax, "screen_offset", Vector2(-0.5 * viewport_size.x, -0.5 * viewport_size.y), 0.5)
+			#active_tween.tween_property(parallax, "scale", Vector2(2, 2), 0.5)
+			#active_tween.tween_property(parallax, "", Vector2(2, 2), 0.5)
+			
+		# Then zoom back in
+		await(active_tween.finished)
+		zoom_in_effect()
+
+# Function to zoom back in when bouncing on spring
+func zoom_in_effect():
+	if active_tween:
+		active_tween.kill()
+	# Zoom back in slowly
+	active_tween = create_tween()
+	active_tween.tween_property($Camera2D, "zoom", Vector2(1, 1), 2.0)
+	
+	zooming = false
+
 
 # Function to record one final location and stop recording
 func end_recording():

@@ -1,7 +1,6 @@
-[gd_scene load_steps=11 format=4 uid="uid://bd1gvporen5pu"]
+[gd_scene load_steps=10 format=4 uid="uid://bd1gvporen5pu"]
 
 [ext_resource type="PackedScene" uid="uid://ds5twxhi7yq7j" path="res://scenes/levels/BaseLevel.tscn" id="1_mebee"]
-[ext_resource type="Texture2D" uid="uid://43uwuj1ws4ib" path="res://assets/level/backgrounds/level bkgd sunset.jpg" id="2_6lvoq"]
 [ext_resource type="PackedScene" uid="uid://vih42f7l4t7b" path="res://scenes/entities/structures/spring.tscn" id="2_suynj"]
 [ext_resource type="PackedScene" uid="uid://dtmh8cbliqh6j" path="res://scenes/entities/structures/MovingPlatform.tscn" id="4_lfcke"]
 [ext_resource type="PackedScene" uid="uid://bt17csp8a4hyi" path="res://scenes/entities/obstacles/mushroom_object.tscn" id="5_0p103"]
@@ -13,16 +12,11 @@
 
 [node name="LevelDustin" instance=ExtResource("1_mebee")]
 
-[node name="Sprite2D" parent="ParallaxBackground/Background" index="0"]
-position = Vector2(1920, 998)
-scale = Vector2(2, 1.849)
-texture = ExtResource("2_6lvoq")
-
 [node name="WinZone" parent="." index="5"]
 position = Vector2(2654, 262)
 
 [node name="Spring" parent="." index="6" instance=ExtResource("2_suynj")]
-position = Vector2(264, 910)
+position = Vector2(-167, 262)
 
 [node name="Spring2" parent="." index="7" instance=ExtResource("2_suynj")]
 position = Vector2(4532, -82)

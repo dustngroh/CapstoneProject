@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=4 uid="uid://il6lmkbwu62k"]
+[gd_scene load_steps=5 format=4 uid="uid://il6lmkbwu62k"]
 
 [ext_resource type="PackedScene" uid="uid://ds5twxhi7yq7j" path="res://scenes/levels/BaseLevel.tscn" id="1_fgr6e"]
 [ext_resource type="Texture2D" uid="uid://x4ibb3vrvfx2" path="res://assets/level/backgrounds/level3.png" id="2_g2aj3"]
 [ext_resource type="TileSet" uid="uid://cpgcav0o3xltg" path="res://scenes/levels/test_levels/test_tile_set.tres" id="2_ulylh"]
-[ext_resource type="Texture2D" uid="uid://da06vysvw5e7s" path="res://assets/level/backgrounds/set2_background.png" id="4_jt047"]
 [ext_resource type="PackedScene" uid="uid://crlmo14rtbpw2" path="res://scenes/entities/items/speed_boost_item.tscn" id="4_wvpn8"]
 
 [node name="Level3" instance=ExtResource("1_fgr6e")]
@@ -12,7 +11,13 @@ current_level_number = 3
 [node name="Sprite2D" parent="Parallax2D" index="0"]
 texture = ExtResource("2_g2aj3")
 
-[node name="SpawnPoint" parent="." index="2"]
+[node name="Sprite2D" parent="LevelBackground/ParallaxLayer" index="0"]
+texture = ExtResource("2_g2aj3")
+
+[node name="DynamicBackground" parent="LevelBackground" index="1"]
+end_color = Color(0.5, 0.5, 0.7, 1)
+
+[node name="SpawnPoint" parent="." index="3"]
 position = Vector2(-1504.69, 839.066)
 
 [node name="OldMap" type="TileMapLayer" parent="." index="4"]
@@ -26,9 +31,6 @@ offset_right = -1054.0
 offset_bottom = 762.0
 text = "Level 3
 Good luck this one's hard"
-
-[node name="Sprite2D" parent="ParallaxBackground/Background" index="0"]
-texture = ExtResource("4_jt047")
 
 [node name="SpeedBoostItem" parent="." index="7" instance=ExtResource("4_wvpn8")]
 position = Vector2(-586.083, 1033.14)

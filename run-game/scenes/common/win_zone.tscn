@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7dcnp2hndaih"]
+[gd_scene load_steps=5 format=3 uid="uid://c7dcnp2hndaih"]
 
 [ext_resource type="Script" path="res://scenes/common/win_zone.gd" id="1_0al2t"]
-[ext_resource type="Texture2D" uid="uid://c8j24cl2brs3l" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="2_agaxc"]
 [ext_resource type="AudioStream" uid="uid://ra844fxnxhaw" path="res://assets/audio/sounds/powerUp.wav" id="3_gkwv2"]
 [ext_resource type="TileSet" uid="uid://bdaudv74wslo5" path="res://assets/level/test_tiles.tres" id="4_4v4b1"]
 
@@ -14,12 +13,6 @@ script = ExtResource("1_0al2t")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(102.5, 70.5)
 shape = SubResource("RectangleShape2D_hto0b")
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(104, 70)
-color = Color(0.709804, 0.690196, 1, 1)
-energy = 0.5
-texture = ExtResource("2_agaxc")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_gkwv2")
