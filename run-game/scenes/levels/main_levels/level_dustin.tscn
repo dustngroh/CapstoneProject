@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://bd1gvporen5pu"]
+[gd_scene load_steps=12 format=4 uid="uid://bd1gvporen5pu"]
 
 [ext_resource type="PackedScene" uid="uid://ds5twxhi7yq7j" path="res://scenes/levels/BaseLevel.tscn" id="1_mebee"]
 [ext_resource type="PackedScene" uid="uid://vih42f7l4t7b" path="res://scenes/entities/structures/spring.tscn" id="2_suynj"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dsdjxq7j8takm" path="res://scenes/entities/obstacles/rock_big.tscn" id="7_65ho5"]
 [ext_resource type="PackedScene" uid="uid://fw8lws3fjv7p" path="res://scenes/entities/obstacles/rock_small.tscn" id="8_20ymr"]
 [ext_resource type="PackedScene" uid="uid://ceg00ldi310ps" path="res://scenes/entities/obstacles/slow_zone.tscn" id="10_6bhgg"]
+[ext_resource type="PackedScene" uid="uid://dwj6wpsg7ppp6" path="res://scenes/entities/obstacles/mushroom_spawner.tscn" id="11_hffc3"]
 
 [node name="LevelDustin" instance=ExtResource("1_mebee")]
 
@@ -59,6 +60,9 @@ position = Vector2(3150, 36)
 [node name="BigRock4" parent="BaseTileMap" index="9" instance=ExtResource("8_20ymr")]
 position = Vector2(3910, 0)
 
+[node name="MushroomSpawner" parent="BaseTileMap" index="10" instance=ExtResource("11_hffc3")]
+position = Vector2(2112, 174)
+
 [node name="MushroomObject7" parent="." index="11" instance=ExtResource("6_3b8md")]
 position = Vector2(3444, -281)
 
@@ -74,3 +78,4 @@ position = Vector2(3661, -111)
 [node name="SlowZone" parent="." index="15" instance=ExtResource("10_6bhgg")]
 position = Vector2(528, 333)
 slow_factor = 0.1
+length = 2000

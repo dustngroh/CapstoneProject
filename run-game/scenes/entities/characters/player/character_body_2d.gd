@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var normal_speed = 800
 var speed = normal_speed
 @export var max_speed = 3000
+var max_correction = 200.0
 @export var jump_speed = -1000
 @export var gravity = 2000
 @export_range(0.0, 1.0) var friction = 0.1
@@ -111,6 +112,7 @@ func _physics_process(delta: float) -> void:
 		jumping = true
 	
 	velocity.x = clamp(velocity.x, -max_speed, max_speed) # Make sure velocity does not exceed max_speed
+	velocity.y = clamp(velocity.y, -3000, 3000)
 	
 	move_and_slide()
 	
@@ -129,7 +131,12 @@ func _physics_process(delta: float) -> void:
 			else:
 				# Other obstacles also apply push-back
 				# Apply slowdown for collision along the normal direction
-				velocity -= collision_normal * velocity_along_normal * (1 - collision_slowdown_factor)
+				#velocity -= collision_normal * velocity_along_normal * (1 - collision_slowdown_factor)
+				var correction = collision_normal * velocity_along_normal * (1 - collision_slowdown_factor)
+				if correction.length() > max_correction:
+					correction = correction.normalized() * max_correction
+
+				velocity -= correction
 				# Apply a force to the collided object
 				c.get_collider().apply_central_impulse(-collision_normal * push_force)
 				
