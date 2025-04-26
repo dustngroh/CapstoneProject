@@ -14,6 +14,8 @@ var level_positions = [
 	Vector2(-585, -295)  # Level 4
 ]
 
+var triggered = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$CharacterBody2D/Camera2D.enabled = false
@@ -38,7 +40,9 @@ func _on_level_button_pressed(level_path: String) -> void:
 
 	var game = get_tree().root.get_node_or_null("Game")
 	if game:
-		game.load_level(level_path)
+		if not triggered:
+			game.load_level(level_path)
+			triggered = true
 	else:
 		print("Error: Game node not found!")
 
