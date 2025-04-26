@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cbb0tb4tuu5oc"]
+[gd_scene load_steps=19 format=3 uid="uid://cbb0tb4tuu5oc"]
 
 [ext_resource type="Texture2D" uid="uid://dakintnym36qk" path="res://assets/level_select/levelseclectBG.png" id="1_n7xxe"]
 [ext_resource type="Script" path="res://scenes/common/level_select/level_select_background.gd" id="2_4i2tq"]
@@ -17,6 +17,30 @@ unicode = 49
 
 [sub_resource type="Shortcut" id="Shortcut_kl2in"]
 events = [SubResource("InputEventKey_4xjo2")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_ydakl"]
+device = -1
+keycode = 50
+unicode = 50
+
+[sub_resource type="Shortcut" id="Shortcut_ky4vv"]
+events = [SubResource("InputEventKey_ydakl")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_nrlsb"]
+device = -1
+keycode = 51
+unicode = 51
+
+[sub_resource type="Shortcut" id="Shortcut_5ain7"]
+events = [SubResource("InputEventKey_nrlsb")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_vtds7"]
+device = -1
+keycode = 52
+unicode = 52
+
+[sub_resource type="Shortcut" id="Shortcut_l2cs3"]
+events = [SubResource("InputEventKey_vtds7")]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_b1pmp"]
 a = Vector2(-2000, 0)
@@ -74,6 +98,7 @@ offset_right = 140.0
 offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
+shortcut = SubResource("Shortcut_ky4vv")
 texture_normal = ExtResource("4_mjtoo")
 ignore_texture_size = true
 stretch_mode = 3
@@ -91,6 +116,7 @@ offset_right = -2.0
 offset_bottom = 273.0
 grow_horizontal = 2
 grow_vertical = 2
+shortcut = SubResource("Shortcut_5ain7")
 texture_normal = ExtResource("5_j3fki")
 ignore_texture_size = true
 stretch_mode = 3
@@ -107,6 +133,7 @@ offset_right = 140.0
 offset_bottom = 273.0
 grow_horizontal = 2
 grow_vertical = 2
+shortcut = SubResource("Shortcut_l2cs3")
 texture_normal = ExtResource("6_hxvc6")
 ignore_texture_size = true
 stretch_mode = 3

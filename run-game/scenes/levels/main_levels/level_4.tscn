@@ -7,7 +7,6 @@
 
 [node name="Level4" instance=ExtResource("1_islso")]
 current_level_number = 4
-countdown_seconds = 0
 
 [node name="Sprite2D" parent="Parallax2D" index="0"]
 texture = ExtResource("2_mvvt6")

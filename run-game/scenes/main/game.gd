@@ -19,7 +19,7 @@ func load_level(level_path: String):
 
 	await get_tree().process_frame  # Ensures the new level is fully loaded
 	
-	if level_path == "res://scenes/levels/main_levels/level_4.tscn": # Check if final level
-		MusicManager.play_music("res://assets/audio/music/Lite Saturation - Calm.mp3") # Play special song
+	#if level_path == "res://scenes/levels/main_levels/level_4.tscn": # Check if final level
+		#MusicManager.play_music("res://assets/audio/music/Lite Saturation - Calm.mp3") # Play special song
 		
 	await fade_layer.fade_out(1.0)
