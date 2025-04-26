@@ -1,9 +1,9 @@
 extends TextureRect
 
 var button_positions = [ 
-	Vector2(0.1, 0.58),  # Level 1
-	Vector2(0.2, 0.6),  # Level 2
-	Vector2(0.8, 0.6),   # Level 3
+	Vector2(0.1, 0.56),  # Level 1
+	Vector2(0.25, 0.7),  # Level 2
+	Vector2(0.75, 0.6),   # Level 3
 	Vector2(0.9, 0.6)   # Level 4
 ]
 

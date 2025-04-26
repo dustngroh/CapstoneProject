@@ -1,20 +1,22 @@
-[gd_scene load_steps=18 format=3 uid="uid://cbb0tb4tuu5oc"]
+[gd_scene load_steps=13 format=3 uid="uid://cbb0tb4tuu5oc"]
 
-[ext_resource type="Texture2D" uid="uid://dk3pslgjp2gc2" path="res://assets/level_select/levelseclect.png" id="1_ai2ni"]
+[ext_resource type="Texture2D" uid="uid://dakintnym36qk" path="res://assets/level_select/levelseclectBG.png" id="1_n7xxe"]
 [ext_resource type="Script" path="res://scenes/common/level_select/level_select_background.gd" id="2_4i2tq"]
-[ext_resource type="Texture2D" uid="uid://1gql81t58cmb" path="res://assets/level_select/buttons/level1.png" id="2_ai60b"]
-[ext_resource type="Texture2D" uid="uid://bu87jpkjyjvdk" path="res://assets/level_select/buttons/level1pink.png" id="4_ebw6j"]
-[ext_resource type="Texture2D" uid="uid://3v7mcs4q3r0" path="res://assets/level_select/buttons/level2.png" id="4_lbfmc"]
-[ext_resource type="Texture2D" uid="uid://dttvsvejvqopb" path="res://assets/level_select/buttons/level1gray.png" id="5_2642n"]
-[ext_resource type="Texture2D" uid="uid://d1f7rnc5pjacl" path="res://assets/level_select/buttons/level3.png" id="5_jh2q4"]
-[ext_resource type="Texture2D" uid="uid://ckovbay8nj5dg" path="res://assets/level_select/buttons/level4.png" id="6_tyy1x"]
-[ext_resource type="Texture2D" uid="uid://cuok4uctr25tg" path="res://assets/level_select/buttons/level2pink.png" id="7_hvc6w"]
-[ext_resource type="Texture2D" uid="uid://c2myic0gu65s5" path="res://assets/level_select/buttons/level2gray.png" id="8_vnkoh"]
+[ext_resource type="Texture2D" uid="uid://b5ut8nflgd2ai" path="res://assets/level_select/buttons/1.png" id="3_mnw2u"]
+[ext_resource type="Texture2D" uid="uid://bjsm6nk10ct2i" path="res://assets/level_select/buttons/2.png" id="4_mjtoo"]
+[ext_resource type="Texture2D" uid="uid://c06ea4tjf1yfa" path="res://assets/level_select/buttons/3.png" id="5_j3fki"]
+[ext_resource type="Texture2D" uid="uid://3na62m7bpflv" path="res://assets/level_select/buttons/4.png" id="6_hxvc6"]
+[ext_resource type="Texture2D" uid="uid://bmd6oja36hhth" path="res://assets/level_select/buttons/seclectlew.png" id="8_a1wnf"]
 [ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://scenes/entities/characters/player/character_body_2d.tscn" id="9_gebnq"]
-[ext_resource type="Texture2D" uid="uid://deelxpsqs7ei3" path="res://assets/level_select/buttons/level3pink.png" id="10_angr7"]
-[ext_resource type="Texture2D" uid="uid://fjyv6asoeyda" path="res://assets/level_select/buttons/level3gray.png" id="11_qts56"]
-[ext_resource type="Texture2D" uid="uid://cx5f34updci7y" path="res://assets/level_select/buttons/level4pink.png" id="13_rmhvt"]
-[ext_resource type="Texture2D" uid="uid://ch6sh1orowhxr" path="res://assets/level_select/buttons/level4gray.png" id="14_331v7"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_4xjo2"]
+device = -1
+pressed = true
+keycode = 49
+unicode = 49
+
+[sub_resource type="Shortcut" id="Shortcut_kl2in"]
+events = [SubResource("InputEventKey_4xjo2")]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_b1pmp"]
 a = Vector2(-2000, 0)
@@ -37,7 +39,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_ai2ni")
+texture = ExtResource("1_n7xxe")
 expand_mode = 3
 stretch_mode = 6
 script = ExtResource("2_4i2tq")
@@ -47,24 +49,29 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -112.0
-offset_right = 112.0
+offset_top = -648.0
+offset_right = 140.0
+offset_bottom = -488.0
 grow_vertical = 0
-texture_normal = ExtResource("2_ai60b")
-texture_pressed = ExtResource("4_ebw6j")
-texture_hover = ExtResource("5_2642n")
+scale = Vector2(0.7, 0.7)
+shortcut = SubResource("Shortcut_kl2in")
+texture_normal = ExtResource("3_mnw2u")
+ignore_texture_size = true
+stretch_mode = 3
 
 [node name="Level2Button" type="TextureButton" parent="LevelSelectBackground"]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -112.0
-offset_right = 112.0
+offset_top = -648.0
+offset_right = 140.0
+offset_bottom = -488.0
 grow_vertical = 0
-texture_normal = ExtResource("4_lbfmc")
-texture_pressed = ExtResource("7_hvc6w")
-texture_hover = ExtResource("8_vnkoh")
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("4_mjtoo")
+ignore_texture_size = true
+stretch_mode = 3
 
 [node name="Level3Button" type="TextureButton" parent="LevelSelectBackground"]
 layout_mode = 1
@@ -75,11 +82,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -112.0
 offset_top = -112.0
+offset_right = 28.0
+offset_bottom = 48.0
 grow_horizontal = 0
 grow_vertical = 0
-texture_normal = ExtResource("5_jh2q4")
-texture_pressed = ExtResource("10_angr7")
-texture_hover = ExtResource("11_qts56")
+scale = Vector2(0.7, 0.7)
+texture_normal = ExtResource("5_j3fki")
+ignore_texture_size = true
+stretch_mode = 3
 
 [node name="Level4Button" type="TextureButton" parent="LevelSelectBackground"]
 layout_mode = 1
@@ -90,11 +100,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -112.0
 offset_top = -112.0
+offset_right = 28.0
+offset_bottom = 48.0
 grow_horizontal = 0
 grow_vertical = 0
-texture_normal = ExtResource("6_tyy1x")
-texture_pressed = ExtResource("13_rmhvt")
-texture_hover = ExtResource("14_331v7")
+scale = Vector2(0.6, 0.6)
+texture_normal = ExtResource("6_hxvc6")
+ignore_texture_size = true
+stretch_mode = 3
 
 [node name="MushroomCollisionHolder" type="Control" parent="LevelSelectBackground"]
 layout_mode = 1
@@ -123,6 +136,21 @@ position = Vector2(575, -79)
 
 [node name="SpawnPoint" type="Marker2D" parent="LevelSelectBackground"]
 position = Vector2(575.419, -81.6289)
+
+[node name="TextureRect" type="TextureRect" parent="LevelSelectBackground"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.0972222
+anchor_right = 0.5
+anchor_bottom = 0.0972222
+offset_left = -435.5
+offset_right = 435.5
+offset_bottom = 216.0
+grow_horizontal = 2
+texture = ExtResource("8_a1wnf")
+expand_mode = 3
+metadata/_edit_use_anchors_ = true
 
 [node name="MainMenuButton" type="Button" parent="."]
 layout_mode = 1
