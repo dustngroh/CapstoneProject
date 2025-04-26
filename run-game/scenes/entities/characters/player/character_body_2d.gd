@@ -110,6 +110,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote):
 		velocity.y = jump_speed
 		jumping = true
+		$JumpSound.play()
 	
 	velocity.x = clamp(velocity.x, -max_speed, max_speed) # Make sure velocity does not exceed max_speed
 	velocity.y = clamp(velocity.y, -3000, 3000)

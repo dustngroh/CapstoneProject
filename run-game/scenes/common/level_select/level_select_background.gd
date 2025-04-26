@@ -21,6 +21,7 @@ func _ready() -> void:
 	$CharacterBody2D/Camera2D.enabled = false
 	update_button_positions()
 	get_viewport().size_changed.connect(update_button_positions)
+	#MusicManager.play_music("res://assets/audio/music/chime_song_mellow_chill.mp3")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

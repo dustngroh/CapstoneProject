@@ -67,7 +67,8 @@ func recenter_world_if_needed():
 		player.position.x += 500 # Move player back right same amount
 
 func _on_main_menu_button_pressed() -> void:
-	MusicManager.play_music("res://assets/audio/music/Lite Saturation - Calm.mp3")
+	#MusicManager.play_music("res://assets/audio/music/Lite Saturation - Calm.mp3")
+	MusicManager.play_random_menu_music()
 	var game = get_tree().root.get_node("Game")
 	if game:
 		game.load_level("res://scenes/main/MainMenu.tscn")

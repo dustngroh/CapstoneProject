@@ -107,7 +107,7 @@ func _on_failed_connection():
 
 func _on_main_menu_button_pressed() -> void:
 	WebSocketManager.disconnect_from_server()
-	MusicManager.play_music("res://assets/audio/music/Lite Saturation - Calm.mp3")
+	#MusicManager.play_music("res://assets/audio/music/Lite Saturation - Calm.mp3")
 	var game = get_tree().root.get_node("Game")
 	if game:
 		game.load_level("res://scenes/main/MainMenu.tscn")

@@ -236,7 +236,8 @@ func _on_previous_button_pressed():
 		game.load_level(previous_level_path)
 
 func _on_main_button_pressed():
-	MusicManager.play_music("res://assets/audio/music/Lite Saturation - Calm.mp3")
+	#MusicManager.play_music("res://assets/audio/music/Lite Saturation - Calm.mp3")
+	MusicManager.play_random_menu_music()
 	if game:
 		game.load_level("res://scenes/main/MainMenu.tscn")
 
