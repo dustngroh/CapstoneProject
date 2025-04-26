@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://bd1gvporen5pu"]
+[gd_scene load_steps=11 format=4 uid="uid://bd1gvporen5pu"]
 
 [ext_resource type="PackedScene" uid="uid://ds5twxhi7yq7j" path="res://scenes/levels/BaseLevel.tscn" id="1_mebee"]
 [ext_resource type="PackedScene" uid="uid://vih42f7l4t7b" path="res://scenes/entities/structures/spring.tscn" id="2_suynj"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cujvvfpqkhhb6" path="res://scenes/entities/obstacles/rock.tscn" id="6_ag5xh"]
 [ext_resource type="PackedScene" uid="uid://dsdjxq7j8takm" path="res://scenes/entities/obstacles/rock_big.tscn" id="7_65ho5"]
 [ext_resource type="PackedScene" uid="uid://fw8lws3fjv7p" path="res://scenes/entities/obstacles/rock_small.tscn" id="8_20ymr"]
+[ext_resource type="PackedScene" uid="uid://ceg00ldi310ps" path="res://scenes/entities/obstacles/slow_zone.tscn" id="10_6bhgg"]
 
 [node name="LevelDustin" instance=ExtResource("1_mebee")]
 
@@ -69,3 +70,7 @@ position = Vector2(2757, -316)
 
 [node name="MushroomObject4" parent="." index="14" instance=ExtResource("5_0p103")]
 position = Vector2(3661, -111)
+
+[node name="SlowZone" parent="." index="15" instance=ExtResource("10_6bhgg")]
+position = Vector2(528, 333)
+slow_factor = 0.1

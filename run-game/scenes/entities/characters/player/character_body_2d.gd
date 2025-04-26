@@ -14,6 +14,7 @@ var speed = normal_speed
 @export var dash_dance_grace_time = 0.05  # Time window for lenient direction switch
 @export var speed_threshold = 0.9  # Percentage of full speed required to trigger instant flip
 var speed_boost_timer = 0.0
+var slow_zone_multiplier := 1.0
 
 var last_direction = 0
 var last_direction_time = 0.0
@@ -97,7 +98,7 @@ func _physics_process(delta: float) -> void:
 		if is_flipping_direction and within_grace_time and at_high_speed:
 			velocity.x = dir * speed  # Instant switch
 		else:
-			velocity.x = lerp(velocity.x, dir * speed, acceleration)
+			velocity.x = lerp(velocity.x, dir * speed * slow_zone_multiplier, acceleration)
 		# Update last direction
 		last_direction = dir
 		last_direction_time = Time.get_ticks_msec()
@@ -224,3 +225,9 @@ func end_recording():
 	if recording:
 		position_history.append(global_position)
 		recording = false
+
+func enter_slow_zone(multiplier: float):
+	slow_zone_multiplier = multiplier
+
+func exit_slow_zone():
+	slow_zone_multiplier = 1.0
