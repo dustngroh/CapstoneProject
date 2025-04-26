@@ -11,6 +11,8 @@ signal register_success(user)
 signal login_failed(error)
 signal register_failed(error)
 signal score_submission_result(message: String)
+signal personal_record_achieved(message: String)
+signal world_record_achieved(message: String)
 signal leaderboard_received(level: int, scores: Array)
 
 
@@ -134,8 +136,20 @@ func _on_request_completed(result, response_code, headers, body):
 
 				"submit-score":
 					if response_code == 200 or response_code == 201:
-						print("Score submission: %s" % response["message"])
-						emit_signal("score_submission_result", response["message"])
+						#print("Score submission: %s" % response["message"])
+						#emit_signal("score_submission_result", response["message"])
+						var message = response["message"]
+						var personal_record = response.get("personalRecord", false)
+						var world_record = response.get("worldRecord", false)
+						
+						print("Score submission: %s" % message)
+						
+						if world_record:
+							emit_signal("world_record_achieved", message)
+						elif personal_record:
+							emit_signal("personal_record_achieved", message)
+						else:
+							emit_signal("score_submission_result", message)
 					else:
 						print("Score submission failed: %s" % response.get("message", "Unknown error"))
 						emit_signal("score_submission_result", "Submission failed.")

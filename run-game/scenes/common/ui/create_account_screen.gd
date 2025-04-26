@@ -11,6 +11,8 @@ extends Control
 signal account_created(username)
 signal go_back_to_login
 
+const MAX_USERNAME_LENGTH = 15
+
 func _ready():
 	create_account_button.pressed.connect(_on_create_account_pressed)
 	back_button.pressed.connect(_on_back_pressed)
@@ -25,6 +27,16 @@ func _on_create_account_pressed():
 		error_label.text = "Fields cannot be empty."
 		return
 	
+	if username.length() > MAX_USERNAME_LENGTH:
+		error_label.text = "Username cannot be longer than %d characters." % MAX_USERNAME_LENGTH
+		return
+	
+	var regex = RegEx.new()
+	regex.compile("^[A-Za-z0-9_]+$")
+	if not regex.search(username):
+		error_label.text = "Username can only contain letters, numbers, and underscores."
+		return
+
 	if password != confirm_password:
 		error_label.text = "Passwords do not match."
 		return

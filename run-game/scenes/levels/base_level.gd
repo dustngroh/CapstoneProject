@@ -128,6 +128,9 @@ func _on_win_zone_win():
 	if HTTPRequestManager.is_logged_in():
 		if not HTTPRequestManager.is_connected("score_submission_result", _on_score_submitted):
 			HTTPRequestManager.score_submission_result.connect(_on_score_submitted)
+			HTTPRequestManager.world_record_achieved.connect(_on_world_record)
+			HTTPRequestManager.personal_record_achieved.connect(_on_personal_record)
+			
 		leaderboard_box.text = "Submitting Time...\nThis may take a minute."
 		HTTPRequestManager.submit_time(current_level_number, elapsed_time)
 	else:
@@ -143,6 +146,18 @@ func _on_score_submitted(message: String):
 	print("Score submission complete: ", message)
 	show_leaderboard()
 	HTTPRequestManager.score_submission_result.disconnect(_on_score_submitted)
+
+func _on_world_record(message: String):
+	print("Score submission complete: ", message)
+	leaderboard_label.text += "\nNEW WORLD RECORD!\nABSOLUTE LEGEND"
+	show_leaderboard()
+	HTTPRequestManager.world_record_achieved.disconnect(_on_world_record)
+
+func _on_personal_record(message: String):
+	print("Score submission complete: ", message)
+	leaderboard_label.text += "\nNew Personal Best!"
+	show_leaderboard()
+	HTTPRequestManager.personal_record_achieved.disconnect(_on_personal_record)
 
 func start_countdown():
 	for i in range(countdown_seconds, 0, -1):  # Countdown from countdown_seconds to 1
