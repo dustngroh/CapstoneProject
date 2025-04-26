@@ -1,10 +1,17 @@
 extends TextureRect
 
 var button_positions = [ 
-	Vector2(0.46, 0.14),  # Level 1
-	Vector2(0.3, 0.3),  # Level 2
-	Vector2(0.43, 0.4),   # Level 3
-	Vector2(0.6, 0.32)   # Level 4
+	Vector2(0.1, 0.58),  # Level 1
+	Vector2(0.2, 0.6),  # Level 2
+	Vector2(0.8, 0.6),   # Level 3
+	Vector2(0.9, 0.6)   # Level 4
+]
+
+var level_positions = [
+	Vector2(150, -250),  # Level 1
+	Vector2(225, -315), # Level 2
+	Vector2(-475, -295), # Level 3
+	Vector2(-585, -295)  # Level 4
 ]
 
 # Called when the node enters the scene tree for the first time.
@@ -58,3 +65,4 @@ func update_button_positions():
 		var button = get_child(i)
 		if button is TextureButton:
 			button.position = button_positions[i] * size  # Update positions on resize
+			#button.position += level_positions[i]

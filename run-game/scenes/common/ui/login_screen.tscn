@@ -63,6 +63,7 @@ text = "Go Back"
 [node name="ErrorLabel" type="Label" parent="VBoxContainer"]
 custom_minimum_size = Vector2(10, 50)
 layout_mode = 2
+horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="CloseButton" type="Button" parent="."]
