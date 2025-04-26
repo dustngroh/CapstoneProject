@@ -64,5 +64,6 @@ func update_button_positions():
 	for i in range(get_child_count()):
 		var button = get_child(i)
 		if button is TextureButton:
-			button.position = button_positions[i] * size  # Update positions on resize
+			#button.position = button_positions[i] * size  # Update positions on resize
+			pass
 			#button.position += level_positions[i]
