@@ -59,5 +59,7 @@ tile_set = ExtResource("9_k7avm")
 [node name="DynamicBackground" parent="." instance=ExtResource("10_2tsbk")]
 top_level = true
 
+[node name="CutsceneCamera" type="Camera2D" parent="."]
+
 [connection signal="body_entered" from="BottomWorldBorder" to="." method="_on_bottom_world_border_body_entered"]
 [connection signal="win" from="WinZone" to="." method="_on_win_zone_win"]

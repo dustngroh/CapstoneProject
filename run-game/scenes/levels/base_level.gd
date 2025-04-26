@@ -32,6 +32,7 @@ var timer_running: bool = false # Paused until countdown ends
 @onready var spawn_point: Marker2D = $SpawnPoint
 @onready var countdown_player: AudioStreamPlayer = UIManager.get_node("LevelUI/CountdownAudio")
 @onready var start_player: AudioStreamPlayer = UIManager.get_node("LevelUI/StartAudio")
+@onready var cutscene_camera: Camera2D = $CutsceneCamera
 
 
 
@@ -55,8 +56,11 @@ func _ready():
 	# Show the level label and countdown timer
 	level_label.text = "Level " + str(current_level_number)
 	level_label.show()
-	countdown_label.show()
-	start_countdown()
+	
+	
+	play_cutscene()
+	
+	#start_countdown()
 	
 	# Hide leaderboard initially
 	leaderboard.visible = false
@@ -90,6 +94,25 @@ func _process(delta):
 	if timer_running:
 		elapsed_time += delta
 		update_timer_display()
+
+func play_cutscene() -> void:
+	countdown_label.hide()
+	# Make CutsceneCamera active
+	cutscene_camera.make_current()
+	
+	# Start at spawn point
+	cutscene_camera.global_position = spawn_point.global_position
+	
+	# Smoothly move to win zone
+	var tween = create_tween()
+	tween.tween_property(cutscene_camera, "global_position", win_zone.global_position, 3.0)  # Move over 3 seconds
+	
+	await tween.finished
+	
+	# After cutscene, switch back to player camera and start countdown
+	cutscene_camera.queue_free()
+	countdown_label.show()
+	start_countdown()
 
 
 func resize_background():
