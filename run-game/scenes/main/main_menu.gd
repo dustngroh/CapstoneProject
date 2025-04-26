@@ -23,7 +23,8 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_new_game_button_pressed() -> void:
-	MusicManager.play_music("res://assets/audio/music/Guifrog - Frog Punch.mp3")
+	#MusicManager.play_music("res://assets/audio/music/Guifrog - Frog Punch.mp3")
+	MusicManager.play_music("res://assets/audio/music/mushroom_background_music.mp3")
 	var game = get_tree().root.get_node("Game")
 	if game:
 		game.load_level("res://scenes/levels/main_levels/level_1.tscn")
