@@ -15,7 +15,7 @@ run/main_scene="res://scenes/main/Game.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 boot_splash/bg_color=Color(0.160784, 0.376471, 0.294118, 1)
 boot_splash/image="res://assets/main_menu/mainbg.png"
-config/icon="res://assets/main_menu/mushicon.png"
+config/icon="res://assets/main_menu/miloicon.png"
 
 [autoload]
 
