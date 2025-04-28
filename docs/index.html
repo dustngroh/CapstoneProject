@@ -95,6 +95,11 @@ body {
 			<div id="status-notice"></div>
 		</div>
 
+		<div id="webgl-lost" style="display:none; position: absolute; top: 20px; left: 20px; color: white; background-color: red; padding: 10px; z-index: 1000;">
+			WebGL context lost. Please reload the page.
+		</div>
+		  
+
 		<script src="index.js"></script>
 		<script>
 const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":51046848,"index.wasm":35376909},"focusCanvas":true,"gdextensionLibs":[]};
@@ -194,6 +199,28 @@ const engine = new Engine(GODOT_CONFIG);
 	}
 }());
 		</script>
+		<script>
+			window.addEventListener("load", function() {
+				var canvas = document.getElementById('canvas');
+				var webglLost = document.getElementById('webgl-lost');
+			
+				if (canvas) {
+					canvas.addEventListener('webglcontextlost', function(event) {
+						event.preventDefault(); // prevent the browser's annoying popup
+						console.warn("WebGL context lost!");
+						if (webglLost) webglLost.style.display = 'block';
+						// You can also try reloading after some delay if you want:
+						// setTimeout(() => window.location.reload(), 3000);
+					}, false);
+			
+					canvas.addEventListener('webglcontextrestored', function(event) {
+						console.info("WebGL context restored!");
+						window.location.reload(); // reload to restart Godot engine cleanly
+					}, false);
+				}
+			});
+			</script>
+			
 	</body>
 </html>
 
