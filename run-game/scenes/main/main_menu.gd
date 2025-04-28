@@ -1,11 +1,18 @@
 extends Control
 
+@onready var login_button = $MiddleContainer/MenuButtonContainer/LoginScreenButton
+@onready var logout_button = $MiddleContainer/MenuButtonContainer/LogoutButton
+@onready var create_account_button = $MiddleContainer/MenuButtonContainer/CreateAccountScreenButton
+@onready var mute_button = $MiddleContainer/MenuButtonContainer/MuteButton
+@onready var admin_button = $MiddleContainer/MenuButtonContainer/AdminControlsButton
+@onready var info_label = $MiddleContainer/InfoLabel
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
-	$VBoxContainer/MuteButton.set_pressed_no_signal(MusicManager.is_muted)
-	$VBoxContainer/AdminControlsButton.set_pressed_no_signal(Settings.admin_controls_enabled)
+	mute_button.set_pressed_no_signal(MusicManager.is_muted)
+	admin_button.set_pressed_no_signal(Settings.admin_controls_enabled)
 	
 	UIManager.hide_level_ui()
 	HTTPRequestManager.login_success.connect(_on_successful_login)
@@ -66,7 +73,7 @@ func _on_multiplayer_button_pressed() -> void:
 
 func _on_successful_login(user) -> void:
 	UIManager.hide_login()
-	#$VBoxContainer/MainMenuLabel.text = user + " logged in."
+	#info_label = user + " logged in."
 	#$VBoxContainer2/LogoutButton.visible = true
 	update_login_buttons(true)
 
@@ -80,16 +87,16 @@ func _on_failed_register(error) -> void:
 	UIManager._on_failed_register(error)
 
 func _on_logout_button_pressed() -> void:
-	$NameLabel.text = HTTPRequestManager.username + " logged out."
+	info_label.text = HTTPRequestManager.username + " logged out."
 	HTTPRequestManager.clear_token()
 	#$VBoxContainer/MainMenuLabel.text = "Logged out."
 	#$VBoxContainer2/LogoutButton.visible = false
 	update_login_buttons(false)
 
 func update_login_buttons(logged_in):
-	$VBoxContainer2/LogoutButton.visible = logged_in
-	$VBoxContainer2/LoginScreenButton.visible = !logged_in
-	$VBoxContainer2/CreateAccountScreenButton.visible = !logged_in
+	logout_button.visible = logged_in
+	login_button.visible = !logged_in
+	#$VBoxContainer2/CreateAccountScreenButton.visible = !logged_in
 	
 	if logged_in:
-		$NameLabel.text = "Welcome, " + HTTPRequestManager.username + "."
+		info_label.text = "Welcome, " + HTTPRequestManager.username + "."

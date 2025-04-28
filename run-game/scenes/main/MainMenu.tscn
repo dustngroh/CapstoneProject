@@ -1,24 +1,19 @@
-[gd_scene load_steps=8 format=3 uid="uid://dlxl0dsaj7hws"]
+[gd_scene load_steps=7 format=3 uid="uid://dlxl0dsaj7hws"]
 
 [ext_resource type="Script" path="res://scenes/main/main_menu.gd" id="1_otjms"]
-[ext_resource type="Texture2D" uid="uid://bq2ecow3063s2" path="res://assets/level/backgrounds/set2_tiles.png" id="2_eluch"]
-[ext_resource type="Texture2D" uid="uid://d0pxna4yi6svm" path="res://assets/level/backgrounds/set1_tiles.png" id="2_q4xyl"]
+[ext_resource type="Texture2D" uid="uid://jg3v5u477a2c" path="res://assets/main_menu/mainscr.png" id="4_f8l7d"]
+[ext_resource type="Texture2D" uid="uid://bomyj41nob1vw" path="res://assets/main_menu/maintitle.png" id="5_rgsoi"]
 [ext_resource type="PackedScene" uid="uid://co22yqlcbx25r" path="res://scenes/common/ui/volume_slider.tscn" id="6_wao8s"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_4oek7"]
-outline_size = 10
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 0
-shadow_color = Color(0, 0, 0, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_oys86"]
+font_size = 22
+font_color = Color(0.980392, 0.964706, 0.843137, 1)
+outline_size = 11
+outline_color = Color(0.509804, 0.501961, 0.45098, 1)
+shadow_size = 3
 
 [sub_resource type="LabelSettings" id="LabelSettings_m24kh"]
-font_color = Color(0, 0, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_oys86"]
-font_size = 24
-outline_size = 11
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 3
+font_color = Color(0.960784, 0.945098, 0.827451, 1)
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -36,137 +31,132 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.648227, 0.702757, 0.872723, 1)
+color = Color(0.164706, 0.380392, 0.298039, 1)
 
-[node name="TextureRect3" type="TextureRect" parent="."]
+[node name="MainBackground" type="TextureRect" parent="."]
 layout_mode = 1
-offset_left = 1396.0
-offset_top = -367.0
-offset_right = 2662.0
-offset_bottom = 113.0
-rotation = -4.0307
-scale = Vector2(2.2, 2.2)
-texture = ExtResource("2_eluch")
-stretch_mode = 1
-
-[node name="TextureRect2" type="TextureRect" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
+anchors_preset = -1
 anchor_right = 1.0
-offset_left = -1696.0
-offset_top = 1471.0
-offset_right = -477.0
-offset_bottom = 1951.0
-grow_horizontal = 0
-rotation = -0.861724
-scale = Vector2(2.2, 2.2)
-texture = ExtResource("2_q4xyl")
-stretch_mode = 1
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_f8l7d")
+expand_mode = 3
+stretch_mode = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MainTitle" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.3
+grow_horizontal = 2
+texture = ExtResource("5_rgsoi")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="MiddleContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -88.5
-offset_top = -64.0
-offset_right = 88.5
-offset_bottom = 64.0
+offset_left = -186.5
+offset_top = -104.5
+offset_right = 186.5
+offset_bottom = 104.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MainMenuLabel" type="Label" parent="VBoxContainer"]
+[node name="InfoLabel" type="Label" parent="MiddleContainer"]
 layout_mode = 2
-text = "Temporary Main Menu"
-label_settings = SubResource("LabelSettings_4oek7")
-horizontal_alignment = 1
-
-[node name="NewGameButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "New Game"
-
-[node name="LevelSelectButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Level Select"
-
-[node name="EndlessRunButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Endless Run"
-
-[node name="MultiplayerButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Multiplayer
-"
-
-[node name="MuteButton" type="CheckButton" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Mute Music"
-
-[node name="AdminControlsButton" type="CheckButton" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Admin Controls"
-
-[node name="VolumeLabel" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-text = "Volume:"
-label_settings = SubResource("LabelSettings_m24kh")
-
-[node name="VolumeSlider" parent="VBoxContainer" instance=ExtResource("6_wao8s")]
-layout_mode = 2
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.940972
-anchor_top = 0.0771605
-anchor_right = 0.940972
-anchor_bottom = 0.0771605
-offset_left = -134.0
-offset_bottom = 93.0
-grow_horizontal = 0
-metadata/_edit_use_anchors_ = true
-
-[node name="LoginScreenButton" type="Button" parent="VBoxContainer2"]
-layout_mode = 2
-text = "Login"
-
-[node name="CreateAccountScreenButton" type="Button" parent="VBoxContainer2"]
-layout_mode = 2
-text = "Create Account"
-
-[node name="LogoutButton" type="Button" parent="VBoxContainer2"]
-visible = false
-layout_mode = 2
-text = "Logout"
-
-[node name="NameLabel" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.077
-anchor_right = 0.5
-anchor_bottom = 0.077
-offset_left = -20.0
-offset_top = 5.0
-offset_right = 20.0
-offset_bottom = 39.0
-grow_horizontal = 2
 text = "Please login to save your scores."
 label_settings = SubResource("LabelSettings_oys86")
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/EndlessRunButton" to="." method="_on_endless_run_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
-[connection signal="toggled" from="VBoxContainer/MuteButton" to="." method="_on_mute_button_toggled"]
-[connection signal="toggled" from="VBoxContainer/AdminControlsButton" to="." method="_on_admin_controls_button_toggled"]
-[connection signal="pressed" from="VBoxContainer2/LoginScreenButton" to="." method="_on_login_screen_button_pressed"]
-[connection signal="pressed" from="VBoxContainer2/CreateAccountScreenButton" to="." method="_on_create_account_screen_button_pressed"]
-[connection signal="pressed" from="VBoxContainer2/LogoutButton" to="." method="_on_logout_button_pressed"]
+[node name="VSeparator" type="VSeparator" parent="MiddleContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="MenuButtonContainer" type="VBoxContainer" parent="MiddleContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="NewGameButton" type="Button" parent="MiddleContainer/MenuButtonContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "New Game"
+
+[node name="LevelSelectButton" type="Button" parent="MiddleContainer/MenuButtonContainer"]
+layout_mode = 2
+text = "Level Select"
+
+[node name="EndlessRunButton" type="Button" parent="MiddleContainer/MenuButtonContainer"]
+layout_mode = 2
+text = "Endless Run"
+
+[node name="MultiplayerButton" type="Button" parent="MiddleContainer/MenuButtonContainer"]
+layout_mode = 2
+text = "Multiplayer
+"
+
+[node name="LoginScreenButton" type="Button" parent="MiddleContainer/MenuButtonContainer"]
+layout_mode = 2
+text = "Login"
+
+[node name="CreateAccountScreenButton" type="Button" parent="MiddleContainer/MenuButtonContainer"]
+visible = false
+layout_mode = 2
+text = "Create Account"
+
+[node name="LogoutButton" type="Button" parent="MiddleContainer/MenuButtonContainer"]
+visible = false
+layout_mode = 2
+text = "Logout"
+
+[node name="MuteButton" type="CheckButton" parent="MiddleContainer/MenuButtonContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Mute Music"
+
+[node name="AdminControlsButton" type="CheckButton" parent="MiddleContainer/MenuButtonContainer"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Admin Controls"
+
+[node name="VolumeContainer" type="VBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.0
+offset_top = -74.0
+offset_right = 90.0
+offset_bottom = -31.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="VolumeLabel" type="Label" parent="VolumeContainer"]
+layout_mode = 2
+text = "Volume:"
+label_settings = SubResource("LabelSettings_m24kh")
+
+[node name="VolumeSlider" parent="VolumeContainer" instance=ExtResource("6_wao8s")]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+
+[connection signal="pressed" from="MiddleContainer/MenuButtonContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="pressed" from="MiddleContainer/MenuButtonContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
+[connection signal="pressed" from="MiddleContainer/MenuButtonContainer/EndlessRunButton" to="." method="_on_endless_run_button_pressed"]
+[connection signal="pressed" from="MiddleContainer/MenuButtonContainer/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
+[connection signal="pressed" from="MiddleContainer/MenuButtonContainer/LoginScreenButton" to="." method="_on_login_screen_button_pressed"]
+[connection signal="pressed" from="MiddleContainer/MenuButtonContainer/CreateAccountScreenButton" to="." method="_on_create_account_screen_button_pressed"]
+[connection signal="pressed" from="MiddleContainer/MenuButtonContainer/LogoutButton" to="." method="_on_logout_button_pressed"]
+[connection signal="toggled" from="MiddleContainer/MenuButtonContainer/MuteButton" to="." method="_on_mute_button_toggled"]
+[connection signal="toggled" from="MiddleContainer/MenuButtonContainer/AdminControlsButton" to="." method="_on_admin_controls_button_toggled"]
