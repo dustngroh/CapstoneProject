@@ -17,6 +17,7 @@ func _ready():
 	create_account_button.pressed.connect(_on_create_account_pressed)
 	back_button.pressed.connect(_on_back_pressed)
 	close_button.pressed.connect(_on_close_pressed)
+	username_field.grab_focus.call_deferred()
 
 func _on_create_account_pressed():
 	var username = username_field.text
@@ -52,3 +53,7 @@ func _on_close_pressed():
 
 func set_error_label(text):
 	error_label.text = text
+
+
+func _on_confirm_password_field_text_submitted(new_text: String) -> void:
+	_on_create_account_pressed()

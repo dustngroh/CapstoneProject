@@ -66,23 +66,36 @@ metadata/_edit_use_anchors_ = true
 [node name="Leaderboard" type="Label" parent="EndlessRunUI/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
-text = "asdf"
+text = "Leaderboard:"
 
-[node name="MainMenuButton" type="Button" parent="EndlessRunUI/VBoxContainer"]
+[node name="VSpace" type="MarginContainer" parent="EndlessRunUI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
-text = "Main Menu"
+
+[node name="Buttons" type="VBoxContainer" parent="EndlessRunUI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="MainMenuButton" type="Button" parent="EndlessRunUI/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(140, 0)
+layout_mode = 2
+text = "End Run"
 metadata/_edit_use_anchors_ = true
 
-[node name="LoginButton" type="Button" parent="EndlessRunUI/VBoxContainer"]
+[node name="LoginButton" type="Button" parent="EndlessRunUI/VBoxContainer/Buttons"]
 visible = false
 layout_mode = 2
 text = "Login"
 
-[node name="Label" type="Label" parent="EndlessRunUI/VBoxContainer"]
+[node name="VSpace" type="MarginContainer" parent="EndlessRunUI/VBoxContainer/Buttons"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="VolumeLabel" type="Label" parent="EndlessRunUI/VBoxContainer/Buttons"]
 layout_mode = 2
 text = "Volume:"
 
-[node name="VolumeSlider" parent="EndlessRunUI/VBoxContainer" instance=ExtResource("7_6y4i2")]
+[node name="VolumeSlider" parent="EndlessRunUI/VBoxContainer/Buttons" instance=ExtResource("7_6y4i2")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
@@ -101,4 +114,4 @@ grow_vertical = 0
 text = "Distance:"
 horizontal_alignment = 1
 
-[connection signal="pressed" from="EndlessRunUI/VBoxContainer/MainMenuButton" to="LevelSpawner" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="EndlessRunUI/VBoxContainer/Buttons/MainMenuButton" to="LevelSpawner" method="_on_main_menu_button_pressed"]

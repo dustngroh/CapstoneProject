@@ -23,7 +23,7 @@ var night_texture = preload("res://assets/level/backgrounds/level bkgd night.jpg
 @onready var background_b = $Background/Sprite2D2
 @onready var level_spawner = $LevelSpawner
 @onready var distance_label = $EndlessRunUI/DistanceLabel
-@onready var login_button = $EndlessRunUI/VBoxContainer/LoginButton
+@onready var login_button = $EndlessRunUI/VBoxContainer/Buttons/LoginButton
 
 var distance_traveled: int = 0
 var submit_timer: float = 0.0
