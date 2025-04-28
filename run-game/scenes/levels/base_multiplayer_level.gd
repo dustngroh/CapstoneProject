@@ -37,6 +37,9 @@ var player_finished = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	resize_background()
+	get_viewport().size_changed.connect(resize_background)
+	
 	spawn_player()
 	
 	WebSocketManager.all_players_ready.connect(start_countdown)
@@ -45,7 +48,7 @@ func _ready() -> void:
 	WebSocketManager.player_position_updated.connect(update_position)
 	WebSocketManager.new_host.connect(_on_new_host)
 	
-	UIManager.show_level_ui()
+	UIManager.show_multiplayer_ui()
 	scoreboard_label.visible = false
 	level_options.visible = false
 	
@@ -198,3 +201,22 @@ func update_position(player_id, player_name, player_x, player_y):
 func _on_new_host():
 	if game_finished:
 		level_options.visible = true
+
+
+func resize_background():
+	#var background_sprite = $Parallax2D/Sprite2D
+	var background_sprite = $LevelBackground/ParallaxLayer/Sprite2D
+	var screen_size = get_viewport().get_visible_rect().size
+	var texture_size = background_sprite.texture.get_size()
+
+	# First: scale by Y to maintain aspect ratio
+	var scale_y = screen_size.y / texture_size.y
+	var scaled_width = texture_size.x * scale_y
+
+	# Check if X does not fill screen
+	if scaled_width < screen_size.x:
+		# Scale by X instead
+		var scale_x = screen_size.x / texture_size.x
+		background_sprite.scale = Vector2(scale_x, scale_x)
+	else:
+		background_sprite.scale = Vector2(scale_y, scale_y)

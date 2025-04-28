@@ -2,6 +2,9 @@ extends CanvasLayer
 
 var login_screen = null
 var create_account_screen = null
+@onready var leaderboard = $LevelUI/Leaderboard
+@onready var replay_button = $LevelUI/Leaderboard/VBoxContainer/ReplayButton
+@onready var login_button = $LevelUI/Leaderboard/VBoxContainer/LoginButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -52,6 +55,13 @@ func _on_account_created(username):
 
 func show_level_ui():
 	$LevelUI.visible = true
+	replay_button.visible = true
+	show_touch_controls()
+
+func show_multiplayer_ui():
+	$LevelUI.visible = true
+	login_button.visible = false
+	replay_button.visible = false
 	show_touch_controls()
 
 func show_touch_controls():

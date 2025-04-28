@@ -95,14 +95,9 @@ body {
 			<div id="status-notice"></div>
 		</div>
 
-		<div id="webgl-lost" style="display:none; position: absolute; top: 20px; left: 20px; color: white; background-color: red; padding: 10px; z-index: 1000;">
-			WebGL context lost. Please reload the page.
-		</div>
-		  
-
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":51046848,"index.wasm":35376909},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":true,"fileSizes":{"index.pck":51005840,"index.wasm":35376909},"focusCanvas":true,"gdextensionLibs":[]};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
@@ -199,25 +194,6 @@ const engine = new Engine(GODOT_CONFIG);
 	}
 }());
 		</script>
-		<script>
-			window.addEventListener("load", function() {
-				var canvas = document.getElementById('canvas');
-				var webglLost = document.getElementById('webgl-lost');
-			
-				if (canvas) {
-					canvas.addEventListener('webglcontextlost', function(event) {
-						event.preventDefault();
-						console.warn("WebGL context lost!");
-						if (webglLost) webglLost.style.display = 'block';
-						setTimeout(() => {
-							window.location.reload();
-						}, 500);
-					}, false);
-				}
-			});
-			</script>
-			
-			
 	</body>
 </html>
 
