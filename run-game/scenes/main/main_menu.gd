@@ -7,6 +7,7 @@ extends Control
 @onready var admin_button = $MiddleContainer/MenuButtonContainer/AdminControlsButton
 @onready var info_label = $MiddleContainer/InfoLabel
 
+var is_loading_level = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,7 +31,10 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_new_game_button_pressed() -> void:
-	#MusicManager.play_music("res://assets/audio/music/Guifrog - Frog Punch.mp3")
+	if is_loading_level:
+		return  # Already loading, ignore extra presses
+	
+	is_loading_level = true
 	MusicManager.play_music("res://assets/audio/music/mushroom_background_music.mp3")
 	var game = get_tree().root.get_node("Game")
 	if game:
@@ -38,6 +42,10 @@ func _on_new_game_button_pressed() -> void:
 
 
 func _on_level_select_button_pressed() -> void:
+	if is_loading_level:
+		return  # Already loading, ignore extra presses
+	
+	is_loading_level = true
 	var game = get_tree().root.get_node("Game")
 	if game:
 		game.load_level("res://scenes/common/level_select/level_select.tscn")
@@ -60,6 +68,10 @@ func _on_create_account_screen_button_pressed() -> void:
 
 
 func _on_endless_run_button_pressed() -> void:
+	if is_loading_level:
+		return  # Already loading, ignore extra presses
+	
+	is_loading_level = true
 	MusicManager.play_music("res://assets/audio/music/Maarten Schellekens - Ulua Beach.mp3")
 	var game = get_tree().root.get_node("Game")
 	if game:
@@ -67,6 +79,10 @@ func _on_endless_run_button_pressed() -> void:
 
 
 func _on_multiplayer_button_pressed() -> void:
+	if is_loading_level:
+		return  # Already loading, ignore extra presses
+	
+	is_loading_level = true
 	var game = get_tree().root.get_node("Game")
 	if game:
 		game.load_level("res://scenes/common/ui/multiplayer_screen.tscn")
