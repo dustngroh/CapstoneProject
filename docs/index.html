@@ -206,20 +206,17 @@ const engine = new Engine(GODOT_CONFIG);
 			
 				if (canvas) {
 					canvas.addEventListener('webglcontextlost', function(event) {
-						event.preventDefault(); // prevent the browser's annoying popup
+						event.preventDefault();
 						console.warn("WebGL context lost!");
 						if (webglLost) webglLost.style.display = 'block';
-						// You can also try reloading after some delay if you want:
-						// setTimeout(() => window.location.reload(), 3000);
-					}, false);
-			
-					canvas.addEventListener('webglcontextrestored', function(event) {
-						console.info("WebGL context restored!");
-						window.location.reload(); // reload to restart Godot engine cleanly
+						setTimeout(() => {
+							window.location.reload();
+						}, 500);
 					}, false);
 				}
 			});
 			</script>
+			
 			
 	</body>
 </html>
