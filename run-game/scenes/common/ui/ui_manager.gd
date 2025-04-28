@@ -49,15 +49,23 @@ func _on_account_created(username):
 	if login_screen:
 		login_screen.set_error_label("Account created for: " + username + ".\nPlease login now.")
 
+
 func show_level_ui():
 	$LevelUI.visible = true
+	show_touch_controls()
+
+func show_touch_controls():
 	$TouchControls.visible = true
 
 func hide_level_ui():
 	$LevelUI.visible = false
 	$LevelUI/Leaderboard.visible = false
 	$LevelUI/ScoreboardLabel.visible = false
+	hide_touch_controls()
+
+func hide_touch_controls():
 	$TouchControls.visible = false
+
 
 func _on_failed_login(error):
 	if login_screen:

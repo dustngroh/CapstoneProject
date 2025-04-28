@@ -27,6 +27,7 @@ func _ready() -> void:
 	position_sprite_to_bottom()
 	resize_background()
 	get_viewport().size_changed.connect(on_size_changed)
+	UIManager.show_touch_controls()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
