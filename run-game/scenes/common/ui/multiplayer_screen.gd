@@ -27,6 +27,8 @@ func _ready() -> void:
 	
 	if HTTPRequestManager.logged_in:
 		name_field.text = HTTPRequestManager.username
+	else:
+		name_field.grab_focus.call_deferred()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -111,3 +113,7 @@ func _on_main_menu_button_pressed() -> void:
 	var game = get_tree().root.get_node("Game")
 	if game:
 		game.load_level("res://scenes/main/MainMenu.tscn")
+
+
+func _on_name_field_text_submitted(new_text: String) -> void:
+	_on_connect_button_pressed()

@@ -78,7 +78,7 @@ func submit_distance():
 
 
 func update_leaderboard(scores: Array):
-	var leaderboard_text = "🏆 Endless Leaderboard 🏆\n"
+	var leaderboard_text = "Endless Leaderboard\n\n"
 
 	for score in scores:
 		var username = score.get("username", "???")
