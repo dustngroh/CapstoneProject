@@ -51,11 +51,13 @@ func _on_account_created(username):
 
 func show_level_ui():
 	$LevelUI.visible = true
+	$TouchControls.visible = true
 
 func hide_level_ui():
 	$LevelUI.visible = false
 	$LevelUI/Leaderboard.visible = false
 	$LevelUI/ScoreboardLabel.visible = false
+	$TouchControls.visible = false
 
 func _on_failed_login(error):
 	if login_screen:
