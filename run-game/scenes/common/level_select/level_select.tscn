@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cbb0tb4tuu5oc"]
+[gd_scene load_steps=16 format=3 uid="uid://cbb0tb4tuu5oc"]
 
 [ext_resource type="Texture2D" uid="uid://dakintnym36qk" path="res://assets/level_select/levelseclectBG.png" id="1_n7xxe"]
 [ext_resource type="Script" path="res://scenes/common/level_select/level_select_background.gd" id="2_4i2tq"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://c06ea4tjf1yfa" path="res://assets/level_select/buttons/3.png" id="5_j3fki"]
 [ext_resource type="Texture2D" uid="uid://3na62m7bpflv" path="res://assets/level_select/buttons/4.png" id="6_hxvc6"]
 [ext_resource type="Texture2D" uid="uid://bmd6oja36hhth" path="res://assets/level_select/buttons/seclectlew.png" id="8_a1wnf"]
-[ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://scenes/entities/characters/player/character_body_2d.tscn" id="9_gebnq"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_4xjo2"]
 device = -1
@@ -41,12 +40,6 @@ unicode = 52
 
 [sub_resource type="Shortcut" id="Shortcut_l2cs3"]
 events = [SubResource("InputEventKey_vtds7")]
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_b1pmp"]
-a = Vector2(-2000, 0)
-b = Vector2(2000, 0)
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fia07"]
 
 [node name="LevelSelect" type="Control"]
 layout_mode = 3
@@ -138,47 +131,17 @@ texture_normal = ExtResource("6_hxvc6")
 ignore_texture_size = true
 stretch_mode = 3
 
-[node name="MushroomCollisionHolder" type="Control" parent="LevelSelectBackground"]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="StaticBody2D" type="StaticBody2D" parent="LevelSelectBackground/MushroomCollisionHolder"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelSelectBackground/MushroomCollisionHolder/StaticBody2D"]
-shape = SubResource("SegmentShape2D_b1pmp")
-
-[node name="BottomWorldBorder" type="Area2D" parent="LevelSelectBackground/MushroomCollisionHolder"]
-position = Vector2(-256.098, 88.1687)
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelSelectBackground/MushroomCollisionHolder/BottomWorldBorder"]
-shape = SubResource("WorldBoundaryShape2D_fia07")
-
-[node name="CharacterBody2D" parent="LevelSelectBackground" instance=ExtResource("9_gebnq")]
-position = Vector2(575, -79)
-
-[node name="SpawnPoint" type="Marker2D" parent="LevelSelectBackground"]
-position = Vector2(575.419, -81.6289)
-
-[node name="TextureRect" type="TextureRect" parent="LevelSelectBackground"]
+[node name="SelectLevelText" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.5
 anchor_top = 0.0972222
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.0972222
-offset_left = -435.5
-offset_right = 435.5
 offset_bottom = 216.0
 grow_horizontal = 2
 texture = ExtResource("8_a1wnf")
-expand_mode = 3
+expand_mode = 2
+stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
 [node name="MainMenuButton" type="Button" parent="."]
@@ -197,5 +160,4 @@ text = "Main Menu"
 [connection signal="pressed" from="LevelSelectBackground/Level2Button" to="LevelSelectBackground" method="_on_level_2_button_pressed"]
 [connection signal="pressed" from="LevelSelectBackground/Level3Button" to="LevelSelectBackground" method="_on_level_3_button_pressed"]
 [connection signal="pressed" from="LevelSelectBackground/Level4Button" to="LevelSelectBackground" method="_on_level_4_button_pressed"]
-[connection signal="body_entered" from="LevelSelectBackground/MushroomCollisionHolder/BottomWorldBorder" to="LevelSelectBackground" method="_on_bottom_world_border_body_entered"]
 [connection signal="pressed" from="MainMenuButton" to="LevelSelectBackground" method="_on_main_menu_button_pressed"]
