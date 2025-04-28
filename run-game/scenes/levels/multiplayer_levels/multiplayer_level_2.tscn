@@ -12,6 +12,6 @@ position = Vector2(953, 518)
 [node name="SpawnPoint" parent="." index="2"]
 position = Vector2(56.2808, 452.203)
 
-[node name="TileMapLayer" parent="." index="5"]
+[node name="TileMapLayer" parent="." index="6"]
 tile_map_data = PackedByteArray("AAAAAAkAAAAHAAEAAAABAAkAAAAIAAEAAAAFAAsAAAAHAAIAAAAGAAsAAAAIAAIAAAAKAAkAAAAHAAEAAAALAAkAAAAIAAEAAAAPAAoAAAAHAAIAAAAQAAoAAAAIAAIAAAA=")
 tile_set = ExtResource("2_w1p1a")
