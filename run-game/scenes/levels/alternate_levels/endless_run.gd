@@ -21,6 +21,15 @@ var night_texture = preload("res://assets/level/backgrounds/level bkgd night.jpg
 @onready var day_cycle_modulate: CanvasModulate = $DayCycleModulate
 @onready var background_a = $Background/Sprite2D
 @onready var background_b = $Background/Sprite2D2
+@onready var level_spawner = $LevelSpawner
+@onready var distance_label = $EndlessRunUI/DistanceLabel
+@onready var login_button = $EndlessRunUI/VBoxContainer/LoginButton
+
+var distance_traveled: int = 0
+var submit_timer: float = 0.0
+var submit_interval: float = 10.0  # How often to submit distance (seconds)
+var player: CharacterBody2D
+var leaderboard_label: Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,12 +37,58 @@ func _ready() -> void:
 	resize_background()
 	get_viewport().size_changed.connect(on_size_changed)
 	UIManager.show_touch_controls()
+	
+	player = $Player
+	leaderboard_label = $EndlessRunUI/VBoxContainer/Leaderboard
+	leaderboard_label.text = "Leaderboard loading..."
+	
+	login_button.pressed.connect(_on_login_button_pressed)
+	var logged_in = HTTPRequestManager.is_logged_in()
+	
+	if !logged_in:
+		login_button.visible = true
+		HTTPRequestManager.login_success.connect(_on_login_success)
+		HTTPRequestManager.register_success.connect(_on_account_creation)
+		HTTPRequestManager.login_failed.connect(_on_failed_login)
+		HTTPRequestManager.register_failed.connect(_on_failed_register)
+	
+	HTTPRequestManager.endless_leaderboard_received.connect(update_leaderboard)
+	HTTPRequestManager.endless_distance_submitted.connect(submission_successful)
+
+	# Fetch the initial leaderboard
+	HTTPRequestManager.fetch_endless_leaderboard()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	update_day_cycle(delta)
+	
+	if player:
+		distance_traveled = int((level_spawner.total_distance_traveled + player.position.x) / 100)
+		distance_label.text = "Distance: %d units" % distance_traveled
+		submit_timer += delta
+		if submit_timer >= submit_interval:
+			submit_timer = 0.0
+			submit_distance()
 
+
+func submit_distance():
+	print("Submitting distance: ", distance_traveled)
+	HTTPRequestManager.submit_endless_distance(distance_traveled)
+
+
+func update_leaderboard(scores: Array):
+	var leaderboard_text = "🏆 Endless Leaderboard 🏆\n"
+
+	for score in scores:
+		var username = score.get("username", "???")
+		var distance = score.get("distance", 0)
+		leaderboard_text += "%s - %d units\n" % [username, distance]
+
+	leaderboard_label.text = leaderboard_text
+
+func submission_successful():
+	HTTPRequestManager.fetch_endless_leaderboard()
 
 func update_day_cycle(delta):
 	time_elapsed += delta
@@ -113,3 +168,21 @@ func resize_background():
 func on_size_changed():
 	position_sprite_to_bottom()
 	resize_background()
+
+func _on_login_button_pressed():
+	UIManager.show_login()
+
+func _on_login_success(user) -> void:
+	UIManager.hide_login()
+	login_button.visible = false
+	submit_distance()
+	print("Logged in!")
+
+func _on_account_creation(user) -> void:
+	UIManager._on_account_created(user)
+
+func _on_failed_login(error) -> void:
+	UIManager._on_failed_login(error)
+	
+func _on_failed_register(error) -> void:
+	UIManager._on_failed_register(error)

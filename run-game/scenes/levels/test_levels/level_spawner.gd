@@ -5,6 +5,7 @@ extends Node2D
 @export var max_chunks := 5 
 @export var RESET_THRESHOLD = 30720  # Reset world when the player crosses this point
 @export var shift_amount = 30720
+var total_distance_traveled = 0
 
 var active_chunks = []  # List of currently spawned chunks
 var player
@@ -56,6 +57,7 @@ func recenter_world_if_needed():
 		
 		# Move player back
 		player.position.x -= shift_amount
+		total_distance_traveled += shift_amount
 
 		# Move all active chunks back
 		for chunk in active_chunks:

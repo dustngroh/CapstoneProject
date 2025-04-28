@@ -46,7 +46,7 @@ repeat_size = Vector2(1933, 0)
 texture = ExtResource("3_kakqc")
 centered = false
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("3_bwob8")]
+[node name="Player" parent="." instance=ExtResource("3_bwob8")]
 
 [node name="DayCycleModulate" type="CanvasModulate" parent="."]
 
@@ -63,10 +63,20 @@ offset_bottom = 39.0
 grow_vertical = 2
 metadata/_edit_use_anchors_ = true
 
+[node name="Leaderboard" type="Label" parent="EndlessRunUI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "asdf"
+
 [node name="MainMenuButton" type="Button" parent="EndlessRunUI/VBoxContainer"]
 layout_mode = 2
 text = "Main Menu"
 metadata/_edit_use_anchors_ = true
+
+[node name="LoginButton" type="Button" parent="EndlessRunUI/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Login"
 
 [node name="Label" type="Label" parent="EndlessRunUI/VBoxContainer"]
 layout_mode = 2
@@ -75,5 +85,20 @@ text = "Volume:"
 [node name="VolumeSlider" parent="EndlessRunUI/VBoxContainer" instance=ExtResource("7_6y4i2")]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
+
+[node name="DistanceLabel" type="Label" parent="EndlessRunUI"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -48.0
+offset_right = 36.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Distance:"
+horizontal_alignment = 1
 
 [connection signal="pressed" from="EndlessRunUI/VBoxContainer/MainMenuButton" to="LevelSpawner" method="_on_main_menu_button_pressed"]

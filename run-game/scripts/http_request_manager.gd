@@ -14,6 +14,9 @@ signal score_submission_result(message: String)
 signal personal_record_achieved(message: String)
 signal world_record_achieved(message: String)
 signal leaderboard_received(level: int, scores: Array)
+signal endless_distance_submitted()
+signal endless_leaderboard_received(scores: Array)
+
 
 
 func _ready():
@@ -98,6 +101,30 @@ func fetch_leaderboard(level_number: int):
 	http_request.request(url, [], HTTPClient.METHOD_GET)
 
 
+# Endless mode: Submit distance
+func submit_endless_distance(distance: int) -> void:
+	if !logged_in:
+		print("Not logged in — cannot submit endless distance.")
+		return
+
+	var url = base_url + "/endless"
+	var headers = [
+		"Content-Type: application/json",
+		"Authorization: " + jwt_token
+	]
+	var body = {
+		"distance": distance
+	}
+
+	var json_body = JSON.stringify(body)
+	http_request.request(url, headers, HTTPClient.METHOD_POST, json_body)
+
+# Endless mode: Fetch leaderboard
+func fetch_endless_leaderboard() -> void:
+	var url = base_url + "/endless"
+	http_request.request(url, [], HTTPClient.METHOD_GET)
+
+
 func _on_request_completed(result, response_code, headers, body):
 	var response = JSON.parse_string(body.get_string_from_utf8())
 	var response_type = response.get("type", "")
@@ -163,6 +190,20 @@ func _on_request_completed(result, response_code, headers, body):
 							print("- %s: %.2f seconds at %s" % [score["username"], time, score["timestamp"]])
 					else:
 						print("Failed to retrieve leaderboard: %s" % response.get("message", "Unknown error"))
+
+				"submit-distance":
+					if response_code == 201:
+						endless_distance_submitted.emit()
+						print("Endless distance submitted successfully.")
+					else:
+						print("Failed to submit endless distance: %s" % response.get("message", "Unknown error"))
+
+				"get-endless-leaderboard":
+					if response_code == 200:
+						endless_leaderboard_received.emit(response["scores"])
+						
+					else:
+						print("Failed to retrieve endless leaderboard: %s" % response.get("message", "Unknown error"))
 
 				"error":
 					if response.has("message"):
