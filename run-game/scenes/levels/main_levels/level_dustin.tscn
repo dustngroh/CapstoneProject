@@ -86,3 +86,4 @@ position = Vector2(408, 912)
 
 [node name="Checkpoint2" parent="." index="18" instance=ExtResource("12_8ak84")]
 position = Vector2(-874, 813)
+scale = Vector2(-1, 1)

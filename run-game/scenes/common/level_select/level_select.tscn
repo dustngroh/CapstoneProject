@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cbb0tb4tuu5oc"]
+[gd_scene load_steps=17 format=3 uid="uid://cbb0tb4tuu5oc"]
 
 [ext_resource type="Texture2D" uid="uid://dakintnym36qk" path="res://assets/level_select/levelseclectBG.png" id="1_n7xxe"]
 [ext_resource type="Script" path="res://scenes/common/level_select/level_select_background.gd" id="2_4i2tq"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c06ea4tjf1yfa" path="res://assets/level_select/buttons/3.png" id="5_j3fki"]
 [ext_resource type="Texture2D" uid="uid://3na62m7bpflv" path="res://assets/level_select/buttons/4.png" id="6_hxvc6"]
 [ext_resource type="Texture2D" uid="uid://bmd6oja36hhth" path="res://assets/level_select/buttons/seclectlew.png" id="8_a1wnf"]
+[ext_resource type="Theme" uid="uid://df3rrd7p3483n" path="res://assets/themes/mush_theme.tres" id="8_asfqc"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_4xjo2"]
 device = -1
@@ -154,6 +155,7 @@ offset_top = 15.0
 offset_right = 48.0
 offset_bottom = 46.0
 grow_horizontal = 2
+theme = ExtResource("8_asfqc")
 text = "Main Menu"
 
 [connection signal="pressed" from="LevelSelectBackground/Level1Button" to="LevelSelectBackground" method="_on_level_1_button_pressed"]

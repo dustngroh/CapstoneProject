@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhikxsmxr43ju"]
+[gd_scene load_steps=4 format=3 uid="uid://dhikxsmxr43ju"]
+
+[ext_resource type="Theme" uid="uid://df3rrd7p3483n" path="res://assets/themes/mush_theme.tres" id="1_c8tb8"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jmvir"]
 font_size = 32
@@ -40,23 +42,28 @@ grow_vertical = 2
 
 [node name="NextLevelButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_c8tb8")
 text = "Next Level"
 
 [node name="ResetButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_c8tb8")
 text = "Retry Level"
 
 [node name="MainMenuButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_c8tb8")
 text = "Main Menu
 "
 
 [node name="ReplayButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_c8tb8")
 text = "Watch Replay"
 
 [node name="LoginButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("1_c8tb8")
 text = "Login"
 
 [node name="LeaderboardBox" type="Label" parent="."]

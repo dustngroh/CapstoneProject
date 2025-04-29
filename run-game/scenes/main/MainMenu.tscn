@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlxl0dsaj7hws"]
+[gd_scene load_steps=8 format=3 uid="uid://dlxl0dsaj7hws"]
 
 [ext_resource type="Script" path="res://scenes/main/main_menu.gd" id="1_otjms"]
 [ext_resource type="Texture2D" uid="uid://jg3v5u477a2c" path="res://assets/main_menu/mainscr.png" id="4_f8l7d"]
+[ext_resource type="Theme" uid="uid://df3rrd7p3483n" path="res://assets/themes/mush_theme.tres" id="4_t272i"]
 [ext_resource type="Texture2D" uid="uid://bomyj41nob1vw" path="res://assets/main_menu/maintitle.png" id="5_rgsoi"]
 [ext_resource type="PackedScene" uid="uid://co22yqlcbx25r" path="res://scenes/common/ui/volume_slider.tscn" id="6_wao8s"]
 
@@ -86,23 +87,28 @@ size_flags_horizontal = 4
 [node name="NewGameButton" type="Button" parent="MiddleContainer/MenuButtonContainer"]
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
+theme = ExtResource("4_t272i")
 text = "New Game"
 
 [node name="LevelSelectButton" type="Button" parent="MiddleContainer/MenuButtonContainer"]
 layout_mode = 2
+theme = ExtResource("4_t272i")
 text = "Level Select"
 
 [node name="EndlessRunButton" type="Button" parent="MiddleContainer/MenuButtonContainer"]
 layout_mode = 2
+theme = ExtResource("4_t272i")
 text = "Endless Run"
 
 [node name="MultiplayerButton" type="Button" parent="MiddleContainer/MenuButtonContainer"]
 layout_mode = 2
+theme = ExtResource("4_t272i")
 text = "Multiplayer
 "
 
 [node name="LoginScreenButton" type="Button" parent="MiddleContainer/MenuButtonContainer"]
 layout_mode = 2
+theme = ExtResource("4_t272i")
 text = "Login"
 
 [node name="CreateAccountScreenButton" type="Button" parent="MiddleContainer/MenuButtonContainer"]
@@ -113,6 +119,7 @@ text = "Create Account"
 [node name="LogoutButton" type="Button" parent="MiddleContainer/MenuButtonContainer"]
 visible = false
 layout_mode = 2
+theme = ExtResource("4_t272i")
 text = "Logout"
 
 [node name="MuteButton" type="CheckButton" parent="MiddleContainer/MenuButtonContainer"]

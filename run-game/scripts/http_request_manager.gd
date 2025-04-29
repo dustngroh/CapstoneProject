@@ -14,6 +14,7 @@ signal score_submission_result(message: String)
 signal personal_record_achieved(message: String)
 signal world_record_achieved(message: String)
 signal leaderboard_received(level: int, scores: Array)
+signal replay_received(replay_data: Array)
 signal endless_distance_submitted()
 signal endless_leaderboard_received(scores: Array)
 
@@ -95,11 +96,49 @@ func submit_time(level_number: int, completion_time: float) -> void:
 	var json_body = JSON.stringify(body)
 	http_request.request(url, headers, HTTPClient.METHOD_POST, json_body)
 
+func submit_time_with_replay(level_number: int, completion_time: float, replay_array: Array) -> void:
+	if !logged_in:
+		print("Not logged in — cannot submit score.")
+		return
+
+	var centiseconds = int(round(completion_time * 100.0))
+
+	# Convert Vector2 positions to {x, y} dictionaries
+	var replay_json_array = []
+	for pos in replay_array:
+		replay_json_array.append({ 
+			"x": snapped(pos.x, 0.001),
+			"y": snapped(pos.y, 0.001)
+			 })
+
+	# Stringify the whole replay array to send as a single JSON string
+	var replay_json_string = JSON.stringify(replay_json_array)
+
+	var url = base_url + "/scores"
+	#var url = "http://localhost:3000" + "/scores"
+	var headers = [
+		"Content-Type: application/json",
+		"Authorization: " + jwt_token
+	]
+	var body = {
+		"level_number": level_number,
+		"completion_time": centiseconds,
+		"replay_data": replay_json_string
+	}
+
+	var json_body = JSON.stringify(body)
+	http_request.request(url, headers, HTTPClient.METHOD_POST, json_body)
+
+
 # Score retrieval
 func fetch_leaderboard(level_number: int):
 	var url = base_url + "/scores/" + str(level_number)
 	http_request.request(url, [], HTTPClient.METHOD_GET)
 
+
+func fetch_replay(level_number: int, username: String) -> void:
+	var url = base_url + "/scores/replay/" + str(level_number) + "/" + username
+	http_request.request(url, [], HTTPClient.METHOD_GET)
 
 # Endless mode: Submit distance
 func submit_endless_distance(distance: int) -> void:
@@ -126,7 +165,19 @@ func fetch_endless_leaderboard() -> void:
 
 
 func _on_request_completed(result, response_code, headers, body):
-	var response = JSON.parse_string(body.get_string_from_utf8())
+	if result != HTTPRequest.RESULT_SUCCESS:
+		print("HTTP request failed with result code: %d" % result)
+		return
+	
+	var body_text = body.get_string_from_utf8()
+	var json = JSON.new()
+	var error_code = json.parse(body_text)
+
+	if error_code != OK:
+		print("JSON parse failed: %s" % body_text)
+		return
+
+	var response = json.get_data()
 	var response_type = response.get("type", "")
 	
 	match response_type:
@@ -204,6 +255,15 @@ func _on_request_completed(result, response_code, headers, body):
 						
 					else:
 						print("Failed to retrieve endless leaderboard: %s" % response.get("message", "Unknown error"))
+
+				"get-replay":
+					if response_code == 200:
+						var replay_array = response.get("replay_data", "[]")
+						#var replay_array = JSON.parse_string(replay_string)
+						print("Replay data received!")
+						emit_signal("replay_received", replay_array)
+					else:
+						print("Failed to retrieve replay: %s" % response.get("message", "Unknown error"))
 
 				"error":
 					if response.has("message"):
