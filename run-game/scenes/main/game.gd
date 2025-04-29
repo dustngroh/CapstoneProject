@@ -5,6 +5,7 @@ var current_level = null
 
 func _ready():
 	load_level('res://scenes/main/MainMenu.tscn') # Load Main Menu on start
+	#load_level('res://scenes/levels/main_levels/level_dustin.tscn') # Uncomment this and change path to your level
 
 func load_level(level_path: String):
 	# Fade to black

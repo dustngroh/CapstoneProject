@@ -16,6 +16,7 @@ var touch_controls_instance: Control = null
 var player: CharacterBody2D
 var elapsed_time: float = 0.0  # Time starts at 0
 var timer_running: bool = false # Paused until countdown ends
+var respawn_point: Vector2
 
 @onready var game: Node = get_tree().root.get_node("Game")
 @onready var level_ui: Control = UIManager.get_node("LevelUI")
@@ -141,7 +142,8 @@ func spawn_player():
 	if player_scene:
 		player = player_scene.instantiate()  # Create an instance of Player
 		add_child(player)  # Add to the scene
-		player.global_position = spawn_point.global_position  # Move to SpawnPoint
+		respawn_point = spawn_point.global_position
+		player.global_position = respawn_point  # Move to SpawnPoint
 		player.set_physics_process(false)  # Disable movement until countdown ends
 
 func _on_win_zone_win():
@@ -236,7 +238,12 @@ func _on_leaderboard_received(level: int, scores: Array):
 
 func _on_bottom_world_border_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):  # Ensure it's the player
-		body.position = spawn_point.position  # Respawn at the spawn point
+		#body.position = spawn_point.position  # Respawn at the spawn point
+		body.global_position = respawn_point
+
+func set_checkpoint(new_checkpoint_position: Vector2) -> void:
+	respawn_point = new_checkpoint_position
+
 
 func _on_next_button_pressed():
 	current_level_number = (current_level_number % total_levels) + 1  # Cycle from 1 to 4

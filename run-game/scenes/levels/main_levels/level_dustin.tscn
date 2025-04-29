@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bd1gvporen5pu"]
+[gd_scene load_steps=13 format=4 uid="uid://bd1gvporen5pu"]
 
 [ext_resource type="PackedScene" uid="uid://ds5twxhi7yq7j" path="res://scenes/levels/BaseLevel.tscn" id="1_mebee"]
 [ext_resource type="PackedScene" uid="uid://vih42f7l4t7b" path="res://scenes/entities/structures/spring.tscn" id="2_suynj"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://fw8lws3fjv7p" path="res://scenes/entities/obstacles/rock_small.tscn" id="8_20ymr"]
 [ext_resource type="PackedScene" uid="uid://ceg00ldi310ps" path="res://scenes/entities/obstacles/slow_zone.tscn" id="10_6bhgg"]
 [ext_resource type="PackedScene" uid="uid://dwj6wpsg7ppp6" path="res://scenes/entities/obstacles/mushroom_spawner.tscn" id="11_hffc3"]
+[ext_resource type="PackedScene" uid="uid://cv0g3jhsyp68l" path="res://scenes/entities/structures/checkpoint.tscn" id="12_8ak84"]
 
 [node name="LevelDustin" instance=ExtResource("1_mebee")]
 
@@ -76,6 +77,12 @@ position = Vector2(2757, -316)
 position = Vector2(3661, -111)
 
 [node name="SlowZone" parent="." index="15" instance=ExtResource("10_6bhgg")]
-position = Vector2(528, 333)
+position = Vector2(599, 500)
 slow_factor = 0.1
 length = 2000
+
+[node name="Checkpoint" parent="." index="17" instance=ExtResource("12_8ak84")]
+position = Vector2(408, 912)
+
+[node name="Checkpoint2" parent="." index="18" instance=ExtResource("12_8ak84")]
+position = Vector2(-874, 813)
