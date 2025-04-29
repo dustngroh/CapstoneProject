@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c5o47xslwftki"]
+[gd_scene load_steps=13 format=3 uid="uid://c5o47xslwftki"]
 
 [ext_resource type="Script" path="res://scenes/levels/alternate_levels/endless_run.gd" id="1_5jfvm"]
 [ext_resource type="Script" path="res://scenes/levels/test_levels/level_spawner.gd" id="1_78dij"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cxp4o16ogctgi" path="res://scenes/levels/endless_level_chunks/endless_level_3.tscn" id="4_lhppd"]
 [ext_resource type="PackedScene" uid="uid://bnhtx0g2iwbf8" path="res://scenes/levels/endless_level_chunks/endless_level_4.tscn" id="5_nl7dp"]
 [ext_resource type="PackedScene" uid="uid://co22yqlcbx25r" path="res://scenes/common/ui/volume_slider.tscn" id="7_6y4i2"]
+[ext_resource type="Theme" uid="uid://df3rrd7p3483n" path="res://assets/themes/mush_theme.tres" id="11_5i8ja"]
 
 [node name="EndlessRun" type="Node2D"]
 script = ExtResource("1_5jfvm")
@@ -79,12 +80,14 @@ size_flags_horizontal = 0
 [node name="MainMenuButton" type="Button" parent="EndlessRunUI/VBoxContainer/Buttons"]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
+theme = ExtResource("11_5i8ja")
 text = "End Run"
 metadata/_edit_use_anchors_ = true
 
 [node name="LoginButton" type="Button" parent="EndlessRunUI/VBoxContainer/Buttons"]
 visible = false
 layout_mode = 2
+theme = ExtResource("11_5i8ja")
 text = "Login"
 
 [node name="VSpace" type="MarginContainer" parent="EndlessRunUI/VBoxContainer/Buttons"]
