@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ds5twxhi7yq7j"]
+[gd_scene load_steps=10 format=3 uid="uid://ds5twxhi7yq7j"]
 
 [ext_resource type="Script" path="res://scenes/levels/base_level.gd" id="1_3y0r6"]
 [ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://scenes/entities/characters/player/character_body_2d.tscn" id="2_qdxsp"]
@@ -10,28 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://mitkt4dlb2sw" path="res://scenes/common/ui/dynamic_background.tscn" id="10_2tsbk"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_16w4h"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_166wb"]
-content_margin_left = 8.0
-content_margin_top = 8.0
-content_margin_right = 8.0
-content_margin_bottom = 8.0
-bg_color = Color(0.51, 0.502, 0.451, 0.638)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.98, 0.965, 0.843, 0.585)
-border_blend = true
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-expand_margin_left = 4.0
-expand_margin_top = 4.0
-expand_margin_right = 4.0
-expand_margin_bottom = 4.0
-shadow_size = 5
 
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource("1_3y0r6")
@@ -82,32 +60,6 @@ tile_set = ExtResource("9_k7avm")
 top_level = true
 
 [node name="CutsceneCamera" type="Camera2D" parent="."]
-
-[node name="LeaderboardUI" type="CanvasLayer" parent="."]
-
-[node name="PanelContainer" type="PanelContainer" parent="LeaderboardUI"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_166wb")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="LeaderboardUI/PanelContainer"]
-layout_mode = 2
-
-[node name="StatusLabel" type="Label" parent="LeaderboardUI/PanelContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="LeaderboardContainer" type="VBoxContainer" parent="LeaderboardUI/PanelContainer/VBoxContainer"]
-layout_mode = 2
 
 [connection signal="body_entered" from="BottomWorldBorder" to="." method="_on_bottom_world_border_body_entered"]
 [connection signal="win" from="WinZone" to="." method="_on_win_zone_win"]

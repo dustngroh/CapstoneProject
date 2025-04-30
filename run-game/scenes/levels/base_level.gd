@@ -34,9 +34,6 @@ var respawn_point: Vector2
 @onready var countdown_player: AudioStreamPlayer = UIManager.get_node("LevelUI/CountdownAudio")
 @onready var start_player: AudioStreamPlayer = UIManager.get_node("LevelUI/StartAudio")
 @onready var cutscene_camera: Camera2D = $CutsceneCamera
-@onready var leaderboard_container: PanelContainer = $LeaderboardUI/PanelContainer
-@onready var leaderboard_list_container: VBoxContainer = $LeaderboardUI/PanelContainer/VBoxContainer/LeaderboardContainer
-@onready var leaderboard_status_label: Label = $LeaderboardUI/PanelContainer/VBoxContainer/StatusLabel
 
 
 
@@ -156,13 +153,10 @@ func _on_win_zone_win():
 	player.end_recording()
 	leaderboard.visible = true
 	level_options.visible = true
-	#leaderboard_box.visible = true
 	
-	#leaderboard_container.visible = true
-	#leaderboard_container.modulate = Color(1, 1, 1, 0)
-	#var tween = create_tween()
-	#tween.tween_property(leaderboard_container, "modulate:a", 1.0, 3.0)
-	show_leaderboard_container()
+	
+	UIManager.clear_leaderboard()
+	UIManager.show_leaderboard_container()
 	
 	# Submit time to backend
 	if HTTPRequestManager.is_logged_in():
@@ -171,9 +165,9 @@ func _on_win_zone_win():
 			HTTPRequestManager.world_record_achieved.connect(_on_world_record)
 			HTTPRequestManager.personal_record_achieved.connect(_on_personal_record)
 			
-		#leaderboard_box.text = "Submitting Time...\nThis may take a minute."
-		leaderboard_status_label.text = "Submitting Time...\nThis may take a minute."
-		#HTTPRequestManager.submit_time(current_level_number, elapsed_time)
+		#leaderboard_status_label.text = "Submitting Time...\nThis may take a minute."
+		UIManager.update_status("Submitting Time...\nThis may take a minute.")
+		
 		HTTPRequestManager.submit_time_with_replay(current_level_number, elapsed_time, player.position_history)
 	else:
 		leaderboard_label.text += "\nLogin to submit your time!"
@@ -234,57 +228,22 @@ func show_leaderboard():
 	level_options.visible = true
 	#leaderboard_box.visible = true
 	
-	#leaderboard_box.text = "Fetching Leaderboard...\nThis may take a minute."
-	leaderboard_status_label.text = "Fetching Leaderboard...\nThis may take a minute"
+	#leaderboard_status_label.text = "Fetching Leaderboard...\nThis may take a minute"
+	UIManager.update_status("Fetching Leaderboard...\nThis may take a minute.")
 	
 	# Fetch leaderboard and display results
 	HTTPRequestManager.fetch_leaderboard(current_level_number)
 	
-	#await get_tree().create_timer(1.0).timeout  # Wait for API response
 
 func _on_leaderboard_received(level: int, scores: Array):
 	if level != current_level_number:
 		return  # Ensure it's for the current level
 
 	#leaderboard_box.text = "Top Times:\n"
-	leaderboard_status_label.text = "Top Times:"
-
-	#for i in range(scores.size()):
-		#var score = scores[i]
-		#var time_in_seconds = float(score["completion_time"]) / 100.0
-		#leaderboard_box.text += "%d. %s - %.2f seconds\n" % [i + 1, score["username"], time_in_seconds]
-		
-	leaderboard_box.visible = false
-	for child in leaderboard_list_container.get_children():
-		leaderboard_list_container.remove_child(child)
-		child.queue_free()
-	
-	for i in range(scores.size()):
-		var score = scores[i]
-		var username = score["username"]
-		var time = float(score["completion_time"]) / 100.0
-
-		var hbox = HBoxContainer.new()
-
-		var label = Label.new()
-		label.text = "%d. %s - %.2f seconds" % [i + 1, username, time]
-		label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-
-		var button = Button.new()
-		button.text = "Watch"
-		button.pressed.connect(_on_watch_replay_pressed.bind(level, username))
-		button.theme = preload("res://assets/themes/mush_theme.tres")
-		
-		var current_username = HTTPRequestManager.username
-
-		if username == current_username:
-			label.add_theme_color_override("font_color", Color.YELLOW)
-			#button.add_theme_color_override("font_color", Color.YELLOW)
-
-		hbox.add_child(label)
-		hbox.add_child(button)
-
-		leaderboard_list_container.add_child(hbox)
+	#leaderboard_status_label.text = "Top Times:"
+	UIManager.watch_replay_pressed.connect(_on_watch_replay_pressed)
+	UIManager.update_status("Top Times:")
+	UIManager.populate_leaderboard(level, scores)
 
 
 func _on_bottom_world_border_body_entered(body: Node2D) -> void:
@@ -399,20 +358,21 @@ func _on_watch_replay_pressed(level_number: int, username: String) -> void:
 func _on_replay_received(replay_array: Array) -> void:
 	print("Starting replay!")
 	play_replay(replay_array)
-	# Here you can instantiate a ghost player and play the replay_array
 
 func show_leaderboard_container():
-	leaderboard_container.visible = true
-	leaderboard_container.modulate = Color(1, 1, 1, 0)
-	if active_tween:
-		active_tween.kill()
-	
-	active_tween = create_tween()
-	active_tween.tween_property(leaderboard_container, "modulate:a", 1.0, 3.0)
+	UIManager.show_leaderboard_container()
+	#leaderboard_container.visible = true
+	#leaderboard_container.modulate = Color(1, 1, 1, 0)
+	#if active_tween:
+		#active_tween.kill()
+	#
+	#active_tween = create_tween()
+	#active_tween.tween_property(leaderboard_container, "modulate:a", 1.0, 3.0)
 
 func hide_leaderboard_container():
-	if active_tween:
-		active_tween.kill()
-	
-	active_tween = create_tween()
-	active_tween.tween_property(leaderboard_container, "modulate:a", 0.0, 0.5)
+	UIManager.hide_leaderboard_container()
+	#if active_tween:
+		#active_tween.kill()
+	#
+	#active_tween = create_tween()
+	#active_tween.tween_property(leaderboard_container, "modulate:a", 0.0, 0.5)

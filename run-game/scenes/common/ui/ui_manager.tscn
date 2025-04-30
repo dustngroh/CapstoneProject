@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bna48stbflevk"]
+[gd_scene load_steps=12 format=3 uid="uid://bna48stbflevk"]
 
 [ext_resource type="PackedScene" uid="uid://dhikxsmxr43ju" path="res://scenes/common/ResultsScreen.tscn" id="1_bcprt"]
 [ext_resource type="Script" path="res://scenes/common/fade_layer.gd" id="1_ulhlq"]
@@ -26,6 +26,28 @@ shadow_color = Color(0, 0, 0, 1)
 font_size = 32
 outline_size = 10
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bi4pl"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.51, 0.502, 0.451, 0.638)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.98, 0.965, 0.843, 0.585)
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+shadow_size = 5
 
 [node name="UIManager" type="CanvasLayer"]
 script = ExtResource("1_xalce")
@@ -103,6 +125,32 @@ offset_bottom = 23.0
 grow_horizontal = 2
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
+
+[node name="LeaderboardUI" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="LeaderboardUI"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bi4pl")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LeaderboardUI/PanelContainer"]
+layout_mode = 2
+
+[node name="StatusLabel" type="Label" parent="LeaderboardUI/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScoresContainer" type="VBoxContainer" parent="LeaderboardUI/PanelContainer/VBoxContainer"]
+layout_mode = 2
 
 [node name="TouchControls" parent="." instance=ExtResource("5_xl1o8")]
 

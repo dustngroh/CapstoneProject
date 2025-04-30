@@ -26,6 +26,7 @@ func _on_quit_button_pressed():
 
 func _on_main_menu_button_pressed() -> void:
 	toggle_pause()
+	UIManager.hide_leaderboard_container()
 	WebSocketManager.disconnect_from_server()
 	MusicManager.play_random_menu_music()
 	var game = get_tree().root.get_node("Game")
