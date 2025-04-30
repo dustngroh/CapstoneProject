@@ -31,11 +31,6 @@ func _ready() -> void:
 		name_field.grab_focus.call_deferred()
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func _on_connect_button_pressed() -> void:
 	var name = name_field.text
 	if name.is_empty():

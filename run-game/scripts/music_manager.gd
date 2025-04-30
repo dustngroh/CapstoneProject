@@ -21,10 +21,6 @@ func _ready():
 		#music_player.play() 
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 # Function to play a specific song
 func play_music(song_path: String):
 	var new_song = load(song_path)  # Load the music file

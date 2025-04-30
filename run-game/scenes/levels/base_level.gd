@@ -76,21 +76,6 @@ func _ready():
 	login_button.visible = !HTTPRequestManager.is_logged_in()
 	HTTPRequestManager.leaderboard_received.connect(_on_leaderboard_received)
 	HTTPRequestManager.replay_received.connect(_on_replay_received)
-	
-	# Check for admin controls
-	if Settings.admin_controls_enabled:
-		if admin_controls_instance == null:
-			admin_controls_instance = admin_controls_scene.instantiate() # Only instantiated if enabled
-			# Add the admin controls to the UI
-			level_ui.add_child(admin_controls_instance)
-			
-			# Connect buttons
-			var next_level_button = admin_controls_instance.get_node("VBoxContainer/NextLevelButton")
-			var previous_level_button = admin_controls_instance.get_node("VBoxContainer/PreviousLevelButton")
-			var main_menu_button = admin_controls_instance.get_node("VBoxContainer/MainMenuButton")
-			next_level_button.pressed.connect(_on_next_button_pressed)
-			previous_level_button.pressed.connect(_on_previous_button_pressed)
-			main_menu_button.pressed.connect(_on_main_button_pressed)
 
 
 func _process(delta):
@@ -361,18 +346,6 @@ func _on_replay_received(replay_array: Array) -> void:
 
 func show_leaderboard_container():
 	UIManager.show_leaderboard_container()
-	#leaderboard_container.visible = true
-	#leaderboard_container.modulate = Color(1, 1, 1, 0)
-	#if active_tween:
-		#active_tween.kill()
-	#
-	#active_tween = create_tween()
-	#active_tween.tween_property(leaderboard_container, "modulate:a", 1.0, 3.0)
 
 func hide_leaderboard_container():
 	UIManager.hide_leaderboard_container()
-	#if active_tween:
-		#active_tween.kill()
-	#
-	#active_tween = create_tween()
-	#active_tween.tween_property(leaderboard_container, "modulate:a", 0.0, 0.5)

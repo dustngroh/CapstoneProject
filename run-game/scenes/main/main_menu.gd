@@ -4,7 +4,6 @@ extends Control
 @onready var logout_button = $MiddleContainer/MenuButtonContainer/LogoutButton
 @onready var create_account_button = $MiddleContainer/MenuButtonContainer/CreateAccountScreenButton
 @onready var mute_button = $MiddleContainer/MenuButtonContainer/MuteButton
-@onready var admin_button = $MiddleContainer/MenuButtonContainer/AdminControlsButton
 @onready var info_label = $MiddleContainer/InfoLabel
 
 var is_loading_level = false
@@ -13,7 +12,6 @@ var is_loading_level = false
 func _ready() -> void:
 	
 	mute_button.set_pressed_no_signal(MusicManager.is_muted)
-	admin_button.set_pressed_no_signal(Settings.admin_controls_enabled)
 	
 	UIManager.hide_level_ui()
 	HTTPRequestManager.login_success.connect(_on_successful_login)
@@ -25,10 +23,6 @@ func _ready() -> void:
 	
 	update_login_buttons(logged_in)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func _on_new_game_button_pressed() -> void:
 	if is_loading_level:
@@ -53,10 +47,6 @@ func _on_level_select_button_pressed() -> void:
 
 func _on_mute_button_toggled(toggled_on: bool) -> void:
 	MusicManager.toggle_mute()
-
-
-func _on_admin_controls_button_toggled(toggled_on: bool) -> void:
-	Settings.toggle_admin_controls()
 
 
 func _on_login_screen_button_pressed() -> void:

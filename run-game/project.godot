@@ -20,7 +20,6 @@ config/icon="res://assets/main_menu/miloicon.png"
 [autoload]
 
 MusicManager="*res://scripts/music_manager.gd"
-Settings="*res://scripts/settings.gd"
 UIManager="*res://scenes/common/ui/ui_manager.tscn"
 WebSocketManager="*res://scripts/web_socket_manager.gd"
 HTTPRequestManager="*res://scripts/http_request_manager.gd"

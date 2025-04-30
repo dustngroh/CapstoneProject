@@ -128,12 +128,6 @@ layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Mute Music"
 
-[node name="AdminControlsButton" type="CheckButton" parent="MiddleContainer/MenuButtonContainer"]
-visible = false
-layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-text = "Admin Controls"
-
 [node name="VolumeContainer" type="VBoxContainer" parent="."]
 visible = false
 layout_mode = 1
@@ -166,4 +160,3 @@ layout_mode = 2
 [connection signal="pressed" from="MiddleContainer/MenuButtonContainer/CreateAccountScreenButton" to="." method="_on_create_account_screen_button_pressed"]
 [connection signal="pressed" from="MiddleContainer/MenuButtonContainer/LogoutButton" to="." method="_on_logout_button_pressed"]
 [connection signal="toggled" from="MiddleContainer/MenuButtonContainer/MuteButton" to="." method="_on_mute_button_toggled"]
-[connection signal="toggled" from="MiddleContainer/MenuButtonContainer/AdminControlsButton" to="." method="_on_admin_controls_button_toggled"]

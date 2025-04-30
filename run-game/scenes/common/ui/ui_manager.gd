@@ -19,11 +19,6 @@ func _ready() -> void:
 	$LevelUI.visible = false # Hide level UI when loaded
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
-
 func show_login():
 	hide_create_account()
 	if login_screen == null:
