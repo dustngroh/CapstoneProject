@@ -5,14 +5,21 @@ var create_account_screen = null
 var active_tween: Tween
 var current_level: int = 1
 var scoreboard_entry_scene = preload("res://scenes/common/ui/scoreboard_entry.tscn")
-@onready var leaderboard = $LevelUI/Leaderboard
-@onready var replay_button = $LevelUI/Leaderboard/VBoxContainer/ReplayButton
-@onready var login_button = $LevelUI/Leaderboard/VBoxContainer/LoginButton
+#@onready var leaderboard = $LevelUI/Leaderboard
+#@onready var replay_button = $LevelUI/Leaderboard/VBoxContainer/ReplayButton
+@onready var replay_button = $LeaderboardUI/ControlsContainer/ReplayButton
+#@onready var login_button = $LevelUI/Leaderboard/VBoxContainer/LoginButton
+@onready var login_button = $LeaderboardUI/ControlsContainer/LoginButton
+@onready var skip_button = $LeaderboardUI/ControlsContainer/SkipButton
 @onready var leaderboard_ui = $LeaderboardUI
-@onready var scores_container = $LeaderboardUI/PanelContainer/VBoxContainer/ScoresContainer
-@onready var leaderboard_container = $LeaderboardUI/PanelContainer
-@onready var status_label = $LeaderboardUI/PanelContainer/VBoxContainer/StatusLabel
+@onready var scores_container = $LeaderboardUI/VBoxContainer/PanelContainer/VBoxContainer/ScoresContainer
+@onready var leaderboard_container = $LeaderboardUI/VBoxContainer/PanelContainer
+@onready var status_label = $LeaderboardUI/VBoxContainer/PanelContainer/VBoxContainer/StatusLabel
+@onready var top_label = $LeaderboardUI/VBoxContainer/TopLabel
+@onready var bottom_label = $LeaderboardUI/BottomLabel
 @onready var login_layer = $LoginLayer
+@onready var controls_container = $LeaderboardUI/ControlsContainer
+
 
 signal watch_replay_pressed(level_number: int, username: String)
 
@@ -61,12 +68,17 @@ func _on_account_created(username):
 func show_level_ui():
 	$LevelUI.visible = true
 	replay_button.visible = true
+	leaderboard_ui.visible = true
+	hide_leaderboard_container()
 	show_touch_controls()
 
 func show_multiplayer_ui():
 	$LevelUI.visible = true
 	login_button.visible = false
 	replay_button.visible = false
+	skip_button.visible = false
+	top_label.text = ""
+	leaderboard_ui.visible = true
 	show_touch_controls()
 
 func show_touch_controls():
@@ -74,9 +86,10 @@ func show_touch_controls():
 
 func hide_level_ui():
 	$LevelUI.visible = false
-	$LevelUI/Leaderboard.visible = false
+	#$LevelUI/Leaderboard.visible = false
 	$LevelUI/ScoreboardLabel.visible = false
 	hide_touch_controls()
+	leaderboard_ui.visible = false
 
 func hide_touch_controls():
 	$TouchControls.visible = false
@@ -158,7 +171,6 @@ func _on_watch_replay_pressed(level_number: int, username: String) -> void:
 func _on_replay_received(replay_array: Array) -> void:
 	print("Starting replay!")
 	#play_replay(replay_array)
-	# Here you can instantiate a ghost player and play the replay_array
 
 func show_leaderboard_container():
 	leaderboard_container.visible = true
@@ -179,6 +191,15 @@ func hide_leaderboard_container():
 
 func update_status(status_message: String):
 	status_label.text = status_message
+
+func update_top_label(message: String):
+	top_label.text = message
+
+func append_top_label(message: String):
+	top_label.text += message
+
+func clear_top_label():
+	top_label.text = ""
 
 func hide_leaderboard_ui():
 	leaderboard_ui.visible = false

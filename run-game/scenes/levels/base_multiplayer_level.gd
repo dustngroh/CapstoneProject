@@ -22,18 +22,24 @@ var player_finished = false
 @onready var game: Node = get_tree().root.get_node("Game")
 @onready var level_ui: Control = UIManager.get_node("LevelUI")
 @onready var level_timer: Timer = $Timer
-@onready var time_label: Label = UIManager.get_node("LevelUI/TimeLabel")
+#@onready var time_label: Label = UIManager.get_node("LevelUI/TimeLabel")
+@onready var time_label: Label = UIManager.bottom_label
 @onready var win_zone: Area2D = $WinZone
-@onready var leaderboard: CanvasLayer = UIManager.get_node("LevelUI/Leaderboard")
-@onready var level_options: VBoxContainer = leaderboard.get_node("VBoxContainer")
-@onready var leaderboard_label: Label = leaderboard.get_node("Label")
+#@onready var leaderboard: CanvasLayer = UIManager.get_node("LevelUI/Leaderboard")
+#@onready var leaderboard: CanvasLayer = UIManager.leaderboard_ui
+#@onready var level_options: VBoxContainer = leaderboard.get_node("VBoxContainer")
+@onready var level_options: VBoxContainer = UIManager.controls_container
+#@onready var leaderboard_label: Label = leaderboard.get_node("Label")
+@onready var leaderboard_label: Label = UIManager.top_label
 @onready var countdown_label: Label = UIManager.get_node("LevelUI/CountdownLabel")
 @onready var level_label: Label = UIManager.get_node("LevelUI/LevelLabel")
 @onready var spawn_point: Marker2D = $SpawnPoint
 @onready var countdown_player: AudioStreamPlayer = UIManager.get_node("LevelUI/CountdownAudio")
 @onready var start_player: AudioStreamPlayer = UIManager.get_node("LevelUI/StartAudio")
 #@onready var scoreboard_label: Label = UIManager.get_node("LevelUI/ScoreboardLabel")
-@onready var scoreboard_label: Label = leaderboard.get_node("LeaderboardBox")
+@onready var scoreboard_label: Label = UIManager.status_label
+#@onready var scoreboard_label: Label = leaderboard.get_node("LeaderboardBox")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -48,6 +54,8 @@ func _ready() -> void:
 	WebSocketManager.player_position_updated.connect(update_position)
 	WebSocketManager.new_host.connect(_on_new_host)
 	
+	UIManager.clear_leaderboard()
+	UIManager.hide_leaderboard_container()
 	UIManager.show_multiplayer_ui()
 	scoreboard_label.visible = false
 	level_options.visible = false
@@ -63,10 +71,13 @@ func _ready() -> void:
 	level_label.text = "Level " + str(current_level_number)
 	level_label.show()
 	
-	leaderboard.visible = false
-	leaderboard.get_node("VBoxContainer/NextLevelButton").pressed.connect(_on_next_button_pressed)
-	leaderboard.get_node("VBoxContainer/MainMenuButton").pressed.connect(_on_main_button_pressed)
-	leaderboard.get_node("VBoxContainer/ResetButton").pressed.connect(_on_reset_button_pressed)
+	#leaderboard.visible = false
+	#leaderboard.get_node("VBoxContainer/NextLevelButton").pressed.connect(_on_next_button_pressed)
+	level_options.get_node("NextLevelButton").pressed.connect(_on_next_button_pressed)
+	#leaderboard.get_node("VBoxContainer/MainMenuButton").pressed.connect(_on_main_button_pressed)
+	level_options.get_node("MainMenuButton").pressed.connect(_on_main_button_pressed)
+	#leaderboard.get_node("VBoxContainer/ResetButton").pressed.connect(_on_reset_button_pressed)
+	level_options.get_node("ResetButton").pressed.connect(_on_reset_button_pressed)
 
 	
 	WebSocketManager.mark_ready()
@@ -106,7 +117,7 @@ func update_timer_display():
 func _on_win_zone_win():
 	player_finished = true
 	stop_timer()
-	leaderboard.visible = true
+	#leaderboard.visible = true
 	scoreboard_label.text = "Waiting on all players to finish..."
 	scoreboard_label.visible = true
 	WebSocketManager.send_player_finish(elapsed_time)
@@ -152,6 +163,8 @@ func display_scoreboard(scoreboard: Array):
 	scoreboard_label.text = scoreboard_text
 	
 	scoreboard_label.visible = true
+	UIManager.show_leaderboard_container()
+	
 
 
 func _on_next_button_pressed():

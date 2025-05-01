@@ -1,6 +1,5 @@
 [gd_scene load_steps=13 format=3 uid="uid://bna48stbflevk"]
 
-[ext_resource type="PackedScene" uid="uid://dhikxsmxr43ju" path="res://scenes/common/ResultsScreen.tscn" id="1_bcprt"]
 [ext_resource type="Script" path="res://scenes/common/fade_layer.gd" id="1_ulhlq"]
 [ext_resource type="Script" path="res://scenes/common/ui/ui_manager.gd" id="1_xalce"]
 [ext_resource type="AudioStream" uid="uid://chlohcx8g3x82" path="res://assets/audio/sounds/countdown.wav" id="2_1ejeb"]
@@ -26,6 +25,11 @@ shadow_color = Color(0, 0, 0, 1)
 [sub_resource type="LabelSettings" id="LabelSettings_wibt8"]
 font_size = 32
 outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v5j82"]
+font_size = 32
+outline_size = 16
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bi4pl"]
@@ -78,8 +82,6 @@ label_settings = SubResource("LabelSettings_n4h7j")
 horizontal_alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Leaderboard" parent="LevelUI" instance=ExtResource("1_bcprt")]
-
 [node name="CountdownLabel" type="Label" parent="LevelUI"]
 layout_mode = 1
 anchors_preset = 8
@@ -130,30 +132,101 @@ metadata/_edit_use_anchors_ = true
 
 [node name="LeaderboardUI" type="CanvasLayer" parent="."]
 
-[node name="PanelContainer" type="PanelContainer" parent="LeaderboardUI"]
-visible = false
-anchors_preset = 8
+[node name="BottomLabel" type="Label" parent="LeaderboardUI"]
+anchors_preset = 7
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchor_bottom = 1.0
+offset_left = -576.0
+offset_top = -54.0
+offset_right = 576.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+label_settings = SubResource("LabelSettings_n4h7j")
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LeaderboardUI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="TopLabel" type="Label" parent="LeaderboardUI/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+label_settings = SubResource("LabelSettings_v5j82")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="LeaderboardUI/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_bi4pl")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LeaderboardUI/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LeaderboardUI/VBoxContainer/PanelContainer"]
 layout_mode = 2
 
-[node name="StatusLabel" type="Label" parent="LeaderboardUI/PanelContainer/VBoxContainer"]
+[node name="StatusLabel" type="Label" parent="LeaderboardUI/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_bbk52")
 
-[node name="ScoresContainer" type="VBoxContainer" parent="LeaderboardUI/PanelContainer/VBoxContainer"]
+[node name="ScoresContainer" type="VBoxContainer" parent="LeaderboardUI/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="ControlsContainer" type="VBoxContainer" parent="LeaderboardUI"]
+visible = false
+custom_minimum_size = Vector2(0, 300)
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -64.0
+offset_right = -27.0
+offset_bottom = 64.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="NextLevelButton" type="Button" parent="LeaderboardUI/ControlsContainer"]
+layout_mode = 2
+theme = ExtResource("2_bbk52")
+text = "Next Level"
+
+[node name="ResetButton" type="Button" parent="LeaderboardUI/ControlsContainer"]
+layout_mode = 2
+theme = ExtResource("2_bbk52")
+text = "Retry Level"
+
+[node name="MainMenuButton" type="Button" parent="LeaderboardUI/ControlsContainer"]
+layout_mode = 2
+theme = ExtResource("2_bbk52")
+text = "Main Menu
+"
+
+[node name="ReplayButton" type="Button" parent="LeaderboardUI/ControlsContainer"]
+layout_mode = 2
+theme = ExtResource("2_bbk52")
+text = "Watch Replay"
+
+[node name="LoginButton" type="Button" parent="LeaderboardUI/ControlsContainer"]
+layout_mode = 2
+theme = ExtResource("2_bbk52")
+text = "Login"
+
+[node name="SkipButton" type="Button" parent="LeaderboardUI/ControlsContainer"]
+layout_mode = 2
+theme = ExtResource("2_bbk52")
+text = "Skip"
 
 [node name="TouchControls" parent="." instance=ExtResource("5_xl1o8")]
 

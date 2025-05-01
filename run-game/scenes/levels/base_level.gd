@@ -21,14 +21,18 @@ var respawn_point: Vector2
 @onready var game: Node = get_tree().root.get_node("Game")
 @onready var level_ui: Control = UIManager.get_node("LevelUI")
 @onready var level_timer: Timer = $Timer
-@onready var time_label: Label = UIManager.get_node("LevelUI/TimeLabel")
+#@onready var time_label: Label = UIManager.get_node("LevelUI/TimeLabel")
+@onready var time_label: Label = UIManager.bottom_label
 @onready var win_zone: Area2D = $WinZone
-@onready var leaderboard: CanvasLayer = UIManager.get_node("LevelUI/Leaderboard")
-@onready var level_options: VBoxContainer = leaderboard.get_node("VBoxContainer")
+#@onready var leaderboard: CanvasLayer = UIManager.get_node("LevelUI/Leaderboard")
+#@onready var level_options: VBoxContainer = leaderboard.get_node("VBoxContainer")
+@onready var level_options: VBoxContainer = UIManager.controls_container
 @onready var skip_button: Button = level_options.get_node("SkipButton")
-@onready var leaderboard_label: Label = leaderboard.get_node("Label")
-@onready var leaderboard_box = leaderboard.get_node("LeaderboardBox")
-@onready var login_button = leaderboard.get_node("VBoxContainer/LoginButton")
+#@onready var leaderboard_label: Label = leaderboard.get_node("Label")
+@onready var leaderboard_label: Label = UIManager.top_label
+#@onready var leaderboard_box = leaderboard.get_node("LeaderboardBox")
+#@onready var login_button = leaderboard.get_node("VBoxContainer/LoginButton")
+@onready var login_button = level_options.get_node("LoginButton")
 @onready var countdown_label: Label = UIManager.get_node("LevelUI/CountdownLabel")
 @onready var level_label: Label = UIManager.get_node("LevelUI/LevelLabel")
 @onready var spawn_point: Marker2D = $SpawnPoint
@@ -54,6 +58,8 @@ func _ready():
 	# Ensure level UI is visible
 	UIManager.show_level_ui()
 	UIManager.get_node("FadeLayer").fade_out(1.0) #TESTING PURPOSES: REMOVE THIS LATER
+	UIManager.clear_top_label()
+	
 	
 	# Set up Timer
 	level_timer.wait_time = 1.0
@@ -72,13 +78,18 @@ func _ready():
 	#start_countdown()
 	
 	# Hide leaderboard initially
-	leaderboard.visible = false
+	#leaderboard.visible = false
+	level_options.visible = false
 	
 	# Connect leaderboard buttons
-	leaderboard.get_node("VBoxContainer/NextLevelButton").pressed.connect(_on_next_button_pressed)
-	leaderboard.get_node("VBoxContainer/ResetButton").pressed.connect(_on_reset_button_pressed)
-	leaderboard.get_node("VBoxContainer/MainMenuButton").pressed.connect(_on_main_button_pressed)
-	leaderboard.get_node("VBoxContainer/ReplayButton").pressed.connect(player_replay)
+	#leaderboard.get_node("VBoxContainer/NextLevelButton").pressed.connect(_on_next_button_pressed)
+	level_options.get_node("NextLevelButton").pressed.connect(_on_next_button_pressed)
+	#leaderboard.get_node("VBoxContainer/ResetButton").pressed.connect(_on_reset_button_pressed)
+	level_options.get_node("ResetButton").pressed.connect(_on_reset_button_pressed)
+	#leaderboard.get_node("VBoxContainer/MainMenuButton").pressed.connect(_on_main_button_pressed)
+	level_options.get_node("MainMenuButton").pressed.connect(_on_main_button_pressed)
+	#leaderboard.get_node("VBoxContainer/ReplayButton").pressed.connect(player_replay)
+	level_options.get_node("ReplayButton").pressed.connect(player_replay)
 	skip_button.pressed.connect(_on_skip_button_pressed)
 	skip_button.visible = false
 	
@@ -146,7 +157,7 @@ func spawn_player():
 func _on_win_zone_win():
 	stop_timer()
 	player.end_recording()
-	leaderboard.visible = true
+	#leaderboard.visible = true
 	level_options.visible = true
 	
 	
@@ -219,7 +230,7 @@ func stop_timer():
 	print("Final time: %.2f seconds" % elapsed_time)
 
 func show_leaderboard():
-	leaderboard.visible = true
+	#leaderboard.visible = true
 	level_options.visible = true
 	
 	UIManager.update_status("Fetching Leaderboard...\nThis may take a minute.")
@@ -341,7 +352,7 @@ func end_replay():
 	player.set_physics_process(true)
 	player.modulate = Color(1, 1, 1, 1)
 	show_leaderboard_container()
-	leaderboard.visible = true
+	#leaderboard.visible = true
 	is_replaying = false
 	skip_button.visible = false
 
