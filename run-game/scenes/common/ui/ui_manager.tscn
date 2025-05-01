@@ -50,9 +50,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 expand_margin_left = 4.0
-expand_margin_top = 4.0
 expand_margin_right = 4.0
-expand_margin_bottom = 4.0
 shadow_size = 5
 
 [node name="UIManager" type="CanvasLayer"]
@@ -133,22 +131,6 @@ metadata/_edit_use_anchors_ = true
 
 [node name="LeaderboardUI" type="CanvasLayer" parent="."]
 
-[node name="BottomLabel" type="Label" parent="LeaderboardUI"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -576.0
-offset_top = -54.0
-offset_right = 576.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_vertical = 8
-label_settings = SubResource("LabelSettings_n4h7j")
-horizontal_alignment = 1
-
 [node name="VBoxContainer" type="VBoxContainer" parent="LeaderboardUI"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -166,23 +148,36 @@ label_settings = SubResource("LabelSettings_v5j82")
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="LeaderboardUI/VBoxContainer"]
-visible = false
+[node name="ScrollContainer" type="ScrollContainer" parent="LeaderboardUI/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="PanelContainer" type="PanelContainer" parent="LeaderboardUI/VBoxContainer/ScrollContainer"]
+visible = false
+custom_minimum_size = Vector2(600, 400)
+layout_mode = 2
+size_flags_horizontal = 6
 size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_bi4pl")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LeaderboardUI/VBoxContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LeaderboardUI/VBoxContainer/ScrollContainer/PanelContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
-[node name="StatusLabel" type="Label" parent="LeaderboardUI/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="StatusLabel" type="Label" parent="LeaderboardUI/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_ft1l1")
 horizontal_alignment = 1
 
-[node name="ScoresContainer" type="VBoxContainer" parent="LeaderboardUI/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="ScoresContainer" type="VBoxContainer" parent="LeaderboardUI/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
+
+[node name="BottomLabel" type="Label" parent="LeaderboardUI/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+label_settings = SubResource("LabelSettings_n4h7j")
+horizontal_alignment = 1
 
 [node name="ControlsContainer" type="VBoxContainer" parent="LeaderboardUI"]
 visible = false

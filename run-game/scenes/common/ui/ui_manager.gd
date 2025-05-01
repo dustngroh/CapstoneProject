@@ -12,11 +12,11 @@ var scoreboard_entry_scene = preload("res://scenes/common/ui/scoreboard_entry.ts
 @onready var login_button = $LeaderboardUI/ControlsContainer/LoginButton
 @onready var skip_button = $LeaderboardUI/ControlsContainer/SkipButton
 @onready var leaderboard_ui = $LeaderboardUI
-@onready var scores_container = $LeaderboardUI/VBoxContainer/PanelContainer/VBoxContainer/ScoresContainer
-@onready var leaderboard_container = $LeaderboardUI/VBoxContainer/PanelContainer
-@onready var status_label = $LeaderboardUI/VBoxContainer/PanelContainer/VBoxContainer/StatusLabel
+@onready var scores_container = $LeaderboardUI/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/ScoresContainer
+@onready var leaderboard_container = $LeaderboardUI/VBoxContainer/ScrollContainer/PanelContainer
+@onready var status_label = $LeaderboardUI/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/StatusLabel
 @onready var top_label = $LeaderboardUI/VBoxContainer/TopLabel
-@onready var bottom_label = $LeaderboardUI/BottomLabel
+@onready var bottom_label = $LeaderboardUI/VBoxContainer/BottomLabel
 @onready var login_layer = $LoginLayer
 @onready var controls_container = $LeaderboardUI/ControlsContainer
 
