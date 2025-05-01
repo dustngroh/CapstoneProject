@@ -163,6 +163,61 @@ func populate_leaderboard(level: int, scores: Array):
 		scores_container.add_child(scoreboard_entry)
 
 
+func populate_multiplayer_leaderboard(scores: Array):
+	for i in range(scores.size()):
+		var score = scores[i]
+		var username = score["name"]
+		var time = score["time"]
+		
+		#scoreboard_text += "%d. %s - %.2f seconds\n" % [result["rank"], result["name"], result["time"]]
+		
+		var scoreboard_entry = scoreboard_entry_scene.instantiate()
+		var rank_label = scoreboard_entry.get_node("HBoxContainer/RankLabel")
+		var name_label = scoreboard_entry.get_node("HBoxContainer/NameLabel")
+		var time_label = scoreboard_entry.get_node("HBoxContainer/TimeLabel")
+		var button = scoreboard_entry.get_node("HBoxContainer/ReplayButton")
+		
+		var rank = i + 1
+		rank_label.text = "%d." % rank
+		name_label.text = username
+		time_label.text = "%.2f s" % time
+		
+		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+
+		
+		button.text = "Watch"
+		#button.pressed.connect(_on_watch_replay_pressed.bind(level, username))
+		#button.pressed.connect(func(): emit_signal("watch_replay_pressed", level, username))
+		#button.theme = preload("res://assets/themes/mush_theme.tres")
+		
+		
+		# Color rank label for top 3
+		match rank:
+			1:
+				#rank_label.add_theme_color_override("font_color", Color.hex(0xFFD700))  # Gold
+				rank_label.add_theme_color_override("font_color", Color.GOLD)  # Gold
+				name_label.add_theme_color_override("font_color", Color.GOLD)  # Gold
+				time_label.add_theme_color_override("font_color", Color.GOLD)  # Gold
+			2:
+				#rank_label.add_theme_color_override("font_color", Color.hex(0xC0C0C0))  # Silver
+				rank_label.add_theme_color_override("font_color", Color.LIGHT_STEEL_BLUE)  # Silver
+				name_label.add_theme_color_override("font_color", Color.LIGHT_STEEL_BLUE)  # Silver
+				time_label.add_theme_color_override("font_color", Color.LIGHT_STEEL_BLUE)  # Silver
+			3:
+				#rank_label.add_theme_color_override("font_color", Color.hex(0xCD7F32))  # Bronze
+				rank_label.add_theme_color_override("font_color", Color.TAN)  # Bronze
+				name_label.add_theme_color_override("font_color", Color.TAN)  # Bronze
+				time_label.add_theme_color_override("font_color", Color.TAN)  # Bronze
+		
+		# Color current user
+		var current_username = HTTPRequestManager.username
+		
+		if username == current_username:
+			name_label.add_theme_color_override("font_color", Color.YELLOW)
+
+		scores_container.add_child(scoreboard_entry)
+
+
 
 func _on_watch_replay_pressed(level_number: int, username: String) -> void:
 	print("Requesting replay for %s..." % username)

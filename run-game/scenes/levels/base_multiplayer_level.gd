@@ -156,13 +156,14 @@ func _on_level_complete(scoreboard: Array):
 
 func display_scoreboard(scoreboard: Array):
 	var scoreboard_text = "Final Scoreboard:\n"
-	for result in scoreboard:
-		scoreboard_text += "%d. %s - %.2f seconds\n" % [result["rank"], result["name"], result["time"]]
+	#for result in scoreboard:
+	#	scoreboard_text += "%d. %s - %.2f seconds\n" % [result["rank"], result["name"], result["time"]]
 
 	# Update the label text
 	scoreboard_label.text = scoreboard_text
 	
 	scoreboard_label.visible = true
+	UIManager.populate_multiplayer_leaderboard(scoreboard)
 	UIManager.show_leaderboard_container()
 	
 
