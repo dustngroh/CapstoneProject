@@ -14,7 +14,7 @@ signal score_submission_result(message: String)
 signal personal_record_achieved(message: String)
 signal world_record_achieved(message: String)
 signal leaderboard_received(level: int, scores: Array)
-signal replay_received(replay_data: Array)
+signal replay_received(replay_data: Array, completion_time: float)
 signal endless_distance_submitted()
 signal endless_leaderboard_received(scores: Array)
 
@@ -258,10 +258,12 @@ func _on_request_completed(result, response_code, headers, body):
 
 				"get-replay":
 					if response_code == 200:
-						var replay_array = response.get("replay_data", "[]")
-						#var replay_array = JSON.parse_string(replay_string)
-						print("Replay data received!")
-						emit_signal("replay_received", replay_array)
+						var replay_array = response.get("replay_data", [])
+						var raw_time = response.get("completion_time", 0)
+						var time_seconds = float(raw_time) / 100.0
+
+						print("Replay data received! Time: %.2f" % time_seconds)
+						emit_signal("replay_received", replay_array, time_seconds)
 					else:
 						print("Failed to retrieve replay: %s" % response.get("message", "Unknown error"))
 

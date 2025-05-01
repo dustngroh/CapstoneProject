@@ -28,6 +28,7 @@ label_settings = SubResource("LabelSettings_jmvir")
 horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 300)
 anchors_preset = 6
 anchor_left = 1.0
 anchor_top = 0.5
@@ -65,6 +66,11 @@ text = "Watch Replay"
 layout_mode = 2
 theme = ExtResource("1_c8tb8")
 text = "Login"
+
+[node name="SkipButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_c8tb8")
+text = "Skip"
 
 [node name="LeaderboardBox" type="Label" parent="."]
 anchors_preset = 8

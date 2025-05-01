@@ -25,6 +25,7 @@ var respawn_point: Vector2
 @onready var win_zone: Area2D = $WinZone
 @onready var leaderboard: CanvasLayer = UIManager.get_node("LevelUI/Leaderboard")
 @onready var level_options: VBoxContainer = leaderboard.get_node("VBoxContainer")
+@onready var skip_button: Button = level_options.get_node("SkipButton")
 @onready var leaderboard_label: Label = leaderboard.get_node("Label")
 @onready var leaderboard_box = leaderboard.get_node("LeaderboardBox")
 @onready var login_button = leaderboard.get_node("VBoxContainer/LoginButton")
@@ -34,6 +35,12 @@ var respawn_point: Vector2
 @onready var countdown_player: AudioStreamPlayer = UIManager.get_node("LevelUI/CountdownAudio")
 @onready var start_player: AudioStreamPlayer = UIManager.get_node("LevelUI/StartAudio")
 @onready var cutscene_camera: Camera2D = $CutsceneCamera
+
+
+var is_replaying: bool = false
+var replay_cancelled: bool = false
+var replay_task = null
+var pre_replay_position: Vector2
 
 
 
@@ -72,6 +79,9 @@ func _ready():
 	leaderboard.get_node("VBoxContainer/ResetButton").pressed.connect(_on_reset_button_pressed)
 	leaderboard.get_node("VBoxContainer/MainMenuButton").pressed.connect(_on_main_button_pressed)
 	leaderboard.get_node("VBoxContainer/ReplayButton").pressed.connect(player_replay)
+	skip_button.pressed.connect(_on_skip_button_pressed)
+	skip_button.visible = false
+	
 	login_button.pressed.connect(_on_login_button_pressed)
 	login_button.visible = !HTTPRequestManager.is_logged_in()
 	HTTPRequestManager.leaderboard_received.connect(_on_leaderboard_received)
@@ -211,9 +221,7 @@ func stop_timer():
 func show_leaderboard():
 	leaderboard.visible = true
 	level_options.visible = true
-	#leaderboard_box.visible = true
 	
-	#leaderboard_status_label.text = "Fetching Leaderboard...\nThis may take a minute"
 	UIManager.update_status("Fetching Leaderboard...\nThis may take a minute.")
 	
 	# Fetch leaderboard and display results
@@ -224,16 +232,15 @@ func _on_leaderboard_received(level: int, scores: Array):
 	if level != current_level_number:
 		return  # Ensure it's for the current level
 
-	#leaderboard_box.text = "Top Times:\n"
-	#leaderboard_status_label.text = "Top Times:"
-	UIManager.watch_replay_pressed.connect(_on_watch_replay_pressed)
+	if not UIManager.watch_replay_pressed.is_connected(_on_watch_replay_pressed):
+		UIManager.watch_replay_pressed.connect(_on_watch_replay_pressed)
+
 	UIManager.update_status("Top Times:")
 	UIManager.populate_leaderboard(level, scores)
 
 
 func _on_bottom_world_border_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):  # Ensure it's the player
-		#body.position = spawn_point.position  # Respawn at the spawn point
 		body.global_position = respawn_point
 
 func set_checkpoint(new_checkpoint_position: Vector2) -> void:
@@ -264,7 +271,6 @@ func _on_previous_button_pressed():
 		game.load_level(previous_level_path)
 
 func _on_main_button_pressed():
-	#MusicManager.play_music("res://assets/audio/music/Lite Saturation - Calm.mp3")
 	hide_leaderboard_container()
 	MusicManager.play_random_menu_music()
 	if game:
@@ -273,50 +279,76 @@ func _on_main_button_pressed():
 func _on_login_button_pressed():
 	UIManager.show_login()
 
+
 func player_replay():
-	if not player or player.position_history.is_empty():
+	if not player or player.position_history.is_empty() or is_replaying:
 		return
 
-	player.zoom_out()   # Zoom out camera
-	player.set_physics_process(false)  # Disable player movement during replay
-	player.modulate = Color(1, 1, 1, 0.5)  # Make the replay character semi-transparent
-	leaderboard.visible = false   # Hide leaderboard during replay
-	#leaderboard_container.visible = false
-	hide_leaderboard_container()
+	pre_replay_position = player.global_position
+	start_replay()
+	replay_cancelled = false
+	is_replaying = true
+	skip_button.visible = true
+	
+	await async_replay(player.position_history, elapsed_time)
 
-	for pos in player.position_history:
-		player.global_position = pos
-		await get_tree().create_timer(player.record_interval).timeout  # Wait between frames
+	end_replay()
 
-	player.zoom_in()   # Zoom camera back in
-	player.set_physics_process(true)  # Enable movement again after replay
-	player.modulate = Color(1, 1, 1, 1)  # Undo transparency
-	leaderboard.visible = true   # Show leaderboard again
-	#leaderboard_container.visible = true
-	show_leaderboard_container()
-
-func play_replay(positions: Array):
+	
+func play_replay(positions: Array, total_replay_time: float):
 	if not player or positions.is_empty():
 		return
 
-	player.zoom_out()   # Zoom out camera
-	player.set_physics_process(false)  # Disable player movement during replay
-	player.modulate = Color(1, 1, 1, 0.5)  # Make the replay character semi-transparent
-	leaderboard.visible = false   # Hide leaderboard during replay
-	#leaderboard_container.visible = false
-	hide_leaderboard_container()
+	pre_replay_position = player.global_position
+	start_replay()
+	replay_cancelled = false
+	is_replaying = true
+	skip_button.visible = true
+	
+	await async_replay(positions, total_replay_time, true)
 
-	for pos_dict in positions:
-		var pos = Vector2(pos_dict["x"], pos_dict["y"])
+	end_replay()
+
+
+func async_replay(positions: Array, total_replay_time: float, is_external := false):
+	for i in range(positions.size()):
+		if replay_cancelled:
+			break
+
+		var pos_data = positions[i]
+		var pos = Vector2(pos_data["x"], pos_data["y"]) if is_external else pos_data
 		player.global_position = pos
-		await get_tree().create_timer(player.record_interval).timeout  # Wait between frames
 
-	player.zoom_in()   # Zoom camera back in
-	player.set_physics_process(true)  # Enable movement again after replay
-	player.modulate = Color(1, 1, 1, 1)  # Undo transparency
-	leaderboard.visible = true   # Show leaderboard again
-	#leaderboard_container.visible = true
+		# Interpolate the time more accurately based on actual run duration
+		var percent = float(i) / max(positions.size() - 1, 1)
+		var display_time = total_replay_time * percent
+		time_label.text = "Time: %.2f" % display_time
+
+		await get_tree().create_timer(player.record_interval).timeout
+
+	return null
+
+
+func start_replay():
+	player.zoom_out()
+	player.set_physics_process(false)
+	player.modulate = Color(1, 1, 1, 0.5)
+	hide_leaderboard_container()
+	#leaderboard.visible = false
+
+func end_replay():
+	player.zoom_in()
+	player.set_physics_process(true)
+	player.modulate = Color(1, 1, 1, 1)
 	show_leaderboard_container()
+	leaderboard.visible = true
+	is_replaying = false
+	skip_button.visible = false
+
+func _on_skip_button_pressed():
+	replay_cancelled = true
+	player.global_position = pre_replay_position
+
 
 # Method called if user logs in after comlpeting the level
 func _on_login_success(user) -> void:
@@ -340,9 +372,11 @@ func _on_watch_replay_pressed(level_number: int, username: String) -> void:
 	print("Requesting replay for %s..." % username)
 	HTTPRequestManager.fetch_replay(level_number, username)
 
-func _on_replay_received(replay_array: Array) -> void:
-	print("Starting replay!")
-	play_replay(replay_array)
+func _on_replay_received(replay_array: Array, completion_time: float) -> void:
+	print("Starting replay! Recorded time: %.2f seconds" % completion_time)
+	
+	await play_replay(replay_array, completion_time)
+
 
 func show_leaderboard_container():
 	UIManager.show_leaderboard_container()
