@@ -176,7 +176,9 @@ func _on_reset_button_pressed():
 	
 func _on_main_button_pressed():
 	WebSocketManager.disconnect_from_server()
-	MusicManager.play_music("res://assets/audio/music/Lite Saturation - Calm.mp3")
+	UIManager.hide_leaderboard_container()
+	#MusicManager.play_music("res://assets/audio/music/Lite Saturation - Calm.mp3")
+	MusicManager.play_random_menu_music()
 	if game:
 		game.load_level("res://scenes/main/MainMenu.tscn")
 	

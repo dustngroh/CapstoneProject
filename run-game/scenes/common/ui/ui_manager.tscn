@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://bna48stbflevk"]
+[gd_scene load_steps=14 format=3 uid="uid://bna48stbflevk"]
 
 [ext_resource type="Script" path="res://scenes/common/fade_layer.gd" id="1_ulhlq"]
 [ext_resource type="Script" path="res://scenes/common/ui/ui_manager.gd" id="1_xalce"]
 [ext_resource type="AudioStream" uid="uid://chlohcx8g3x82" path="res://assets/audio/sounds/countdown.wav" id="2_1ejeb"]
 [ext_resource type="Theme" uid="uid://df3rrd7p3483n" path="res://assets/themes/mush_theme.tres" id="2_bbk52"]
 [ext_resource type="AudioStream" uid="uid://dgsuqakvss1gw" path="res://assets/audio/sounds/start.wav" id="3_l31bs"]
+[ext_resource type="Theme" uid="uid://qfvmx56sgyfo" path="res://assets/themes/leaderboard_top_label.tres" id="5_ft1l1"]
 [ext_resource type="PackedScene" uid="uid://coopu6svniep4" path="res://scenes/common/touch_controls.tscn" id="5_xl1o8"]
 [ext_resource type="PackedScene" uid="uid://b0dunmgl0seuh" path="res://scenes/common/ui/pause_menu.tscn" id="7_aicnb"]
 
@@ -37,7 +38,7 @@ content_margin_left = 8.0
 content_margin_top = 8.0
 content_margin_right = 8.0
 content_margin_bottom = 8.0
-bg_color = Color(0.51, 0.502, 0.451, 0.638)
+bg_color = Color(0.260781, 0.560338, 0.514462, 0.638)
 border_width_left = 2
 border_width_top = 2
 border_width_right = 2
@@ -177,7 +178,8 @@ layout_mode = 2
 
 [node name="StatusLabel" type="Label" parent="LeaderboardUI/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_bbk52")
+theme = ExtResource("5_ft1l1")
+horizontal_alignment = 1
 
 [node name="ScoresContainer" type="VBoxContainer" parent="LeaderboardUI/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2

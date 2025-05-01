@@ -185,10 +185,11 @@ func populate_multiplayer_leaderboard(scores: Array):
 		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 		
-		button.text = "Watch"
+		#button.text = "Watch"
 		#button.pressed.connect(_on_watch_replay_pressed.bind(level, username))
 		#button.pressed.connect(func(): emit_signal("watch_replay_pressed", level, username))
 		#button.theme = preload("res://assets/themes/mush_theme.tres")
+		button.queue_free()
 		
 		
 		# Color rank label for top 3
@@ -242,6 +243,7 @@ func hide_leaderboard_container():
 	
 	active_tween = create_tween()
 	active_tween.tween_property(leaderboard_container, "modulate:a", 0.0, 0.5)
+	await active_tween.finished
 	leaderboard_container.visible = false
 
 func update_status(status_message: String):
