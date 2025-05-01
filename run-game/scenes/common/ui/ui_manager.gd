@@ -4,6 +4,7 @@ var login_screen = null
 var create_account_screen = null
 var active_tween: Tween
 var current_level: int = 1
+var scoreboard_entry_scene = preload("res://scenes/common/ui/scoreboard_entry.tscn")
 @onready var leaderboard = $LevelUI/Leaderboard
 @onready var replay_button = $LevelUI/Leaderboard/VBoxContainer/ReplayButton
 @onready var login_button = $LevelUI/Leaderboard/VBoxContainer/LoginButton
@@ -101,29 +102,52 @@ func populate_leaderboard(level: int, scores: Array):
 		var score = scores[i]
 		var username = score["username"]
 		var time = float(score["completion_time"]) / 100.0
+		
+		var scoreboard_entry = scoreboard_entry_scene.instantiate()
+		var rank_label = scoreboard_entry.get_node("HBoxContainer/RankLabel")
+		var name_label = scoreboard_entry.get_node("HBoxContainer/NameLabel")
+		var time_label = scoreboard_entry.get_node("HBoxContainer/TimeLabel")
+		var button = scoreboard_entry.get_node("HBoxContainer/ReplayButton")
+		
+		var rank = i + 1
+		rank_label.text = "%d." % rank
+		name_label.text = username
+		time_label.text = "%.2f s" % time
+		
+		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
-		var hbox = HBoxContainer.new()
-
-		var label = Label.new()
-		label.text = "%d. %s - %.2f seconds" % [i + 1, username, time]
-		label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-
-		var button = Button.new()
+		
 		button.text = "Watch"
 		#button.pressed.connect(_on_watch_replay_pressed.bind(level, username))
 		button.pressed.connect(func(): emit_signal("watch_replay_pressed", level, username))
-		button.theme = preload("res://assets/themes/mush_theme.tres")
+		#button.theme = preload("res://assets/themes/mush_theme.tres")
 		
+		
+		# Color rank label for top 3
+		match rank:
+			1:
+				#rank_label.add_theme_color_override("font_color", Color.hex(0xFFD700))  # Gold
+				rank_label.add_theme_color_override("font_color", Color.GOLD)  # Gold
+				name_label.add_theme_color_override("font_color", Color.GOLD)  # Gold
+				time_label.add_theme_color_override("font_color", Color.GOLD)  # Gold
+			2:
+				#rank_label.add_theme_color_override("font_color", Color.hex(0xC0C0C0))  # Silver
+				rank_label.add_theme_color_override("font_color", Color.LIGHT_STEEL_BLUE)  # Silver
+				name_label.add_theme_color_override("font_color", Color.LIGHT_STEEL_BLUE)  # Silver
+				time_label.add_theme_color_override("font_color", Color.LIGHT_STEEL_BLUE)  # Silver
+			3:
+				#rank_label.add_theme_color_override("font_color", Color.hex(0xCD7F32))  # Bronze
+				rank_label.add_theme_color_override("font_color", Color.TAN)  # Bronze
+				name_label.add_theme_color_override("font_color", Color.TAN)  # Bronze
+				time_label.add_theme_color_override("font_color", Color.TAN)  # Bronze
+		
+		# Color current user
 		var current_username = HTTPRequestManager.username
-
+		
 		if username == current_username:
-			label.add_theme_color_override("font_color", Color.YELLOW)
-			#button.add_theme_color_override("font_color", Color.YELLOW)
+			name_label.add_theme_color_override("font_color", Color.YELLOW)
 
-		hbox.add_child(label)
-		hbox.add_child(button)
-
-		scores_container.add_child(hbox)
+		scores_container.add_child(scoreboard_entry)
 
 
 
