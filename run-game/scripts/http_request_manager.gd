@@ -2,6 +2,7 @@ extends Node
 
 var http_request : HTTPRequest
 var base_url : String = "https://run-game-back-end.onrender.com"
+#var base_url : String = "http://localhost:3000"
 var jwt_token : String = ""
 var username : String = ""
 var logged_in = false
