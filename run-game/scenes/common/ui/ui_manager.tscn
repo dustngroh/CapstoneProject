@@ -132,15 +132,23 @@ metadata/_edit_use_anchors_ = true
 
 [node name="LeaderboardUI" type="CanvasLayer" parent="."]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LeaderboardUI"]
+[node name="HBoxContainer" type="HBoxContainer" parent="LeaderboardUI"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
 
-[node name="TopLabel" type="Label" parent="LeaderboardUI/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="LeaderboardUI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MiddleContainer" type="VBoxContainer" parent="LeaderboardUI/HBoxContainer"]
+custom_minimum_size = Vector2(540, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TopLabel" type="Label" parent="LeaderboardUI/HBoxContainer/MiddleContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -149,11 +157,11 @@ label_settings = SubResource("LabelSettings_v5j82")
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="LeaderboardUI/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="LeaderboardUI/HBoxContainer/MiddleContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="LeaderboardUI/VBoxContainer/ScrollContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="LeaderboardUI/HBoxContainer/MiddleContainer/ScrollContainer"]
 visible = false
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
@@ -161,63 +169,54 @@ size_flags_horizontal = 6
 size_flags_vertical = 6
 theme_override_styles/panel = SubResource("StyleBoxFlat_bi4pl")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LeaderboardUI/VBoxContainer/ScrollContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LeaderboardUI/HBoxContainer/MiddleContainer/ScrollContainer/PanelContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="StatusLabel" type="Label" parent="LeaderboardUI/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer"]
+[node name="StatusLabel" type="Label" parent="LeaderboardUI/HBoxContainer/MiddleContainer/ScrollContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_ft1l1")
 horizontal_alignment = 1
 
-[node name="ScoresContainer" type="VBoxContainer" parent="LeaderboardUI/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer"]
+[node name="ScoresContainer" type="VBoxContainer" parent="LeaderboardUI/HBoxContainer/MiddleContainer/ScrollContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="BottomLabel" type="Label" parent="LeaderboardUI/VBoxContainer"]
+[node name="BottomLabel" type="Label" parent="LeaderboardUI/HBoxContainer/MiddleContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 label_settings = SubResource("LabelSettings_n4h7j")
 horizontal_alignment = 1
 
-[node name="ControlsContainer" type="VBoxContainer" parent="LeaderboardUI"]
-visible = false
-custom_minimum_size = Vector2(0, 300)
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -140.0
-offset_top = -64.0
-offset_right = -27.0
-offset_bottom = 64.0
-grow_horizontal = 0
-grow_vertical = 2
+[node name="ControlsContainer" type="VBoxContainer" parent="LeaderboardUI/HBoxContainer"]
+custom_minimum_size = Vector2(130, 300)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
 theme = ExtResource("6_xvdj5")
 
-[node name="NextLevelButton" type="Button" parent="LeaderboardUI/ControlsContainer"]
+[node name="NextLevelButton" type="Button" parent="LeaderboardUI/HBoxContainer/ControlsContainer"]
 layout_mode = 2
 text = "Next Level"
 
-[node name="ResetButton" type="Button" parent="LeaderboardUI/ControlsContainer"]
+[node name="ResetButton" type="Button" parent="LeaderboardUI/HBoxContainer/ControlsContainer"]
 layout_mode = 2
 text = "Retry Level"
 
-[node name="MainMenuButton" type="Button" parent="LeaderboardUI/ControlsContainer"]
+[node name="MainMenuButton" type="Button" parent="LeaderboardUI/HBoxContainer/ControlsContainer"]
 layout_mode = 2
 text = "Main Menu
 "
 
-[node name="ReplayButton" type="Button" parent="LeaderboardUI/ControlsContainer"]
+[node name="ReplayButton" type="Button" parent="LeaderboardUI/HBoxContainer/ControlsContainer"]
 layout_mode = 2
 text = "Watch Replay"
 
-[node name="LoginButton" type="Button" parent="LeaderboardUI/ControlsContainer"]
+[node name="LoginButton" type="Button" parent="LeaderboardUI/HBoxContainer/ControlsContainer"]
 layout_mode = 2
 text = "Login"
 
-[node name="SkipButton" type="Button" parent="LeaderboardUI/ControlsContainer"]
+[node name="SkipButton" type="Button" parent="LeaderboardUI/HBoxContainer/ControlsContainer"]
 layout_mode = 2
 text = "Skip"
 

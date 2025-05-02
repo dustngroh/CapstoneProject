@@ -7,18 +7,21 @@ var current_level: int = 1
 var scoreboard_entry_scene = preload("res://scenes/common/ui/scoreboard_entry.tscn")
 #@onready var leaderboard = $LevelUI/Leaderboard
 #@onready var replay_button = $LevelUI/Leaderboard/VBoxContainer/ReplayButton
-@onready var replay_button = $LeaderboardUI/ControlsContainer/ReplayButton
+@onready var replay_button = $LeaderboardUI/HBoxContainer/ControlsContainer/ReplayButton
 #@onready var login_button = $LevelUI/Leaderboard/VBoxContainer/LoginButton
-@onready var login_button = $LeaderboardUI/ControlsContainer/LoginButton
-@onready var skip_button = $LeaderboardUI/ControlsContainer/SkipButton
+@onready var login_button = $LeaderboardUI/HBoxContainer/ControlsContainer/LoginButton
+@onready var skip_button = $LeaderboardUI/HBoxContainer/ControlsContainer/SkipButton
+@onready var next_level_button = $LeaderboardUI/HBoxContainer/ControlsContainer/NextLevelButton
+@onready var reset_level_button = $LeaderboardUI/HBoxContainer/ControlsContainer/ResetButton
+@onready var main_menu_button = $LeaderboardUI/HBoxContainer/ControlsContainer/MainMenuButton
 @onready var leaderboard_ui = $LeaderboardUI
-@onready var scores_container = $LeaderboardUI/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/ScoresContainer
-@onready var leaderboard_container = $LeaderboardUI/VBoxContainer/ScrollContainer/PanelContainer
-@onready var status_label = $LeaderboardUI/VBoxContainer/ScrollContainer/PanelContainer/VBoxContainer/StatusLabel
-@onready var top_label = $LeaderboardUI/VBoxContainer/TopLabel
-@onready var bottom_label = $LeaderboardUI/VBoxContainer/BottomLabel
+@onready var scores_container = $LeaderboardUI/HBoxContainer/MiddleContainer/ScrollContainer/PanelContainer/VBoxContainer/ScoresContainer
+@onready var leaderboard_container = $LeaderboardUI/HBoxContainer/MiddleContainer/ScrollContainer/PanelContainer
+@onready var status_label = $LeaderboardUI/HBoxContainer/MiddleContainer/ScrollContainer/PanelContainer/VBoxContainer/StatusLabel
+@onready var top_label = $LeaderboardUI/HBoxContainer/MiddleContainer/TopLabel
+@onready var bottom_label = $LeaderboardUI/HBoxContainer/MiddleContainer/BottomLabel
 @onready var login_layer = $LoginLayer
-@onready var controls_container = $LeaderboardUI/ControlsContainer
+@onready var controls_container = $LeaderboardUI/HBoxContainer/ControlsContainer
 
 
 signal watch_replay_pressed(level_number: int, username: String)
@@ -65,10 +68,35 @@ func _on_account_created(username):
 		login_screen.set_error_label("Account created for: " + username + ".\nPlease login now.")
 
 
+func start_level_ui():
+	$LevelUI.visible = true
+	leaderboard_ui.visible = true
+	hide_leaderboard_container()
+	
+	replay_button.visible = false
+	next_level_button.visible = false
+	reset_level_button.visible = false
+	main_menu_button.visible = false
+	login_button.visible = false
+	
+	show_touch_controls()
+
+func end_level_ui():
+	$LevelUI.visible = true
+	leaderboard_ui.visible = true
+	
+	replay_button.visible = true
+	next_level_button.visible = true
+	reset_level_button.visible = true
+	main_menu_button.visible = true
+	login_button.visible = !HTTPRequestManager.is_logged_in()
+	
+
 func show_level_ui():
 	$LevelUI.visible = true
-	replay_button.visible = true
 	leaderboard_ui.visible = true
+	replay_button.visible = true
+	
 	hide_leaderboard_container()
 	show_touch_controls()
 
@@ -80,6 +108,29 @@ func show_multiplayer_ui():
 	top_label.text = ""
 	leaderboard_ui.visible = true
 	show_touch_controls()
+
+func start_multiplayer_ui():
+	$LevelUI.visible = true
+	leaderboard_ui.visible = true
+	hide_leaderboard_container()
+	top_label.text = ""
+	
+	replay_button.visible = false
+	next_level_button.visible = false
+	reset_level_button.visible = false
+	main_menu_button.visible = false
+	login_button.visible = false
+	skip_button.visible = false
+	
+	show_touch_controls()
+
+func end_multiplayer_ui():
+	$LevelUI.visible = true
+	leaderboard_ui.visible = true
+	
+	next_level_button.visible = true
+	reset_level_button.visible = true
+	main_menu_button.visible = true
 
 func show_touch_controls():
 	$TouchControls.visible = true

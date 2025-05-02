@@ -56,9 +56,10 @@ func _ready() -> void:
 	
 	UIManager.clear_leaderboard()
 	UIManager.hide_leaderboard_container()
-	UIManager.show_multiplayer_ui()
+	#UIManager.show_multiplayer_ui()
+	UIManager.start_multiplayer_ui()
 	scoreboard_label.visible = false
-	level_options.visible = false
+	#level_options.visible = false
 	
 	# Set up Timer
 	level_timer.wait_time = 1.0
@@ -151,7 +152,9 @@ func stop_timer():
 func _on_level_complete(scoreboard: Array):
 	game_finished = true
 	print("Level Complete! Final Results:", scoreboard)
-	level_options.visible = WebSocketManager.is_host
+	#level_options.visible = WebSocketManager.is_host
+	if WebSocketManager.is_host:
+		UIManager.end_multiplayer_ui()
 	display_scoreboard(scoreboard)
 
 func display_scoreboard(scoreboard: Array):
@@ -216,7 +219,8 @@ func update_position(player_id, player_name, player_x, player_y):
 
 func _on_new_host():
 	if game_finished:
-		level_options.visible = true
+		#level_options.visible = true
+		UIManager.end_multiplayer_ui()
 
 
 func resize_background():

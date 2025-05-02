@@ -56,7 +56,8 @@ func _ready():
 	spawn_player()
 	
 	# Ensure level UI is visible
-	UIManager.show_level_ui()
+	#UIManager.show_level_ui()
+	UIManager.start_level_ui()
 	UIManager.get_node("FadeLayer").fade_out(1.0) #TESTING PURPOSES: REMOVE THIS LATER
 	UIManager.clear_top_label()
 	
@@ -79,7 +80,7 @@ func _ready():
 	
 	# Hide leaderboard initially
 	#leaderboard.visible = false
-	level_options.visible = false
+	#level_options.visible = false
 	
 	# Connect leaderboard buttons
 	#leaderboard.get_node("VBoxContainer/NextLevelButton").pressed.connect(_on_next_button_pressed)
@@ -94,7 +95,7 @@ func _ready():
 	skip_button.visible = false
 	
 	login_button.pressed.connect(_on_login_button_pressed)
-	login_button.visible = !HTTPRequestManager.is_logged_in()
+	#login_button.visible = !HTTPRequestManager.is_logged_in()
 	HTTPRequestManager.leaderboard_received.connect(_on_leaderboard_received)
 	HTTPRequestManager.replay_received.connect(_on_replay_received)
 
@@ -158,7 +159,8 @@ func _on_win_zone_win():
 	stop_timer()
 	player.end_recording()
 	#leaderboard.visible = true
-	level_options.visible = true
+	#level_options.visible = true
+	UIManager.end_level_ui()
 	
 	
 	UIManager.clear_leaderboard()
