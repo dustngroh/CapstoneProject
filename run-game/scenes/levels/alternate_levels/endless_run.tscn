@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c5o47xslwftki"]
+[gd_scene load_steps=14 format=3 uid="uid://c5o47xslwftki"]
 
 [ext_resource type="Script" path="res://scenes/levels/alternate_levels/endless_run.gd" id="1_5jfvm"]
 [ext_resource type="Script" path="res://scenes/levels/test_levels/level_spawner.gd" id="1_78dij"]
@@ -11,7 +11,14 @@
 [ext_resource type="PackedScene" uid="uid://cxp4o16ogctgi" path="res://scenes/levels/endless_level_chunks/endless_level_3.tscn" id="4_lhppd"]
 [ext_resource type="PackedScene" uid="uid://bnhtx0g2iwbf8" path="res://scenes/levels/endless_level_chunks/endless_level_4.tscn" id="5_nl7dp"]
 [ext_resource type="PackedScene" uid="uid://co22yqlcbx25r" path="res://scenes/common/ui/volume_slider.tscn" id="7_6y4i2"]
-[ext_resource type="Theme" uid="uid://df3rrd7p3483n" path="res://assets/themes/mush_theme.tres" id="11_5i8ja"]
+[ext_resource type="Theme" uid="uid://bk0les3rno7uk" path="res://assets/themes/scoreboard_theme.tres" id="11_r22b3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_hrseq"]
+font_size = 24
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 0
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="EndlessRun" type="Node2D"]
 script = ExtResource("1_5jfvm")
@@ -52,6 +59,7 @@ centered = false
 [node name="DayCycleModulate" type="CanvasModulate" parent="."]
 
 [node name="EndlessRunUI" type="CanvasLayer" parent="."]
+layer = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="EndlessRunUI"]
 anchors_preset = 4
@@ -80,14 +88,14 @@ size_flags_horizontal = 0
 [node name="MainMenuButton" type="Button" parent="EndlessRunUI/VBoxContainer/Buttons"]
 custom_minimum_size = Vector2(140, 0)
 layout_mode = 2
-theme = ExtResource("11_5i8ja")
+theme = ExtResource("11_r22b3")
 text = "End Run"
 metadata/_edit_use_anchors_ = true
 
 [node name="LoginButton" type="Button" parent="EndlessRunUI/VBoxContainer/Buttons"]
 visible = false
 layout_mode = 2
-theme = ExtResource("11_5i8ja")
+theme = ExtResource("11_r22b3")
 text = "Login"
 
 [node name="VSpace" type="MarginContainer" parent="EndlessRunUI/VBoxContainer/Buttons"]
@@ -115,6 +123,7 @@ offset_bottom = -25.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Distance:"
+label_settings = SubResource("LabelSettings_hrseq")
 horizontal_alignment = 1
 
 [connection signal="pressed" from="EndlessRunUI/VBoxContainer/Buttons/MainMenuButton" to="LevelSpawner" method="_on_main_menu_button_pressed"]

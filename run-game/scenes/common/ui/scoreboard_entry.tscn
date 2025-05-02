@@ -1,50 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfa7u0bmgwoqx"]
+[gd_scene load_steps=2 format=3 uid="uid://cfa7u0bmgwoqx"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hw3xn"]
-content_margin_left = 8.0
-content_margin_top = 8.0
-content_margin_right = 8.0
-content_margin_bottom = 8.0
-bg_color = Color(0.151584, 0.25274, 0.149243, 0.86)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_plgnj"]
-content_margin_left = 8.0
-content_margin_top = 8.0
-content_margin_right = 8.0
-content_margin_bottom = 8.0
-bg_color = Color(0.121658, 0.20918, 0.119795, 0.692)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cnqu2"]
-content_margin_left = 8.0
-content_margin_top = 8.0
-content_margin_right = 8.0
-content_margin_bottom = 8.0
-bg_color = Color(0.337648, 0.561555, 0.368808, 0.503)
-corner_radius_top_left = 16
-corner_radius_top_right = 16
-corner_radius_bottom_right = 16
-corner_radius_bottom_left = 16
-
-[sub_resource type="Theme" id="Theme_c80wl"]
-Button/styles/hover = SubResource("StyleBoxFlat_hw3xn")
-Button/styles/normal = SubResource("StyleBoxFlat_plgnj")
-Label/colors/font_color = Color(0.791729, 0.882718, 0.783356, 1)
-Label/font_sizes/font_size = 20
-PanelContainer/styles/panel = SubResource("StyleBoxFlat_cnqu2")
+[ext_resource type="Theme" uid="uid://bk0les3rno7uk" path="res://assets/themes/scoreboard_theme.tres" id="1_8rnwk"]
 
 [node name="ScoreboardEntry" type="PanelContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 1
-theme = SubResource("Theme_c80wl")
+theme = ExtResource("1_8rnwk")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
