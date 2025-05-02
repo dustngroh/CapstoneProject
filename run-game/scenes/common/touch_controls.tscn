@@ -54,7 +54,7 @@ offset_right = 40.0
 grow_vertical = 0
 
 [node name="JumpTouchButton" type="TouchScreenButton" parent="Control"]
-position = Vector2(100, -160)
+position = Vector2(30, -160)
 scale = Vector2(1.6, 1.6)
 texture_normal = ExtResource("3_hdav4")
 texture_pressed = ExtResource("6_tlcva")
@@ -69,7 +69,7 @@ offset_bottom = 40.0
 metadata/_edit_use_anchors_ = true
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="Control2"]
-position = Vector2(100, 40)
+position = Vector2(30, 40)
 texture_normal = ExtResource("4_dl3cr")
 texture_pressed = ExtResource("8_54lfu")
 action = "esc"
