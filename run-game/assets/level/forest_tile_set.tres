@@ -1,8 +1,17 @@
-[gd_resource type="TileSet" load_steps=10 format=3 uid="uid://kgj2kuo4olk6"]
+[gd_resource type="TileSet" load_steps=20 format=3 uid="uid://kgj2kuo4olk6"]
 
 [ext_resource type="Texture2D" uid="uid://drthgki1saa2x" path="res://assets/level/Levelgeo.png" id="1_4me0d"]
 [ext_resource type="Texture2D" uid="uid://my5jlguf3h4g" path="res://assets/level/base.png" id="1_ud43v"]
 [ext_resource type="Texture2D" uid="uid://ccelc0atyacya" path="res://assets/level/base_update.png" id="3_pa5by"]
+[ext_resource type="PackedScene" uid="uid://vih42f7l4t7b" path="res://scenes/entities/structures/spring.tscn" id="4_yfi3x"]
+[ext_resource type="PackedScene" uid="uid://fw8lws3fjv7p" path="res://scenes/entities/obstacles/rock_small.tscn" id="5_blrjs"]
+[ext_resource type="PackedScene" uid="uid://cv0g3jhsyp68l" path="res://scenes/entities/structures/checkpoint.tscn" id="6_m5q2v"]
+[ext_resource type="PackedScene" uid="uid://ceg00ldi310ps" path="res://scenes/entities/obstacles/slow_zone.tscn" id="7_3jnre"]
+[ext_resource type="PackedScene" uid="uid://dsasg45oijsgd" path="res://scenes/entities/obstacles/mushroom_bounce.tscn" id="8_1oqg6"]
+[ext_resource type="PackedScene" uid="uid://r32u6to48vfv" path="res://scenes/entities/obstacles/mushroom_brown.tscn" id="9_j8hco"]
+[ext_resource type="PackedScene" uid="uid://bt17csp8a4hyi" path="res://scenes/entities/obstacles/mushroom_object.tscn" id="10_2dgbc"]
+[ext_resource type="PackedScene" uid="uid://dsdjxq7j8takm" path="res://scenes/entities/obstacles/rock_big.tscn" id="11_kc2se"]
+[ext_resource type="PackedScene" uid="uid://cujvvfpqkhhb6" path="res://scenes/entities/obstacles/rock.tscn" id="12_4eni1"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_ew0u4"]
 tile_data = PackedInt32Array(0, 1, 3, 1, 65537, 3)
@@ -376,6 +385,18 @@ texture_region_size = Vector2i(200, 200)
 5:5/0 = 0
 6:5/0 = 0
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_0rnsr"]
+resource_name = "Obstacles"
+scenes/1/scene = ExtResource("4_yfi3x")
+scenes/3/scene = ExtResource("6_m5q2v")
+scenes/4/scene = ExtResource("7_3jnre")
+scenes/5/scene = ExtResource("8_1oqg6")
+scenes/6/scene = ExtResource("9_j8hco")
+scenes/7/scene = ExtResource("10_2dgbc")
+scenes/8/scene = ExtResource("11_kc2se")
+scenes/9/scene = ExtResource("12_4eni1")
+scenes/10/scene = ExtResource("5_blrjs")
+
 [resource]
 tile_size = Vector2i(200, 200)
 physics_layer_0/collision_layer = 1
@@ -391,6 +412,7 @@ terrain_set_0/terrain_3/color = Color(0.61692, 0.344805, 0.372677, 1)
 sources/1 = SubResource("TileSetAtlasSource_ok8yo")
 sources/0 = SubResource("TileSetAtlasSource_y7kea")
 sources/2 = SubResource("TileSetAtlasSource_ddxr7")
+sources/3 = SubResource("TileSetScenesCollectionSource_0rnsr")
 pattern_0 = SubResource("TileMapPattern_ew0u4")
 pattern_1 = SubResource("TileMapPattern_l7gq0")
 pattern_2 = SubResource("TileMapPattern_tj0ck")

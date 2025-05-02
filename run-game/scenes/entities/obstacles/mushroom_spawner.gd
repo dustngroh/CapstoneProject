@@ -6,6 +6,7 @@ extends Area2D
 @export var right_edge: float = 1000.0  # How far from center right edge of spawn area
 @export var bottom_edge: float = -400.0  # Bottom edge of spawn area
 @export var top_edge: float = -600.0  # Top edge of spawn area
+@export var cooldown: float = 5.0
 
 var triggered = false
 
@@ -25,3 +26,8 @@ func _on_body_entered(body: Node2D) -> void:
 		if body.is_in_group("player"):
 			triggered = true
 			call_deferred("spawn_mushrooms")
+			start_cooldown()
+
+func start_cooldown():
+	await get_tree().create_timer(cooldown).timeout
+	triggered = false
