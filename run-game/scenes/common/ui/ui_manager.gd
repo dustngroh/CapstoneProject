@@ -7,21 +7,24 @@ var current_level: int = 1
 var scoreboard_entry_scene = preload("res://scenes/common/ui/scoreboard_entry.tscn")
 #@onready var leaderboard = $LevelUI/Leaderboard
 #@onready var replay_button = $LevelUI/Leaderboard/VBoxContainer/ReplayButton
-@onready var replay_button = $LeaderboardUI/HBoxContainer/ControlsContainer/ReplayButton
+@onready var replay_button = $LeaderboardUI/VContainer/MiddleContainer/ControlsContainer/ReplayButton
 #@onready var login_button = $LevelUI/Leaderboard/VBoxContainer/LoginButton
-@onready var login_button = $LeaderboardUI/HBoxContainer/ControlsContainer/LoginButton
-@onready var skip_button = $LeaderboardUI/HBoxContainer/ControlsContainer/SkipButton
-@onready var next_level_button = $LeaderboardUI/HBoxContainer/ControlsContainer/NextLevelButton
-@onready var reset_level_button = $LeaderboardUI/HBoxContainer/ControlsContainer/ResetButton
-@onready var main_menu_button = $LeaderboardUI/HBoxContainer/ControlsContainer/MainMenuButton
+@onready var login_button = $LeaderboardUI/VContainer/MiddleContainer/ControlsContainer/LoginButton
+@onready var skip_button = $LeaderboardUI/VContainer/MiddleContainer/ControlsContainer/SkipButton
+@onready var next_level_button = $LeaderboardUI/VContainer/MiddleContainer/ControlsContainer/NextLevelButton
+@onready var reset_level_button = $LeaderboardUI/VContainer/MiddleContainer/ControlsContainer/ResetButton
+@onready var main_menu_button = $LeaderboardUI/VContainer/MiddleContainer/ControlsContainer/MainMenuButton
 @onready var leaderboard_ui = $LeaderboardUI
-@onready var scores_container = $LeaderboardUI/HBoxContainer/MiddleContainer/ScrollContainer/PanelContainer/VBoxContainer/ScoresContainer
-@onready var leaderboard_container = $LeaderboardUI/HBoxContainer/MiddleContainer/ScrollContainer/PanelContainer
-@onready var status_label = $LeaderboardUI/HBoxContainer/MiddleContainer/ScrollContainer/PanelContainer/VBoxContainer/StatusLabel
-@onready var top_label = $LeaderboardUI/HBoxContainer/MiddleContainer/TopLabel
-@onready var bottom_label = $LeaderboardUI/HBoxContainer/MiddleContainer/BottomLabel
+@onready var scores_container = $LeaderboardUI/VContainer/MiddleContainer/ScrollContainer/PanelContainer/VBoxContainer/ScoresContainer
+@onready var leaderboard_container = $LeaderboardUI/VContainer/MiddleContainer/ScrollContainer/PanelContainer
+@onready var status_label = $LeaderboardUI/VContainer/MiddleContainer/ScrollContainer/PanelContainer/VBoxContainer/StatusLabel
+#@onready var top_label = $LeaderboardUI/HBoxContainer/MiddleContainer/TopLabel
+@onready var top_label = $LeaderboardUI/VContainer/TopLabel
+#@onready var bottom_label = $LeaderboardUI/HBoxContainer/MiddleContainer/BottomLabel
+@onready var bottom_label = $LeaderboardUI/VContainer/BottomLabel
 @onready var login_layer = $LoginLayer
-@onready var controls_container = $LeaderboardUI/HBoxContainer/ControlsContainer
+#@onready var controls_container = $LeaderboardUI/HBoxContainer/ControlsContainer
+@onready var controls_container = $LeaderboardUI/VContainer/MiddleContainer/ControlsContainer
 
 
 signal watch_replay_pressed(level_number: int, username: String)

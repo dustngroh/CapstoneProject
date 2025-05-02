@@ -1,9 +1,70 @@
-[gd_scene load_steps=37 format=3 uid="uid://bh68ke5pd617u"]
+[gd_scene load_steps=53 format=3 uid="uid://bh68ke5pd617u"]
 
 [ext_resource type="Script" path="res://scenes/entities/characters/player/character_body_2d.gd" id="1_ll5kr"]
+[ext_resource type="Texture2D" uid="uid://bcp23uese1xm3" path="res://assets/character/Jump_glow.png" id="2_prbyj"]
 [ext_resource type="Texture2D" uid="uid://dcil3oke48yji" path="res://assets/character/Jump.png" id="5_xnvap"]
 [ext_resource type="Texture2D" uid="uid://d1v64t5lc00ly" path="res://assets/character/walk_redo.png" id="8_v1mvy"]
 [ext_resource type="AudioStream" uid="uid://haaebf05b6g1" path="res://assets/audio/sounds/jar-pop.wav" id="9_we22s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_svooy"]
+atlas = ExtResource("2_prbyj")
+region = Rect2(100, 100, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tcx8w"]
+atlas = ExtResource("2_prbyj")
+region = Rect2(300, 100, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkjes"]
+atlas = ExtResource("2_prbyj")
+region = Rect2(500, 100, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wi6hw"]
+atlas = ExtResource("2_prbyj")
+region = Rect2(700, 100, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fk0cq"]
+atlas = ExtResource("2_prbyj")
+region = Rect2(900, 100, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifr1a"]
+atlas = ExtResource("2_prbyj")
+region = Rect2(100, 300, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cidl"]
+atlas = ExtResource("2_prbyj")
+region = Rect2(300, 300, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qrnu3"]
+atlas = ExtResource("2_prbyj")
+region = Rect2(500, 300, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ncfvu"]
+atlas = ExtResource("2_prbyj")
+region = Rect2(700, 300, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w08do"]
+atlas = ExtResource("2_prbyj")
+region = Rect2(900, 300, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2u4vr"]
+atlas = ExtResource("2_prbyj")
+region = Rect2(100, 500, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_guugh"]
+atlas = ExtResource("2_prbyj")
+region = Rect2(300, 500, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_26lhn"]
+atlas = ExtResource("2_prbyj")
+region = Rect2(500, 500, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0wo1d"]
+atlas = ExtResource("2_prbyj")
+region = Rect2(700, 500, 200, 200)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6uy0l"]
+atlas = ExtResource("2_prbyj")
+region = Rect2(900, 500, 200, 200)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kuhvw"]
 atlas = ExtResource("5_xnvap")
@@ -129,6 +190,56 @@ region = Rect2(800, 400, 200, 200)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_svooy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tcx8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkjes")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wi6hw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fk0cq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifr1a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cidl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qrnu3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ncfvu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w08do")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2u4vr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_guugh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_26lhn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0wo1d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6uy0l")
+}],
+"loop": true,
+"name": &"jump_glow",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_kuhvw")
 }, {
 "duration": 1.0,
@@ -243,9 +354,9 @@ drag_vertical_enabled = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_1huyh")
-animation = &"walking"
+animation = &"jump_glow"
 autoplay = "jumping"
-frame_progress = 0.882786
+frame_progress = 0.693572
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 one_shot = true
