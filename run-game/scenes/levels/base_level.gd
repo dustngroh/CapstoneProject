@@ -7,7 +7,7 @@ extends Node2D
 @export var countdown_seconds = 3
 
 var base_level_path = "res://scenes/levels/main_levels/level_"
-var total_levels = 5
+var total_levels = 6
 
 var admin_controls_instance: Control = null
 var touch_controls_instance: Control = null

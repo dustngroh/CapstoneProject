@@ -53,5 +53,3 @@ position = Vector2(17589, 0)
 scale = Vector2(2, 2)
 offset = Vector2(-600, 0)
 duration = 7.5
-
-[connection signal="body_entered" from="BaseTileMap/Checkpoint" to="BaseTileMap/Checkpoint" method="_on_body_entered"]

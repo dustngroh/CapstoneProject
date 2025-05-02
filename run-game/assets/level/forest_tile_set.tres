@@ -12,7 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bt17csp8a4hyi" path="res://scenes/entities/obstacles/mushroom_object.tscn" id="10_2dgbc"]
 [ext_resource type="PackedScene" uid="uid://dsdjxq7j8takm" path="res://scenes/entities/obstacles/rock_big.tscn" id="11_kc2se"]
 [ext_resource type="PackedScene" uid="uid://cujvvfpqkhhb6" path="res://scenes/entities/obstacles/rock.tscn" id="12_4eni1"]
-[ext_resource type="Texture2D" uid="uid://c0txarlhla7a6" path="res://assets/level/continuous_grass.png" id="13_04fwf"]
+[ext_resource type="Texture2D" uid="uid://c0txarlhla7a6" path="res://assets/level/continuous_grass.png" id="13_ghxia"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_ew0u4"]
 tile_data = PackedInt32Array(0, 1, 3, 1, 65537, 3)
@@ -399,7 +399,7 @@ scenes/9/scene = ExtResource("12_4eni1")
 scenes/10/scene = ExtResource("5_blrjs")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ojcff"]
-texture = ExtResource("13_04fwf")
+texture = ExtResource("13_ghxia")
 texture_region_size = Vector2i(200, 200)
 0:0/0 = 0
 
