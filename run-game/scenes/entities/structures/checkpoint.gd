@@ -25,11 +25,18 @@ func _on_body_entered(body: Node2D) -> void:
 			activated = true
 			visual_feedback()
 
-
 func visual_feedback():
 	if sprite:
-		sprite.modulate = Color(0, 1, 0)  # Green color
+		var tween = create_tween()
 
-	# Scale it up slightly for a "pop" effect
-	var tween = create_tween()
-	tween.tween_property(sprite, "scale", sprite.scale * 1.2, 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		# Flash green
+		sprite.modulate = Color(0, 1, 0)
+
+		# Reset rotation first in case it was rotated before
+		sprite.rotation_degrees = 0
+
+		# Spin + slight pop
+		tween.tween_property(sprite, "rotation_degrees", 360, 0.4).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		tween.parallel().tween_property(sprite, "scale", sprite.scale * 1.3, 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+		tween.tween_interval(0.1)
+		tween.tween_property(sprite, "scale", sprite.scale, 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
