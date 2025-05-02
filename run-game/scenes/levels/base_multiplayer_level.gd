@@ -121,6 +121,7 @@ func _on_win_zone_win():
 	#leaderboard.visible = true
 	scoreboard_label.text = "Waiting on all players to finish..."
 	scoreboard_label.visible = true
+	UIManager.show_leaderboard_container()
 	WebSocketManager.send_player_finish(elapsed_time)
 
 func start_countdown():
