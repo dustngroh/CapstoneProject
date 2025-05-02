@@ -133,9 +133,11 @@ metadata/_edit_use_anchors_ = true
 [node name="LeaderboardUI" type="CanvasLayer" parent="."]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LeaderboardUI"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.02
+anchor_right = 0.98
+anchor_bottom = 0.98
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -144,7 +146,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="MiddleContainer" type="VBoxContainer" parent="LeaderboardUI/HBoxContainer"]
-custom_minimum_size = Vector2(540, 0)
+custom_minimum_size = Vector2(550, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -189,7 +191,7 @@ label_settings = SubResource("LabelSettings_n4h7j")
 horizontal_alignment = 1
 
 [node name="ControlsContainer" type="VBoxContainer" parent="LeaderboardUI/HBoxContainer"]
-custom_minimum_size = Vector2(130, 300)
+custom_minimum_size = Vector2(130, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 size_flags_vertical = 4
