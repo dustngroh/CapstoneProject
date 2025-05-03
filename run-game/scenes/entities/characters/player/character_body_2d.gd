@@ -74,7 +74,7 @@ func _physics_process(delta: float) -> void:
 	if is_pushed_back:
 		push_back_timer -= delta
 		if push_back_timer > 0:
-			velocity = velocity * (1 - collision_slowdown_factor) + push_back_direction * push_force
+			velocity = velocity * (1 - collision_slowdown_factor) + push_back_direction * push_force * 10
 		
 		else:
 			is_pushed_back = false  # Stop pushing when time is up

@@ -56,11 +56,11 @@ func _ready():
 	get_viewport().size_changed.connect(resize_background)
 	
 	spawn_player()
-	
-	if game.should_spawn_ghost:
-		print("spawning ghost")
-		spawn_ghost(game.ghost_replay_data, game.ghost_total_time)
-		game.should_spawn_ghost = false 
+	if game:
+		if game.should_spawn_ghost:
+			print("spawning ghost")
+			spawn_ghost(game.ghost_replay_data, game.ghost_total_time)
+			game.should_spawn_ghost = false 
 	
 	# Ensure level UI is visible
 	#UIManager.show_level_ui()

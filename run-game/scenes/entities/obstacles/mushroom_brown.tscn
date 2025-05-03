@@ -10,7 +10,6 @@ region = Rect2(801, 1001, 199, 199)
 size = Vector2(24.5, 57.5)
 
 [node name="BrownMushroom" type="RigidBody2D"]
-mass = 3.0
 center_of_mass_mode = 1
 center_of_mass = Vector2(-19.25, 100)
 
