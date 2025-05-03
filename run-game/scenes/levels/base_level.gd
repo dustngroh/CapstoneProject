@@ -424,6 +424,7 @@ func spawn_ghost(replay_data: Array, total_time: float):
 		add_child(ghost_player)
 		ghost_player.set_replay(replay_data, total_time)
 		ghost_player.update_name(game.ghost_name)
+		ghost_player.global_position = respawn_point 
 
 func _on_ghost_replay_pressed(level_number: int, username: String) -> void:
 	print("Requesting ghost replay for %s..." % username)
