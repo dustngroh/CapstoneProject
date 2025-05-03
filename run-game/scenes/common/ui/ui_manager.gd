@@ -95,7 +95,17 @@ func end_level_ui():
 	reset_level_button.visible = true
 	main_menu_button.visible = true
 	login_button.visible = !HTTPRequestManager.is_logged_in()
+
+func end_tutorial_ui():
+	$LevelUI.visible = true
+	leaderboard_ui.visible = true
 	
+	replay_button.visible = true
+	next_level_button.visible = false
+	reset_level_button.visible = false
+	main_menu_button.visible = true
+	login_button.visible = !HTTPRequestManager.is_logged_in()
+
 
 func show_level_ui():
 	$LevelUI.visible = true

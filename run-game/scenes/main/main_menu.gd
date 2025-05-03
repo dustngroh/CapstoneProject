@@ -5,6 +5,7 @@ extends Control
 @onready var create_account_button = $MiddleContainer/MenuButtonContainer/CreateAccountScreenButton
 @onready var mute_button = $MiddleContainer/MenuButtonContainer/MuteButton
 @onready var info_label = $MiddleContainer/InfoLabel
+@onready var game = get_tree().root.get_node("Game")
 
 var is_loading_level = false
 
@@ -30,7 +31,7 @@ func _on_new_game_button_pressed() -> void:
 	
 	is_loading_level = true
 	MusicManager.play_music("res://assets/audio/music/mushroom_background_music.mp3")
-	var game = get_tree().root.get_node("Game")
+	#var game = get_tree().root.get_node("Game")
 	if game:
 		game.load_level("res://scenes/levels/main_levels/level_1.tscn")
 
@@ -40,7 +41,7 @@ func _on_level_select_button_pressed() -> void:
 		return  # Already loading, ignore extra presses
 	
 	is_loading_level = true
-	var game = get_tree().root.get_node("Game")
+	#var game = get_tree().root.get_node("Game")
 	if game:
 		game.load_level("res://scenes/common/level_select/level_select.tscn")
 
@@ -63,7 +64,7 @@ func _on_endless_run_button_pressed() -> void:
 	
 	is_loading_level = true
 	MusicManager.play_music("res://assets/audio/music/Maarten Schellekens - Ulua Beach.mp3")
-	var game = get_tree().root.get_node("Game")
+	#var game = get_tree().root.get_node("Game")
 	if game:
 		game.load_level("res://scenes/levels/alternate_levels/endless_run.tscn")
 
@@ -73,9 +74,19 @@ func _on_multiplayer_button_pressed() -> void:
 		return  # Already loading, ignore extra presses
 	
 	is_loading_level = true
-	var game = get_tree().root.get_node("Game")
+	#var game = get_tree().root.get_node("Game")
 	if game:
 		game.load_level("res://scenes/common/ui/multiplayer_screen.tscn")
+
+
+func _on_tutorial_button_pressed() -> void:
+	if is_loading_level:
+		return  # Already loading, ignore extra presses
+	
+	is_loading_level = true
+	if game:
+		game.load_level("res://scenes/levels/alternate_levels/tutorial_level.tscn")
+
 
 func _on_successful_login(user) -> void:
 	UIManager.hide_login()

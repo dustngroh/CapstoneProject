@@ -83,6 +83,7 @@ layout_mode = 2
 [node name="MenuButtonContainer" type="VBoxContainer" parent="MiddleContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
+theme = ExtResource("4_t272i")
 
 [node name="NewGameButton" type="Button" parent="MiddleContainer/MenuButtonContainer"]
 custom_minimum_size = Vector2(180, 0)
@@ -105,6 +106,10 @@ layout_mode = 2
 theme = ExtResource("4_t272i")
 text = "Multiplayer
 "
+
+[node name="TutorialButton" type="Button" parent="MiddleContainer/MenuButtonContainer"]
+layout_mode = 2
+text = "How To Play"
 
 [node name="LoginScreenButton" type="Button" parent="MiddleContainer/MenuButtonContainer"]
 layout_mode = 2
@@ -156,6 +161,7 @@ layout_mode = 2
 [connection signal="pressed" from="MiddleContainer/MenuButtonContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
 [connection signal="pressed" from="MiddleContainer/MenuButtonContainer/EndlessRunButton" to="." method="_on_endless_run_button_pressed"]
 [connection signal="pressed" from="MiddleContainer/MenuButtonContainer/MultiplayerButton" to="." method="_on_multiplayer_button_pressed"]
+[connection signal="pressed" from="MiddleContainer/MenuButtonContainer/TutorialButton" to="." method="_on_tutorial_button_pressed"]
 [connection signal="pressed" from="MiddleContainer/MenuButtonContainer/LoginScreenButton" to="." method="_on_login_screen_button_pressed"]
 [connection signal="pressed" from="MiddleContainer/MenuButtonContainer/CreateAccountScreenButton" to="." method="_on_create_account_screen_button_pressed"]
 [connection signal="pressed" from="MiddleContainer/MenuButtonContainer/LogoutButton" to="." method="_on_logout_button_pressed"]

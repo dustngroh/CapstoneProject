@@ -5,6 +5,7 @@ extends Node2D
 @export var touch_controls_scene: PackedScene
 @export var current_level_number = 1
 @export var countdown_seconds = 3
+@export var cutscene_duration = 3.0
 
 var base_level_path = "res://scenes/levels/main_levels/level_"
 var total_levels = 6
@@ -124,7 +125,7 @@ func play_cutscene() -> void:
 	
 	# Smoothly move to win zone
 	var tween = create_tween()
-	tween.tween_property(cutscene_camera, "global_position", win_zone.global_position, 3.0)  # Move over 3 seconds
+	tween.tween_property(cutscene_camera, "global_position", win_zone.global_position, cutscene_duration)
 	
 	await tween.finished
 	
@@ -169,7 +170,11 @@ func _on_win_zone_win():
 	player.end_recording()
 	#leaderboard.visible = true
 	#level_options.visible = true
-	UIManager.end_level_ui()
+	if current_level_number > 50:
+		UIManager.end_tutorial_ui()
+	else:
+		UIManager.end_level_ui()
+	
 	
 	
 	UIManager.clear_leaderboard()
@@ -404,7 +409,11 @@ func _on_replay_received(replay_array: Array, completion_time: float) -> void:
 	#await play_replay(replay_array, completion_time)
 	if ghost_requested:
 		game.set_ghost_replay(replay_array, completion_time)
-		var current_level_path = base_level_path + str(current_level_number) + ".tscn"
+		var current_level_path = ""
+		if current_level_number > 50:
+			current_level_path = "res://scenes/levels/alternate_levels/tutorial_level.tscn"
+		else:
+			current_level_path = base_level_path + str(current_level_number) + ".tscn"
 		game.load_level(current_level_path)
 	else:
 		await play_replay(replay_array, completion_time)
