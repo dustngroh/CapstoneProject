@@ -14,6 +14,9 @@ var elapsed_time: float = 0.0  # Time starts at 0
 var timer_running: bool = false # Paused until countdown ends
 var position_update_timer: float = 0.0  # Timer to control how often we send position updates
 var position_update_interval: float = 0.05
+@onready var countdown_timeout_timer: Timer = Timer.new()
+var countdown_started: bool = false
+
 
 var players: Dictionary = {}
 var game_finished = false
@@ -83,6 +86,11 @@ func _ready() -> void:
 	
 	WebSocketManager.mark_ready()
 	send_player_position()
+	countdown_timeout_timer.wait_time = 10.0 
+	countdown_timeout_timer.one_shot = true
+	countdown_timeout_timer.timeout.connect(_on_countdown_timeout)
+	add_child(countdown_timeout_timer)
+	countdown_timeout_timer.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -125,6 +133,10 @@ func _on_win_zone_win():
 	WebSocketManager.send_player_finish(elapsed_time)
 
 func start_countdown():
+	if countdown_started:
+		return
+	countdown_started = true
+	countdown_timeout_timer.stop()
 	countdown_label.show()
 	for i in range(countdown_seconds, 0, -1):  # Countdown from countdown_seconds to 1
 		countdown_label.text = str(i)
@@ -241,3 +253,7 @@ func resize_background():
 		background_sprite.scale = Vector2(scale_x, scale_x)
 	else:
 		background_sprite.scale = Vector2(scale_y, scale_y)
+
+func _on_countdown_timeout():
+	print("Countdown timeout reached — starting level without all players.")
+	start_countdown()
