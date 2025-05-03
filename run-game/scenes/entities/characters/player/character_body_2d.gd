@@ -128,7 +128,7 @@ func _physics_process(delta: float) -> void:
 			if c.get_collider().is_in_group("rocks"):
 				# rocks slow player and get pushed
 				velocity -= collision_normal * velocity_along_normal * (1 - collision_slowdown_factor)
-				c.get_collider().apply_central_impulse(-collision_normal * push_force)
+				c.get_collider().apply_central_impulse(-collision_normal * push_force * 10)
 			
 			else:
 				# Other obstacles also apply push-back
