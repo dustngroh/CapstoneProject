@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://carhp4p77ctel" path="res://assets/ui/keyboard_escape.png" id="8_54lfu"]
 
 [node name="TouchControls" type="Control" groups=["TouchControls"]]
-modulate = Color(0.344367, 0.688566, 0.634603, 0.751)
+modulate = Color(0.792, 0.883, 0.783, 0.75)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
