@@ -94,7 +94,7 @@ text = "New Game"
 [node name="LevelSelectButton" type="Button" parent="MiddleContainer/MenuButtonContainer"]
 layout_mode = 2
 theme = ExtResource("4_t272i")
-text = "Level Select"
+text = "Select Level"
 
 [node name="EndlessRunButton" type="Button" parent="MiddleContainer/MenuButtonContainer"]
 layout_mode = 2

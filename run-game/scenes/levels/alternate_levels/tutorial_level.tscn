@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=4 uid="uid://sdtdge5m46ya"]
+[gd_scene load_steps=9 format=4 uid="uid://sdtdge5m46ya"]
 
 [ext_resource type="PackedScene" uid="uid://ds5twxhi7yq7j" path="res://scenes/levels/BaseLevel.tscn" id="1_n6lyj"]
 [ext_resource type="PackedScene" uid="uid://cv0g3jhsyp68l" path="res://scenes/entities/structures/checkpoint.tscn" id="2_fnwc6"]
 [ext_resource type="TileSet" uid="uid://kgj2kuo4olk6" path="res://assets/level/forest_tile_set.tres" id="2_vrf37"]
 [ext_resource type="Script" path="res://scenes/entities/structures/hidden_spawner.gd" id="3_p7n7n"]
+[ext_resource type="Theme" uid="uid://p6jcm78toxqj" path="res://assets/themes/tutorial_theme.tres" id="4_cpwgt"]
 [ext_resource type="PackedScene" uid="uid://dwj6wpsg7ppp6" path="res://scenes/entities/obstacles/mushroom_spawner.tscn" id="5_ekb5h"]
 [ext_resource type="PackedScene" uid="uid://vih42f7l4t7b" path="res://scenes/entities/structures/spring.tscn" id="6_xwkxa"]
 
@@ -19,7 +20,7 @@ cutscene_duration = 0.0
 position = Vector2(-229.499, -78.3602)
 
 [node name="WinZone" parent="." index="5"]
-position = Vector2(11754, -15)
+position = Vector2(12024, -15)
 
 [node name="Checkpoint" parent="." index="6" instance=ExtResource("2_fnwc6")]
 position = Vector2(3262, 23)
@@ -41,16 +42,18 @@ offset_left = -174.0
 offset_top = -141.0
 offset_right = 417.0
 offset_bottom = 163.0
+theme = ExtResource("4_cpwgt")
 theme_override_font_sizes/normal_font_size = 34
 bbcode_enabled = true
 text = "[center]Use the arrow keys to move.
 [img]res://assets/ui/keyboard_arrow_left.png[/img][img]res://assets/ui/keyboard_arrow_right.png[/img][/center]"
 
 [node name="SpaceBarText" type="RichTextLabel" parent="." index="13"]
-offset_left = 1745.0
+offset_left = 1301.0
 offset_top = -141.0
-offset_right = 2336.0
+offset_right = 1892.0
 offset_bottom = 163.0
+theme = ExtResource("4_cpwgt")
 theme_override_font_sizes/normal_font_size = 34
 bbcode_enabled = true
 text = "[center]Press the space bar to jump.
@@ -61,6 +64,7 @@ offset_left = 9669.0
 offset_top = -141.0
 offset_right = 10260.0
 offset_bottom = 163.0
+theme = ExtResource("4_cpwgt")
 theme_override_font_sizes/normal_font_size = 34
 bbcode_enabled = true
 text = "[center]Press Esc anytime to pause or return to the main menu.
@@ -71,6 +75,7 @@ offset_left = 3002.0
 offset_top = -141.0
 offset_right = 3593.0
 offset_bottom = 163.0
+theme = ExtResource("4_cpwgt")
 theme_override_font_sizes/normal_font_size = 34
 bbcode_enabled = true
 text = "[center]You'll respawn at checkpoints if you fall![/center]"
@@ -80,6 +85,7 @@ offset_left = 4122.0
 offset_top = -141.0
 offset_right = 4686.0
 offset_bottom = 163.0
+theme = ExtResource("4_cpwgt")
 theme_override_font_sizes/normal_font_size = 34
 bbcode_enabled = true
 text = "[center]Avoid obstacles to keep your speed up![/center]"
@@ -89,15 +95,17 @@ offset_left = 7350.0
 offset_top = -141.0
 offset_right = 7914.0
 offset_bottom = 163.0
+theme = ExtResource("4_cpwgt")
 theme_override_font_sizes/normal_font_size = 34
 bbcode_enabled = true
 text = "[center]Use the spring to bounce up![/center]"
 
 [node name="WinText" type="RichTextLabel" parent="." index="18"]
-offset_left = 11573.0
+offset_left = 11048.0
 offset_top = -159.0
-offset_right = 12137.0
+offset_right = 11612.0
 offset_bottom = 145.0
+theme = ExtResource("4_cpwgt")
 theme_override_font_sizes/normal_font_size = 34
 bbcode_enabled = true
 text = "[center]Reach the win zone as fast as possible to finish the level![/center]"
@@ -113,6 +121,7 @@ shape = SubResource("RectangleShape2D_8mlax")
 [node name="MushroomSpawner" parent="." index="20" instance=ExtResource("5_ekb5h")]
 position = Vector2(4044, -47)
 spawn_count = 5
+cooldown = 50.0
 
 [node name="Spring" parent="." index="21" instance=ExtResource("6_xwkxa")]
 position = Vector2(7643, 23)
