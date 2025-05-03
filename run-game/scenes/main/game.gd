@@ -3,6 +3,11 @@ extends Node
 var current_level = null
 @onready var fade_layer: CanvasLayer = UIManager.get_node("FadeLayer")
 
+var ghost_replay_data: Array = []
+var ghost_total_time: float = 0.0
+var should_spawn_ghost: bool = false
+var ghost_name: String = ""
+
 func _ready():
 	load_level('res://scenes/main/MainMenu.tscn') # Load Main Menu on start
 	#load_level('res://scenes/levels/main_levels/level_d.tscn') # Uncomment this and change path to your level
@@ -24,3 +29,12 @@ func load_level(level_path: String):
 		#MusicManager.play_music("res://assets/audio/music/Lite Saturation - Calm.mp3") # Play special song
 		
 	await fade_layer.fade_out(1.0)
+
+func set_ghost_replay(data: Array, total_time: float):
+	print("setting ghost")
+	ghost_replay_data = data
+	ghost_total_time = total_time
+	should_spawn_ghost = true
+
+func set_ghost_name(name: String):
+	ghost_name = name

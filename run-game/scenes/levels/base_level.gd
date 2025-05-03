@@ -45,8 +45,10 @@ var is_replaying: bool = false
 var replay_cancelled: bool = false
 var replay_task = null
 var pre_replay_position: Vector2
+var ghost_requested: bool = false
 
-
+@export var ghost_player_scene: PackedScene
+var ghost_player: Node2D
 
 
 func _ready():
@@ -54,6 +56,11 @@ func _ready():
 	get_viewport().size_changed.connect(resize_background)
 	
 	spawn_player()
+	
+	if game.should_spawn_ghost:
+		print("spawning ghost")
+		spawn_ghost(game.ghost_replay_data, game.ghost_total_time)
+		game.should_spawn_ghost = false 
 	
 	# Ensure level UI is visible
 	#UIManager.show_level_ui()
@@ -103,6 +110,8 @@ func _ready():
 func _process(delta):
 	if timer_running:
 		elapsed_time += delta
+		if ghost_player:
+			ghost_player.update_position(elapsed_time)
 		update_timer_display()
 
 func play_cutscene() -> void:
@@ -248,6 +257,10 @@ func _on_leaderboard_received(level: int, scores: Array):
 	if not UIManager.watch_replay_pressed.is_connected(_on_watch_replay_pressed):
 		UIManager.watch_replay_pressed.connect(_on_watch_replay_pressed)
 
+	if not UIManager.ghost_replay_pressed.is_connected(_on_ghost_replay_pressed):
+		UIManager.ghost_replay_pressed.connect(_on_ghost_replay_pressed)
+
+
 	UIManager.update_status("Top Times:")
 	UIManager.populate_leaderboard(level, scores)
 
@@ -388,7 +401,14 @@ func _on_watch_replay_pressed(level_number: int, username: String) -> void:
 func _on_replay_received(replay_array: Array, completion_time: float) -> void:
 	print("Starting replay! Recorded time: %.2f seconds" % completion_time)
 	
-	await play_replay(replay_array, completion_time)
+	#await play_replay(replay_array, completion_time)
+	if ghost_requested:
+		game.set_ghost_replay(replay_array, completion_time)
+		var current_level_path = base_level_path + str(current_level_number) + ".tscn"
+		game.load_level(current_level_path)
+	else:
+		await play_replay(replay_array, completion_time)
+
 
 
 func show_leaderboard_container():
@@ -396,3 +416,17 @@ func show_leaderboard_container():
 
 func hide_leaderboard_container():
 	UIManager.hide_leaderboard_container()
+
+
+func spawn_ghost(replay_data: Array, total_time: float):
+	if ghost_player_scene:
+		ghost_player = ghost_player_scene.instantiate()
+		add_child(ghost_player)
+		ghost_player.set_replay(replay_data, total_time)
+		ghost_player.update_name(game.ghost_name)
+
+func _on_ghost_replay_pressed(level_number: int, username: String) -> void:
+	print("Requesting ghost replay for %s..." % username)
+	ghost_requested = true
+	game.set_ghost_name(username)
+	HTTPRequestManager.fetch_replay(level_number, username)

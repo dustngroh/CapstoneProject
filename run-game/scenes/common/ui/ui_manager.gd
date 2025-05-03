@@ -28,6 +28,8 @@ var scoreboard_entry_scene = preload("res://scenes/common/ui/scoreboard_entry.ts
 
 
 signal watch_replay_pressed(level_number: int, username: String)
+signal ghost_replay_pressed(level_number: int, username: String)
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -184,10 +186,15 @@ func populate_leaderboard(level: int, scores: Array):
 		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 		
-		button.text = "Watch"
+		#button.text = "Watch"
 		#button.pressed.connect(_on_watch_replay_pressed.bind(level, username))
 		button.pressed.connect(func(): emit_signal("watch_replay_pressed", level, username))
 		#button.theme = preload("res://assets/themes/mush_theme.tres")
+		
+		var ghost_button = scoreboard_entry.get_node("HBoxContainer/GhostButton")
+		#ghost_button.text = "Race"
+		ghost_button.pressed.connect(func(): emit_signal("ghost_replay_pressed", level, username))
+
 		
 		
 		# Color rank label for top 3
@@ -244,6 +251,7 @@ func populate_multiplayer_leaderboard(scores: Array):
 		#button.pressed.connect(func(): emit_signal("watch_replay_pressed", level, username))
 		#button.theme = preload("res://assets/themes/mush_theme.tres")
 		button.queue_free()
+		scoreboard_entry.get_node("HBoxContainer/GhostButton").queue_free()
 		
 		
 		# Color rank label for top 3
