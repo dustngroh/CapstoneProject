@@ -10,7 +10,7 @@ var max_correction = 200.0
 @export_range(0.0, 1.0) var friction = 0.1
 @export_range(0.0 , 1.0) var acceleration = 0.04
 @export var collision_slowdown_factor = 0.5  # How much collisions slow player
-@export var push_force = 200.0  # Strength of push-back
+@export var push_force = 20.0  # Strength of push-back
 @export var push_back_duration = 0.2  # Duration of the push-back in seconds
 @export var dash_dance_grace_time = 0.05  # Time window for lenient direction switch
 @export var speed_threshold = 0.9  # Percentage of full speed required to trigger instant flip
@@ -81,7 +81,7 @@ func _physics_process(delta: float) -> void:
 	
 	# Determine animation state
 	if !is_on_floor():  
-		$AnimatedSprite2D.play("jump_glow")  # Play jump animation when airborne
+		$AnimatedSprite2D.play("jumping")  # Play jump animation when airborne
 		$AnimatedSprite2D.speed_scale = 1.0
 	#elif Input.is_action_pressed("hold_down"):
 		#$AnimatedSprite2D.play("down")  # Play crouch animation

@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://4i67qd8y0ok3"]
+
+[ext_resource type="Texture2D" uid="uid://ccelc0atyacya" path="res://assets/level/base_update.png" id="1_51nk6"]
+[ext_resource type="Script" path="res://scenes/entities/obstacles/mushroom_random_bounce.gd" id="1_v2b2a"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0x4gf"]
+bounce = 1.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o4f5"]
+atlas = ExtResource("1_51nk6")
+region = Rect2(601, 1001, 199, 199)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_oelhm"]
+radius = 17.0
+height = 80.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7alfu"]
+radius = 24.0208
+
+[node name="WeirdMushroom" type="RigidBody2D"]
+position = Vector2(6, -59)
+physics_material_override = SubResource("PhysicsMaterial_0x4gf")
+gravity_scale = 0.2
+script = ExtResource("1_v2b2a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_3o4f5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, 59)
+shape = SubResource("CapsuleShape2D_oelhm")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-6, 42)
+shape = SubResource("CircleShape2D_7alfu")
