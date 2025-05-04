@@ -207,12 +207,15 @@ func populate_leaderboard(level: int, scores: Array):
 		var time_label = scoreboard_entry.get_node("HBoxContainer/TimeLabel")
 		var button = scoreboard_entry.get_node("HBoxContainer/ReplayButton")
 		
+		
 		var rank = i + 1
-		rank_label.text = "%d." % rank
+		#rank_label.text = "%d." % rank
+		#scoreboard_entry.get_node("HBoxContainer/RichTextLabel").text = "%d." % rank
+		
 		name_label.text = username
 		time_label.text = "%.2f s" % time
 		
-		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		#name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 		
 		#button.text = "Watch"
@@ -229,27 +232,29 @@ func populate_leaderboard(level: int, scores: Array):
 		# Color rank label for top 3
 		match rank:
 			1:
-				rank_label.text = ""
 				scoreboard_entry.custom_minimum_size = Vector2(0, 100)
 				var image_path = "res://assets/ui/shaded_medal1.png"
-				scoreboard_entry.get_node("HBoxContainer/RichTextLabel").append_text("[center][img]" + image_path + "[/img]")
+				rank_label.clear()
+				rank_label.append_text("[center][img]" + image_path + "[/img]")
 				var gold_theme = preload("res://assets/themes/first_place.tres")
 				scoreboard_entry.theme = gold_theme
 				
 			2:
-				rank_label.text = ""
 				scoreboard_entry.custom_minimum_size = Vector2(0, 85)
 				var image_path = "res://assets/ui/shaded_medal7.png"
-				scoreboard_entry.get_node("HBoxContainer/RichTextLabel").append_text("[center][img height=\"65\"]" + image_path + "[/img]")
+				rank_label.clear()
+				rank_label.append_text("[center][img height=\"65\"]" + image_path + "[/img]")
 				var silver_theme = preload("res://assets/themes/second_place.tres")
 				scoreboard_entry.theme = silver_theme
 			3:
-				rank_label.text = ""
 				scoreboard_entry.custom_minimum_size = Vector2(0, 65)
 				var image_path = "res://assets/ui/shaded_medal2.png"
-				scoreboard_entry.get_node("HBoxContainer/RichTextLabel").append_text("[center][img= height=\"45\"]" + image_path + "[/img]")
+				rank_label.clear()
+				rank_label.append_text("[center][img= height=\"45\"]" + image_path + "[/img]")
 				var bronze_theme = preload("res://assets/themes/third_place.tres")
 				scoreboard_entry.theme = bronze_theme
+			_:
+				rank_label.text = "[center][wave]%d." % rank
 		
 		# Color current user
 		var current_username = HTTPRequestManager.username
@@ -275,11 +280,11 @@ func populate_multiplayer_leaderboard(scores: Array):
 		var button = scoreboard_entry.get_node("HBoxContainer/ReplayButton")
 		
 		var rank = i + 1
-		rank_label.text = "%d." % rank
+		#rank_label.text = "%d." % rank
 		name_label.text = username
 		time_label.text = "%.2f s" % time
 		
-		name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+		#name_label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 
 		
 		#button.text = "Watch"
@@ -293,27 +298,29 @@ func populate_multiplayer_leaderboard(scores: Array):
 		# Color rank label for top 3
 		match rank:
 			1:
-				rank_label.text = ""
 				scoreboard_entry.custom_minimum_size = Vector2(0, 100)
 				var image_path = "res://assets/ui/shaded_medal1.png"
-				scoreboard_entry.get_node("HBoxContainer/RichTextLabel").append_text("[center][img]" + image_path + "[/img]")
+				rank_label.clear()
+				rank_label.append_text("[center][img]" + image_path + "[/img]")
 				var gold_theme = preload("res://assets/themes/first_place.tres")
 				scoreboard_entry.theme = gold_theme
 				
 			2:
-				rank_label.text = ""
 				scoreboard_entry.custom_minimum_size = Vector2(0, 85)
 				var image_path = "res://assets/ui/shaded_medal7.png"
-				scoreboard_entry.get_node("HBoxContainer/RichTextLabel").append_text("[center][img height=\"65\"]" + image_path + "[/img]")
+				rank_label.clear()
+				rank_label.append_text("[center][img height=\"65\"]" + image_path + "[/img]")
 				var silver_theme = preload("res://assets/themes/second_place.tres")
 				scoreboard_entry.theme = silver_theme
 			3:
-				rank_label.text = ""
 				scoreboard_entry.custom_minimum_size = Vector2(0, 65)
 				var image_path = "res://assets/ui/shaded_medal2.png"
-				scoreboard_entry.get_node("HBoxContainer/RichTextLabel").append_text("[center][img= height=\"45\"]" + image_path + "[/img]")
+				rank_label.clear()
+				rank_label.append_text("[center][img= height=\"45\"]" + image_path + "[/img]")
 				var bronze_theme = preload("res://assets/themes/third_place.tres")
 				scoreboard_entry.theme = bronze_theme
+			_:
+				rank_label.text = "[center]%d." % rank
 		
 		# Color current user
 		var current_username = HTTPRequestManager.username

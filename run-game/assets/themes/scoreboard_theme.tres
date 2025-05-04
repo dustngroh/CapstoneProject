@@ -39,3 +39,5 @@ Button/styles/normal = SubResource("StyleBoxFlat_plgnj")
 Label/colors/font_color = Color(0.791729, 0.882718, 0.783356, 1)
 Label/font_sizes/font_size = 20
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_cnqu2")
+RichTextLabel/colors/default_color = Color(0.857708, 0.921237, 0.851666, 1)
+RichTextLabel/font_sizes/normal_font_size = 36
