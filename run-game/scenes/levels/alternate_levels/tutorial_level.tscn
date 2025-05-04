@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://sdtdge5m46ya"]
+[gd_scene load_steps=10 format=4 uid="uid://sdtdge5m46ya"]
 
 [ext_resource type="PackedScene" uid="uid://ds5twxhi7yq7j" path="res://scenes/levels/BaseLevel.tscn" id="1_n6lyj"]
 [ext_resource type="PackedScene" uid="uid://cv0g3jhsyp68l" path="res://scenes/entities/structures/checkpoint.tscn" id="2_fnwc6"]
@@ -7,6 +7,7 @@
 [ext_resource type="Theme" uid="uid://p6jcm78toxqj" path="res://assets/themes/tutorial_theme.tres" id="4_cpwgt"]
 [ext_resource type="PackedScene" uid="uid://dwj6wpsg7ppp6" path="res://scenes/entities/obstacles/mushroom_spawner.tscn" id="5_ekb5h"]
 [ext_resource type="PackedScene" uid="uid://vih42f7l4t7b" path="res://scenes/entities/structures/spring.tscn" id="6_xwkxa"]
+[ext_resource type="Texture2D" uid="uid://c8j24cl2brs3l" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="8_i74og"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8mlax"]
 size = Vector2(640, 346)
@@ -38,7 +39,70 @@ scale = Vector2(0.5, 0.5)
 tile_map_data = PackedByteArray("AAAvAAEAAAADAAMAAAAuAAEAAAADAAMAAAAtAAEAAAADAAMAAAAsAAEAAQADAAMAAAArAAEAAAADAAMAAAAqAAEAAQADAAMAAAApAAEAAAADAAMAAAAoAAEAAQADAAMAAAAnAAEAAAADAAMAAAAmAAEAAQACAAMAAAAwAAEAAQADAAMAAAAxAAEAAAADAAMAAAAyAAEAAAADAAMAAAAzAAEAAQADAAMAAAA0AAEAAQADAAMAAAA1AAEAAQADAAMAAAA2AAEAAQADAAMAAAA3AAEAAQAEAAMAAAA=")
 tile_set = ExtResource("2_vrf37")
 
-[node name="ArrowKeysText" type="RichTextLabel" parent="." index="11"]
+[node name="PointLight2D" type="PointLight2D" parent="." index="11"]
+position = Vector2(114, -183.125)
+scale = Vector2(3.53906, 2.21191)
+color = Color(1, 0.952941, 0.690196, 1)
+energy = 0.5
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.535)
+texture = ExtResource("8_i74og")
+
+[node name="PointLight2D2" type="PointLight2D" parent="." index="12"]
+position = Vector2(1580, -159)
+scale = Vector2(3.53906, 2.21191)
+color = Color(1, 0.952941, 0.690196, 1)
+energy = 0.5
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.535)
+texture = ExtResource("8_i74og")
+
+[node name="PointLight2D3" type="PointLight2D" parent="." index="13"]
+position = Vector2(3262, -193)
+scale = Vector2(3.53906, 2.21191)
+color = Color(1, 0.952941, 0.690196, 1)
+energy = 0.5
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.535)
+texture = ExtResource("8_i74og")
+
+[node name="PointLight2D4" type="PointLight2D" parent="." index="14"]
+position = Vector2(4403, -225)
+scale = Vector2(3.53906, 2.21191)
+color = Color(1, 0.952941, 0.690196, 1)
+energy = 0.5
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.535)
+texture = ExtResource("8_i74og")
+
+[node name="PointLight2D5" type="PointLight2D" parent="." index="15"]
+position = Vector2(7643, -218)
+scale = Vector2(3.53906, 2.21191)
+color = Color(1, 0.952941, 0.690196, 1)
+energy = 0.5
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.535)
+texture = ExtResource("8_i74og")
+
+[node name="PointLight2D6" type="PointLight2D" parent="." index="16"]
+position = Vector2(9960, -201)
+scale = Vector2(3.53906, 2.21191)
+color = Color(1, 0.952941, 0.690196, 1)
+energy = 0.5
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.535)
+texture = ExtResource("8_i74og")
+
+[node name="PointLight2D7" type="PointLight2D" parent="." index="17"]
+position = Vector2(11311, -249)
+scale = Vector2(3.53906, 2.21191)
+color = Color(1, 0.952941, 0.690196, 1)
+energy = 0.5
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.535)
+texture = ExtResource("8_i74og")
+
+[node name="ArrowKeysText" type="RichTextLabel" parent="." index="18"]
 offset_left = -174.0
 offset_top = -141.0
 offset_right = 417.0
@@ -46,10 +110,10 @@ offset_bottom = 163.0
 theme = ExtResource("4_cpwgt")
 theme_override_font_sizes/normal_font_size = 34
 bbcode_enabled = true
-text = "[center]Use the arrow keys to move.
-[img]res://assets/ui/keyboard_arrow_left.png[/img][img]res://assets/ui/keyboard_arrow_right.png[/img][/center]"
+text = "[wave][center]Use the arrow keys to move.
+[img color=#faf6d7]res://assets/ui/keyboard_arrow_left.png[/img][img color=#faf6d7]res://assets/ui/keyboard_arrow_right.png[/img][/center]"
 
-[node name="SpaceBarText" type="RichTextLabel" parent="." index="12"]
+[node name="SpaceBarText" type="RichTextLabel" parent="." index="19"]
 offset_left = 1301.0
 offset_top = -141.0
 offset_right = 1892.0
@@ -57,10 +121,10 @@ offset_bottom = 163.0
 theme = ExtResource("4_cpwgt")
 theme_override_font_sizes/normal_font_size = 34
 bbcode_enabled = true
-text = "[center]Press the space bar to jump.
-[img]res://assets/ui/keyboard_space.png[/img][/center]"
+text = "[wave][center]Press the space bar to jump.
+[img color=#faf6d7]res://assets/ui/keyboard_space.png[/img][/center]"
 
-[node name="SpaceBarText2" type="RichTextLabel" parent="." index="13"]
+[node name="SpaceBarText2" type="RichTextLabel" parent="." index="20"]
 offset_left = 9669.0
 offset_top = -141.0
 offset_right = 10260.0
@@ -68,10 +132,10 @@ offset_bottom = 163.0
 theme = ExtResource("4_cpwgt")
 theme_override_font_sizes/normal_font_size = 34
 bbcode_enabled = true
-text = "[center]Press Esc anytime to pause or return to the main menu.
-[img]res://assets/ui/keyboard_escape.png[/img][/center]"
+text = "[wave][center]Press Esc anytime to pause or return to the main menu.
+[img color=#faf6d7]res://assets/ui/keyboard_escape.png[/img][/center]"
 
-[node name="CheckpointText" type="RichTextLabel" parent="." index="14"]
+[node name="CheckpointText" type="RichTextLabel" parent="." index="21"]
 offset_left = 3002.0
 offset_top = -141.0
 offset_right = 3593.0
@@ -79,9 +143,9 @@ offset_bottom = 163.0
 theme = ExtResource("4_cpwgt")
 theme_override_font_sizes/normal_font_size = 34
 bbcode_enabled = true
-text = "[center]You'll respawn at checkpoints if you fall![/center]"
+text = "[pulse][center]You'll respawn at checkpoints if you fall![/center]"
 
-[node name="ObstacleText" type="RichTextLabel" parent="." index="15"]
+[node name="ObstacleText" type="RichTextLabel" parent="." index="22"]
 offset_left = 4122.0
 offset_top = -141.0
 offset_right = 4686.0
@@ -89,9 +153,9 @@ offset_bottom = 163.0
 theme = ExtResource("4_cpwgt")
 theme_override_font_sizes/normal_font_size = 34
 bbcode_enabled = true
-text = "[center]Avoid obstacles to keep your speed up![/center]"
+text = "[shake][center]Avoid obstacles to keep your speed up![/center]"
 
-[node name="SpringText" type="RichTextLabel" parent="." index="16"]
+[node name="SpringText" type="RichTextLabel" parent="." index="23"]
 offset_left = 7350.0
 offset_top = -141.0
 offset_right = 7914.0
@@ -99,9 +163,9 @@ offset_bottom = 163.0
 theme = ExtResource("4_cpwgt")
 theme_override_font_sizes/normal_font_size = 34
 bbcode_enabled = true
-text = "[center]Use the spring to bounce up![/center]"
+text = "[wave][center]Use the spring to bounce up![/center]"
 
-[node name="WinText" type="RichTextLabel" parent="." index="17"]
+[node name="WinText" type="RichTextLabel" parent="." index="24"]
 offset_left = 11048.0
 offset_top = -159.0
 offset_right = 11612.0
@@ -109,9 +173,9 @@ offset_bottom = 145.0
 theme = ExtResource("4_cpwgt")
 theme_override_font_sizes/normal_font_size = 34
 bbcode_enabled = true
-text = "[center]Reach the win zone as fast as possible to finish the level![/center]"
+text = "[wave][center]Reach the win zone as fast as possible to finish the level![/center]"
 
-[node name="Area2D" type="Area2D" parent="." index="18"]
+[node name="Area2D" type="Area2D" parent="." index="25"]
 position = Vector2(3884, 289)
 script = ExtResource("3_p7n7n")
 
@@ -119,12 +183,12 @@ script = ExtResource("3_p7n7n")
 position = Vector2(-39, -336)
 shape = SubResource("RectangleShape2D_8mlax")
 
-[node name="MushroomSpawner" parent="." index="19" instance=ExtResource("5_ekb5h")]
+[node name="MushroomSpawner" parent="." index="26" instance=ExtResource("5_ekb5h")]
 position = Vector2(4044, -47)
 spawn_count = 5
 cooldown = 50.0
 
-[node name="Spring" parent="." index="20" instance=ExtResource("6_xwkxa")]
+[node name="Spring" parent="." index="27" instance=ExtResource("6_xwkxa")]
 position = Vector2(7643, 23)
 
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]
