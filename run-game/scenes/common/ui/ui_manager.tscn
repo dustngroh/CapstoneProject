@@ -151,7 +151,6 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="MiddleContainer" type="HBoxContainer" parent="LeaderboardUI/VContainer"]
-custom_minimum_size = Vector2(580, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -165,6 +164,7 @@ size_flags_horizontal = 3
 custom_minimum_size = Vector2(645, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+horizontal_scroll_mode = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="LeaderboardUI/VContainer/MiddleContainer/ScrollContainer"]
 visible = false

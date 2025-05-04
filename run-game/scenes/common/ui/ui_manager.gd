@@ -229,26 +229,33 @@ func populate_leaderboard(level: int, scores: Array):
 		# Color rank label for top 3
 		match rank:
 			1:
-				#rank_label.add_theme_color_override("font_color", Color.hex(0xFFD700))  # Gold
-				rank_label.add_theme_color_override("font_color", Color.GOLD)  # Gold
-				name_label.add_theme_color_override("font_color", Color.GOLD)  # Gold
-				time_label.add_theme_color_override("font_color", Color.GOLD)  # Gold
+				rank_label.text = ""
+				scoreboard_entry.custom_minimum_size = Vector2(0, 100)
+				var image_path = "res://assets/ui/shaded_medal1.png"
+				scoreboard_entry.get_node("HBoxContainer/RichTextLabel").append_text("[center][img]" + image_path + "[/img]")
+				var gold_theme = preload("res://assets/themes/first_place.tres")
+				scoreboard_entry.theme = gold_theme
+				
 			2:
-				#rank_label.add_theme_color_override("font_color", Color.hex(0xC0C0C0))  # Silver
-				rank_label.add_theme_color_override("font_color", Color.LIGHT_STEEL_BLUE)  # Silver
-				name_label.add_theme_color_override("font_color", Color.LIGHT_STEEL_BLUE)  # Silver
-				time_label.add_theme_color_override("font_color", Color.LIGHT_STEEL_BLUE)  # Silver
+				rank_label.text = ""
+				scoreboard_entry.custom_minimum_size = Vector2(0, 85)
+				var image_path = "res://assets/ui/shaded_medal7.png"
+				scoreboard_entry.get_node("HBoxContainer/RichTextLabel").append_text("[center][img height=\"65\"]" + image_path + "[/img]")
+				var silver_theme = preload("res://assets/themes/second_place.tres")
+				scoreboard_entry.theme = silver_theme
 			3:
-				#rank_label.add_theme_color_override("font_color", Color.hex(0xCD7F32))  # Bronze
-				rank_label.add_theme_color_override("font_color", Color.TAN)  # Bronze
-				name_label.add_theme_color_override("font_color", Color.TAN)  # Bronze
-				time_label.add_theme_color_override("font_color", Color.TAN)  # Bronze
+				rank_label.text = ""
+				scoreboard_entry.custom_minimum_size = Vector2(0, 65)
+				var image_path = "res://assets/ui/shaded_medal2.png"
+				scoreboard_entry.get_node("HBoxContainer/RichTextLabel").append_text("[center][img= height=\"45\"]" + image_path + "[/img]")
+				var bronze_theme = preload("res://assets/themes/third_place.tres")
+				scoreboard_entry.theme = bronze_theme
 		
 		# Color current user
 		var current_username = HTTPRequestManager.username
 		
 		if username == current_username:
-			name_label.add_theme_color_override("font_color", Color.YELLOW)
+			name_label.add_theme_color_override("font_color", Color.CYAN)
 
 		scores_container.add_child(scoreboard_entry)
 
@@ -286,20 +293,27 @@ func populate_multiplayer_leaderboard(scores: Array):
 		# Color rank label for top 3
 		match rank:
 			1:
-				#rank_label.add_theme_color_override("font_color", Color.hex(0xFFD700))  # Gold
-				rank_label.add_theme_color_override("font_color", Color.GOLD)  # Gold
-				name_label.add_theme_color_override("font_color", Color.GOLD)  # Gold
-				time_label.add_theme_color_override("font_color", Color.GOLD)  # Gold
+				rank_label.text = ""
+				scoreboard_entry.custom_minimum_size = Vector2(0, 100)
+				var image_path = "res://assets/ui/shaded_medal1.png"
+				scoreboard_entry.get_node("HBoxContainer/RichTextLabel").append_text("[center][img]" + image_path + "[/img]")
+				var gold_theme = preload("res://assets/themes/first_place.tres")
+				scoreboard_entry.theme = gold_theme
+				
 			2:
-				#rank_label.add_theme_color_override("font_color", Color.hex(0xC0C0C0))  # Silver
-				rank_label.add_theme_color_override("font_color", Color.LIGHT_STEEL_BLUE)  # Silver
-				name_label.add_theme_color_override("font_color", Color.LIGHT_STEEL_BLUE)  # Silver
-				time_label.add_theme_color_override("font_color", Color.LIGHT_STEEL_BLUE)  # Silver
+				rank_label.text = ""
+				scoreboard_entry.custom_minimum_size = Vector2(0, 85)
+				var image_path = "res://assets/ui/shaded_medal7.png"
+				scoreboard_entry.get_node("HBoxContainer/RichTextLabel").append_text("[center][img height=\"65\"]" + image_path + "[/img]")
+				var silver_theme = preload("res://assets/themes/second_place.tres")
+				scoreboard_entry.theme = silver_theme
 			3:
-				#rank_label.add_theme_color_override("font_color", Color.hex(0xCD7F32))  # Bronze
-				rank_label.add_theme_color_override("font_color", Color.TAN)  # Bronze
-				name_label.add_theme_color_override("font_color", Color.TAN)  # Bronze
-				time_label.add_theme_color_override("font_color", Color.TAN)  # Bronze
+				rank_label.text = ""
+				scoreboard_entry.custom_minimum_size = Vector2(0, 65)
+				var image_path = "res://assets/ui/shaded_medal2.png"
+				scoreboard_entry.get_node("HBoxContainer/RichTextLabel").append_text("[center][img= height=\"45\"]" + image_path + "[/img]")
+				var bronze_theme = preload("res://assets/themes/third_place.tres")
+				scoreboard_entry.theme = bronze_theme
 		
 		# Color current user
 		var current_username = HTTPRequestManager.username

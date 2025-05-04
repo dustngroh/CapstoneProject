@@ -1,0 +1,41 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://saa5ef8jxndj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lcpj1"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.554031, 0.334007, 0.107515, 0.8)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqpcw"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.387404, 0.227136, 0.0616385, 0.8)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2trk1"]
+content_margin_left = 8.0
+content_margin_top = 8.0
+content_margin_right = 8.0
+content_margin_bottom = 8.0
+bg_color = Color(0.8, 0.5, 0.2, 0.3)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[resource]
+Button/styles/hover = SubResource("StyleBoxFlat_lcpj1")
+Button/styles/normal = SubResource("StyleBoxFlat_rqpcw")
+Label/colors/font_color = Color(0.956315, 0.719304, 0.451831, 1)
+Label/font_sizes/font_size = 24
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_2trk1")
