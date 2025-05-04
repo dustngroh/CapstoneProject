@@ -1,17 +1,15 @@
 extends Node2D
 
 @export var player_scene: PackedScene
-@export var admin_controls_scene: PackedScene
-@export var touch_controls_scene: PackedScene
 @export var current_level_number = 1
 @export var countdown_seconds = 3
 @export var cutscene_duration = 3.0
 
+@export_file("*.mp3") var level_song_path: String = "res://assets/audio/music/mushroom_background_music.mp3"
+
 var base_level_path = "res://scenes/levels/main_levels/level_"
 var total_levels = 6
 
-var admin_controls_instance: Control = null
-var touch_controls_instance: Control = null
 var active_tween: Tween = null
 
 var player: CharacterBody2D
@@ -22,17 +20,11 @@ var respawn_point: Vector2
 @onready var game: Node = get_tree().root.get_node("Game")
 @onready var level_ui: Control = UIManager.get_node("LevelUI")
 @onready var level_timer: Timer = $Timer
-#@onready var time_label: Label = UIManager.get_node("LevelUI/TimeLabel")
 @onready var time_label: Label = UIManager.bottom_label
 @onready var win_zone: Area2D = $WinZone
-#@onready var leaderboard: CanvasLayer = UIManager.get_node("LevelUI/Leaderboard")
-#@onready var level_options: VBoxContainer = leaderboard.get_node("VBoxContainer")
 @onready var level_options: VBoxContainer = UIManager.controls_container
 @onready var skip_button: Button = level_options.get_node("SkipButton")
-#@onready var leaderboard_label: Label = leaderboard.get_node("Label")
 @onready var leaderboard_label: Label = UIManager.top_label
-#@onready var leaderboard_box = leaderboard.get_node("LeaderboardBox")
-#@onready var login_button = leaderboard.get_node("VBoxContainer/LoginButton")
 @onready var login_button = level_options.get_node("LoginButton")
 @onready var countdown_label: Label = UIManager.get_node("LevelUI/CountdownLabel")
 @onready var level_label: Label = UIManager.get_node("LevelUI/LevelLabel")
@@ -53,6 +45,7 @@ var ghost_player: Node2D
 
 
 func _ready():
+	MusicManager.play_music(level_song_path)
 	resize_background()
 	get_viewport().size_changed.connect(resize_background)
 	
@@ -64,7 +57,6 @@ func _ready():
 			game.should_spawn_ghost = false 
 	
 	# Ensure level UI is visible
-	#UIManager.show_level_ui()
 	UIManager.start_level_ui()
 	UIManager.get_node("FadeLayer").fade_out(1.0) #TESTING PURPOSES: REMOVE THIS LATER
 	UIManager.clear_top_label()
@@ -84,26 +76,16 @@ func _ready():
 	
 	play_cutscene()
 	
-	#start_countdown()
-	
-	# Hide leaderboard initially
-	#leaderboard.visible = false
-	#level_options.visible = false
 	
 	# Connect leaderboard buttons
-	#leaderboard.get_node("VBoxContainer/NextLevelButton").pressed.connect(_on_next_button_pressed)
 	level_options.get_node("NextLevelButton").pressed.connect(_on_next_button_pressed)
-	#leaderboard.get_node("VBoxContainer/ResetButton").pressed.connect(_on_reset_button_pressed)
 	level_options.get_node("ResetButton").pressed.connect(_on_reset_button_pressed)
-	#leaderboard.get_node("VBoxContainer/MainMenuButton").pressed.connect(_on_main_button_pressed)
 	level_options.get_node("MainMenuButton").pressed.connect(_on_main_button_pressed)
-	#leaderboard.get_node("VBoxContainer/ReplayButton").pressed.connect(player_replay)
 	level_options.get_node("ReplayButton").pressed.connect(player_replay)
 	skip_button.pressed.connect(_on_skip_button_pressed)
 	skip_button.visible = false
 	
 	login_button.pressed.connect(_on_login_button_pressed)
-	#login_button.visible = !HTTPRequestManager.is_logged_in()
 	HTTPRequestManager.leaderboard_received.connect(_on_leaderboard_received)
 	HTTPRequestManager.replay_received.connect(_on_replay_received)
 
@@ -136,7 +118,6 @@ func play_cutscene() -> void:
 
 
 func resize_background():
-	#var background_sprite = $Parallax2D/Sprite2D
 	var background_sprite = $LevelBackground/ParallaxLayer/Sprite2D
 	var screen_size = get_viewport().get_visible_rect().size
 	var texture_size = background_sprite.texture.get_size()
@@ -168,8 +149,7 @@ func spawn_player():
 func _on_win_zone_win():
 	stop_timer()
 	player.end_recording()
-	#leaderboard.visible = true
-	#level_options.visible = true
+	
 	if current_level_number > 50:
 		UIManager.end_tutorial_ui()
 	else:
@@ -187,7 +167,6 @@ func _on_win_zone_win():
 			HTTPRequestManager.world_record_achieved.connect(_on_world_record)
 			HTTPRequestManager.personal_record_achieved.connect(_on_personal_record)
 			
-		#leaderboard_status_label.text = "Submitting Time...\nThis may take a minute."
 		UIManager.update_status("Submitting Time...\nThis may take a minute.")
 		
 		HTTPRequestManager.submit_time_with_replay(current_level_number, elapsed_time, player.position_history)
@@ -221,15 +200,15 @@ func start_countdown():
 	for i in range(countdown_seconds, 0, -1):  # Countdown from countdown_seconds to 1
 		countdown_label.text = str(i)
 		countdown_player.play()
-		#await get_tree().create_timer(1.0).timeout  # Wait 1 second per number
 		level_timer.start(1.0)
 		await level_timer.timeout
 	
+	# Show "Go!" briefly
 	countdown_label.text = "Go!"
 	start_player.play()
-	#await get_tree().create_timer(0.5).timeout  # Show "Go!" briefly
 	level_timer.start(0.5)
 	await level_timer.timeout
+	
 	countdown_label.hide()
 	level_label.hide() 
 	
@@ -246,7 +225,7 @@ func stop_timer():
 	print("Final time: %.2f seconds" % elapsed_time)
 
 func show_leaderboard():
-	#leaderboard.visible = true
+	
 	level_options.visible = true
 	
 	UIManager.update_status("Fetching Leaderboard...\nThis may take a minute.")
@@ -411,7 +390,10 @@ func _on_replay_received(replay_array: Array, completion_time: float) -> void:
 		game.set_ghost_replay(replay_array, completion_time)
 		var current_level_path = ""
 		if current_level_number > 50:
-			current_level_path = "res://scenes/levels/alternate_levels/tutorial_level.tscn"
+			if current_level_number == 99:
+				current_level_path = "res://scenes/levels/alternate_levels/tutorial_level.tscn"
+			elif current_level_number == 100:
+					current_level_path = "res://scenes/levels/alternate_levels/credits_level.tscn"
 		else:
 			current_level_path = base_level_path + str(current_level_number) + ".tscn"
 		game.load_level(current_level_path)

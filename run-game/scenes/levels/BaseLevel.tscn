@@ -1,11 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://ds5twxhi7yq7j"]
+[gd_scene load_steps=9 format=3 uid="uid://ds5twxhi7yq7j"]
 
 [ext_resource type="Script" path="res://scenes/levels/base_level.gd" id="1_3y0r6"]
 [ext_resource type="PackedScene" uid="uid://bh68ke5pd617u" path="res://scenes/entities/characters/player/character_body_2d.tscn" id="2_qdxsp"]
 [ext_resource type="PackedScene" uid="uid://c7dcnp2hndaih" path="res://scenes/common/win_zone.tscn" id="2_yau4l"]
-[ext_resource type="PackedScene" uid="uid://coopu6svniep4" path="res://scenes/common/touch_controls.tscn" id="4_iqqkr"]
 [ext_resource type="PackedScene" uid="uid://blrqhq2flg1v8" path="res://scenes/entities/characters/player/multiplayer_character.tscn" id="5_ghj1t"]
-[ext_resource type="PackedScene" uid="uid://dg7278bc2g4bx" path="res://scenes/common/admin_controls.tscn" id="8_nyb32"]
 [ext_resource type="TileSet" uid="uid://kgj2kuo4olk6" path="res://assets/level/forest_tile_set.tres" id="9_k7avm"]
 [ext_resource type="Texture2D" uid="uid://c1cin2yom3816" path="res://assets/level/backgrounds/level1.png" id="10_2cqki"]
 [ext_resource type="PackedScene" uid="uid://mitkt4dlb2sw" path="res://scenes/common/ui/dynamic_background.tscn" id="10_2tsbk"]
@@ -15,18 +13,7 @@
 [node name="BaseLevel" type="Node2D"]
 script = ExtResource("1_3y0r6")
 player_scene = ExtResource("2_qdxsp")
-admin_controls_scene = ExtResource("8_nyb32")
-touch_controls_scene = ExtResource("4_iqqkr")
 ghost_player_scene = ExtResource("5_ghj1t")
-
-[node name="Parallax2D" type="Parallax2D" parent="."]
-visible = false
-scroll_scale = Vector2(0, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
-scale = Vector2(1.3, 1.3)
-texture = ExtResource("10_2cqki")
-centered = false
 
 [node name="LevelBackground" type="ParallaxBackground" parent="."]
 scroll_ignore_camera_zoom = true

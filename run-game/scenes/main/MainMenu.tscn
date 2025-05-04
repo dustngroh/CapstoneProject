@@ -157,6 +157,23 @@ label_settings = SubResource("LabelSettings_m24kh")
 custom_minimum_size = Vector2(180, 0)
 layout_mode = 2
 
+[node name="CreditsButton" type="Button" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -31.5
+offset_top = -64.0
+offset_right = 31.5
+offset_bottom = -33.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("4_t272i")
+text = "Credits"
+
 [connection signal="pressed" from="MiddleContainer/MenuButtonContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="MiddleContainer/MenuButtonContainer/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
 [connection signal="pressed" from="MiddleContainer/MenuButtonContainer/EndlessRunButton" to="." method="_on_endless_run_button_pressed"]
@@ -166,3 +183,4 @@ layout_mode = 2
 [connection signal="pressed" from="MiddleContainer/MenuButtonContainer/CreateAccountScreenButton" to="." method="_on_create_account_screen_button_pressed"]
 [connection signal="pressed" from="MiddleContainer/MenuButtonContainer/LogoutButton" to="." method="_on_logout_button_pressed"]
 [connection signal="toggled" from="MiddleContainer/MenuButtonContainer/MuteButton" to="." method="_on_mute_button_toggled"]
+[connection signal="pressed" from="CreditsButton" to="." method="_on_credits_button_pressed"]

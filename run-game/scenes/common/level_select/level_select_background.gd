@@ -11,7 +11,7 @@ func _on_main_menu_button_pressed() -> void:
 
 
 func _on_level_button_pressed(level_path: String) -> void:
-	MusicManager.play_music("res://assets/audio/music/mushroom_background_music.mp3")
+	#MusicManager.play_music("res://assets/audio/music/mushroom_background_music.mp3")
 
 	var game = get_tree().root.get_node_or_null("Game")
 	if game:

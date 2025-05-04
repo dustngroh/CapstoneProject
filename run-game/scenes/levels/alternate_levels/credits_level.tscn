@@ -1,0 +1,200 @@
+[gd_scene load_steps=4 format=4 uid="uid://kdn33sfgt70p"]
+
+[ext_resource type="PackedScene" uid="uid://ds5twxhi7yq7j" path="res://scenes/levels/BaseLevel.tscn" id="1_07ev4"]
+[ext_resource type="Theme" uid="uid://p6jcm78toxqj" path="res://assets/themes/tutorial_theme.tres" id="2_f7dqm"]
+[ext_resource type="Texture2D" uid="uid://b525vybowk2i6" path="res://assets/level/backgrounds/level4.png" id="2_v0opd"]
+
+[node name="CreditsLevel" instance=ExtResource("1_07ev4")]
+current_level_number = 100
+countdown_seconds = 0
+cutscene_duration = 0.0
+level_song_path = "res://assets/audio/music/soundflakes-morning-dew.mp3"
+
+[node name="Sprite2D" parent="LevelBackground/ParallaxLayer" index="0"]
+texture = ExtResource("2_v0opd")
+
+[node name="WinZone" parent="." index="5"]
+position = Vector2(5445, -9)
+
+[node name="BaseTileMap" parent="." index="6"]
+tile_map_data = PackedByteArray("AAD8/wEAAAACAAMAAAD9/wEAAAADAAMAAAD+/wEAAAADAAMAAAD//wEAAQADAAMAAAAAAAEAAQADAAMAAAABAAEAAAADAAMAAAACAAEAAAADAAMAAAADAAEAAQADAAMAAAAEAAEAAAADAAMAAAAFAAEAAQADAAMAAAAGAAEAAAADAAMAAAAHAAEAAQADAAMAAAAIAAEAAAADAAMAAAAJAAEAAAADAAMAAAAKAAEAAAADAAMAAAALAAEAAAADAAMAAAAMAAEAAQADAAMAAAANAAEAAQADAAMAAAAOAAEAAAADAAMAAAAPAAEAAQADAAMAAAAQAAEAAQADAAMAAAARAAEAAAADAAMAAAASAAEAAAADAAMAAAATAAEAAQADAAMAAAAUAAEAAQADAAMAAAAVAAEAAQADAAMAAAAWAAEAAQADAAMAAAAXAAEAAQADAAMAAAAYAAEAAAADAAMAAAAZAAEAAQADAAMAAAAaAAEAAAADAAMAAAAbAAEAAQADAAMAAAAcAAEAAQADAAMAAAAdAAEAAQADAAMAAAAeAAEAAAADAAMAAAAfAAEAAAADAAMAAAAgAAEAAQADAAMAAAAhAAEAAQADAAMAAAAiAAEAAAADAAMAAAAjAAEAAQADAAMAAAAkAAEAAAADAAMAAAAlAAEAAQADAAMAAAAmAAEAAAADAAMAAAAnAAEAAQADAAMAAAAoAAEAAQADAAMAAAApAAEAAAADAAMAAAAqAAEAAAADAAMAAAArAAEAAQADAAMAAAAsAAEAAAADAAMAAAAtAAEAAQADAAMAAAAuAAEAAAADAAMAAAAvAAEAAAADAAMAAAAwAAEAAAADAAMAAAAxAAEAAAADAAMAAAAyAAEAAAADAAMAAAAzAAEAAAADAAMAAAA0AAEAAQADAAMAAAA1AAEAAQADAAMAAAA2AAEAAAADAAMAAAA3AAEAAQADAAMAAAA4AAEAAQAEAAMAAAD9/wAAAwAAAAAABwASAAYAAAAAAAIAAAASAAcAAAABAAIAAAATAAUAAAABAAQAAAATAAYAAAABAAIAAAATAAcAAAACAAIAAAAUAAUAAAACAAUAAAAUAAYAAAACAAIAAAAUAAcAAAABAAIAAAAVAAUAAAAAAAQAAAAVAAYAAAACAAIAAAAVAAcAAAACAAIAAAAWAAUAAAAFAAQAAAAWAAYAAAABAAIAAAAWAAcAAAACAAIAAAAXAAUAAAAAAAUAAAAXAAYAAAABAAIAAAAXAAcAAAABAAIAAAAYAAUAAAAFAAIAAAAYAAYAAAACAAIAAAAYAAcAAAACAAIAAAAZAAYAAAAEAAEAAAAZAAcAAAACAAIAAAAkAAoAAAAAAAIAAAAkAAsAAAABAAIAAAAlAAkAAAABAAQAAAAlAAoAAAABAAIAAAAlAAsAAAACAAIAAAAmAAkAAAACAAUAAAAmAAoAAAACAAIAAAAmAAsAAAABAAIAAAAnAAkAAAAAAAQAAAAnAAoAAAACAAIAAAAnAAsAAAACAAIAAAAoAAkAAAAFAAQAAAAoAAoAAAABAAIAAAAoAAsAAAACAAIAAAApAAkAAAAAAAUAAAApAAoAAAABAAIAAAApAAsAAAABAAIAAAAqAAkAAAAFAAIAAAAqAAoAAAACAAIAAAAqAAsAAAACAAIAAAArAAoAAAAEAAEAAAArAAsAAAACAAIAAAD//wwAAAAAAAIAAAD//w0AAAABAAIAAAAAAAsAAAABAAQAAAAAAAwAAAABAAIAAAAAAA0AAAACAAIAAAABAAsAAAACAAUAAAABAAwAAAACAAIAAAABAA0AAAABAAIAAAACAAsAAAAAAAQAAAACAAwAAAACAAIAAAACAA0AAAACAAIAAAADAAsAAAAFAAQAAAADAAwAAAABAAIAAAADAA0AAAACAAIAAAAEAAsAAAAAAAUAAAAEAAwAAAABAAIAAAAEAA0AAAABAAIAAAAFAAsAAAAFAAIAAAAFAAwAAAACAAIAAAAFAA0AAAACAAIAAAAGAAwAAAAEAAEAAAAGAA0AAAACAAIAAAAOAP7/AwAAAAAAAgAYAP7/AwAAAAAAAgAfAP7/AwAAAAAAAgAmAP7/AwAAAAAAAgAwAP7/AwAAAAAAAgA3AP7/AwAAAAAAAgATAAAAAwAAAAAACgAiAAAAAwAAAAAACgAuAAAAAwAAAAAACgA=")
+
+[node name="CreditsMusicText" type="RichTextLabel" parent="." index="9"]
+offset_left = 3298.0
+offset_top = -310.0
+offset_right = 3680.0
+offset_bottom = 17.0
+theme = ExtResource("2_f7dqm")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[center]Credits Music:[/center]"
+metadata/_edit_group_ = true
+
+[node name="CreditsSong1" type="RichTextLabel" parent="CreditsMusicText" index="1"]
+layout_mode = 0
+offset_top = 85.0
+offset_right = 382.0
+offset_bottom = 310.0
+theme = ExtResource("2_f7dqm")
+bbcode_enabled = true
+text = "[center]Morning Dew
+by SoundFlakes
+
+https://freesound.org/s/592085/
+
+Licensed under CC BY 4.0[/center]"
+
+[node name="LevelMusicText" type="RichTextLabel" parent="." index="10"]
+offset_left = 1536.0
+offset_top = -310.0
+offset_right = 2384.0
+offset_bottom = 22.0
+theme = ExtResource("2_f7dqm")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[center]Level Music:[/center]"
+
+[node name="LevelSong1" type="RichTextLabel" parent="LevelMusicText" index="1"]
+layout_mode = 0
+offset_top = 85.0
+offset_right = 352.0
+offset_bottom = 301.0
+theme = ExtResource("2_f7dqm")
+bbcode_enabled = true
+text = "[center]Mushroom Background Music
+by Sunsai
+
+https://freesound.org/s/415804/
+
+Licensed under CC BY 4.0[/center]"
+
+[node name="LevelSong2" type="RichTextLabel" parent="LevelMusicText" index="2"]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 85.0
+offset_right = 848.0
+offset_bottom = 312.0
+theme = ExtResource("2_f7dqm")
+bbcode_enabled = true
+text = "[center]Racing Ladybird
+by Crowander
+
+https://freesound.org/s/415804/
+
+Licensed under CC BY-NC 4.0:
+https://creativecommons.org/licenses/by-nc/4.0/[/center]"
+
+[node name="EndlessMusicText" type="RichTextLabel" parent="." index="11"]
+offset_left = 2579.0
+offset_top = -310.0
+offset_right = 3064.0
+offset_bottom = 74.0
+theme = ExtResource("2_f7dqm")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[center]Endless Run Music:[/center]"
+
+[node name="EndlessSong1" type="RichTextLabel" parent="EndlessMusicText" index="1"]
+layout_mode = 0
+offset_top = 85.0
+offset_right = 467.0
+offset_bottom = 345.0
+theme = ExtResource("2_f7dqm")
+bbcode_enabled = true
+text = "[center]Ulua Beach
+by Maarten Schellekens
+
+https://freemusicarchive.org/music/maarten-schellekens/chillout-lounge/ulua-beach/
+
+Licensed under CC BY 4.0[/center]"
+
+[node name="MenuMusicText" type="RichTextLabel" parent="." index="12"]
+offset_top = -310.0
+offset_right = 1386.0
+offset_bottom = 93.0
+theme = ExtResource("2_f7dqm")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[center]Main Menu Music:[/center]"
+
+[node name="MenuSong1" type="RichTextLabel" parent="MenuMusicText" index="1"]
+layout_mode = 0
+offset_top = 85.0
+offset_right = 473.0
+offset_bottom = 310.0
+theme = ExtResource("2_f7dqm")
+bbcode_enabled = true
+text = "[center]Relaxing Ambient Melodies 
+by ViraMiller
+
+https://freesound.org/s/744214/
+
+Licensed under CC BY 4.0:
+https://creativecommons.org/licenses/by/4.0/[/center]"
+
+[node name="MenuSong2" type="RichTextLabel" parent="MenuMusicText" index="2"]
+layout_mode = 0
+offset_left = 454.0
+offset_top = 85.0
+offset_right = 901.0
+offset_bottom = 301.0
+theme = ExtResource("2_f7dqm")
+bbcode_enabled = true
+text = "[center]Chime Song Mellow Chill Short 2
+ by bainmack
+
+https://freesound.org/s/566579/
+
+Licensed under CC0[/center]"
+
+[node name="MenuSong3" type="RichTextLabel" parent="MenuMusicText" index="3"]
+layout_mode = 0
+offset_left = 901.0
+offset_top = 85.0
+offset_right = 1386.0
+offset_bottom = 327.0
+theme = ExtResource("2_f7dqm")
+bbcode_enabled = true
+text = "[center]Calm
+by Lite Saturation
+
+https://freemusicarchive.org/music/lite-saturation/melody-of-us/calm-3/
+
+Licensed under CC BY-ND 4.0: 
+https://creativecommons.org/licenses/by-nd/4.0/
+[/center]"
+
+[node name="DevelopersText" type="RichTextLabel" parent="." index="13"]
+offset_left = 4036.0
+offset_top = -310.0
+offset_right = 4761.0
+offset_bottom = -39.0
+theme = ExtResource("2_f7dqm")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[center]Game Created By:[/center]"
+metadata/_edit_group_ = true
+
+[node name="NameText" type="RichTextLabel" parent="DevelopersText" index="1"]
+layout_mode = 0
+offset_top = 85.0
+offset_right = 725.0
+offset_bottom = 252.0
+theme = ExtResource("2_f7dqm")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "[center]Dustin Groh - Game Development Lead
+Thi Bui - Art Direction Lead
+Georgia Wiggins
+Heidi Ganim[/center]"
+
+[node name="ThankYouText" type="RichTextLabel" parent="." index="14"]
+offset_left = 4966.0
+offset_top = -225.0
+offset_right = 5543.0
+offset_bottom = -140.0
+theme = ExtResource("2_f7dqm")
+theme_override_font_sizes/normal_font_size = 36
+bbcode_enabled = true
+text = "[center]Thanks for playing![/center]"
+metadata/_edit_group_ = true

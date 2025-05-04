@@ -177,6 +177,25 @@ func clear_leaderboard():
 
 func populate_leaderboard(level: int, scores: Array):
 	current_level = level
+	
+	if scores.is_empty():
+		
+		var scoreboard_entry = scoreboard_entry_scene.instantiate()
+		var name_label = scoreboard_entry.get_node("HBoxContainer/NameLabel")
+		var rank_label = scoreboard_entry.get_node("HBoxContainer/RankLabel")
+		
+		
+		rank_label.text = "1."
+		name_label.text = "No scores found."
+		
+		scoreboard_entry.get_node("HBoxContainer/TimeLabel").queue_free()
+		scoreboard_entry.get_node("HBoxContainer/ReplayButton").queue_free()
+		scoreboard_entry.get_node("HBoxContainer/GhostButton").queue_free()
+		
+		scores_container.add_child(scoreboard_entry)
+		
+		return
+	
 	for i in range(scores.size()):
 		var score = scores[i]
 		var username = score["username"]

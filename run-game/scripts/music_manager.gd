@@ -3,6 +3,7 @@ extends Node
 var music_player: AudioStreamPlayer
 
 var is_muted : bool = false
+var currently_playing: String = ""
 
 var menu_songs = [
 	"res://assets/audio/music/Lite Saturation - Calm.mp3",
@@ -23,11 +24,25 @@ func _ready():
 
 # Function to play a specific song
 func play_music(song_path: String):
-	var new_song = load(song_path)  # Load the music file
-	if new_song:
-		music_player.stream = new_song 
-		music_player.stream.loop = true
-		update_music()  # Ensure the music starts or stops based on the mute state
+	if song_path == currently_playing:
+		print("Song is already playing.")
+		return
+
+	var new_song = load(song_path)
+	if new_song == null:
+		print("Failed to load song:", song_path)
+		return
+
+	music_player.stream = new_song
+	music_player.stream.loop = true
+	currently_playing = song_path
+	update_music()
+	
+	#var new_song = load(song_path)  # Load the music file
+	#if new_song:
+		#music_player.stream = new_song 
+		#music_player.stream.loop = true
+		#update_music()  # Ensure the music starts or stops based on the mute state
 
 func play_random_menu_music():
 	if menu_songs.size() > 0:
@@ -38,6 +53,7 @@ func play_random_menu_music():
 # Function to stop the music
 func stop_music():
 	music_player.stop()
+	currently_playing = ""
 
 # Function to toggle mute state
 func toggle_mute():

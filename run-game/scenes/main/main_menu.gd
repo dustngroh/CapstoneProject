@@ -12,7 +12,7 @@ var is_loading_level = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	
-	mute_button.set_pressed_no_signal(MusicManager.is_muted)
+	#mute_button.set_pressed_no_signal(MusicManager.is_muted)
 	
 	UIManager.hide_level_ui()
 	HTTPRequestManager.login_success.connect(_on_successful_login)
@@ -30,7 +30,7 @@ func _on_new_game_button_pressed() -> void:
 		return  # Already loading, ignore extra presses
 	
 	is_loading_level = true
-	MusicManager.play_music("res://assets/audio/music/mushroom_background_music.mp3")
+	#MusicManager.play_music("res://assets/audio/music/mushroom_background_music.mp3")
 	#var game = get_tree().root.get_node("Game")
 	if game:
 		game.load_level("res://scenes/levels/main_levels/level_1.tscn")
@@ -117,3 +117,12 @@ func update_login_buttons(logged_in):
 	
 	if logged_in:
 		info_label.text = "Welcome, " + HTTPRequestManager.username + "."
+
+
+func _on_credits_button_pressed() -> void:
+	if is_loading_level:
+		return  # Already loading, ignore extra presses
+	
+	is_loading_level = true
+	if game:
+		game.load_level("res://scenes/levels/alternate_levels/credits_level.tscn")

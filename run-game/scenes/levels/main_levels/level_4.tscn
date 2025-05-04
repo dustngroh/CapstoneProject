@@ -8,16 +8,10 @@
 [node name="Level4" instance=ExtResource("1_islso")]
 current_level_number = 4
 
-[node name="Sprite2D" parent="Parallax2D" index="0"]
-texture = ExtResource("2_mvvt6")
-
 [node name="Sprite2D" parent="LevelBackground/ParallaxLayer" index="0"]
 texture = ExtResource("2_mvvt6")
 
-[node name="DynamicBackground" parent="LevelBackground" index="1"]
-end_color = Color(0.2, 0.2, 0.4, 1)
-
-[node name="SpawnPoint" parent="." index="3"]
+[node name="SpawnPoint" parent="." index="2"]
 position = Vector2(684.873, 752.449)
 
 [node name="OldMap" type="TileMapLayer" parent="." index="4"]
@@ -51,8 +45,5 @@ text = "Level 4
 Congratulations
 Real levels will be more diffcult and strictly for players 13+  sorry"
 
-[node name="WinZone" parent="." index="13"]
+[node name="WinZone" parent="." index="12"]
 position = Vector2(2643, 801)
-
-[node name="DynamicBackground" parent="." index="15"]
-end_color = Color(0.2, 0.2, 0.4, 1)

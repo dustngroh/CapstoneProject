@@ -15,19 +15,25 @@ func _ready():
 func load_level(level_path: String):
 	# Fade to black
 	await fade_layer.fade_in(1.0)
+	
+	if level_path == "":
+		print("Invalid path. Load failed: empty string.")
+		return
+
+	var scene_resource = load(level_path)
+	if scene_resource == null:
+		print("Failed to load scene from path:", level_path)
+		return
 
 	if current_level:
 		current_level.queue_free()  # Remove the old level
-
-	var new_level = load(level_path).instantiate()
+	
+	var new_level = scene_resource.instantiate()
 	$LevelContainer.add_child(new_level)
 	current_level = new_level
 
 	await get_tree().process_frame  # Ensures the new level is fully loaded
 	
-	#if level_path == "res://scenes/levels/main_levels/level_4.tscn": # Check if final level
-		#MusicManager.play_music("res://assets/audio/music/Lite Saturation - Calm.mp3") # Play special song
-		
 	await fade_layer.fade_out(1.0)
 
 func set_ghost_replay(data: Array, total_time: float):
