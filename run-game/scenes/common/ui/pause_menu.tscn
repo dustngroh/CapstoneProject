@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b0dunmgl0seuh"]
 
+[ext_resource type="Theme" uid="uid://cm6rktesc6i4i" path="res://assets/themes/frog_theme.tres" id="1_t11ts"]
 [ext_resource type="Script" path="res://scenes/common/ui/pause_menu.gd" id="1_yhjww"]
-[ext_resource type="Theme" uid="uid://df3rrd7p3483n" path="res://assets/themes/mush_theme.tres" id="2_jhbnh"]
 [ext_resource type="PackedScene" uid="uid://co22yqlcbx25r" path="res://scenes/common/ui/volume_slider.tscn" id="2_n6o3m"]
 
 [node name="PauseMenu" type="Control"]
@@ -11,6 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_t11ts")
 script = ExtResource("1_yhjww")
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -38,7 +39,6 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_jhbnh")
 text = "Paused"
 horizontal_alignment = 1
 
@@ -48,17 +48,14 @@ layout_mode = 2
 
 [node name="ResumeButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_jhbnh")
 text = "Resume"
 
 [node name="MainMenuButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_jhbnh")
 text = "Main Menu"
 
 [node name="Quit Button" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_jhbnh")
 text = "Quit"
 
 [node name="VSpace2" type="MarginContainer" parent="VBoxContainer"]
@@ -67,7 +64,6 @@ layout_mode = 2
 
 [node name="VolumeLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme = ExtResource("2_jhbnh")
 text = "Volume:"
 
 [node name="VolumeSlider" parent="VBoxContainer" instance=ExtResource("2_n6o3m")]
