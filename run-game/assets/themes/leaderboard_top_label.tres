@@ -2,12 +2,15 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k8udu"]
 bg_color = Color(0.444, 0.658, 0.523, 0.762)
+draw_center = false
 corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [resource]
-Label/colors/font_color = Color(0.791729, 0.882718, 0.783356, 1)
-Label/font_sizes/font_size = 24
+Label/colors/font_color = Color(0.851597, 0.917786, 0.84532, 1)
+Label/colors/font_outline_color = Color(0.121593, 0.280178, 0.174075, 1)
+Label/constants/outline_size = 19
+Label/font_sizes/font_size = 36
 Label/styles/normal = SubResource("StyleBoxFlat_k8udu")

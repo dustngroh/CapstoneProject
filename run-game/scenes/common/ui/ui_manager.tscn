@@ -168,7 +168,6 @@ horizontal_scroll_mode = 0
 
 [node name="PanelContainer" type="PanelContainer" parent="LeaderboardUI/VContainer/MiddleContainer/ScrollContainer"]
 visible = false
-custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
