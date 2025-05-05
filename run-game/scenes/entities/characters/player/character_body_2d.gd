@@ -146,6 +146,7 @@ func _physics_process(delta: float) -> void:
 				if abs(collision_normal.x) > 0.5:  # Only consider collisions along the x-axis
 					if not is_pushed_back:
 						is_pushed_back = true
+						$BumpSound.play()
 						push_back_direction = collision_normal  # Set the direction to push the player back
 						push_back_timer = push_back_duration  # Reset the push-back timer
 						original_velocity = velocity  # Store the current velocity before push-back
@@ -172,6 +173,10 @@ func _physics_process(delta: float) -> void:
 func increase_speed(boost_amount, duration):
 	speed *= boost_amount
 	speed_boost_timer = duration
+	
+	var pitch_scale = clamp(speed / normal_speed, 0.5, 2.0)
+	$SpeedSound.pitch_scale = pitch_scale
+	$SpeedSound.play()
 
 func reset_speed():
 	speed = normal_speed
@@ -227,6 +232,20 @@ func zoom_in_effect():
 	active_tween.tween_property($Camera2D, "zoom", Vector2(1, 1), 2.0)
 	
 	zooming = false
+
+
+func shake_camera(amount := 100.0, duration := 5.0):
+	var camera = $Camera2D
+	if active_tween:
+		active_tween.kill()
+	active_tween = create_tween()
+	var original_offset = camera.offset
+	
+	for i in range(5):  # 5 shake iterations
+		var offset = Vector2(randf_range(-amount, amount), randf_range(-amount, amount))
+		active_tween.tween_property(camera, "offset", offset, duration / 10.0).set_trans(Tween.TRANS_SINE)
+	
+	active_tween.tween_property(camera, "offset", original_offset, duration / 10.0).set_trans(Tween.TRANS_SINE)
 
 
 # Function to record one final location and stop recording

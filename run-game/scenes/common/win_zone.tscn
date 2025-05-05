@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://c7dcnp2hndaih"]
 
 [ext_resource type="Script" path="res://scenes/common/win_zone.gd" id="1_0al2t"]
-[ext_resource type="AudioStream" uid="uid://ra844fxnxhaw" path="res://assets/audio/sounds/powerUp.wav" id="3_gkwv2"]
+[ext_resource type="AudioStream" uid="uid://bnvplq6k30ygc" path="res://assets/audio/sounds/winning.wav" id="2_tvgog"]
 [ext_resource type="TileSet" uid="uid://bdaudv74wslo5" path="res://assets/level/test_tiles.tres" id="4_4v4b1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hto0b"]
@@ -15,7 +15,7 @@ position = Vector2(102.5, 70.5)
 shape = SubResource("RectangleShape2D_hto0b")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_gkwv2")
+stream = ExtResource("2_tvgog")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray(0, 0, 0, 0, 1, 0, 0, 0, 14, 0, 8, 0, 0, 0, 2, 0, 1, 0, 0, 0, 14, 0, 8, 0, 0, 0)

@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/entities/structures/checkpoint.gd" id="1_suufd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7yn8q"]
-size = Vector2(100, 200)
+size = Vector2(100, 372)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s6f28"]
 atlas = ExtResource("1_cdmer")
@@ -14,6 +14,7 @@ region = Rect2(801, 401, 199, 199)
 script = ExtResource("1_suufd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -86)
 shape = SubResource("RectangleShape2D_7yn8q")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
