@@ -197,7 +197,7 @@ offset_bottom = -140.0
 theme = ExtResource("2_f7dqm")
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = "[rainbow][center]Thanks for playing![/center][/rainbow]"
+text = "[rainbow][center]Thanks for Playing![/center][/rainbow]"
 metadata/_edit_group_ = true
 
 [node name="PointLight2D" type="PointLight2D" parent="." index="14"]

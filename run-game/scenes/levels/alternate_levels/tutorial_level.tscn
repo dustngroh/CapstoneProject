@@ -16,7 +16,7 @@ size = Vector2(640, 346)
 current_level_number = 99
 countdown_seconds = 0
 cutscene_duration = 0.0
-level_song_path = "res://assets/audio/music/Crowander - Racing Ladybird.mp3"
+level_song_path = "res://assets/audio/music/dodo_music.mp3"
 
 [node name="SpawnPoint" parent="." index="2"]
 position = Vector2(-229.499, -78.3602)
