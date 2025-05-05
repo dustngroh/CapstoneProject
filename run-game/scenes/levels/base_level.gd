@@ -264,7 +264,7 @@ func _on_leaderboard_received(level: int, scores: Array):
 		UIManager.ghost_replay_pressed.connect(_on_ghost_replay_pressed)
 
 
-	UIManager.update_status("Top Times:")
+	UIManager.update_status("LEADERBOARD:")
 	UIManager.populate_leaderboard(level, scores)
 
 
