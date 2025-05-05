@@ -4,6 +4,7 @@ var music_player: AudioStreamPlayer
 
 var is_muted : bool = false
 var currently_playing: String = ""
+var sfx_player: AudioStreamPlayer
 
 var menu_songs = [
 	"res://assets/audio/music/Lite Saturation - Calm.mp3",
@@ -20,6 +21,10 @@ func _ready():
 		play_random_menu_music()
 		#music_player.stream.loop = true 
 		#music_player.play() 
+	if sfx_player == null:
+		sfx_player = AudioStreamPlayer.new()
+		sfx_player.bus = "sfx"
+		add_child(sfx_player)
 
 
 # Function to play a specific song
@@ -66,3 +71,15 @@ func update_music():
 		music_player.stop()
 	else:
 		music_player.play()
+
+func play_personal_best_sound():
+	var pb_sound = load("res://assets/audio/sounds/casino-bling.wav")
+	if pb_sound:
+		sfx_player.stream = pb_sound
+		sfx_player.play()
+
+func play_world_record_sound():
+	var wr_sound = load("res://assets/audio/sounds/fanfare.wav")
+	if wr_sound:
+		sfx_player.stream = wr_sound
+		sfx_player.play()

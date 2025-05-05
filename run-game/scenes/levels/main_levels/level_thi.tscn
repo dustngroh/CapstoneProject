@@ -37,7 +37,3 @@ duration = 9.0
 position = Vector2(653, 39)
 offset = Vector2(900, 0)
 duration = 9.0
-
-[connection signal="body_entered" from="BaseTileMap/SpeedBoostItem" to="BaseTileMap/SpeedBoostItem" method="_on_body_entered"]
-[connection signal="body_entered" from="BaseTileMap/@Area2D@131655" to="BaseTileMap/@Area2D@131655" method="_on_body_entered"]
-[connection signal="body_entered" from="BaseTileMap/@Area2D@131681" to="BaseTileMap/@Area2D@131681" method="_on_body_entered"]

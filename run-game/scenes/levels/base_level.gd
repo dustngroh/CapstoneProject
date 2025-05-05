@@ -199,12 +199,14 @@ func _on_score_submitted(message: String):
 func _on_world_record(message: String):
 	print("Score submission complete: ", message)
 	leaderboard_label.text += "\nNEW WORLD RECORD!\nABSOLUTE LEGEND"
+	MusicManager.play_world_record_sound()
 	show_leaderboard()
 	HTTPRequestManager.world_record_achieved.disconnect(_on_world_record)
 
 func _on_personal_record(message: String):
 	print("Score submission complete: ", message)
 	leaderboard_label.text += "\nNew Personal Best!"
+	MusicManager.play_personal_best_sound()
 	show_leaderboard()
 	HTTPRequestManager.personal_record_achieved.disconnect(_on_personal_record)
 
