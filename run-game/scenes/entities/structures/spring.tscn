@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://vih42f7l4t7b"]
+[gd_scene load_steps=10 format=3 uid="uid://vih42f7l4t7b"]
 
 [ext_resource type="Script" path="res://scenes/entities/structures/spring.gd" id="1_eg57o"]
 [ext_resource type="Texture2D" uid="uid://my5jlguf3h4g" path="res://assets/level/base.png" id="1_l05ki"]
+[ext_resource type="AudioStream" uid="uid://215me28cg83e" path="res://assets/audio/sounds/boing.wav" id="3_w1ix3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b4ch4"]
 radius = 22.0
@@ -65,5 +66,9 @@ frame_progress = 1.0
 position = Vector2(14, 84)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_tfceg")
+
+[node name="BoingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_w1ix3")
+volume_db = 15.0
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

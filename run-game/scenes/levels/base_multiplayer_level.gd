@@ -117,7 +117,10 @@ func spawn_player():
 
 func _on_bottom_world_border_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):  # Ensure it's the player
-		body.position = spawn_point.position  # Respawn at the spawn point
+		MusicManager.play_falling_sound()
+		await UIManager.fade_layer.fade_in()
+		body.position = spawn_point.position
+		UIManager.fade_layer.fade_out()
 
 func update_timer_display():
 	time_label.text = "Time: %.2f" % elapsed_time  # Show time in seconds with 2 decimals
