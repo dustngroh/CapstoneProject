@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cu0rxyjtecrgk"]
+
+[ext_resource type="Texture2D" uid="uid://ccelc0atyacya" path="res://assets/level/base_update.png" id="1_5vak6"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0x4gf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3o4f5"]
+atlas = ExtResource("1_5vak6")
+region = Rect2(601, 1001, 199, 199)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7alfu"]
+radius = 38.0
+
+[node name="RoundMushroom" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_0x4gf")
+inertia = 200.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_3o4f5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 60)
+shape = SubResource("CircleShape2D_7alfu")
