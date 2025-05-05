@@ -1,10 +1,11 @@
-[gd_resource type="TileSet" load_steps=23 format=3 uid="uid://kgj2kuo4olk6"]
+[gd_resource type="TileSet" load_steps=24 format=3 uid="uid://kgj2kuo4olk6"]
 
 [ext_resource type="Texture2D" uid="uid://drthgki1saa2x" path="res://assets/level/Levelgeo.png" id="1_4me0d"]
 [ext_resource type="Texture2D" uid="uid://my5jlguf3h4g" path="res://assets/level/base.png" id="1_ud43v"]
 [ext_resource type="Texture2D" uid="uid://ccelc0atyacya" path="res://assets/level/base_update.png" id="3_pa5by"]
 [ext_resource type="PackedScene" uid="uid://vih42f7l4t7b" path="res://scenes/entities/structures/spring.tscn" id="4_yfi3x"]
 [ext_resource type="PackedScene" uid="uid://fw8lws3fjv7p" path="res://scenes/entities/obstacles/rock_small.tscn" id="5_blrjs"]
+[ext_resource type="PackedScene" uid="uid://crlmo14rtbpw2" path="res://scenes/entities/items/speed_boost_item.tscn" id="6_2ivwb"]
 [ext_resource type="PackedScene" uid="uid://4i67qd8y0ok3" path="res://scenes/entities/obstacles/mushroom_weird.tscn" id="6_dmwp7"]
 [ext_resource type="PackedScene" uid="uid://cv0g3jhsyp68l" path="res://scenes/entities/structures/checkpoint.tscn" id="6_m5q2v"]
 [ext_resource type="PackedScene" uid="uid://ceg00ldi310ps" path="res://scenes/entities/obstacles/slow_zone.tscn" id="7_3jnre"]
@@ -399,6 +400,7 @@ scenes/7/scene = ExtResource("10_2dgbc")
 scenes/8/scene = ExtResource("11_kc2se")
 scenes/9/scene = ExtResource("12_4eni1")
 scenes/10/scene = ExtResource("5_blrjs")
+scenes/11/scene = ExtResource("6_2ivwb")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ojcff"]
 texture = ExtResource("13_ghxia")

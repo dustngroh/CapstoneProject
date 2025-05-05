@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0yf0dnerp4yu"]
+
+[ext_resource type="Script" path="res://scenes/entities/structures/moving_platform.gd" id="1_kbvf2"]
+[ext_resource type="Texture2D" uid="uid://ccelc0atyacya" path="res://assets/level/base_update.png" id="2_du0jx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c8vvc"]
+atlas = ExtResource("2_du0jx")
+region = Rect2(400, 600, 600, 200)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_42m4b"]
+radius = 30.0
+height = 306.0
+
+[node name="MovingPlatformLarge" type="Node2D"]
+script = ExtResource("1_kbvf2")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatableBody2D"]
+scale = Vector2(0.5, 0.5)
+texture = SubResource("AtlasTexture_c8vvc")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="AnimatableBody2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_42m4b")

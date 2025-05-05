@@ -33,7 +33,7 @@ offset_bottom = 528.0
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_5ngih")
 
-[node name="SpawnPoint" parent="." index="6"]
+[node name="SpawnPoint" parent="." index="5"]
 position = Vector2(191.404, 472.517)
 
 [node name="OldMap" type="TileMapLayer" parent="." index="7"]
@@ -46,6 +46,9 @@ offset_top = 457.0
 offset_right = 714.0
 offset_bottom = 480.0
 text = "And this is level 2"
+
+[node name="WinZone" parent="." index="9"]
+position = Vector2(4114, -503)
 
 [node name="MovingPlatform" parent="." index="10" instance=ExtResource("4_gisli")]
 position = Vector2(2008, 121)
@@ -81,6 +84,3 @@ position = Vector2(3124, 642)
 
 [node name="SpeedBoostItem3" parent="." index="17" instance=ExtResource("5_rfrtb")]
 position = Vector2(3639, 648)
-
-[node name="WinZone" parent="." index="18"]
-position = Vector2(4114, -503)
