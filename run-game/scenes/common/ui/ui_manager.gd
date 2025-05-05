@@ -25,6 +25,7 @@ var scoreboard_entry_scene = preload("res://scenes/common/ui/scoreboard_entry.ts
 @onready var login_layer = $LoginLayer
 #@onready var controls_container = $LeaderboardUI/HBoxContainer/ControlsContainer
 @onready var controls_container = $LeaderboardUI/VContainer/MiddleContainer/ControlsContainer
+@onready var fade_layer = $FadeLayer
 
 
 signal watch_replay_pressed(level_number: int, username: String)

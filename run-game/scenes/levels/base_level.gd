@@ -270,7 +270,11 @@ func _on_leaderboard_received(level: int, scores: Array):
 
 func _on_bottom_world_border_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):  # Ensure it's the player
+		MusicManager.play_falling_sound()
+		await UIManager.fade_layer.fade_in()
 		body.global_position = respawn_point
+		UIManager.fade_layer.fade_out()
+		
 
 func set_checkpoint(new_checkpoint_position: Vector2) -> void:
 	respawn_point = new_checkpoint_position

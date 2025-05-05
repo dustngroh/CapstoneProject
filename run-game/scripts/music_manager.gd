@@ -83,3 +83,9 @@ func play_world_record_sound():
 	if wr_sound:
 		sfx_player.stream = wr_sound
 		sfx_player.play()
+
+func play_falling_sound():
+	var fall_sound = load("res://assets/audio/sounds/falling.wav")
+	if fall_sound:
+		sfx_player.stream = fall_sound
+		sfx_player.play()
