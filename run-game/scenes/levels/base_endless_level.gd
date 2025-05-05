@@ -19,4 +19,6 @@ func _process(delta: float) -> void:
 
 func _on_bottom_world_border_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):  # Ensure it's the player
+		await UIManager.fade_layer.fade_in()
 		body.position = last_safe_position + Vector2(0, -300)
+		UIManager.fade_layer.fade_out()

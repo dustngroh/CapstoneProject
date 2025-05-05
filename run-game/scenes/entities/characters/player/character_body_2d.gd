@@ -174,7 +174,7 @@ func increase_speed(boost_amount, duration):
 	speed *= boost_amount
 	speed_boost_timer = duration
 	
-	var pitch_scale = clamp(speed / normal_speed, 0.5, 2.0)
+	var pitch_scale = clamp(speed / normal_speed, 0.5, 4.0)
 	$SpeedSound.pitch_scale = pitch_scale
 	$SpeedSound.play()
 
