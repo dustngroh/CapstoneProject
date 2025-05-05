@@ -186,8 +186,8 @@ func populate_leaderboard(level: int, scores: Array):
 		var rank_label = scoreboard_entry.get_node("HBoxContainer/RankLabel")
 		
 		
-		rank_label.text = "1."
-		name_label.text = "No scores found."
+		rank_label.text = "-"
+		name_label.text = "Login to be the first!"
 		
 		scoreboard_entry.get_node("HBoxContainer/TimeLabel").queue_free()
 		scoreboard_entry.get_node("HBoxContainer/ReplayButton").queue_free()

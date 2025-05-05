@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cv0g3jhsyp68l"]
+[gd_scene load_steps=6 format=3 uid="uid://cv0g3jhsyp68l"]
 
 [ext_resource type="Texture2D" uid="uid://ccelc0atyacya" path="res://assets/level/base_update.png" id="1_cdmer"]
 [ext_resource type="Script" path="res://scenes/entities/structures/checkpoint.gd" id="1_suufd"]
+[ext_resource type="AudioStream" uid="uid://ducvetuw7qa3u" path="res://assets/audio/sounds/bonus-earned.wav" id="3_0cxug"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7yn8q"]
 size = Vector2(100, 372)
@@ -19,5 +20,8 @@ shape = SubResource("RectangleShape2D_7yn8q")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("AtlasTexture_s6f28")
+
+[node name="ReachedSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0cxug")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

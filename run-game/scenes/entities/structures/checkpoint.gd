@@ -23,6 +23,7 @@ func _on_body_entered(body: Node2D) -> void:
 		if game and game.current_level:
 			game.current_level.set_checkpoint(global_position + respawn_offset)
 			activated = true
+			$ReachedSound.play()
 			visual_feedback()
 
 func visual_feedback():
