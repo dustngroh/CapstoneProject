@@ -43,6 +43,11 @@ var ghost_requested: bool = false
 @export var ghost_player_scene: PackedScene
 var ghost_player: Node2D
 
+var leaderboard_timeout_timer: Timer
+var leaderboard_retry_count: int = 0
+const MAX_RETRIES = 3
+
+
 
 func _ready():
 	MusicManager.play_music(level_song_path)
@@ -88,6 +93,13 @@ func _ready():
 	login_button.pressed.connect(_on_login_button_pressed)
 	HTTPRequestManager.leaderboard_received.connect(_on_leaderboard_received)
 	HTTPRequestManager.replay_received.connect(_on_replay_received)
+	
+	leaderboard_timeout_timer = Timer.new()
+	leaderboard_timeout_timer.wait_time = 60.0
+	leaderboard_timeout_timer.one_shot = true
+	leaderboard_timeout_timer.timeout.connect(_on_leaderboard_timeout)
+	add_child(leaderboard_timeout_timer)
+
 
 
 func _process(delta):
@@ -230,13 +242,18 @@ func show_leaderboard():
 	
 	UIManager.update_status("Fetching Leaderboard...\nThis may take a minute.")
 	
+	leaderboard_retry_count = 0
 	# Fetch leaderboard and display results
 	HTTPRequestManager.fetch_leaderboard(current_level_number)
+	leaderboard_timeout_timer.start()
 	
 
 func _on_leaderboard_received(level: int, scores: Array):
 	if level != current_level_number:
 		return  # Ensure it's for the current level
+
+	leaderboard_timeout_timer.stop()
+	leaderboard_retry_count = 0
 
 	if not UIManager.watch_replay_pressed.is_connected(_on_watch_replay_pressed):
 		UIManager.watch_replay_pressed.connect(_on_watch_replay_pressed)
@@ -422,3 +439,14 @@ func _on_ghost_replay_pressed(level_number: int, username: String) -> void:
 	ghost_requested = true
 	game.set_ghost_name(username)
 	HTTPRequestManager.fetch_replay(level_number, username)
+
+func _on_leaderboard_timeout():
+	if leaderboard_retry_count < MAX_RETRIES:
+		leaderboard_retry_count += 1
+		print("Leaderboard fetch timed out. Retrying... (Attempt %d)" % leaderboard_retry_count)
+		UIManager.update_status("Retrying leaderboard... (%d/%d)" % [leaderboard_retry_count, MAX_RETRIES])
+		HTTPRequestManager.fetch_leaderboard(current_level_number)
+		leaderboard_timeout_timer.start()
+	else:
+		UIManager.update_status("Failed to fetch leaderboard.\nPlease check your connection.")
+		print("Max retries reached. Leaderboard not loaded.")
