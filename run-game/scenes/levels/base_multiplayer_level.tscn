@@ -54,5 +54,8 @@ texture = ExtResource("5_yyh7c")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 
+[node name="DynamicBackground" parent="." instance=ExtResource("6_r5km6")]
+top_level = true
+
 [connection signal="win" from="WinZone" to="." method="_on_win_zone_win"]
 [connection signal="body_entered" from="BottomWorldBorder" to="." method="_on_bottom_world_border_body_entered"]

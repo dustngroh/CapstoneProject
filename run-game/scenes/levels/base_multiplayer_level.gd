@@ -16,6 +16,7 @@ var position_update_timer: float = 0.0  # Timer to control how often we send pos
 var position_update_interval: float = 0.05
 @onready var countdown_timeout_timer: Timer = Timer.new()
 var countdown_started: bool = false
+var respawn_point: Vector2
 
 
 var players: Dictionary = {}
@@ -112,14 +113,16 @@ func spawn_player():
 	if player_scene:
 		player = player_scene.instantiate()  # Create an instance of Player
 		add_child(player)  # Add to the scene
-		player.global_position = spawn_point.global_position  # Move to SpawnPoint
+		respawn_point = spawn_point.global_position
+		player.global_position = respawn_point
+		#player.global_position = spawn_point.global_position  # Move to SpawnPoint
 		player.set_physics_process(false)  # Disable movement until countdown ends
 
 func _on_bottom_world_border_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):  # Ensure it's the player
 		MusicManager.play_falling_sound()
 		await UIManager.fade_layer.fade_in()
-		body.position = spawn_point.position
+		body.global_position = respawn_point
 		UIManager.fade_layer.fade_out()
 
 func update_timer_display():
@@ -260,3 +263,7 @@ func resize_background():
 func _on_countdown_timeout():
 	print("Countdown timeout reached — starting level without all players.")
 	start_countdown()
+
+
+func set_checkpoint(new_checkpoint_position: Vector2) -> void:
+	respawn_point = new_checkpoint_position
