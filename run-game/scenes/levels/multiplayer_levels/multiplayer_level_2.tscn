@@ -23,6 +23,7 @@ position = Vector2(-807, 1628)
 texture = ExtResource("2_nplbu")
 
 [node name="TileMapLayer" parent="." index="6"]
+visible = false
 tile_map_data = PackedByteArray("AAAAAAkAAAAHAAEAAAABAAkAAAAIAAEAAAAFAAsAAAAHAAIAAAAGAAsAAAAIAAIAAAAKAAkAAAAHAAEAAAALAAkAAAAIAAEAAAAPAAoAAAAHAAIAAAAQAAoAAAAIAAIAAAA=")
 tile_set = ExtResource("2_w1p1a")
 
@@ -92,10 +93,3 @@ position = Vector2(227, 1480)
 [node name="CameraShakeZone2" parent="." index="19" instance=ExtResource("7_wj3xn")]
 position = Vector2(2113, 1016)
 shake_amount = 200.0
-
-[connection signal="body_entered" from="BaseTileMap/SpeedBoostItem" to="BaseTileMap/SpeedBoostItem" method="_on_body_entered"]
-[connection signal="body_entered" from="BaseTileMap/@Area2D@168409" to="BaseTileMap/@Area2D@168409" method="_on_body_entered"]
-[connection signal="body_entered" from="BaseTileMap/@Area2D@168410" to="BaseTileMap/@Area2D@168410" method="_on_body_entered"]
-[connection signal="body_entered" from="BaseTileMap/@Area2D@168411" to="BaseTileMap/@Area2D@168411" method="_on_body_entered"]
-[connection signal="body_entered" from="BaseTileMap/@Area2D@168412" to="BaseTileMap/@Area2D@168412" method="_on_body_entered"]
-[connection signal="body_entered" from="BaseTileMap/@Area2D@168413" to="BaseTileMap/@Area2D@168413" method="_on_body_entered"]
