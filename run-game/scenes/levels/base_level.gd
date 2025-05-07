@@ -2,13 +2,14 @@ extends Node2D
 
 @export var player_scene: PackedScene
 @export var current_level_number = 1
+@export var level_title = ""
 @export var countdown_seconds = 3
 @export var cutscene_duration = 3.0
 
 @export_file("*.mp3") var level_song_path: String = "res://assets/audio/music/mushroom_background_music.mp3"
 
 var base_level_path = "res://scenes/levels/main_levels/level_"
-var total_levels = 6
+var total_levels = 4
 
 var active_tween: Tween = null
 
@@ -75,7 +76,7 @@ func _ready():
 	update_timer_display()
 
 	# Show the level label and countdown timer
-	level_label.text = "Level " + str(current_level_number)
+	level_label.text = "Level " + str(current_level_number) + "\n" + level_title
 	level_label.show()
 	
 	

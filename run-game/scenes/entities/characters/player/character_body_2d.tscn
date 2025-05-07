@@ -1,6 +1,6 @@
 [gd_scene load_steps=54 format=3 uid="uid://bh68ke5pd617u"]
 
-[ext_resource type="Script" uid="uid://b4p5tha0q22x5" path="res://scenes/entities/characters/player/character_body_2d.gd" id="1_ll5kr"]
+[ext_resource type="Script" path="res://scenes/entities/characters/player/character_body_2d.gd" id="1_ll5kr"]
 [ext_resource type="Texture2D" uid="uid://ugfx6kovrqni" path="res://assets/character/Jump glow.png" id="2_kb6rx"]
 [ext_resource type="AudioStream" uid="uid://b1eslrxceep6c" path="res://assets/audio/sounds/bump.wav" id="6_ui04c"]
 [ext_resource type="AudioStream" uid="uid://bj41rucxqlslv" path="res://assets/audio/sounds/item_1.wav" id="7_vpl2f"]
@@ -360,8 +360,7 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_1huyh")
 animation = &"jumping"
 autoplay = "jumping"
-frame = 14
-frame_progress = 0.828223
+frame_progress = 0.662487
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 one_shot = true
