@@ -10,7 +10,7 @@ var base_level_path = "res://scenes/levels/multiplayer_levels/multiplayer_level_
 
 var player: CharacterBody2D
 var elapsed_time: float = 0.0  # Time starts at 0
-@export var level_end_time: float = 60.0 # Time to force end a level
+@export var level_end_time: float = 90.0 # Time to force end a level
 var timer_running: bool = false # Paused until countdown ends
 var position_update_timer: float = 0.0  # Timer to control how often we send position updates
 var position_update_interval: float = 0.05
